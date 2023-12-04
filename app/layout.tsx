@@ -12,15 +12,18 @@ const fontSans = FontSans({
 });
 
 export const metadata: Metadata = {
-  title: 'shadcn/ui Plugins',
+  title: 'shadcn/ui expansions',
   description:
-    'shadcn/ui plugins collect lots of useful components which shadcn/ui does not have out of box. All the components are base on shadcn/ui. Just copy and paste. The component is yours.',
+    'shadcn/ui expansions collect lots of useful components which shadcn/ui does not have out of box. All the components are base on shadcn/ui. Just copy and paste. The component is yours.',
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body className={cn('min-h-screen bg-background font-sans antialiased', fontSans.variable)}>
+      <body
+        className={cn('min-h-screen bg-background font-sans antialiased', fontSans.variable)}
+        suppressHydrationWarning
+      >
         <ThemeProvider
           attribute="class"
           defaultTheme="system"

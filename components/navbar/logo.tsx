@@ -17,8 +17,9 @@ const Logo = () => {
           width={24}
           height={24}
           alt="logo"
+          suppressHydrationWarning
         />
-        <span className="text-xl font-bold">shadn/ui plugins</span>
+        <span className="text-xl font-bold">shadcn/ui expansions</span>
       </Link>
     </>
   );
