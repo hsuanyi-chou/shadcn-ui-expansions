@@ -12,9 +12,9 @@ const fontSans = FontSans({
 });
 
 export const metadata: Metadata = {
-  title: 'shadcn/ui Expansions',
+  title: 'shadcn/ui Plugins',
   description:
-    'shadcn/ui expansions collect lots of useful components which shadcn/ui does not have out of box. All the components are base on shadcn/ui. Just copy and paste. The component is yours.',
+    'shadcn/ui plugins collect lots of useful components which shadcn/ui does not have out of box. All the components are base on shadcn/ui. Just copy and paste. The component is yours.',
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
