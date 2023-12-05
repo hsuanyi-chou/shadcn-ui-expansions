@@ -1,26 +1,42 @@
 import React from 'react';
 import { cn } from '@/lib/utils';
 import { Slot } from '@radix-ui/react-slot';
+import { cva, type VariantProps } from 'class-variance-authority';
+
+const headingVariants = cva('font-bold text-primary mb-3', {
+  variants: {
+    variant: {
+      h1: 'leading-14 text-4xl lg:text-5xl',
+      h2: 'leading-14 text-4xl lg:text-5xl',
+      h3: 'leading-10 text-3xl lg:text-4xl',
+      h4: 'leading-8 text-2xl lg:text-3xl',
+      h5: 'leading-8 text-xl lg:text-2xl',
+      h6: 'leading-7 text-lg lg:text-xl',
+    },
+  },
+  defaultVariants: {
+    variant: 'h6',
+  },
+});
 
 type BaseTypographyProps = {
   children?: React.ReactNode;
-  baseClassName?: string;
+  variant?: string;
   className?: string;
   asChild?: boolean;
-  comp: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
-} & React.HTMLAttributes<HTMLHeadingElement>;
+} & React.HTMLAttributes<HTMLHeadingElement> &
+  VariantProps<typeof headingVariants>;
 
 const BaseTypography = ({
   children,
-  baseClassName,
+  variant,
   className,
   asChild = false,
-  comp,
   ...props
 }: BaseTypographyProps) => {
-  const Comp = asChild ? Slot : comp;
+  const Comp = asChild ? Slot : variant || 'h6';
   return (
-    <Comp {...props} className={cn(baseClassName, className)}>
+    <Comp {...props} className={cn(headingVariants({ variant, className }))}>
       {children}
     </Comp>
   );
@@ -29,63 +45,27 @@ const BaseTypography = ({
 type TypographyProps = Omit<BaseTypographyProps, 'BaseTypographyProps' | 'comp'>;
 
 const H1 = (props: TypographyProps) => {
-  return (
-    <BaseTypography
-      {...props}
-      baseClassName="leading-14 text-5xl font-bold text-primary lg:text-6xl"
-      comp="h1"
-    />
-  );
+  return <BaseTypography {...props} variant="h1" />;
 };
 
 const H2 = (props: TypographyProps) => {
-  return (
-    <BaseTypography
-      {...props}
-      baseClassName="leading-14 text-4xl font-bold text-primary lg:text-5xl"
-      comp="h2"
-    />
-  );
+  return <BaseTypography {...props} variant="h2" />;
 };
 
 const H3 = (props: TypographyProps) => {
-  return (
-    <BaseTypography
-      {...props}
-      baseClassName="leading-10 text-3xl font-bold text-primary lg:text-4xl"
-      comp="h3"
-    />
-  );
+  return <BaseTypography {...props} variant="h3" />;
 };
 
 const H4 = (props: TypographyProps) => {
-  return (
-    <BaseTypography
-      {...props}
-      baseClassName="leading-8 text-2xl font-bold text-primary lg:text-3xl"
-      comp="h3"
-    />
-  );
+  return <BaseTypography {...props} variant="h4" />;
 };
 
 const H5 = (props: TypographyProps) => {
-  return (
-    <BaseTypography
-      {...props}
-      baseClassName="leading-8 text-xl font-bold text-primary lg:text-2xl"
-      comp="h5"
-    />
-  );
+  return <BaseTypography {...props} variant="h5" />;
 };
 
 const H6 = (props: TypographyProps) => {
-  return (
-    <BaseTypography
-      {...props}
-      baseClassName="leading-7 text-lg font-bold text-primary lg:text-xl"
-      comp="h6"
-    />
-  );
+  return <BaseTypography {...props} variant="h6" />;
 };
 
 export { H1, H2, H3, H4, H5, H6 };
