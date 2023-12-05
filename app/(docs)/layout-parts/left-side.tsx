@@ -4,7 +4,7 @@ import LeftSideLink from '@/app/(docs)/layout-parts/left-side-link';
 
 const LeftSide = () => {
   return (
-    <section className="flex flex-col gap-2 px-7">
+    <section className="hidden flex-col gap-2 px-5 lg:flex">
       {DOCS.map((component) => (
         <div className="flex flex-col gap-1" key={component.groupKey}>
           <h2 className="text-lg font-extrabold">{component.groupValue}</h2>
