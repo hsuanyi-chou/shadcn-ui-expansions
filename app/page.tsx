@@ -10,8 +10,8 @@ export default function Home() {
     <main className="flex flex-col gap-5 p-12 md:items-center md:p-28">
       <H1>Shadcn/ui Components Expansions, the missing parts.</H1>
       <H3 className="text-lg font-light text-muted-foreground sm:text-xl">
-        Useful components collections base on shadcn/ui to help you ship new features faster. Copy
-        and paste into your apps, Accessible, Customizable, Open Source.
+        Useful additional components collection base on shadcn/ui to help you ship new features
+        faster. Copy and paste into your apps, Accessible, Customizable, Open Source.
       </H3>
       <div className="mt-16 flex flex-col gap-3 md:flex-row">
         <Link href="/docs">
