@@ -29,12 +29,12 @@ type BaseTypographyProps = {
 
 const BaseTypography = ({
   children,
-  variant,
   className,
+  variant = 'h6',
   asChild = false,
   ...props
 }: BaseTypographyProps) => {
-  const Comp = asChild ? Slot : variant || 'h6';
+  const Comp = asChild ? Slot : variant;
   return (
     <Comp {...props} className={cn(headingVariants({ variant, className }))}>
       {children}
@@ -42,7 +42,7 @@ const BaseTypography = ({
   );
 };
 
-type TypographyProps = Omit<BaseTypographyProps, 'BaseTypographyProps' | 'comp'>;
+type TypographyProps = Omit<BaseTypographyProps, 'variant'>;
 
 const H1 = (props: TypographyProps) => {
   return <BaseTypography {...props} variant="h1" />;
