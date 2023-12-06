@@ -12,6 +12,7 @@ const headingVariants = cva('font-bold text-primary mb-3', {
       h4: 'leading-8 text-2xl lg:text-3xl',
       h5: 'leading-8 text-xl lg:text-2xl',
       h6: 'leading-7 text-lg lg:text-xl',
+      p: 'leading-5 text-base lg:text-xl font-normal',
     },
   },
   defaultVariants: {
@@ -68,4 +69,8 @@ const H6 = (props: TypographyProps) => {
   return <BaseTypography {...props} variant="h6" />;
 };
 
-export { H1, H2, H3, H4, H5, H6 };
+const P = (props: TypographyProps) => {
+  return <BaseTypography {...props} variant="p" />;
+};
+
+export { H1, H2, H3, H4, H5, H6, P };
