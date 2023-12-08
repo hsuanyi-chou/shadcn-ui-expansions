@@ -8,9 +8,13 @@ const IntroductionPage = () => {
     <>
       <H1>Introduction</H1>
       <Blockquote className="mb-4">
-        shadcn/ui is a re-usable components built using Radix UI and Tailwind CSS. It is <b>NOT</b>{' '}
-        a component library. It's a collection of re-usable components that you can copy and paste
-        into your apps.{' '}
+        <P className="text-gray-600">
+          shadcn/ui is a re-usable components built using Radix UI and Tailwind CSS.
+        </P>
+        <P className="text-gray-600">
+          It is <b>NOT</b> a component library. It's a collection of re-usable components that you
+          can copy and paste into your apps.
+        </P>
         <Link href="https://ui.shadcn.com/docs" className="underline">
           Learn more about shadcn/ui.
         </Link>
@@ -20,8 +24,10 @@ const IntroductionPage = () => {
         selector, loading button, infinite scroll and more.
       </P>
       <P className="font-bold italic">
-        Same as shadcn/ui, all components are free to use for personal and commercial. Just copy and
-        paste to your project and customize to your needs. The code is yours.
+        The same as shadcn/ui, all components are free to use for personal and commercial.
+      </P>
+      <P className="font-bold italic">
+        Just copy and paste to your project and customize to your needs. The code is yours.
       </P>
     </>
   );
