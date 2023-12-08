@@ -45,6 +45,11 @@ export const DOCS: Documentation[] = [
         value: 'group-multiple-select',
         url: '/docs/group-multiple-select',
       },
+      {
+        label: 'Typography Collection',
+        value: 'typography-collection',
+        url: '/docs/typography-collection',
+      },
     ],
   },
 ];
