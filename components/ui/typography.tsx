@@ -3,7 +3,7 @@ import { cn } from '@/lib/utils';
 import { Slot } from '@radix-ui/react-slot';
 import { cva, type VariantProps } from 'class-variance-authority';
 
-const headingVariants = cva('font-bold text-primary mb-3', {
+const headingVariants = cva('font-bold text-primary mb-4', {
   variants: {
     variant: {
       h1: 'leading-14 text-4xl lg:text-5xl',
