@@ -1,7 +1,7 @@
 import React from 'react';
 
 const LoadingButtonPage = () => {
-  return <div>LoadingButtonPage intro</div>;
+  return <section>LoadingButtonPage intro</section>;
 };
 
 export default LoadingButtonPage;

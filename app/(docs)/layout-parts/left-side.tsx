@@ -10,7 +10,7 @@ const LeftSide = () => {
           <h2 className="text-lg font-extrabold">{component.groupValue}</h2>
           {component.children.map((child) => (
             <LeftSideLink href={child.url} key={child.value}>
-              {child.value}
+              {child.label}
             </LeftSideLink>
           ))}
         </div>

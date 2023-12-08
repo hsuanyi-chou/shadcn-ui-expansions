@@ -5,7 +5,7 @@ interface Documentation {
 }
 
 interface DocumentationChild {
-  key: string;
+  label: string;
   value: string;
   url: string;
 }
@@ -16,8 +16,8 @@ export const DOCS: Documentation[] = [
     groupValue: 'Getting Started',
     children: [
       {
-        key: 'introduction',
-        value: 'Introduction',
+        label: 'Introduction',
+        value: 'introduction',
         url: '/docs',
       },
     ],
@@ -27,21 +27,23 @@ export const DOCS: Documentation[] = [
     groupValue: 'Components',
     children: [
       {
-        key: 'loadingButton',
-        value: 'Loading Button',
+        label: 'Autosize Textarea',
+        value: 'autosize-textarea',
+        url: '/docs/autosize-textarea',
+      },
+      { label: 'Blockquote', value: 'blockquote', url: '/docs/blockquote' },
+      { label: 'Code', value: 'code', url: '/docs/code' },
+      { label: 'Infinite Scroll', value: 'infiniteScroll', url: '/docs/infinite-scroll' },
+      {
+        label: 'Loading Button',
+        value: 'loading-button',
         url: '/docs/loading-button',
       },
-      { key: 'multipleSelect', value: 'Multiple Select', url: '/docs/multiple-select' },
+      { label: 'Multiple Select', value: 'multipleSelect', url: '/docs/multiple-select' },
       {
-        key: 'groupMultipleSelect',
-        value: 'Group Multiple Select',
+        label: 'Multiple Select (Group)',
+        value: 'group-multiple-select',
         url: '/docs/group-multiple-select',
-      },
-      { key: 'infiniteScroll', value: 'Infinite Scroll', url: '/docs/infinite-scroll' },
-      {
-        key: 'autosizeTextarea',
-        value: 'Autosize Textarea',
-        url: '/docs/autosize-textarea',
       },
     ],
   },
