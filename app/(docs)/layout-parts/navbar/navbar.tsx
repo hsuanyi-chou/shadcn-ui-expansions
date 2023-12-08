@@ -1,6 +1,6 @@
 import React from 'react';
-import { DarkModeToggle } from '@/components/navbar/darkmode-toggle';
-import NavbarLogo from '@/components/navbar/navbar-logo';
+import { DarkModeToggle } from '@/app/(docs)/layout-parts/navbar/darkmode-toggle';
+import NavbarLogo from '@/app/(docs)/layout-parts/navbar/navbar-logo';
 import { Github } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';

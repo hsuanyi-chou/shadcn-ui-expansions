@@ -1,7 +1,7 @@
 import React from 'react';
 import { Menu } from 'lucide-react';
 import Link from 'next/link';
-import Logo from '@/components/logo/logo';
+import Logo from '@/app/(docs)/layout-parts/logo/logo';
 
 const NavbarLogo = () => {
   return (

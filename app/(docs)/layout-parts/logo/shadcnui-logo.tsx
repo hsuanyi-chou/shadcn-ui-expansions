@@ -2,7 +2,7 @@
 import React from 'react';
 import Image from 'next/image';
 import { useTheme } from 'next-themes';
-import { LogoProps } from '@/components/logo/logo';
+import { LogoProps } from '@/app/(docs)/layout-parts/logo/logo';
 
 const ShadcnuiLogo = (props: LogoProps) => {
   const { theme } = useTheme();

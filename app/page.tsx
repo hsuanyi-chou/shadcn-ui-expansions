@@ -1,8 +1,8 @@
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { Github } from 'lucide-react';
-import ShadcnuiLogo from '@/components/logo/shadcnui-logo';
-import Logo from '@/components/logo/logo';
+import ShadcnuiLogo from '@/app/(docs)/layout-parts/logo/shadcnui-logo';
+import Logo from '@/app/(docs)/layout-parts/logo/logo';
 import { H1, H3 } from '@/components/ui/typography';
 
 export default function Home() {
