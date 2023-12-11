@@ -26,7 +26,7 @@ const CodeCard = ({ children, code, className }: CodeCardProps) => {
         value="code"
         className="rounded-md border-2 border-gray-200 bg-[#282C34] p-3 dark:border-gray-600"
       >
-        <CodeHighlight code={code || ''} />
+        <CodeHighlight code={code} inTab />
       </TabsContent>
     </Tabs>
   );

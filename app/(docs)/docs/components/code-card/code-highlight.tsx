@@ -4,16 +4,23 @@ import Highlight from 'react-highlight';
 import 'highlight.js/styles/atom-one-dark.css';
 import { Button } from '@/components/ui/button';
 import { Copy, Check } from 'lucide-react';
+import { cn } from '@/lib/utils';
 
-const CodeHighlight = ({ code }: { code: string }) => {
+interface CodeHighlightProps {
+  code?: string;
+  /** 在 tabContent 時，因多了一層 div，會讓按鈕看起來更縮進 */
+  inTab?: boolean;
+}
+
+const CodeHighlight = ({ code, inTab = false }: CodeHighlightProps) => {
   const [copied, setCopied] = useState(false);
   return (
     <div className="relative rounded-md">
       <Button
-        className="absolute right-2 top-2 bg-secondary"
+        className={cn('absolute right-4 top-4 bg-secondary', inTab && 'right-1 top-1')}
         variant="ghost"
         onClick={() => {
-          navigator.clipboard.writeText(code);
+          navigator.clipboard.writeText(code || '');
           setCopied(true);
           setTimeout(() => {
             setCopied(false);
