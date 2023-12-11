@@ -10,10 +10,13 @@ interface CodeHighlightProps {
   code?: string;
   /** 在 tabContent 時，因多了一層 div，會讓按鈕看起來更縮進 */
   inTab?: boolean;
+  /** 是否顯示縮進 */
+  withExpand?: boolean;
 }
 
-const CodeHighlight = ({ code, inTab = false }: CodeHighlightProps) => {
+const CodeHighlight = ({ code, inTab = false, withExpand = false }: CodeHighlightProps) => {
   const [copied, setCopied] = useState(false);
+  const [expand, setExpanded] = useState(!withExpand);
   return (
     <div className="relative rounded-md">
       <Button
@@ -29,8 +32,30 @@ const CodeHighlight = ({ code, inTab = false }: CodeHighlightProps) => {
       >
         {copied ? <Check className="text-green-600 dark:text-green-500" /> : <Copy />}
       </Button>
-      <div className="max-h-[400px] overflow-auto rounded-md">
+      <div
+        className={cn(
+          'max-h-[130px] overflow-hidden rounded-md',
+          expand && 'max-h-[400px] overflow-auto',
+        )}
+      >
         <Highlight className="tsx h-full">{code}</Highlight>
+      </div>
+      <div
+        className={cn(
+          'absolute bottom-2 flex w-full items-center justify-center opacity-30 transition-opacity duration-300 hover:opacity-100',
+          inTab && 'bottom-0',
+          !withExpand && 'hidden',
+        )}
+      >
+        <Button
+          className={cn('bg-secondary')}
+          variant="ghost"
+          onClick={() => {
+            setExpanded((prev) => !prev);
+          }}
+        >
+          {expand ? 'Collapse' : 'Expand'}
+        </Button>
       </div>
     </div>
   );

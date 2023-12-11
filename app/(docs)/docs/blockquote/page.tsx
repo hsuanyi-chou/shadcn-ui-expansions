@@ -3,7 +3,7 @@ import { PageSubTitle, PageTemplate } from '@/app/(docs)/docs/components/page-te
 import CodeCard from '@/app/(docs)/docs/components/code-card';
 import fs from 'fs/promises';
 import BlockquoteDemo from '@/app/(docs)/docs/blockquote/blockquote-demo';
-import { H3, H4 } from '@/components/ui/typography';
+import { H4 } from '@/components/ui/typography';
 import CodeHighlight from '@/app/(docs)/docs/components/code-card/code-highlight';
 const BlockquotePage = async () => {
   const demoCode = await fs.readFile('app/(docs)/docs/blockquote/blockquote-demo.tsx', 'utf8');
@@ -21,7 +21,7 @@ const BlockquotePage = async () => {
       <PageSubTitle>Installation</PageSubTitle>
       <div className="pl-10">
         <H4>Copy and paste the following code into your project.</H4>
-        <CodeHighlight code={installCode} />
+        <CodeHighlight code={installCode} withExpand />
         <H4>Update the import paths to match your project setup.</H4>
       </div>
     </PageTemplate>
