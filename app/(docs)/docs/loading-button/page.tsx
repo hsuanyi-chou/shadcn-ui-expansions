@@ -5,6 +5,7 @@ import LoadingButtonDemo from '@/app/(docs)/docs/loading-button/loading-button-d
 import { Steppers } from '@/components/ui/steppers';
 import { Metadata } from 'next';
 import { baseMetadata } from '@/app/(docs)/layout-parts/base-metadata';
+import CodeHighlight from '@/app/(docs)/docs/components/code-card/parts/code-highlight';
 
 export const metadata: Metadata = baseMetadata({
   title: 'Loading Button',
@@ -13,6 +14,14 @@ export const metadata: Metadata = baseMetadata({
 });
 
 const LoadingButtonPage = async () => {
+  const steps = [
+    {
+      title: 'install the package if you do not have it.',
+      children: (
+        <CodeHighlight lang="shell" code="npm i class-variance-authority @radix-ui/react-slot" />
+      ),
+    },
+  ];
   return (
     <PageTemplate
       title="Loading Button"
@@ -23,7 +32,12 @@ const LoadingButtonPage = async () => {
       </PreviewCodeCard>
 
       <PageSubTitle>Installation</PageSubTitle>
-      <Steppers withInstall installCodePath="components/ui/loading-button.tsx" withEnd />
+      <Steppers
+        withInstall
+        installCodePath="components/ui/loading-button.tsx"
+        withEnd
+        steps={steps}
+      />
     </PageTemplate>
   );
 };

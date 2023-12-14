@@ -24,7 +24,7 @@ const Stepper = ({ title, children, step }: StepperProps) => {
 };
 
 interface SteppersBaseProps {
-  steppers?: Omit<StepperProps, 'step'>[];
+  steps?: Omit<StepperProps, 'step'>[];
   className?: string;
   withEnd?: boolean;
 }
@@ -41,7 +41,7 @@ interface SteppersWithoutInstallProps extends SteppersBaseProps {
 type SteppersProps = SteppersWithInstallProps | SteppersWithoutInstallProps;
 
 export const Steppers = async (props: SteppersProps) => {
-  const { steppers, className, withEnd, withInstall } = props;
+  const { steps, className, withEnd, withInstall } = props;
 
   let installCode = '';
   if (withInstall && props.installCodePath) {
@@ -56,13 +56,13 @@ export const Steppers = async (props: SteppersProps) => {
           <CodeHighlight code={installCode} withExpand />
         </Stepper>
       )}
-      {steppers?.map((props, index) => (
+      {steps?.map((props, index) => (
         <Stepper key={props.title} {...props} step={index + 1 + withInstallOffset} />
       ))}
       {withEnd && (
         <Stepper
           title="Update the import paths to match your project setup."
-          step={(steppers?.length || 0) + 1 + withInstallOffset}
+          step={(steps?.length || 0) + 1 + withInstallOffset}
         />
       )}
     </div>
