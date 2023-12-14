@@ -3,8 +3,8 @@ import { PageSubTitle, PageTemplate } from '@/app/(docs)/docs/components/page-te
 import CodeCard from '@/app/(docs)/docs/components/code-card';
 import fs from 'fs/promises';
 import BlockquoteDemo from '@/app/(docs)/docs/blockquote/blockquote-demo';
-import { H4 } from '@/components/ui/typography';
 import CodeHighlight from '@/app/(docs)/docs/components/code-card/code-highlight';
+import { Stepper } from '@/components/ui/stepper';
 const BlockquotePage = async () => {
   const demoCode = await fs.readFile('app/(docs)/docs/blockquote/blockquote-demo.tsx', 'utf8');
   const installCode = await fs.readFile('components/ui/blockquote.tsx', 'utf8');
@@ -19,11 +19,10 @@ const BlockquotePage = async () => {
       </CodeCard>
 
       <PageSubTitle>Installation</PageSubTitle>
-      <div className="pl-10">
-        <H4>Copy and paste the following code into your project.</H4>
+      <Stepper title="Copy and paste the following code into your project." step={1}>
         <CodeHighlight code={installCode} withExpand />
-        <H4>Update the import paths to match your project setup.</H4>
-      </div>
+      </Stepper>
+      <Stepper title="Update the import paths to match your project setup." step={2} />
     </PageTemplate>
   );
 };

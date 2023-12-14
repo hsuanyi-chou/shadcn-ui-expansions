@@ -1,5 +1,5 @@
 import React from 'react';
-import { H1, H2, P } from '@/components/ui/typography';
+import { H1, H2, H6, P } from '@/components/ui/typography';
 import { cn } from '@/lib/utils';
 
 interface PageTemplateProps {
@@ -13,7 +13,7 @@ const PageTemplate = ({ title, description, children, className }: PageTemplateP
   return (
     <section className={cn(className)}>
       <H1>{title}</H1>
-      <P className="text-gray-500">{description}</P>
+      <H6 className="font-normal text-gray-500">{description}</H6>
       {children}
     </section>
   );
@@ -21,7 +21,7 @@ const PageTemplate = ({ title, description, children, className }: PageTemplateP
 
 // TODO 要加 anchor
 const PageSubTitle = ({ children }: { children: React.ReactNode }) => {
-  return <H2 className="mb-2 border-b-2 border-b-gray-400 pb-2">{children}</H2>;
+  return <H2 className="mb-2 border-b-2 border-b-gray-300 pb-2">{children}</H2>;
 };
 
 export { PageTemplate, PageSubTitle };
