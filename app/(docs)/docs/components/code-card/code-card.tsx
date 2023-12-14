@@ -1,7 +1,7 @@
 'use client';
 import React from 'react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import CodeHighlight from '@/app/(docs)/docs/components/code-card/code-highlight';
+import CodeHighlight from '@/app/(docs)/docs/components/code-card/parts/code-highlight';
 import { cn } from '@/lib/utils';
 
 interface CodeCardProps {
@@ -24,7 +24,7 @@ const CodeCard = ({ children, code, className }: CodeCardProps) => {
       </TabsContent>
       <TabsContent
         value="code"
-        className="bg-codeBg rounded-md border-2 border-gray-200 p-3 dark:border-gray-600"
+        className="rounded-md border-2 border-gray-200 bg-codeBg p-3 dark:border-gray-600"
       >
         <CodeHighlight code={code} inTab />
       </TabsContent>

@@ -1,13 +1,12 @@
 import React from 'react';
 import { PageSubTitle, PageTemplate } from '@/app/(docs)/docs/components/page-template';
-import CodeCard from '@/app/(docs)/docs/components/code-card';
 import fs from 'fs/promises';
 import BlockquoteDemo from '@/app/(docs)/docs/blockquote/blockquote-demo';
-import CodeHighlight from '@/app/(docs)/docs/components/code-card/code-highlight';
+import CodeHighlight from '@/app/(docs)/docs/components/code-card/parts/code-highlight';
 import { Steppers } from '@/components/ui/steppers';
+import PreviewCodeCard from '@/app/(docs)/docs/components/preview-code-card';
 
 const BlockquotePage = async () => {
-  const demoCode = await fs.readFile('app/(docs)/docs/blockquote/blockquote-demo.tsx', 'utf8');
   const installCode = await fs.readFile('components/ui/blockquote.tsx', 'utf8');
   const steps = [
     {
@@ -21,9 +20,9 @@ const BlockquotePage = async () => {
       title="Blockquote"
       description="Display a quote or a component that looks like a quote."
     >
-      <CodeCard code={demoCode} className="mb-14">
+      <PreviewCodeCard path="app/(docs)/docs/blockquote/blockquote-demo.tsx">
         <BlockquoteDemo />
-      </CodeCard>
+      </PreviewCodeCard>
 
       <PageSubTitle>Installation</PageSubTitle>
       <Steppers steppers={steps} withEnd />
