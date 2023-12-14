@@ -23,24 +23,29 @@ const Stepper = ({ title, children, step }: StepperProps) => {
   );
 };
 
-interface SteppersProps {
+interface SteppersBaseProps {
   steppers?: Omit<StepperProps, 'step'>[];
   className?: string;
-  withInstall?: boolean;
-  installCodePath?: string;
   withEnd?: boolean;
 }
 
-export const Steppers = async ({
-  withEnd,
-  steppers,
-  className,
-  withInstall,
-  installCodePath,
-}: SteppersProps) => {
+interface SteppersWithInstallProps extends SteppersBaseProps {
+  withInstall: true;
+  installCodePath: string;
+}
+
+interface SteppersWithoutInstallProps extends SteppersBaseProps {
+  withInstall?: false;
+}
+
+type SteppersProps = SteppersWithInstallProps | SteppersWithoutInstallProps;
+
+export const Steppers = async (props: SteppersProps) => {
+  const { steppers, className, withEnd, withInstall } = props;
+
   let installCode = '';
-  if (withInstall && installCodePath) {
-    installCode = await fs.readFile(installCodePath, 'utf8');
+  if (withInstall && props.installCodePath) {
+    installCode = await fs.readFile(props.installCodePath, 'utf8');
   }
   const withInstallOffset = withInstall ? 1 : 0;
 
