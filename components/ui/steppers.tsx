@@ -1,6 +1,8 @@
 import React from 'react';
 import { H4 } from '@/components/ui/typography';
 import { cn } from '@/lib/utils';
+import CodeHighlight from '@/app/(docs)/docs/components/code-card/parts/code-highlight';
+import fs from 'fs/promises';
 
 interface StepperProps {
   children?: React.ReactNode;
@@ -23,18 +25,39 @@ const Stepper = ({ title, children, step }: StepperProps) => {
 
 interface SteppersProps {
   steppers?: Omit<StepperProps, 'step'>[];
-  withEnd?: boolean;
   className?: string;
+  withInstall?: boolean;
+  installCodePath?: string;
+  withEnd?: boolean;
 }
 
-export const Steppers = ({ withEnd, steppers, className }: SteppersProps) => {
+export const Steppers = async ({
+  withEnd,
+  steppers,
+  className,
+  withInstall,
+  installCodePath,
+}: SteppersProps) => {
+  let installCode = '';
+  if (withInstall && installCodePath) {
+    installCode = await fs.readFile(installCodePath, 'utf8');
+  }
+  const withInstallOffset = withInstall ? 1 : 0;
+
   return (
     <div className={cn(className)}>
-      {steppers?.map((props, index) => <Stepper key={props.title} {...props} step={index + 1} />)}
+      {withInstall && (
+        <Stepper title="Copy and paste the following code into your project." step={1}>
+          <CodeHighlight code={installCode} withExpand />
+        </Stepper>
+      )}
+      {steppers?.map((props, index) => (
+        <Stepper key={props.title} {...props} step={index + 1 + withInstallOffset} />
+      ))}
       {withEnd && (
         <Stepper
-          title={'Update the import paths to match your project setup.'}
-          step={(steppers?.length || 0) + 1}
+          title="Update the import paths to match your project setup."
+          step={(steppers?.length || 0) + 1 + withInstallOffset}
         />
       )}
     </div>
