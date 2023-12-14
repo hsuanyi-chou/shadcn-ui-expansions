@@ -1,6 +1,5 @@
 import React from 'react';
 import CodeCard from '@/app/(docs)/docs/components/code-card/code-card';
-import BlockquoteDemo from '@/app/(docs)/docs/blockquote/blockquote-demo';
 import fs from 'fs/promises';
 import { cn } from '@/lib/utils';
 
@@ -19,8 +18,8 @@ const PreviewCodeCard = async ({ className, path, children }: PreviewCodeCardPro
   }
 
   return (
-    <CodeCard code={demoCode} className={cn('mb-14', className)}>
-      {children}
+    <CodeCard code={demoCode} className={cn(' mb-14', className)}>
+      <div className="flex items-center justify-center py-10">{children}</div>
     </CodeCard>
   );
 };
