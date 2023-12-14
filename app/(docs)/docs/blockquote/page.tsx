@@ -3,6 +3,13 @@ import { PageSubTitle, PageTemplate } from '@/app/(docs)/docs/components/page-te
 import BlockquoteDemo from '@/app/(docs)/docs/blockquote/blockquote-demo';
 import { Steppers } from '@/components/ui/steppers';
 import PreviewCodeCard from '@/app/(docs)/docs/components/preview-code-card';
+import { Metadata } from 'next';
+import { baseMetadata } from '@/app/(docs)/layout-parts/base-metadata';
+
+export const metadata: Metadata = baseMetadata({
+  title: 'Blockquote',
+  description: 'Display a quote or a component that looks like a quote.',
+});
 
 const BlockquotePage = async () => {
   return (
