@@ -12,7 +12,7 @@ export const Stepper = ({ title, className, children, step }: StepperProps) => {
   return (
     <div className={cn(className)}>
       <div className="flex items-center gap-3">
-        <span className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-200 p-3">
+        <span className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-200 p-3 text-primary dark:text-primary-foreground">
           {step}
         </span>
         <H4 className="pt-3">{title}</H4>
