@@ -13,7 +13,7 @@ export const metadata: Metadata = baseMetadata({
   description: 'Add anchor for every heading.',
 });
 
-const TypographyWithAnchorPage = () => {
+const HeadingWithAnchorPage = () => {
   return (
     <PageTemplate title="Heading With Anchor" description="Add anchor for every heading.">
       <PreviewCodeCard path="app/(docs)/docs/heading-with-anchor/heading-with-anchor-demo.tsx">
@@ -31,4 +31,4 @@ const TypographyWithAnchorPage = () => {
   );
 };
 
-export default TypographyWithAnchorPage;
+export default HeadingWithAnchorPage;
