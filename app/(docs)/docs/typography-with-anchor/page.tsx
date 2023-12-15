@@ -4,22 +4,19 @@ import { Steppers } from '@/components/ui/steppers';
 import PreviewCodeCard from '@/app/(docs)/docs/components/preview-code-card';
 import { Metadata } from 'next';
 import { baseMetadata } from '@/app/(docs)/layout-parts/base-metadata';
-import TypographyDemo from '@/app/(docs)/docs/typography-collection/typography-collection-demo';
+import TypographyDemo from '@/app/(docs)/docs/typography-with-anchor/typography-with-anchor-demo';
 import Usage from '@/app/(docs)/docs/components/usage';
-import TypographyUsage from '@/app/(docs)/docs/typography-collection/typography-collection-usage';
+import TypographyUsage from '@/app/(docs)/docs/typography-with-anchor/typography-with-anchor-usage';
 
 export const metadata: Metadata = baseMetadata({
-  title: 'Typography Collection',
-  description: 'Collect all typography components so that you can just copy and paste the code.',
+  title: 'Typography With Anchor',
+  description: 'Typography with anchor ',
 });
 
-const TypographyCollectionPage = () => {
+const TypographyWithAnchorPage = () => {
   return (
-    <PageTemplate
-      title="Typography Collection"
-      description="Collect all typography components so that you can just copy and paste the code."
-    >
-      <PreviewCodeCard path="app/(docs)/docs/typography-collection/typography-collection-demo.tsx">
+    <PageTemplate title="Heading With Anchor" description="Add anchor for every heading.">
+      <PreviewCodeCard path="app/(docs)/docs/typography-with-anchor/typography-with-anchor-demo.tsx">
         <TypographyDemo />
       </PreviewCodeCard>
 
@@ -27,11 +24,11 @@ const TypographyCollectionPage = () => {
       <Steppers withInstall codePath="components/ui/typography.tsx" withEnd />
 
       <PageSubTitle>Usage</PageSubTitle>
-      <Usage path="app/(docs)/docs/typography-collection/typography-collection-usage.tsx">
+      <Usage path="app/(docs)/docs/typography-with-anchor/typography-with-anchor-usage.tsx">
         <TypographyUsage />
       </Usage>
     </PageTemplate>
   );
 };
 
-export default TypographyCollectionPage;
+export default TypographyWithAnchorPage;
