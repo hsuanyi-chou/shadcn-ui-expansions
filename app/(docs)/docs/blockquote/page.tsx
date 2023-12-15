@@ -11,7 +11,7 @@ export const metadata: Metadata = baseMetadata({
   description: 'Display a quote or a component that looks like a quote.',
 });
 
-const BlockquotePage = async () => {
+const BlockquotePage = () => {
   return (
     <PageTemplate
       title="Blockquote"

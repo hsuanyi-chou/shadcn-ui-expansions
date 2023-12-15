@@ -15,7 +15,7 @@ export const metadata: Metadata = baseMetadata({
     'Display a button or a component that looks like a button with loading spinner. Everything is just the same as the button in shadcnui.',
 });
 
-const LoadingButtonPage = async () => {
+const LoadingButtonPage = () => {
   return (
     <PageTemplate
       title="Loading Button"
