@@ -52,7 +52,7 @@ const CodeHighlight = ({
           expand && 'max-h-[400px] overflow-auto',
         )}
       >
-        <Highlight className={`${lang} h-full`}>{code}</Highlight>
+        <Highlight className={cn('h-full', lang)}>{code}</Highlight>
       </div>
       <div
         className={cn(
