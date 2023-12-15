@@ -6,6 +6,7 @@ import { Steppers } from '@/components/ui/steppers';
 import { Metadata } from 'next';
 import { baseMetadata } from '@/app/(docs)/layout-parts/base-metadata';
 import { Reference, ReferenceBorder } from '@/app/(docs)/docs/components/reference';
+import LoadingButtonUsage from '@/app/(docs)/docs/loading-button/loading-button-usage';
 
 export const metadata: Metadata = baseMetadata({
   title: 'Loading Button',
@@ -35,6 +36,11 @@ const LoadingButtonPage = async () => {
         installScript="npm i class-variance-authority @radix-ui/react-slot"
         withEnd
       />
+
+      <PageSubTitle>Usage</PageSubTitle>
+      <PreviewCodeCard path="app/(docs)/docs/loading-button/loading-button-usage.tsx">
+        <LoadingButtonUsage />
+      </PreviewCodeCard>
     </PageTemplate>
   );
 };
