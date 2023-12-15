@@ -20,7 +20,7 @@ export const Reference = (props: LinkProps) => {
 
   return (
     <Link {...props} target="_blank">
-      <Badge variant="secondary" className="flex gap-3">
+      <Badge variant="secondary" className="flex gap-2">
         {Icon}
         {text}
       </Badge>
