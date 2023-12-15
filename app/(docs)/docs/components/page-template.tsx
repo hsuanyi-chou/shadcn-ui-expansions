@@ -19,9 +19,12 @@ const PageTemplate = ({ title, description, children, className }: PageTemplateP
   );
 };
 
-// TODO 要加 anchor
 const PageSubTitle = ({ children }: { children: React.ReactNode }) => {
-  return <H2 className="mb-2 border-b-2 border-b-gray-300 pb-2">{children}</H2>;
+  return (
+    <H2 className="mb-2 border-b-2 border-b-gray-300 pb-2" anchor={children?.toString()}>
+      {children}
+    </H2>
+  );
 };
 
 export { PageTemplate, PageSubTitle };

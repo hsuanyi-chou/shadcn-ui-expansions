@@ -12,7 +12,7 @@ interface UsageProps {
 const Usage = ({ className, children, title, path }: UsageProps) => {
   return (
     <div className={cn(className)}>
-      {title && <H3>{title}</H3>}
+      {title && <H3 anchor={title}>{title}</H3>}
       <PreviewCodeCard path={path}>{children}</PreviewCodeCard>
     </div>
   );

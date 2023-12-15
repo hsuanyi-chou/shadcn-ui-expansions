@@ -5,7 +5,7 @@ import PreviewCodeCard from '@/app/(docs)/docs/components/preview-code-card';
 import { Metadata } from 'next';
 import { baseMetadata } from '@/app/(docs)/layout-parts/base-metadata';
 import TypographyDemo from '@/app/(docs)/docs/typography-collection/typography-collection-demo';
-import Usage from '@/app/(docs)/docs/components/code-card/usage';
+import Usage from '@/app/(docs)/docs/components/usage';
 import TypographyUsage from '@/app/(docs)/docs/typography-collection/typography-collection-usage';
 
 export const metadata: Metadata = baseMetadata({

@@ -7,7 +7,7 @@ import { Metadata } from 'next';
 import { baseMetadata } from '@/app/(docs)/layout-parts/base-metadata';
 import { Reference, ReferenceBorder } from '@/app/(docs)/docs/components/reference';
 import LoadingButtonUsage from '@/app/(docs)/docs/loading-button/loading-button-usage';
-import Usage from '@/app/(docs)/docs/components/code-card/usage';
+import Usage from '@/app/(docs)/docs/components/usage';
 
 export const metadata: Metadata = baseMetadata({
   title: 'Loading Button',
