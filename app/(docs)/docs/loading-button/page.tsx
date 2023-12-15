@@ -5,7 +5,6 @@ import LoadingButtonDemo from '@/app/(docs)/docs/loading-button/loading-button-d
 import { Steppers } from '@/components/ui/steppers';
 import { Metadata } from 'next';
 import { baseMetadata } from '@/app/(docs)/layout-parts/base-metadata';
-import CodeHighlight from '@/app/(docs)/docs/components/code-card/parts/code-highlight';
 
 export const metadata: Metadata = baseMetadata({
   title: 'Loading Button',
