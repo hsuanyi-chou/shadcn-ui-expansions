@@ -2,7 +2,7 @@
 import * as React from 'react';
 import { H1, H2, H3, H4, H5, H6, P } from '@/components/ui/typography';
 
-const TypographyUsage = () => {
+const HeadingUsage = () => {
   return (
     <div className="flex w-full flex-col gap-3 px-10">
       <H1 anchor="usage-h1">Heading 1</H1>
@@ -16,4 +16,4 @@ const TypographyUsage = () => {
   );
 };
 
-export default TypographyUsage;
+export default HeadingUsage;

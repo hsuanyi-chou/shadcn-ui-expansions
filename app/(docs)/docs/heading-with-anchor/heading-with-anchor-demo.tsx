@@ -1,7 +1,7 @@
 import React from 'react';
 import { H1 } from '@/components/ui/typography';
 
-const TypographyDemo = () => {
+const HeadingWithAnchorDemo = () => {
   return (
     <div className="w-full px-10">
       <H1 anchor="demo-heading-1" className="border-b-2 border-gray-200 pb-2">
@@ -11,4 +11,4 @@ const TypographyDemo = () => {
   );
 };
 
-export default TypographyDemo;
+export default HeadingWithAnchorDemo;

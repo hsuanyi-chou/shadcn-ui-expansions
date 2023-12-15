@@ -33,6 +33,11 @@ export const DOCS: Documentation[] = [
       },
       { label: 'Blockquote', value: 'blockquote', url: '/docs/blockquote' },
       { label: 'Code', value: 'code', url: '/docs/code' },
+      {
+        label: 'Heading With Anchor',
+        value: 'heading-with-anchor',
+        url: '/docs/heading-with-anchor',
+      },
       { label: 'Infinite Scroll', value: 'infiniteScroll', url: '/docs/infinite-scroll' },
       {
         label: 'Loading Button',
@@ -44,11 +49,6 @@ export const DOCS: Documentation[] = [
         label: 'Multiple Select (Group)',
         value: 'group-multiple-select',
         url: '/docs/group-multiple-select',
-      },
-      {
-        label: 'Typography With Anchor',
-        value: 'typography-with-anchor',
-        url: '/docs/typography-with-anchor',
       },
     ],
   },
