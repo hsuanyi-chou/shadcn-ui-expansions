@@ -1,6 +1,6 @@
 'use client';
 import * as React from 'react';
-import { H1, H2, H3, H4, H5, H6, P } from '@/components/ui/typography';
+import { H1, H2, H3, H4, H5, H6, P } from '@/components/ui/heading-with-anchor';
 
 const HeadingUsage = () => {
   return (

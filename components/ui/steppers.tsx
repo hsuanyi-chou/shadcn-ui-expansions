@@ -1,5 +1,5 @@
 import React from 'react';
-import { H4 } from '@/components/ui/typography';
+import { H4 } from '@/components/ui/heading-with-anchor';
 import { cn } from '@/lib/utils';
 import CodeHighlight from '@/app/(docs)/docs/components/code-card/parts/code-highlight';
 import fs from 'fs/promises';

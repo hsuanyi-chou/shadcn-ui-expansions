@@ -1,5 +1,5 @@
 import React from 'react';
-import { H1, P } from '@/components/ui/typography';
+import { H1, P } from '@/components/ui/heading-with-anchor';
 import { Blockquote } from '@/components/ui/blockquote';
 import Link from 'next/link';
 

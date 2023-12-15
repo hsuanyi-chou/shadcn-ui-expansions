@@ -21,7 +21,7 @@ const headingVariants = cva('font-bold text-primary', {
   },
 });
 
-type BaseTypographyProps = {
+type BaseHeadingProps = {
   children?: React.ReactNode;
   variant?: string;
   className?: string;
@@ -30,14 +30,14 @@ type BaseTypographyProps = {
 } & React.HTMLAttributes<HTMLHeadingElement> &
   VariantProps<typeof headingVariants>;
 
-const BaseTypography = ({
+const BaseHeading = ({
   children,
   className,
   variant = 'h6',
   asChild = false,
   anchor,
   ...props
-}: BaseTypographyProps) => {
+}: BaseHeadingProps) => {
   const Comp = asChild ? Slot : variant;
   return (
     <>
@@ -60,34 +60,34 @@ const BaseTypography = ({
   );
 };
 
-type TypographyProps = Omit<BaseTypographyProps, 'variant'>;
+type TypographyProps = Omit<BaseHeadingProps, 'variant'>;
 
 const H1 = (props: TypographyProps) => {
-  return <BaseTypography {...props} variant="h1" />;
+  return <BaseHeading {...props} variant="h1" />;
 };
 
 const H2 = (props: TypographyProps) => {
-  return <BaseTypography {...props} variant="h2" />;
+  return <BaseHeading {...props} variant="h2" />;
 };
 
 const H3 = (props: TypographyProps) => {
-  return <BaseTypography {...props} variant="h3" />;
+  return <BaseHeading {...props} variant="h3" />;
 };
 
 const H4 = (props: TypographyProps) => {
-  return <BaseTypography {...props} variant="h4" />;
+  return <BaseHeading {...props} variant="h4" />;
 };
 
 const H5 = (props: TypographyProps) => {
-  return <BaseTypography {...props} variant="h5" />;
+  return <BaseHeading {...props} variant="h5" />;
 };
 
 const H6 = (props: TypographyProps) => {
-  return <BaseTypography {...props} variant="h6" />;
+  return <BaseHeading {...props} variant="h6" />;
 };
 
 const P = (props: TypographyProps) => {
-  return <BaseTypography {...props} variant="p" />;
+  return <BaseHeading {...props} variant="p" />;
 };
 
 export { H1, H2, H3, H4, H5, H6, P };

@@ -1,5 +1,5 @@
 import React from 'react';
-import { H1, H2, H6 } from '@/components/ui/typography';
+import { H1, H2, H6 } from '@/components/ui/heading-with-anchor';
 import { cn } from '@/lib/utils';
 
 interface PageTemplateProps {

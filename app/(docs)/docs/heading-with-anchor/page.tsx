@@ -21,7 +21,7 @@ const HeadingWithAnchorPage = () => {
       </PreviewCodeCard>
 
       <PageSubTitle>Installation</PageSubTitle>
-      <Steppers withInstall codePath="components/ui/typography.tsx" withEnd />
+      <Steppers withInstall codePath="components/ui/heading-with-anchor.tsx" withEnd />
 
       <PageSubTitle>Usage</PageSubTitle>
       <Usage path="app/(docs)/docs/heading-with-anchor/heading-with-anchor-usage.tsx">

@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { Github } from 'lucide-react';
 import ShadcnuiLogo from '@/app/(docs)/layout-parts/logo/shadcnui-logo';
 import Logo from '@/app/(docs)/layout-parts/logo/logo';
-import { H1, H3 } from '@/components/ui/typography';
+import { H1, H3 } from '@/components/ui/heading-with-anchor';
 
 export default function Home() {
   return (
