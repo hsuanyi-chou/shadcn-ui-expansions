@@ -22,7 +22,7 @@ const BlockquotePage = async () => {
       </PreviewCodeCard>
 
       <PageSubTitle>Installation</PageSubTitle>
-      <Steppers withInstall installCodePath="components/ui/blockquote.tsx" withEnd />
+      <Steppers withInstall codePath="components/ui/blockquote.tsx" withEnd />
     </PageTemplate>
   );
 };

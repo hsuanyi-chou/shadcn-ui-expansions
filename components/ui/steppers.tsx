@@ -31,7 +31,10 @@ interface SteppersBaseProps {
 
 interface SteppersWithInstallProps extends SteppersBaseProps {
   withInstall: true;
-  installCodePath: string;
+  /** 要複製的程式碼 */
+  codePath: string;
+  /** npm install script */
+  installScript?: string;
 }
 
 interface SteppersWithoutInstallProps extends SteppersBaseProps {
@@ -44,25 +47,38 @@ export const Steppers = async (props: SteppersProps) => {
   const { steps, className, withEnd, withInstall } = props;
 
   let installCode = '';
-  if (withInstall && props.installCodePath) {
-    installCode = await fs.readFile(props.installCodePath, 'utf8');
+  if (withInstall && props.codePath) {
+    installCode = await fs.readFile(props.codePath, 'utf8');
   }
-  const withInstallOffset = withInstall ? 1 : 0;
+  const withInstallOffset = withInstall ? (props.installScript ? 2 : 1) : 0;
 
   return (
     <div className={cn(className)}>
       {withInstall && (
-        <Stepper title="Copy and paste the following code into your project." step={1}>
-          <CodeHighlight code={installCode} withExpand />
-        </Stepper>
+        <>
+          {props.installScript && (
+            <Stepper
+              title="Install the package if you do not have it."
+              step={withInstallOffset - 2}
+            >
+              <CodeHighlight lang="shell" code={props.installScript} />
+            </Stepper>
+          )}
+          <Stepper
+            title="Copy and paste the following code into your project."
+            step={withInstallOffset - 1}
+          >
+            <CodeHighlight code={installCode} withExpand />
+          </Stepper>
+        </>
       )}
       {steps?.map((props, index) => (
-        <Stepper key={props.title} {...props} step={index + 1 + withInstallOffset} />
+        <Stepper key={props.title} {...props} step={index + withInstallOffset} />
       ))}
       {withEnd && (
         <Stepper
           title="Update the import paths to match your project setup."
-          step={(steps?.length || 0) + 1 + withInstallOffset}
+          step={(steps?.length || 0) + withInstallOffset}
         />
       )}
     </div>

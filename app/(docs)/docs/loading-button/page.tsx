@@ -14,14 +14,6 @@ export const metadata: Metadata = baseMetadata({
 });
 
 const LoadingButtonPage = async () => {
-  const steps = [
-    {
-      title: 'install the package if you do not have it.',
-      children: (
-        <CodeHighlight lang="shell" code="npm i class-variance-authority @radix-ui/react-slot" />
-      ),
-    },
-  ];
   return (
     <PageTemplate
       title="Loading Button"
@@ -34,9 +26,9 @@ const LoadingButtonPage = async () => {
       <PageSubTitle>Installation</PageSubTitle>
       <Steppers
         withInstall
-        installCodePath="components/ui/loading-button.tsx"
+        codePath="components/ui/loading-button.tsx"
+        installScript="npm i class-variance-authority @radix-ui/react-slot"
         withEnd
-        steps={steps}
       />
     </PageTemplate>
   );
