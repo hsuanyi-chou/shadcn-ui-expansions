@@ -51,9 +51,12 @@ const BaseHeading = ({
       >
         {children}
         {anchor && (
-          <Link href={`#${anchor}`}>
-            <LinkIcon className="text-gray-400 hover:text-gray-600" />
-          </Link>
+          <>
+            {/* modify `Link` to `a` if you are not using Next.js */}
+            <Link href={`#${anchor}`}>
+              <LinkIcon className="text-gray-400 hover:text-gray-600" />
+            </Link>
+          </>
         )}
       </Comp>
     </>

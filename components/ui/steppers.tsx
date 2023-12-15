@@ -51,7 +51,8 @@ export const Steppers = async (props: SteppersProps) => {
     installCode = await fs.readFile(props.codePath, 'utf8');
   }
   const withInstallOffset = withInstall ? (props.installScript ? 2 : 1) : 0;
-
+  // TODO: 有step時會有bug。要再處理
+  console.log(withInstallOffset);
   return (
     <div className={cn(className)}>
       {withInstall && (
@@ -73,12 +74,12 @@ export const Steppers = async (props: SteppersProps) => {
         </>
       )}
       {steps?.map((props, index) => (
-        <Stepper key={props.title} {...props} step={index + withInstallOffset} />
+        <Stepper key={props.title} {...props} step={index + 1 + withInstallOffset} />
       ))}
       {withEnd && (
         <Stepper
           title="Update the import paths to match your project setup."
-          step={(steps?.length || 1) + withInstallOffset}
+          step={(steps?.length || 1) + 1 + withInstallOffset}
         />
       )}
     </div>
