@@ -16,9 +16,9 @@ const Stepper = ({ title, children, step }: StepperProps) => {
         <span className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-200 p-3 text-primary dark:text-primary-foreground">
           {step}
         </span>
-        <H4 className="pt-3">{title}</H4>
+        <H4>{title}</H4>
       </div>
-      <div className="ml-5 border-l-2 border-l-gray-200 pl-8">{children}</div>
+      <div className="my-3 ml-5 border-l-2 border-l-gray-200 pl-8">{children}</div>
     </div>
   );
 };

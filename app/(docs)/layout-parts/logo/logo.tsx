@@ -3,18 +3,18 @@ import React from 'react';
 import Image, { ImageProps } from 'next/image';
 import { useTheme } from 'next-themes';
 
-export type LogoProps = Omit<ImageProps, 'src' | 'alt' | 'width' | 'height'>;
+export type LogoProps = Omit<ImageProps, 'src' | 'alt'>;
 
 type MyLogoProps = LogoProps & { reverse?: boolean };
-const Logo = ({ reverse = false, ...props }: MyLogoProps) => {
+const Logo = ({ reverse = false, width = 24, height = 24, ...props }: MyLogoProps) => {
   const { theme } = useTheme();
 
   return (
     <Image
       {...props}
       src={`/logo/logo-${theme === 'dark' || reverse ? 'dark' : 'light'}.svg`}
-      width={24}
-      height={24}
+      width={width}
+      height={height}
       alt="shadcn-ui logo"
       suppressHydrationWarning
     />

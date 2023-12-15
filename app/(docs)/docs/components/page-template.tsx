@@ -11,7 +11,7 @@ interface PageTemplateProps {
 
 const PageTemplate = ({ title, description, children, className }: PageTemplateProps) => {
   return (
-    <section className={cn('pb-10', className)}>
+    <section className={cn('flex flex-col gap-3 pb-10', className)}>
       <H1>{title}</H1>
       <H6 className="font-normal text-gray-500">{description}</H6>
       {children}

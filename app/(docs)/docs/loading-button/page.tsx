@@ -5,6 +5,7 @@ import LoadingButtonDemo from '@/app/(docs)/docs/loading-button/loading-button-d
 import { Steppers } from '@/components/ui/steppers';
 import { Metadata } from 'next';
 import { baseMetadata } from '@/app/(docs)/layout-parts/base-metadata';
+import { Reference, ReferenceBorder } from '@/app/(docs)/docs/components/reference';
 
 export const metadata: Metadata = baseMetadata({
   title: 'Loading Button',
@@ -18,6 +19,11 @@ const LoadingButtonPage = async () => {
       title="Loading Button"
       description="Display a button or a component that looks like a button with loading spinner. Everything is just the same as the button in shadcnui."
     >
+      <ReferenceBorder>
+        <Reference href="https://www.radix-ui.com/themes/docs/components/button" />
+        <Reference href="https://ui.shadcn.com/docs/components/button" />
+      </ReferenceBorder>
+
       <PreviewCodeCard path="app/(docs)/docs/loading-button/loading-button-demo.tsx">
         <LoadingButtonDemo />
       </PreviewCodeCard>
