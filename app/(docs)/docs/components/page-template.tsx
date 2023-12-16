@@ -1,5 +1,5 @@
 import React from 'react';
-import { H1, H2, H6 } from '@/components/ui/heading-with-anchor';
+import { H1, H2, P } from '@/components/ui/heading-with-anchor';
 import { cn } from '@/lib/utils';
 
 interface PageTemplateProps {
@@ -13,7 +13,7 @@ const PageTemplate = ({ title, description, children, className }: PageTemplateP
   return (
     <section className={cn('flex flex-col gap-3 pb-10', className)}>
       <H1>{title}</H1>
-      <H6 className="font-normal text-gray-500">{description}</H6>
+      <P className="font-normal text-gray-500">{description}</P>
       {children}
     </section>
   );

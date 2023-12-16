@@ -13,7 +13,7 @@ const headingVariants = cva('font-bold text-primary', {
       h4: 'leading-8 text-xl lg:text-2xl',
       h5: 'leading-8 text-lg lg:text-xl',
       h6: 'leading-7 text-sm lg:text-base',
-      p: 'leading-5 text-xs lg:text-sm font-normal',
+      p: 'leading-5 text-lg lg:text-xl font-normal',
     },
   },
   defaultVariants: {
