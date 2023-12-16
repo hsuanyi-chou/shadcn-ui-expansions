@@ -8,7 +8,7 @@ import { H1, H3 } from '@/components/ui/heading-with-anchor';
 export default function Home() {
   return (
     <main className="flex flex-col gap-5 p-12 md:items-center md:p-28">
-      <H1>Shadcn/ui Components Expansions, the missing parts.</H1>
+      <H1>More components built on top of shadcn-ui.</H1>
       <H3 className="text-lg font-light text-muted-foreground sm:text-xl">
         Useful additional components collection base on shadcn/ui to help you ship new features
         faster. Copy and paste into your apps, Accessible, Customizable, Open Source.
