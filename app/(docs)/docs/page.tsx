@@ -12,7 +12,7 @@ const IntroductionPage = () => {
           shadcn/ui is a re-usable components built using Radix UI and Tailwind CSS.
         </P>
         <P className="text-gray-600">
-          It is <b>NOT</b> a component library. It's a collection of re-usable components that you
+          It is <b>NOT</b> a component library. It is a collection of re-usable components that you
           can copy and paste into your apps.
         </P>
         <Link href="https://ui.shadcn.com/docs" className="underline">
