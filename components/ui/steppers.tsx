@@ -51,8 +51,6 @@ export const Steppers = async (props: SteppersProps) => {
     installCode = await fs.readFile(props.codePath, 'utf8');
   }
   const withInstallOffset = withInstall ? (props.installScript ? 2 : 1) : 0;
-  // TODO: 有step時會有bug。要再處理
-  console.log(withInstallOffset);
   return (
     <div className={cn(className)}>
       {withInstall && (
