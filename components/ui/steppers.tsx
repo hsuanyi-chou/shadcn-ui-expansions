@@ -79,7 +79,7 @@ export const Steppers = async (props: SteppersProps) => {
       {withEnd && (
         <Stepper
           title="Update the import paths to match your project setup."
-          step={(steps?.length || 1) + 1 + withInstallOffset}
+          step={(steps?.length || 0) + 1 + withInstallOffset}
         />
       )}
     </div>
