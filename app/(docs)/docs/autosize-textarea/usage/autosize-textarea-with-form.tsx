@@ -87,7 +87,7 @@ const AutosizeTextareaWithForm = () => {
                 />
               </FormControl>
               <FormDescription>
-                You may use the hook <InlineCode>useAutosizeTextArea()</InlineCode> to create your
+                You can use the hook <InlineCode>useAutosizeTextArea()</InlineCode> to create your
                 own textarea to match your needs.
               </FormDescription>
               <FormMessage />
