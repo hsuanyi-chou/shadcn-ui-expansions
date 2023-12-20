@@ -17,6 +17,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { toast } from '@/components/ui/use-toast';
 import { useAutosizeTextArea } from '@/components/ui/autosize-textarea';
 import { LoadingButton } from '@/components/ui/loading-button';
+import { InlineCode } from '@/components/ui/inline-code';
 
 const FormSchema = z.object({
   bio: z
@@ -45,7 +46,7 @@ const AutosizeTextareaWithForm = () => {
     maxHeight: 200,
   });
 
-  /** You can use `form.watch` to listen the changing value and calling setTriggerAutoSize instead of put it into `onChange` */
+  /** You can use `form.watch` to trigger auto sizing. */
   const bio = form.watch('bio');
   React.useEffect(() => {
     if (textAreaRef.current) {
@@ -86,7 +87,8 @@ const AutosizeTextareaWithForm = () => {
                 />
               </FormControl>
               <FormDescription>
-                This is a textarea with min height 52px and max height 200px.
+                You may use the hook <InlineCode>useAutosizeTextArea()</InlineCode> to create your
+                own textarea to match your needs.
               </FormDescription>
               <FormMessage />
             </FormItem>
