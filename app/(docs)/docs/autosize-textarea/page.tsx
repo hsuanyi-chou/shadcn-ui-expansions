@@ -11,14 +11,14 @@ import AutosizeTextareaWithForm from '@/app/(docs)/docs/autosize-textarea/usage/
 
 export const metadata: Metadata = baseMetadata({
   title: 'Autosize Textarea',
-  description: 'auto expand textarea height based on content.',
+  description: 'auto resize textarea height based on content.',
 });
 
 const AutosizeTextareaPage = () => {
   return (
     <PageTemplate
       title="Autosize Textarea"
-      description="auto expand textarea height based on content."
+      description="auto resize textarea height based on content."
     >
       <PreviewCodeCard path="app/(docs)/docs/autosize-textarea/autosize-textarea-demo.tsx">
         <AutosizeTextareaDemo />
