@@ -6,6 +6,9 @@ import PreviewCodeCard from '@/app/(docs)/docs/components/preview-code-card';
 import { Metadata } from 'next';
 import { baseMetadata } from '@/app/(docs)/layout-parts/base-metadata';
 import AutosizeTextareaDemo from '@/app/(docs)/docs/autosize-textarea/autosize-textarea-demo';
+import Usage from '@/app/(docs)/docs/components/usage';
+import LoadingButtonUsage from '@/app/(docs)/docs/loading-button/loading-button-usage';
+import AutosizeTextareaWithMaxHeight from '@/app/(docs)/docs/autosize-textarea/usage/autosize-textarea-with-max-height';
 
 export const metadata: Metadata = baseMetadata({
   title: 'Autosize Textarea',
@@ -22,8 +25,16 @@ const AutosizeTextareaPage = () => {
         <AutosizeTextareaDemo />
       </PreviewCodeCard>
 
-      {/*<PageSubTitle>Installation</PageSubTitle>*/}
-      {/*<Steppers withInstall codePath="components/ui/blockquote.tsx" withEnd />*/}
+      <PageSubTitle>Installation</PageSubTitle>
+      <Steppers withInstall codePath="components/ui/autosize-textarea.tsx" withEnd />
+
+      <PageSubTitle>Usage</PageSubTitle>
+      <Usage
+        title="Max height"
+        path="app/(docs)/docs/autosize-textarea/usage/autosize-textarea-with-max-height.tsx"
+      >
+        <AutosizeTextareaWithMaxHeight />
+      </Usage>
     </PageTemplate>
   );
 };
