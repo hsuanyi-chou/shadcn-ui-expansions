@@ -8,14 +8,15 @@ import InfiniteScrollDemo from '@/app/(docs)/docs/infinite-scroll/infinite-scrol
 
 export const metadata: Metadata = baseMetadata({
   title: 'Infinite Scroll',
-  description: 'Infinite Scroll',
+  description:
+    'Simple infinite scroll component. You have fully control over the loading spinner and IntersectionObserver API.',
 });
 
 const InfiniteScrollPage = () => {
   return (
     <PageTemplate
       title="Infinite Scroll"
-      description="Display a button or a component that looks like a button with loading spinner. Everything is just the same as the button in shadcnui."
+      description="Simple infinite scroll component. You have fully control over the loading spinner and IntersectionObserver API."
     >
       {/*<ReferenceBorder>*/}
       {/*  <Reference href="https://www.radix-ui.com/themes/docs/components/button" />*/}
