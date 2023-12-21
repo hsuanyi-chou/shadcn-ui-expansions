@@ -32,7 +32,6 @@ export const DOCS: Documentation[] = [
         url: '/docs/autosize-textarea',
       },
       { label: 'Blockquote', value: 'blockquote', url: '/docs/blockquote' },
-      { label: 'Code', value: 'code', url: '/docs/code' },
       {
         label: 'Heading With Anchor',
         value: 'heading-with-anchor',
