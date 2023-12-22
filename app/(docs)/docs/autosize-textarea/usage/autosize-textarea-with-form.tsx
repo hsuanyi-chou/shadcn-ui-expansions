@@ -87,8 +87,11 @@ const AutosizeTextareaWithForm = () => {
                 />
               </FormControl>
               <FormDescription>
-                You can use the hook <InlineCode>useAutosizeTextArea()</InlineCode> to create your
-                own textarea to match your needs.
+                This is an example that you can use the hook{' '}
+                <InlineCode>useAutosizeTextArea()</InlineCode> to create your own textarea to match
+                your needs. In this example, we use <InlineCode>react-hook-form</InlineCode> and{' '}
+                <InlineCode>shadcn-ui Textarea</InlineCode> to fully control your customize
+                textarea.
               </FormDescription>
               <FormMessage />
             </FormItem>
