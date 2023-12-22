@@ -5,7 +5,7 @@ import { Steppers } from '@/components/ui/steppers';
 import { Metadata } from 'next';
 import { baseMetadata } from '@/app/(docs)/layout-parts/base-metadata';
 import InfiniteScrollDemo from '@/app/(docs)/docs/infinite-scroll/infinite-scroll-demo';
-import PropsTable from '@/app/(docs)/docs/components/props-table/props-table';
+import { PropsTable } from '@/app/(docs)/docs/components/props-table/props-table';
 import { infiniteScrollProp } from '@/app/(docs)/docs/infinite-scroll/infinite-scroll-prop';
 export const metadata: Metadata = baseMetadata({
   title: 'Infinite Scroll',

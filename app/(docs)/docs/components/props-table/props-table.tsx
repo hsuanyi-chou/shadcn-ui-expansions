@@ -1,3 +1,4 @@
+'use client';
 import React from 'react';
 import {
   Table,
@@ -10,13 +11,13 @@ import {
 import { PageSubTitle } from '@/app/(docs)/docs/components/page-template';
 import PropInfo from '@/app/(docs)/docs/components/props-table/prop-info';
 import { InlineCode } from '@/components/ui/inline-code';
-
+import { X } from 'lucide-react';
 export interface Props {
   prop: string;
   required: boolean;
   description: React.ReactNode;
   type: string;
-  default: string;
+  default?: string;
 }
 
 interface PropsTableProps {
@@ -24,7 +25,7 @@ interface PropsTableProps {
   props: Props[];
 }
 
-const PropsTable = ({ title, props }: PropsTableProps) => {
+export const PropsTable = ({ title, props }: PropsTableProps) => {
   return (
     <>
       <PageSubTitle>{title || 'Properties'}</PageSubTitle>
@@ -41,7 +42,7 @@ const PropsTable = ({ title, props }: PropsTableProps) => {
             {props.map((prop) => (
               <TableRow key={prop.prop} className="text-base text-primary">
                 <TableCell className="flex items-center gap-[2px]">
-                  {prop.required && <span className="text-red-600 dark:text-red-400">*</span>}
+                  {prop.required && <span className="text-destructive">*</span>}
                   <InlineCode>{prop.prop}</InlineCode>
                   <PropInfo className="ml-2">{prop.description}</PropInfo>
                 </TableCell>
@@ -49,7 +50,11 @@ const PropsTable = ({ title, props }: PropsTableProps) => {
                   <InlineCode>{prop.type}</InlineCode>
                 </TableCell>
                 <TableCell>
-                  <InlineCode>{prop.default}</InlineCode>
+                  {prop.default ? (
+                    <InlineCode>{prop.default}</InlineCode>
+                  ) : (
+                    <X className="h-4 w-4 text-destructive"></X>
+                  )}
                 </TableCell>
               </TableRow>
             ))}
@@ -59,5 +64,3 @@ const PropsTable = ({ title, props }: PropsTableProps) => {
     </>
   );
 };
-
-export default PropsTable;
