@@ -5,23 +5,26 @@ import RadixuiLogo from '@/app/(docs)/layout-parts/logo/radix-logo';
 import ShadcnuiLogo from '@/app/(docs)/layout-parts/logo/shadcnui-logo';
 import { cn } from '@/lib/utils';
 
-export const Reference = (props: LinkProps) => {
-  let Icon: React.ReactNode | null = null;
-  let text = '';
+interface ReferenceProps extends LinkProps {
+  icon?: React.ReactNode;
+  text?: string;
+}
+
+export const Reference = ({ icon, text, ...props }: ReferenceProps) => {
   if ((props.href as string).includes('radix-ui')) {
     text = 'Radix UI';
-    Icon = <RadixuiLogo width={12} height={12} />;
+    icon = <RadixuiLogo width={12} height={12} />;
   }
 
   if ((props.href as string).includes('ui.shadcn')) {
     text = 'Shadcn UI';
-    Icon = <ShadcnuiLogo width={12} height={12} />;
+    icon = <ShadcnuiLogo width={12} height={12} />;
   }
 
   return (
     <Link {...props} target="_blank">
       <Badge variant="secondary" className="flex gap-2">
-        {Icon}
+        {icon}
         {text}
       </Badge>
     </Link>
