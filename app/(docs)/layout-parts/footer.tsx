@@ -1,7 +1,6 @@
 import React from 'react';
-import Link from 'next/link';
-import Image from 'next/image';
 import { cn } from '@/lib/utils';
+import BuyMeCoffee from '@/app/(docs)/layout-parts/buy-me-coffee';
 
 interface FooterProps {
   className?: string;
@@ -9,15 +8,10 @@ interface FooterProps {
 
 const Footer = ({ className }: FooterProps) => {
   return (
-    <footer className={cn('mt-5 flex justify-end border-t-2 border-t-gray-300 py-4', className)}>
-      <Link href="https://www.buymeacoffee.com/typeart" target="_blank">
-        <Image
-          src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png"
-          alt="Buy Me A Coffee"
-          width={135}
-          height={45}
-        />
-      </Link>
+    <footer
+      className={cn('mt-5 flex justify-end border-t-2 border-t-gray-300 py-4 lg:hidden', className)}
+    >
+      <BuyMeCoffee />
     </footer>
   );
 };

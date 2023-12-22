@@ -1,4 +1,4 @@
-import LeftSide from '@/app/(docs)/layout-parts/left-side';
+import LeftSide from '@/app/(docs)/layout-parts/left-side/left-side';
 import React from 'react';
 import { Toaster } from '@/components/ui/toaster';
 import Footer from '@/app/(docs)/layout-parts/footer';

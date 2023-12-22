@@ -1,10 +1,11 @@
 import React from 'react';
 import { DOCS } from '@/app/(docs)/layout-parts/documentation.constant';
-import LeftSideLink from '@/app/(docs)/layout-parts/left-side-link';
+import LeftSideLink from '@/app/(docs)/layout-parts/left-side/left-side-link';
+import BuyMeCoffee from '@/app/(docs)/layout-parts/buy-me-coffee';
 
 const LeftSide = () => {
   return (
-    <section className="hidden flex-col gap-2 px-5 lg:flex">
+    <aside className="hidden flex-col gap-2 px-5 lg:flex">
       {DOCS.map((component) => (
         <div className="flex flex-col gap-1" key={component.groupKey}>
           <h2 className="text-lg font-extrabold">{component.groupValue}</h2>
@@ -15,7 +16,8 @@ const LeftSide = () => {
           ))}
         </div>
       ))}
-    </section>
+      <BuyMeCoffee className="mt-32" />
+    </aside>
   );
 };
 
