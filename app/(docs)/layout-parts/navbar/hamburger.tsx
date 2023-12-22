@@ -10,8 +10,8 @@ const Hamburger = () => {
   const [open, setOpen] = useState(false);
   return (
     <Sheet open={open} onOpenChange={(o) => setOpen(o)}>
-      <SheetTrigger>
-        <Menu className="cursor-pointer md:hidden" />
+      <SheetTrigger className="cursor-pointer md:hidden">
+        <Menu />
       </SheetTrigger>
       <SheetContent side="left">
         <LogoLink alwaysRender className="mb-5 gap-3" />
