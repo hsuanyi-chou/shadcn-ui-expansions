@@ -1,16 +1,15 @@
 import React from 'react';
 import { PageSubTitle, PageTemplate } from '@/app/(docs)/docs/components/page-template';
 import PreviewCodeCard from '@/app/(docs)/docs/components/preview-code-card';
-import LoadingButtonDemo from '@/app/(docs)/docs/loading-button/loading-button-demo';
 import { Steppers } from '@/components/ui/steppers';
 import { Metadata } from 'next';
 import { baseMetadata } from '@/app/(docs)/layout-parts/base-metadata';
 import { Reference, ReferenceBorder } from '@/app/(docs)/docs/components/reference';
-import LoadingButtonUsage from '@/app/(docs)/docs/loading-button/loading-button-usage';
 import Usage from '@/app/(docs)/docs/components/usage';
 import { P } from '@/components/ui/heading-with-anchor';
 import { InlineCode } from '@/components/ui/inline-code';
 import { PropLink } from '@/app/(docs)/docs/components/props-table/prop-link';
+import MultipleSelectorDemo from '@/app/(docs)/docs/multiple-selector/multiple-selector-demo';
 export const metadata: Metadata = baseMetadata({
   title: 'Multiple Selector',
   description: 'Fast,composable, unstyled, multiple selector for React',
@@ -41,12 +40,12 @@ const LoadingButtonPage = () => {
         <PropLink href="https://github.com/pacocoursey/cmdk">
           <InlineCode>cmdk</InlineCode>
         </PropLink>{' '}
-        package like <InlineCode>command</InlineCode> component in shadcn-ui.
+        package like <InlineCode>Command</InlineCode> component in shadcn-ui.
       </P>
 
-      {/*<PreviewCodeCard path="app/(docs)/docs/loading-button/loading-button-demo.tsx">*/}
-      {/*  <LoadingButtonDemo />*/}
-      {/*</PreviewCodeCard>*/}
+      <PreviewCodeCard path="app/(docs)/docs/multiple-selector/multiple-selector-demo.tsx">
+        <MultipleSelectorDemo />
+      </PreviewCodeCard>
 
       <PageSubTitle>Installation</PageSubTitle>
       <Steppers
