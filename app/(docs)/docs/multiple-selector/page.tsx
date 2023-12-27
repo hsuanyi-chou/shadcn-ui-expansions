@@ -19,6 +19,8 @@ import { multipleSelectorProp } from '@/app/(docs)/docs/multiple-selector/multip
 import MultipleSelectorNoPlaceholderWhenSelected from '@/app/(docs)/docs/multiple-selector/usage/multiple-selector-no-placeholder-when-selected';
 import MultipleSelectorWithForm from '@/app/(docs)/docs/multiple-selector/usage/multiple-selector-with-form';
 import MultipleSelectorDisabled from '@/app/(docs)/docs/multiple-selector/usage/multiple-selector-disabled';
+import Link from 'next/link';
+import { cn } from '@/lib/utils';
 
 export const metadata: Metadata = baseMetadata({
   title: 'Multiple Selector',
@@ -53,6 +55,13 @@ const MultipleSelectorPage = () => {
         <PropLink href="https://github.com/pacocoursey/cmdk">
           <InlineCode>cmdk</InlineCode>
         </PropLink>
+        .
+      </P>
+      <P className="text-muted-foreground">
+        If you want group options, visit{' '}
+        <Link href="/docs/group-multiple-selector" className="underline">
+          <InlineCode>Group Multiple Selector</InlineCode>
+        </Link>
         .
       </P>
 
