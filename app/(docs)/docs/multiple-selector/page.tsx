@@ -17,6 +17,7 @@ import MultipleSelectorWithMaxSelected from '@/app/(docs)/docs/multiple-selector
 import { PropsTable } from '@/app/(docs)/docs/components/props-table/props-table';
 import { multipleSelectorProp } from '@/app/(docs)/docs/multiple-selector/multiple-selector-prop';
 import MultipleSelectorNoPlaceholderWhenSelected from '@/app/(docs)/docs/multiple-selector/usage/multiple-selector-no-placeholder-when-selected';
+import MultipleSelectorWithForm from '@/app/(docs)/docs/multiple-selector/usage/multiple-selector-with-form';
 
 export const metadata: Metadata = baseMetadata({
   title: 'Multiple Selector',
@@ -124,6 +125,12 @@ const LoadingButtonPage = () => {
         path="app/(docs)/docs//multiple-selector/usage/multiple-selector-no-placeholder-when-selected.tsx"
       >
         <MultipleSelectorNoPlaceholderWhenSelected />
+      </Usage>
+      <Usage
+        title="Form"
+        path="app/(docs)/docs//multiple-selector/usage/multiple-selector-with-form.tsx"
+      >
+        <MultipleSelectorWithForm />
       </Usage>
 
       <PropsTable props={multipleSelectorProp} />
