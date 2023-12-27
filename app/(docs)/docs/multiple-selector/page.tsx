@@ -13,6 +13,7 @@ import MultipleSelectorDemo from '@/app/(docs)/docs/multiple-selector/multiple-s
 import MultipleSelectorControlled from '@/app/(docs)/docs/multiple-selector/usage/multiple-selector-controlled';
 import MultipleSelectorWithDisabledOption from '@/app/(docs)/docs/multiple-selector/usage/multiple-selector-with-disable-option';
 import MultipleSelectorWithAsyncSearch from '@/app/(docs)/docs/multiple-selector/usage/multiple-selector-with-async-search';
+import MultipleSelectorWithMaxSelected from '@/app/(docs)/docs/multiple-selector/usage/multiple-selector-max-selected';
 export const metadata: Metadata = baseMetadata({
   title: 'Multiple Selector',
   description: 'Fast,composable, unstyled, multiple selector for React',
@@ -87,6 +88,18 @@ const LoadingButtonPage = () => {
         path="app/(docs)/docs//multiple-selector/usage/multiple-selector-with-async-search.tsx"
       >
         <MultipleSelectorWithAsyncSearch />
+      </Usage>
+      <Usage
+        title="Max Selected"
+        description={
+          <P className="text-muted-foreground">
+            Following example is set to 3. The default of max selected is{' '}
+            <InlineCode>Number.MAX_SAFE_INTEGER</InlineCode>
+          </P>
+        }
+        path="app/(docs)/docs//multiple-selector/usage/multiple-selector-max-selected.tsx"
+      >
+        <MultipleSelectorWithMaxSelected />
       </Usage>
     </PageTemplate>
   );
