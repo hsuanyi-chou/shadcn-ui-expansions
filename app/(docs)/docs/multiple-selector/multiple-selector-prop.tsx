@@ -45,6 +45,7 @@ export const multipleSelectorProp: Props[] = [
       </>
     ),
     type: 'string',
+    default: ' ',
   },
   {
     prop: 'onChange',
@@ -58,6 +59,17 @@ export const multipleSelectorProp: Props[] = [
     ),
     type: '(options: Option[]) => void',
     typeInfo: <OptionTypeInfo />,
+  },
+  {
+    prop: 'disabled',
+    required: false,
+    description: (
+      <>
+        <p>disabled select.</p>
+      </>
+    ),
+    type: 'boolean',
+    default: 'false',
   },
   {
     prop: 'delay',

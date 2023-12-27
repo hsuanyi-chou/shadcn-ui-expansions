@@ -40,6 +40,7 @@ interface GroupMultipleSelectorProps {
   maxSelected?: number;
   onMaxSelected?: (maxLimit: number) => void;
   hidePlaceholderWhenSelected?: boolean;
+  disabled?: boolean;
 }
 
 export function useDebounce<T>(value: T, delay?: number): T {
@@ -68,6 +69,7 @@ export default function GroupMultipleSelector({
   maxSelected = Number.MAX_SAFE_INTEGER,
   onMaxSelected,
   hidePlaceholderWhenSelected,
+  disabled,
 }: GroupMultipleSelectorProps) {
   const inputRef = React.useRef<HTMLInputElement>(null);
   const [open, setOpen] = React.useState(false);
@@ -137,10 +139,18 @@ export default function GroupMultipleSelector({
         <div className="flex flex-wrap gap-1">
           {selected.map((option) => {
             return (
-              <Badge key={option.value}>
+              <Badge
+                key={option.value}
+                className={cn(
+                  disabled && 'bg-muted-foreground text-muted hover:bg-muted-foreground',
+                )}
+              >
                 {option.label}
                 <button
-                  className="ml-1 rounded-full outline-none ring-offset-background focus:ring-2 focus:ring-ring focus:ring-offset-2"
+                  className={cn(
+                    'ml-1 rounded-full outline-none ring-offset-background focus:ring-2 focus:ring-ring focus:ring-offset-2',
+                    disabled && 'hidden',
+                  )}
                   onKeyDown={(e) => {
                     if (e.key === 'Enter') {
                       handleUnselect(option);
@@ -161,6 +171,7 @@ export default function GroupMultipleSelector({
           <CommandPrimitive.Input
             ref={inputRef}
             value={inputValue}
+            disabled={disabled}
             onValueChange={setInputValue}
             onBlur={() => setOpen(false)}
             onFocus={() => setOpen(true)}

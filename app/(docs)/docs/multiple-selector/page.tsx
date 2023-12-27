@@ -18,6 +18,7 @@ import { PropsTable } from '@/app/(docs)/docs/components/props-table/props-table
 import { multipleSelectorProp } from '@/app/(docs)/docs/multiple-selector/multiple-selector-prop';
 import MultipleSelectorNoPlaceholderWhenSelected from '@/app/(docs)/docs/multiple-selector/usage/multiple-selector-no-placeholder-when-selected';
 import MultipleSelectorWithForm from '@/app/(docs)/docs/multiple-selector/usage/multiple-selector-with-form';
+import MultipleSelectorDisabled from '@/app/(docs)/docs/multiple-selector/usage/multiple-selector-disabled';
 
 export const metadata: Metadata = baseMetadata({
   title: 'Multiple Selector',
@@ -73,6 +74,12 @@ const MultipleSelectorPage = () => {
         path="app/(docs)/docs//multiple-selector/usage/multiple-selector-with-disable-option.tsx"
       >
         <MultipleSelectorWithDisabledOption />
+      </Usage>
+      <Usage
+        title="Disabled"
+        path="app/(docs)/docs//multiple-selector/usage/multiple-selector-disabled.tsx"
+      >
+        <MultipleSelectorDisabled />
       </Usage>
       <Usage
         title="Controlled Component"
