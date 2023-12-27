@@ -3,7 +3,13 @@
 import * as React from 'react';
 import { X } from 'lucide-react';
 
-import { Command, CommandGroup, CommandItem, CommandEmpty } from '@/components/ui/command';
+import {
+  Command,
+  CommandGroup,
+  CommandItem,
+  CommandEmpty,
+  CommandList,
+} from '@/components/ui/command';
 import { Command as CommandPrimitive } from 'cmdk';
 import { useEffect } from 'react';
 import { Badge } from '@/components/ui/badge';
@@ -157,45 +163,41 @@ export default function MultipleSelector({
       </div>
       <div className="relative mt-2">
         {open ? (
-          <div className="absolute top-0 z-10 w-full rounded-md border bg-popover text-popover-foreground shadow-md outline-none animate-in">
+          <CommandList className="absolute top-0 z-10 w-full rounded-md border bg-popover text-popover-foreground shadow-md outline-none animate-in">
+            <CommandEmpty>{emptyIndicator}</CommandEmpty>
             {isLoading ? (
               <>{loadingIndicator}</>
             ) : (
               <CommandGroup className="h-full overflow-auto">
                 <>
-                  <CommandEmpty>{emptyIndicator}</CommandEmpty>
-                  {selectables.length === 0 ? (
-                    <>{emptyIndicator}</>
-                  ) : (
-                    selectables.map((option) => {
-                      return (
-                        <CommandItem
-                          key={option.value}
-                          onMouseDown={(e) => {
-                            e.preventDefault();
-                            e.stopPropagation();
-                          }}
-                          onSelect={(value) => {
-                            if (selected.length >= maxSelected) {
-                              onMaxSelected?.(selected.length);
-                              return;
-                            }
-                            setInputValue('');
-                            const newOptions = [...selected, option];
-                            setSelected(newOptions);
-                            onChange?.(newOptions);
-                          }}
-                          className="cursor-pointer"
-                        >
-                          {option.label}
-                        </CommandItem>
-                      );
-                    })
-                  )}
+                  {selectables.map((option) => {
+                    return (
+                      <CommandItem
+                        key={option.value}
+                        onMouseDown={(e) => {
+                          e.preventDefault();
+                          e.stopPropagation();
+                        }}
+                        onSelect={(value) => {
+                          if (selected.length >= maxSelected) {
+                            onMaxSelected?.(selected.length);
+                            return;
+                          }
+                          setInputValue('');
+                          const newOptions = [...selected, option];
+                          setSelected(newOptions);
+                          onChange?.(newOptions);
+                        }}
+                        className="cursor-pointer"
+                      >
+                        {option.label}
+                      </CommandItem>
+                    );
+                  })}
                 </>
               </CommandGroup>
             )}
-          </div>
+          </CommandList>
         ) : null}
       </div>
     </Command>
