@@ -1,4 +1,3 @@
-'use client';
 import React from 'react';
 import MultipleSelector, { Option } from '@/components/ui/multiple-selector';
 
@@ -17,12 +16,9 @@ const OPTIONS: Option[] = [
 ];
 
 const MultipleSelectorWithDisabledOption = () => {
-  const [value, setValue] = React.useState<Option[]>([]);
   return (
     <div className="flex w-full flex-col gap-5 px-10">
       <MultipleSelector
-        value={value}
-        onChange={setValue}
         options={OPTIONS}
         placeholder="Select frameworks you like..."
         emptyIndicator={
