@@ -11,6 +11,7 @@ import { InlineCode } from '@/components/ui/inline-code';
 import { PropLink } from '@/app/(docs)/docs/components/props-table/prop-link';
 import MultipleSelectorDemo from '@/app/(docs)/docs/multiple-selector/multiple-selector-demo';
 import MultipleSelectorControlled from '@/app/(docs)/docs/multiple-selector/usage/multiple-selector-controlled';
+import MultipleSelectorWithDisabledOption from '@/app/(docs)/docs/multiple-selector/usage/multiple-selector-with-disable-option';
 export const metadata: Metadata = baseMetadata({
   title: 'Multiple Selector',
   description: 'Fast,composable, unstyled, multiple selector for React',
@@ -57,6 +58,12 @@ const LoadingButtonPage = () => {
       />
 
       <PageSubTitle>Usage</PageSubTitle>
+      <Usage
+        title="Disable Option"
+        path="app/(docs)/docs//multiple-selector/usage/multiple-selector-with-disable-option.tsx"
+      >
+        <MultipleSelectorWithDisabledOption />
+      </Usage>
       <Usage
         title="Controlled Component"
         path="app/(docs)/docs//multiple-selector/usage/multiple-selector-controlled.tsx"
