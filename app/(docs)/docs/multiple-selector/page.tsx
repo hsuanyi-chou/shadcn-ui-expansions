@@ -59,9 +59,9 @@ const MultipleSelectorPage = () => {
       </P>
       <P className="text-muted-foreground">
         If you want group options, visit{' '}
-        <Link href="/docs/group-multiple-selector" className="underline">
+        <PropLink href="/docs/group-multiple-selector" target={null}>
           <InlineCode>Group Multiple Selector</InlineCode>
-        </Link>
+        </PropLink>
         .
       </P>
 
