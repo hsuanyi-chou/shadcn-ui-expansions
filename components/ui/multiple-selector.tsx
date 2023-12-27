@@ -13,10 +13,12 @@ import {
 import { Command as CommandPrimitive } from 'cmdk';
 import { useEffect } from 'react';
 import { Badge } from '@/components/ui/badge';
+import { cn } from '@/lib/utils';
 
 export interface Option {
   value: string;
   label: string;
+  disable?: boolean;
 }
 
 interface MultipleSelectorProps {
@@ -174,6 +176,7 @@ export default function MultipleSelector({
                     return (
                       <CommandItem
                         key={option.value}
+                        disabled={option.disable}
                         onMouseDown={(e) => {
                           e.preventDefault();
                           e.stopPropagation();
@@ -188,7 +191,10 @@ export default function MultipleSelector({
                           setSelected(newOptions);
                           onChange?.(newOptions);
                         }}
-                        className="cursor-pointer"
+                        className={cn(
+                          'cursor-pointer',
+                          option.disable && 'cursor-default text-muted-foreground',
+                        )}
                       >
                         {option.label}
                       </CommandItem>

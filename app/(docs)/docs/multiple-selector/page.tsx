@@ -10,6 +10,7 @@ import { P } from '@/components/ui/heading-with-anchor';
 import { InlineCode } from '@/components/ui/inline-code';
 import { PropLink } from '@/app/(docs)/docs/components/props-table/prop-link';
 import MultipleSelectorDemo from '@/app/(docs)/docs/multiple-selector/multiple-selector-demo';
+import MultipleSelectorControlled from '@/app/(docs)/docs/multiple-selector/usage/multiple-selector-controlled';
 export const metadata: Metadata = baseMetadata({
   title: 'Multiple Selector',
   description: 'Fast,composable, unstyled, multiple selector for React',
@@ -55,10 +56,13 @@ const LoadingButtonPage = () => {
         withEnd
       />
 
-      {/*<PageSubTitle>Usage</PageSubTitle>*/}
-      {/*<Usage path="app/(docs)/docs/loading-button/loading-button-usage.tsx">*/}
-      {/*  <LoadingButtonUsage />*/}
-      {/*</Usage>*/}
+      <PageSubTitle>Usage</PageSubTitle>
+      <Usage
+        title="Controlled Component"
+        path="app/(docs)/docs//multiple-selector/usage/multiple-selector-controlled.tsx"
+      >
+        <MultipleSelectorControlled />
+      </Usage>
     </PageTemplate>
   );
 };

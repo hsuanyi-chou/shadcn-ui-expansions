@@ -1,3 +1,4 @@
+'use client';
 import React from 'react';
 import MultipleSelector, { Option } from '@/components/ui/multiple-selector';
 
@@ -10,15 +11,18 @@ const OPTIONS: Option[] = [
   { label: 'Vue', value: 'vue' },
   { label: 'Svelte', value: 'svelte' },
   { label: 'Angular', value: 'angular' },
-  { label: 'Ember', value: 'ember', disable: true },
-  { label: 'Gatsby', value: 'gatsby', disable: true },
+  { label: 'Ember', value: 'ember' },
+  { label: 'Gatsby', value: 'gatsby' },
   { label: 'Astro', value: 'astro' },
 ];
 
-const MultipleSelectorDemo = () => {
+const MultipleSelectorControlled = () => {
+  const [value, setValue] = React.useState<Option[]>([]);
   return (
-    <div className="w-full px-10">
+    <div className="flex w-full flex-col gap-5 px-10">
       <MultipleSelector
+        value={value}
+        onChange={setValue}
         options={OPTIONS}
         placeholder="Select frameworks you like..."
         emptyIndicator={
@@ -27,8 +31,9 @@ const MultipleSelectorDemo = () => {
           </p>
         }
       />
+      <p className="text-primary">Your selection: {value.map((val) => val.label).join(', ')}</p>
     </div>
   );
 };
 
-export default MultipleSelectorDemo;
+export default MultipleSelectorControlled;
