@@ -9,19 +9,12 @@ import Usage from '@/app/(docs)/docs/components/usage';
 import { P } from '@/components/ui/heading-with-anchor';
 import { InlineCode } from '@/components/ui/inline-code';
 import { PropLink } from '@/app/(docs)/docs/components/props-table/prop-link';
-import MultipleSelectorDemo from '@/app/(docs)/docs/multiple-selector/multiple-selector-demo';
-import MultipleSelectorControlled from '@/app/(docs)/docs/multiple-selector/usage/multiple-selector-controlled';
-import MultipleSelectorWithDisabledOption from '@/app/(docs)/docs/multiple-selector/usage/multiple-selector-with-disable-option';
-import MultipleSelectorWithAsyncSearch from '@/app/(docs)/docs/multiple-selector/usage/multiple-selector-with-async-search';
-import MultipleSelectorWithMaxSelected from '@/app/(docs)/docs/multiple-selector/usage/multiple-selector-max-selected';
-import { PropsTable } from '@/app/(docs)/docs/components/props-table/props-table';
-import { multipleSelectorProp } from '@/app/(docs)/docs/multiple-selector/multiple-selector-prop';
-import MultipleSelectorNoPlaceholderWhenSelected from '@/app/(docs)/docs/multiple-selector/usage/multiple-selector-no-placeholder-when-selected';
-import MultipleSelectorWithForm from '@/app/(docs)/docs/multiple-selector/usage/multiple-selector-with-form';
 import GroupMultipleSelectorDemo from '@/app/(docs)/docs/group-multiple-selector/group-multiple-selector-demo';
+import GroupMultipleSelectorDisabled from '@/app/(docs)/docs/group-multiple-selector/usage/group-multiple-selector-disabled';
+import GroupMultipleSelectorWithDisabledOption from '@/app/(docs)/docs/group-multiple-selector/usage/group-multiple-selector-with-disable-option';
 
 export const metadata: Metadata = baseMetadata({
-  title: 'Multiple Selector',
+  title: 'Group Multiple Selector',
   description:
     'Fast,composable, unstyled, full featured multiple group selector for React. such as async search with debounce, max selected ...etc.',
 });
@@ -37,46 +30,48 @@ const GroupMultipleSelectorPage = () => {
         <Reference href="https://github.com/pacocoursey/cmdk" text="cmdk" />
       </ReferenceBorder>
 
-      {/*<PageSubTitle>About</PageSubTitle>*/}
-      {/*<P className="text-muted-foreground">*/}
-      {/*  This component is inspired by{' '}*/}
-      {/*  <PropLink href="https://craft.mxkaske.dev/post/fancy-multi-select">*/}
-      {/*    <InlineCode>Fancy Multi Select</InlineCode>*/}
-      {/*  </PropLink>{' '}*/}
-      {/*  and added some features such as async search(with debounce), max selected, disabled option*/}
-      {/*  ...etc.*/}
-      {/*</P>*/}
-      {/*<P className="text-muted-foreground">*/}
-      {/*  {' '}*/}
-      {/*  It is built on top of{' '}*/}
-      {/*  <PropLink href="https://github.com/pacocoursey/cmdk">*/}
-      {/*    <InlineCode>cmdk</InlineCode>*/}
-      {/*  </PropLink>{' '}*/}
-      {/*  package like <InlineCode>Command</InlineCode> component in shadcn-ui.*/}
-      {/*</P>*/}
+      <PageSubTitle>About</PageSubTitle>
+      <P className="text-muted-foreground">
+        This component is almost the same as{' '}
+        <PropLink href="/docs/multiple-selector" target={null}>
+          <InlineCode>Multiple Selector</InlineCode>
+        </PropLink>
+        .
+      </P>
+      <P className="text-muted-foreground">
+        The only difference is that options type uses <InlineCode>object</InlineCode> called{' '}
+        <InlineCode>GroupOption</InlineCode>. It uses <InlineCode>key</InlineCode> to group options.
+        Rest of the props are the same.
+      </P>
 
       <PreviewCodeCard path="app/(docs)/docs/group-multiple-selector/group-multiple-selector-demo.tsx">
         <GroupMultipleSelectorDemo />
       </PreviewCodeCard>
 
-      {/*<PageSubTitle>Installation</PageSubTitle>*/}
-      {/*<Steppers*/}
-      {/*  withInstall*/}
-      {/*  codePath="components/ui/multiple-selector.tsx"*/}
-      {/*  installScript="npx shadcn-ui@latest add command badge"*/}
-      {/*  withEnd*/}
-      {/*/>*/}
+      <PageSubTitle>Installation</PageSubTitle>
+      <Steppers
+        withInstall
+        codePath="components/ui/group-multiple-selector.tsx"
+        installScript="npx shadcn-ui@latest add command badge"
+        withEnd
+      />
 
-      {/*<PageSubTitle>Usage</PageSubTitle>*/}
-      {/*<Usage*/}
-      {/*  title="Disable Option"*/}
-      {/*  path="app/(docs)/docs//multiple-selector/usage/multiple-selector-with-disable-option.tsx"*/}
-      {/*>*/}
-      {/*  <MultipleSelectorWithDisabledOption />*/}
-      {/*</Usage>*/}
+      <PageSubTitle>Usage</PageSubTitle>
+      <Usage
+        title="Disable Option"
+        path="app/(docs)/docs//group-multiple-selector/usage/group-multiple-selector-with-disable-option.tsx"
+      >
+        <GroupMultipleSelectorWithDisabledOption />
+      </Usage>
+      <Usage
+        title="Disabled"
+        path="app/(docs)/docs/group-multiple-selector/usage/group-multiple-selector-disabled.tsx"
+      >
+        <GroupMultipleSelectorDisabled />
+      </Usage>
       {/*<Usage*/}
       {/*  title="Controlled Component"*/}
-      {/*  path="app/(docs)/docs//multiple-selector/usage/multiple-selector-controlled.tsx"*/}
+      {/*  path="app/(docs)/docs//group-multiple-selector/usage/group-multiple-selector-controlled.tsx"*/}
       {/*>*/}
       {/*  <MultipleSelectorControlled />*/}
       {/*</Usage>*/}
@@ -93,7 +88,7 @@ const GroupMultipleSelectorPage = () => {
       {/*      </P>*/}
       {/*    </>*/}
       {/*  }*/}
-      {/*  path="app/(docs)/docs//multiple-selector/usage/multiple-selector-with-async-search.tsx"*/}
+      {/*  path="app/(docs)/docs//group-multiple-selector/usage/group-multiple-selector-with-async-search.tsx"*/}
       {/*>*/}
       {/*  <MultipleSelectorWithAsyncSearch />*/}
       {/*</Usage>*/}
@@ -105,7 +100,7 @@ const GroupMultipleSelectorPage = () => {
       {/*      <InlineCode>Number.MAX_SAFE_INTEGER</InlineCode>*/}
       {/*    </P>*/}
       {/*  }*/}
-      {/*  path="app/(docs)/docs//multiple-selector/usage/multiple-selector-max-selected.tsx"*/}
+      {/*  path="app/(docs)/docs//group-multiple-selector/usage/group-multiple-selector-max-selected.tsx"*/}
       {/*>*/}
       {/*  <MultipleSelectorWithMaxSelected />*/}
       {/*</Usage>*/}
@@ -123,13 +118,13 @@ const GroupMultipleSelectorPage = () => {
       {/*      </P>*/}
       {/*    </>*/}
       {/*  }*/}
-      {/*  path="app/(docs)/docs//multiple-selector/usage/multiple-selector-no-placeholder-when-selected.tsx"*/}
+      {/*  path="app/(docs)/docs//group-multiple-selector/usage/group-multiple-selector-no-placeholder-when-selected.tsx"*/}
       {/*>*/}
       {/*  <MultipleSelectorNoPlaceholderWhenSelected />*/}
       {/*</Usage>*/}
       {/*<Usage*/}
       {/*  title="Form"*/}
-      {/*  path="app/(docs)/docs//multiple-selector/usage/multiple-selector-with-form.tsx"*/}
+      {/*  path="app/(docs)/docs//group-multiple-selector/usage/group-multiple-selector-with-form.tsx"*/}
       {/*>*/}
       {/*  <MultipleSelectorWithForm />*/}
       {/*</Usage>*/}
