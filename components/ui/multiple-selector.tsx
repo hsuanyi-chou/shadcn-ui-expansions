@@ -32,7 +32,7 @@ interface MultipleSelectorProps {
   /** debounce time for async search */
   delay?: number;
   /** async search */
-  onSearch?: () => Promise<void>;
+  onSearch?: (value: string) => Promise<void>;
   onChange?: (options: Option[]) => void;
   maxSelected?: number;
   onMaxSelected?: (maxLimit: number) => void;
@@ -110,7 +110,7 @@ export default function MultipleSelector({
     const exec = async () => {
       if (!debouncedSearchTerm || !onSearch) return;
       setIsLoading(true);
-      await onSearch?.();
+      await onSearch?.(debouncedSearchTerm);
       setIsLoading(false);
     };
 
@@ -125,7 +125,7 @@ export default function MultipleSelector({
     <Command
       onKeyDown={handleKeyDown}
       className="overflow-visible bg-transparent"
-      shouldFilter={!onSearch}
+      shouldFilter={!onSearch} // when onSearch is provided, we don't want to filter the options.
     >
       <div className="group rounded-md border border-input px-3 py-2 text-sm ring-offset-background focus-within:ring-2 focus-within:ring-ring focus-within:ring-offset-2">
         <div className="flex flex-wrap gap-1">
@@ -156,7 +156,7 @@ export default function MultipleSelector({
             ref={inputRef}
             value={inputValue}
             onValueChange={setInputValue}
-            onBlur={() => setOpen(false)}
+            // onBlur={() => setOpen(false)}
             onFocus={() => setOpen(true)}
             placeholder={placeholder}
             className="ml-2 flex-1 bg-transparent outline-none placeholder:text-muted-foreground"
@@ -166,42 +166,47 @@ export default function MultipleSelector({
       <div className="relative mt-2">
         {open ? (
           <CommandList className="absolute top-0 z-10 w-full rounded-md border bg-popover text-popover-foreground shadow-md outline-none animate-in">
-            <CommandEmpty>{emptyIndicator}</CommandEmpty>
             {isLoading ? (
               <>{loadingIndicator}</>
             ) : (
-              <CommandGroup className="h-full overflow-auto">
-                <>
-                  {selectables.map((option) => {
-                    return (
-                      <CommandItem
-                        key={option.value}
-                        disabled={option.disable}
-                        onMouseDown={(e) => {
-                          e.preventDefault();
-                          e.stopPropagation();
-                        }}
-                        onSelect={(value) => {
-                          if (selected.length >= maxSelected) {
-                            onMaxSelected?.(selected.length);
-                            return;
-                          }
-                          setInputValue('');
-                          const newOptions = [...selected, option];
-                          setSelected(newOptions);
-                          onChange?.(newOptions);
-                        }}
-                        className={cn(
-                          'cursor-pointer',
-                          option.disable && 'cursor-default text-muted-foreground',
-                        )}
-                      >
-                        {option.label}
-                      </CommandItem>
-                    );
-                  })}
-                </>
-              </CommandGroup>
+              <>
+                <CommandEmpty>{emptyIndicator}</CommandEmpty>
+                <CommandGroup className="h-full overflow-auto">
+                  <>
+                    {onSearch && options.length === 0 && (
+                      <CommandItem disabled>{emptyIndicator}</CommandItem>
+                    )}
+                    {selectables.map((option) => {
+                      return (
+                        <CommandItem
+                          key={option.value}
+                          disabled={option.disable}
+                          onMouseDown={(e) => {
+                            e.preventDefault();
+                            e.stopPropagation();
+                          }}
+                          onSelect={(value) => {
+                            if (selected.length >= maxSelected) {
+                              onMaxSelected?.(selected.length);
+                              return;
+                            }
+                            setInputValue('');
+                            const newOptions = [...selected, option];
+                            setSelected(newOptions);
+                            onChange?.(newOptions);
+                          }}
+                          className={cn(
+                            'cursor-pointer',
+                            option.disable && 'cursor-default text-muted-foreground',
+                          )}
+                        >
+                          {option.label}
+                        </CommandItem>
+                      );
+                    })}
+                  </>
+                </CommandGroup>
+              </>
             )}
           </CommandList>
         ) : null}

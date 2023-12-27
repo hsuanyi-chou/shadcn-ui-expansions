@@ -12,6 +12,7 @@ import { PropLink } from '@/app/(docs)/docs/components/props-table/prop-link';
 import MultipleSelectorDemo from '@/app/(docs)/docs/multiple-selector/multiple-selector-demo';
 import MultipleSelectorControlled from '@/app/(docs)/docs/multiple-selector/usage/multiple-selector-controlled';
 import MultipleSelectorWithDisabledOption from '@/app/(docs)/docs/multiple-selector/usage/multiple-selector-with-disable-option';
+import MultipleSelectorWithAsyncSearch from '@/app/(docs)/docs/multiple-selector/usage/multiple-selector-with-async-search';
 export const metadata: Metadata = baseMetadata({
   title: 'Multiple Selector',
   description: 'Fast,composable, unstyled, multiple selector for React',
@@ -69,6 +70,23 @@ const LoadingButtonPage = () => {
         path="app/(docs)/docs//multiple-selector/usage/multiple-selector-controlled.tsx"
       >
         <MultipleSelectorControlled />
+      </Usage>
+      <Usage
+        title="Async Search with Debounce"
+        description={
+          <>
+            <P className="text-muted-foreground">
+              The async search is debounced by default. The delay time is 500ms if you do not
+              provide it.
+            </P>
+            <P className="text-muted-foreground">
+              You can provide <InlineCode>delay</InlineCode> to customize the time.
+            </P>
+          </>
+        }
+        path="app/(docs)/docs//multiple-selector/usage/multiple-selector-with-async-search.tsx"
+      >
+        <MultipleSelectorWithAsyncSearch />
       </Usage>
     </PageTemplate>
   );
