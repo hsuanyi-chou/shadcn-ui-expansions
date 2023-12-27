@@ -17,6 +17,7 @@ export interface Props {
   required: boolean;
   description: React.ReactNode;
   type: string;
+  typeInfo?: React.ReactNode;
   default?: string;
 }
 
@@ -47,7 +48,10 @@ export const PropsTable = ({ title, props }: PropsTableProps) => {
                   <PropInfo className="ml-2">{prop.description}</PropInfo>
                 </TableCell>
                 <TableCell>
-                  <InlineCode>{prop.type}</InlineCode>
+                  <div className="flex items-center gap-[2px]">
+                    <InlineCode>{prop.type}</InlineCode>
+                    {prop.typeInfo && <PropInfo className="ml-2">{prop.typeInfo}</PropInfo>}
+                  </div>
                 </TableCell>
                 <TableCell>
                   {prop.default ? (

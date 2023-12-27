@@ -156,7 +156,7 @@ export default function MultipleSelector({
             ref={inputRef}
             value={inputValue}
             onValueChange={setInputValue}
-            // onBlur={() => setOpen(false)}
+            onBlur={() => setOpen(false)}
             onFocus={() => setOpen(true)}
             placeholder={placeholder}
             className="ml-2 flex-1 bg-transparent outline-none placeholder:text-muted-foreground"

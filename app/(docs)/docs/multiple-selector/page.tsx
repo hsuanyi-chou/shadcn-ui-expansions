@@ -14,6 +14,9 @@ import MultipleSelectorControlled from '@/app/(docs)/docs/multiple-selector/usag
 import MultipleSelectorWithDisabledOption from '@/app/(docs)/docs/multiple-selector/usage/multiple-selector-with-disable-option';
 import MultipleSelectorWithAsyncSearch from '@/app/(docs)/docs/multiple-selector/usage/multiple-selector-with-async-search';
 import MultipleSelectorWithMaxSelected from '@/app/(docs)/docs/multiple-selector/usage/multiple-selector-max-selected';
+import { PropsTable } from '@/app/(docs)/docs/components/props-table/props-table';
+import { multipleSelectorProp } from '@/app/(docs)/docs/multiple-selector/multiple-selector-prop';
+
 export const metadata: Metadata = baseMetadata({
   title: 'Multiple Selector',
   description:
@@ -103,6 +106,8 @@ const LoadingButtonPage = () => {
       >
         <MultipleSelectorWithMaxSelected />
       </Usage>
+
+      <PropsTable props={multipleSelectorProp} />
     </PageTemplate>
   );
 };
