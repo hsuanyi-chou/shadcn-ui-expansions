@@ -16,14 +16,15 @@ import MultipleSelectorWithAsyncSearch from '@/app/(docs)/docs/multiple-selector
 import MultipleSelectorWithMaxSelected from '@/app/(docs)/docs/multiple-selector/usage/multiple-selector-max-selected';
 export const metadata: Metadata = baseMetadata({
   title: 'Multiple Selector',
-  description: 'Fast,composable, unstyled, multiple selector for React',
+  description:
+    'Fast,composable, unstyled, full featured multiple selector for React. such as async search with debounce, max selected ...etc.',
 });
 
 const LoadingButtonPage = () => {
   return (
     <PageTemplate
       title="Multiple Selector"
-      description="Fast, composable, unstyled, multiple selector for React."
+      description="Fast, composable, unstyled, full featured multiple selector for React."
     >
       <ReferenceBorder>
         <Reference href="https://ui.shadcn.com/docs/components/command" />
@@ -36,7 +37,8 @@ const LoadingButtonPage = () => {
         <PropLink href="https://craft.mxkaske.dev/post/fancy-multi-select">
           <InlineCode>Fancy Multi Select</InlineCode>
         </PropLink>{' '}
-        and added some features such as async search.
+        and added some features such as async search(with debounce), max selected, disabled option
+        ...etc.
       </P>
       <P className="text-gray-700">
         {' '}
