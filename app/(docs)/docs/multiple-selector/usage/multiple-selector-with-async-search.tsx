@@ -43,7 +43,7 @@ const MultipleSelectorWithAsyncSearch = () => {
           setIsTriggered(false);
         }}
         options={options}
-        placeholder="Select frameworks you like..."
+        placeholder="trying to search 'a' to get more options..."
         loadingIndicator={
           <p className="py-2 text-center text-lg leading-10 text-muted-foreground">loading...</p>
         }
