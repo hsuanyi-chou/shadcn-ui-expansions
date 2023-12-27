@@ -25,7 +25,7 @@ export const metadata: Metadata = baseMetadata({
     'Fast,composable, unstyled, full featured multiple selector for React. such as async search with debounce, max selected ...etc.',
 });
 
-const LoadingButtonPage = () => {
+const MultipleSelectorPage = () => {
   return (
     <PageTemplate
       title="Multiple Selector"
@@ -47,11 +47,12 @@ const LoadingButtonPage = () => {
       </P>
       <P className="text-muted-foreground">
         {' '}
-        It is built on top of{' '}
+        It is built on top of <InlineCode>Command</InlineCode> component in shadcn-ui which is base
+        on{' '}
         <PropLink href="https://github.com/pacocoursey/cmdk">
           <InlineCode>cmdk</InlineCode>
-        </PropLink>{' '}
-        package like <InlineCode>Command</InlineCode> component in shadcn-ui.
+        </PropLink>
+        .
       </P>
 
       <PreviewCodeCard path="app/(docs)/docs/multiple-selector/multiple-selector-demo.tsx">
@@ -138,4 +139,4 @@ const LoadingButtonPage = () => {
   );
 };
 
-export default LoadingButtonPage;
+export default MultipleSelectorPage;
