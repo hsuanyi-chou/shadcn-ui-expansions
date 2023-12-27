@@ -32,7 +32,7 @@ const LoadingButtonPage = () => {
       </ReferenceBorder>
 
       <PageSubTitle>About</PageSubTitle>
-      <P className="text-gray-700">
+      <P className="text-muted-foreground">
         This component is inspired by{' '}
         <PropLink href="https://craft.mxkaske.dev/post/fancy-multi-select">
           <InlineCode>Fancy Multi Select</InlineCode>
@@ -40,7 +40,7 @@ const LoadingButtonPage = () => {
         and added some features such as async search(with debounce), max selected, disabled option
         ...etc.
       </P>
-      <P className="text-gray-700">
+      <P className="text-muted-foreground">
         {' '}
         It is built on top of{' '}
         <PropLink href="https://github.com/pacocoursey/cmdk">
