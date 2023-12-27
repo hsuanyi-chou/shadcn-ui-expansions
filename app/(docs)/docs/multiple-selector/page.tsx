@@ -16,6 +16,7 @@ import MultipleSelectorWithAsyncSearch from '@/app/(docs)/docs/multiple-selector
 import MultipleSelectorWithMaxSelected from '@/app/(docs)/docs/multiple-selector/usage/multiple-selector-max-selected';
 import { PropsTable } from '@/app/(docs)/docs/components/props-table/props-table';
 import { multipleSelectorProp } from '@/app/(docs)/docs/multiple-selector/multiple-selector-prop';
+import MultipleSelectorNoPlaceholderWhenSelected from '@/app/(docs)/docs/multiple-selector/usage/multiple-selector-no-placeholder-when-selected';
 
 export const metadata: Metadata = baseMetadata({
   title: 'Multiple Selector',
@@ -105,6 +106,24 @@ const LoadingButtonPage = () => {
         path="app/(docs)/docs//multiple-selector/usage/multiple-selector-max-selected.tsx"
       >
         <MultipleSelectorWithMaxSelected />
+      </Usage>
+      <Usage
+        title="Hide Placeholder When Selected"
+        description={
+          <>
+            <P className="text-muted-foreground">
+              If you would like to work as a normal input that hide the placeholder when there are
+              options selected.
+            </P>
+            <P className="text-muted-foreground">
+              Just set <InlineCode>hidePlaceholderWhenSelected</InlineCode> to{' '}
+              <InlineCode>true</InlineCode>
+            </P>
+          </>
+        }
+        path="app/(docs)/docs//multiple-selector/usage/multiple-selector-no-placeholder-when-selected.tsx"
+      >
+        <MultipleSelectorNoPlaceholderWhenSelected />
       </Usage>
 
       <PropsTable props={multipleSelectorProp} />

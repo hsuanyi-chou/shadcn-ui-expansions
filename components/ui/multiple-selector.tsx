@@ -36,6 +36,7 @@ interface MultipleSelectorProps {
   onChange?: (options: Option[]) => void;
   maxSelected?: number;
   onMaxSelected?: (maxLimit: number) => void;
+  hidePlaceholderWhenSelected?: boolean;
 }
 
 export function useDebounce<T>(value: T, delay?: number): T {
@@ -63,6 +64,7 @@ export default function MultipleSelector({
   emptyIndicator,
   maxSelected = Number.MAX_SAFE_INTEGER,
   onMaxSelected,
+  hidePlaceholderWhenSelected,
 }: MultipleSelectorProps) {
   const inputRef = React.useRef<HTMLInputElement>(null);
   const [open, setOpen] = React.useState(false);
@@ -158,7 +160,7 @@ export default function MultipleSelector({
             onValueChange={setInputValue}
             onBlur={() => setOpen(false)}
             onFocus={() => setOpen(true)}
-            placeholder={placeholder}
+            placeholder={hidePlaceholderWhenSelected && selected.length !== 0 ? '' : placeholder}
             className="ml-2 flex-1 bg-transparent outline-none placeholder:text-muted-foreground"
           />
         </div>
