@@ -3,6 +3,7 @@ import { H4 } from '@/components/ui/heading-with-anchor';
 import { cn } from '@/lib/utils';
 import CodeHighlight from '@/app/(docs)/docs/components/code-card/parts/code-highlight';
 import fs from 'fs/promises';
+import AdStepper from '@/components/ad/ad-stepper';
 
 interface StepperProps {
   children?: React.ReactNode;
@@ -52,34 +53,37 @@ export const Steppers = async (props: SteppersProps) => {
   }
   const withInstallOffset = withInstall ? (props.installScript ? 2 : 1) : 0;
   return (
-    <div className={cn(className)}>
-      {withInstall && (
-        <>
-          {props.installScript && (
+    <>
+      <div className={cn(className)}>
+        {withInstall && (
+          <>
+            {props.installScript && (
+              <Stepper
+                title="Install the package if you do not have it."
+                step={withInstallOffset - 1}
+              >
+                <CodeHighlight lang="shell" code={props.installScript} />
+              </Stepper>
+            )}
             <Stepper
-              title="Install the package if you do not have it."
-              step={withInstallOffset - 1}
+              title="Copy and paste the following code into your project."
+              step={withInstallOffset}
             >
-              <CodeHighlight lang="shell" code={props.installScript} />
+              <CodeHighlight code={installCode} withExpand />
             </Stepper>
-          )}
+          </>
+        )}
+        {steps?.map((props, index) => (
+          <Stepper key={props.title} {...props} step={index + 1 + withInstallOffset} />
+        ))}
+        {withEnd && (
           <Stepper
-            title="Copy and paste the following code into your project."
-            step={withInstallOffset}
-          >
-            <CodeHighlight code={installCode} withExpand />
-          </Stepper>
-        </>
-      )}
-      {steps?.map((props, index) => (
-        <Stepper key={props.title} {...props} step={index + 1 + withInstallOffset} />
-      ))}
-      {withEnd && (
-        <Stepper
-          title="Update the import paths to match your project setup."
-          step={(steps?.length || 0) + 1 + withInstallOffset}
-        />
-      )}
-    </div>
+            title="Update the import paths to match your project setup."
+            step={(steps?.length || 0) + 1 + withInstallOffset}
+          />
+        )}
+      </div>
+      <AdStepper />
+    </>
   );
 };

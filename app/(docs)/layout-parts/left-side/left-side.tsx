@@ -2,6 +2,7 @@ import React from 'react';
 import { DOCS } from '@/app/(docs)/layout-parts/documentation.constant';
 import LeftSideLink from '@/app/(docs)/layout-parts/left-side/left-side-link';
 import BuyMeCoffee from '@/app/(docs)/layout-parts/buy-me-coffee';
+import AdLeftSide from '@/components/ad/ad-left-side';
 
 const LeftSide = () => {
   return (
@@ -17,6 +18,7 @@ const LeftSide = () => {
         </div>
       ))}
       <BuyMeCoffee className="mt-32" />
+      <AdLeftSide />
     </aside>
   );
 };
