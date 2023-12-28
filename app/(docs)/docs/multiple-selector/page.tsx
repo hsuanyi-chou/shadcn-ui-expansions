@@ -29,14 +29,14 @@ import MultipleSelectorWithAsyncSearchAndCreatableAndGroup from '@/app/(docs)/do
 export const metadata: Metadata = baseMetadata({
   title: 'Multiple Selector',
   description:
-    'Fast,composable, unstyled, full featured multiple selector for React. such as async search with debounce, max selected, grouped, creatable selector ...etc.',
+    'Fast,composable, fully-featured multiple selector for React. such as async search with debounce, maximum selected count, grouping, creatable selector ...etc.',
 });
 
 const MultipleSelectorPage = () => {
   return (
     <PageTemplate
       title="Multiple Selector"
-      description="Fast, composable, unstyled, full featured multiple selector for React."
+      description="Fast, composable, fully-featured multiple selector for React."
     >
       <ReferenceBorder>
         <Reference href="https://ui.shadcn.com/docs/components/command" />
@@ -49,12 +49,12 @@ const MultipleSelectorPage = () => {
         <PropLink href="https://craft.mxkaske.dev/post/fancy-multi-select">
           <InlineCode>Fancy Multi Select</InlineCode>
         </PropLink>{' '}
-        and added some features such as async search(with debounce), max selected, grouped,
-        creatable selector ...etc.
+        and includes additional features such as asynchronous search(with debounce), maximum
+        selected count, grouping, and a creatable selector ...etc.
       </P>
       <P className="text-muted-foreground">
         {' '}
-        It is built on top of <InlineCode>Command</InlineCode> component in shadcn-ui which is base
+        It is built on top of <InlineCode>Command</InlineCode> component in shadcn-ui, which is base
         on{' '}
         <PropLink href="https://github.com/pacocoursey/cmdk">
           <InlineCode>cmdk</InlineCode>
