@@ -20,7 +20,7 @@ const IntroductionPage = () => {
         </Link>
       </Blockquote>
       <P className="text-gray-600">
-        This is built on top of shadcn/ui and expanded many useful components such as multiple
+        This is built on top of shadcn/ui and includes many useful components such as multiple
         selector, loading button, infinite scroll and more.
       </P>
       <P className="font-bold italic">
