@@ -44,11 +44,6 @@ export const DOCS: Documentation[] = [
         url: '/docs/loading-button',
       },
       { label: 'Multiple Selector', value: 'multipleSelector', url: '/docs/multiple-selector' },
-      {
-        label: 'Multiple Selector (Group)',
-        value: 'group-multiple-selector',
-        url: '/docs/group-multiple-selector',
-      },
     ],
   },
 ];
