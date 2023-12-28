@@ -185,7 +185,7 @@ const MultipleSelectorPage = () => {
         <MultipleSelectorWithGroup />
       </Usage>
       <Usage
-        title="Max Selected"
+        title="Maximum Selected Count"
         description={
           <P className="text-muted-foreground">
             Following example is set to 3. The default of max selected is{' '}
@@ -216,6 +216,11 @@ const MultipleSelectorPage = () => {
       </Usage>
       <Usage
         title="Fixed Options"
+        description={
+          <P className="text-muted-foreground">
+            Provide <InlineCode>fixed: true</InlineCode> in your <InlineCode>value</InlineCode>
+          </P>
+        }
         path="app/(docs)/docs//multiple-selector/usage/multiple-selector-fixed-option.tsx"
       >
         <MultipleSelectorWithFixedOption />
