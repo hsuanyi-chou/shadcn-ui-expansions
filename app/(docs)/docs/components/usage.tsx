@@ -1,6 +1,6 @@
 import React from 'react';
 import PreviewCodeCard from '@/app/(docs)/docs/components/preview-code-card';
-import { H3, P } from '@/components/ui/heading-with-anchor';
+import { H3 } from '@/components/ui/heading-with-anchor';
 import { cn } from '@/lib/utils';
 
 interface UsageProps {
