@@ -161,6 +161,36 @@ export default function GroupMultipleSelector({
     void exec();
   }, [debouncedSearchTerm]);
 
+  const CreatableItem = () => {
+    if (!creatable) return undefined;
+
+    const Item = (<CommandItem
+      value={inputValue}
+      onSelect={(value: string) => {
+        if (selected.length >= maxSelected) {
+          onMaxSelected?.(selected.length);
+          return;
+        }
+        setInputValue('');
+        const newOptions = [...selected, { value, label: value }];
+        setSelected(newOptions);
+        onChange?.(newOptions);
+      }}
+    >{`Create "${inputValue}"`}</CommandItem>);
+
+    // normal creatable
+    if (!onSearch && inputValue.length > 0) {
+      return Item;
+    }
+
+    // async search creatable. avoid showing creatable item before loading at first.
+    if (onSearch && debouncedSearchTerm.length > 0 && !isLoading) {
+      return Item;
+    }
+
+    return undefined;
+  }
+
   const selectables = React.useMemo<GroupOption>(
     () => removePickedOption(options, selected),
     [options, selected],
@@ -241,38 +271,7 @@ export default function GroupMultipleSelector({
                   </CommandItem>
                 )}
                 {!selectFirstItem && <CommandItem value="-" className="hidden" />}
-                {/* for normal creatable. */}
-                {creatable && inputValue.length > 0 && !onSearch && (
-                  <CommandItem
-                    value={inputValue}
-                    onSelect={(value: string) => {
-                      if (selected.length >= maxSelected) {
-                        onMaxSelected?.(selected.length);
-                        return;
-                      }
-                      setInputValue('');
-                      const newOptions = [...selected, { value, label: value }];
-                      setSelected(newOptions);
-                      onChange?.(newOptions);
-                    }}
-                  >{`Create "${inputValue}"`}</CommandItem>
-                )}
-                {/* for async search use. avoid showing creatable item before loading */}
-                {creatable && debouncedSearchTerm.length > 0 && onSearch && !isLoading && (
-                  <CommandItem
-                    value={inputValue}
-                    onSelect={(value: string) => {
-                      if (selected.length >= maxSelected) {
-                        onMaxSelected?.(selected.length);
-                        return;
-                      }
-                      setInputValue('');
-                      const newOptions = [...selected, { value, label: value }];
-                      setSelected(newOptions);
-                      onChange?.(newOptions);
-                    }}
-                  >{`Create "${inputValue}"`}</CommandItem>
-                )}
+                {CreatableItem()}
                 {Object.entries(selectables).map(([key, dropdowns]) => (
                   <CommandGroup key={key} heading={key} className="h-full overflow-auto">
                     <>
