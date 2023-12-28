@@ -65,6 +65,9 @@ export function useDebounce<T>(value: T, delay?: number): T {
 }
 
 function transToGroupOption(options: Option[], groupBy?: string) {
+  if (options.length === 0) {
+    return {};
+  }
   if (!groupBy) {
     return {
       '': options,
@@ -224,13 +227,19 @@ export default function GroupMultipleSelector({
         </div>
       </div>
       <div className="relative mt-2">
-        {open ? (
+        {open && (
           <CommandList className="absolute top-0 z-10 w-full rounded-md border bg-popover text-popover-foreground shadow-md outline-none animate-in">
             {isLoading ? (
               <>{loadingIndicator}</>
             ) : (
               <>
                 <CommandEmpty>{emptyIndicator}</CommandEmpty>
+                {/* for async search that showing emptyIndicator */}
+                {onSearch && !creatable && Object.keys(options).length === 0 && (
+                  <CommandItem value="-" disabled>
+                    {emptyIndicator}
+                  </CommandItem>
+                )}
                 {!selectFirstItem && <CommandItem value="-" className="hidden" />}
                 {/* for normal creatable. */}
                 {creatable && inputValue.length > 0 && !onSearch && (
@@ -277,7 +286,7 @@ export default function GroupMultipleSelector({
                               e.preventDefault();
                               e.stopPropagation();
                             }}
-                            onSelect={(value) => {
+                            onSelect={() => {
                               if (selected.length >= maxSelected) {
                                 onMaxSelected?.(selected.length);
                                 return;
@@ -302,7 +311,7 @@ export default function GroupMultipleSelector({
               </>
             )}
           </CommandList>
-        ) : null}
+        )}
       </div>
     </Command>
   );
