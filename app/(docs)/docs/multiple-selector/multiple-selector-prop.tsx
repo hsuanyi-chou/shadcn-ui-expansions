@@ -173,4 +173,14 @@ export const multipleSelectorProp: Props[] = [
     ),
     type: 'string',
   },
+  {
+    prop: 'badgeClassName',
+    required: false,
+    description: (
+      <>
+        <p>Customize the style via tailwind for the selected options (badge).</p>
+      </>
+    ),
+    type: 'string',
+  },
 ];

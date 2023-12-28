@@ -44,6 +44,7 @@ interface GroupMultipleSelectorProps {
   disabled?: boolean;
   groupBy?: string;
   className?: string;
+  badgeClassName?: string;
 }
 
 export function useDebounce<T>(value: T, delay?: number): T {
@@ -93,6 +94,7 @@ export default function GroupMultipleSelector({
   disabled,
   groupBy,
   className,
+  badgeClassName,
 }: GroupMultipleSelectorProps) {
   const inputRef = React.useRef<HTMLInputElement>(null);
   const [open, setOpen] = React.useState(false);
@@ -174,8 +176,10 @@ export default function GroupMultipleSelector({
               <Badge
                 key={option.value}
                 className={cn(
-                  disabled && 'bg-muted-foreground text-muted hover:bg-muted-foreground',
+                  'data-[disabled]text-muted data-[disabled]hover:bg-muted-foreground data-[disabled]:bg-muted-foreground',
+                  badgeClassName,
                 )}
+                data-disabled={disabled}
               >
                 {option.label}
                 <button
