@@ -12,7 +12,7 @@ const Navbar = () => {
       <NavbarLogo />
       <div className="flex gap-3">
         <Search />
-        <Link href="https://github.com/" target="_blank">
+        <Link href="https://github.com/hsuanyi-chou/shadcn-ui-expansions" target="_blank">
           <Button variant="outline" size="icon">
             <Github />
           </Button>
