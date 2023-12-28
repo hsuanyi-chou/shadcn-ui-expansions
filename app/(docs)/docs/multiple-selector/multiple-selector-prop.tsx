@@ -8,8 +8,8 @@ const OptionTypeInfo = () => (
     <p>
       Option:{' '}
       <InlineCode>
-        {'\u007B'} value: string; label: string; disable?: boolean; [key:string]: string |
-        undefined; {'\u007D'}
+        {'\u007B'} value: string; label: string; disable?: boolean; fixed?: boolean; [key:string]:
+        string | undefined; {'\u007D'}
       </InlineCode>
       .
     </p>
