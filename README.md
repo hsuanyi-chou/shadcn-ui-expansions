@@ -1,4 +1,4 @@
-# shadcn-ui expansion
+# shadcn-ui expansions
 
 This is built on top of shadcn/ui and includes many useful components such as multiple selector, loading button, infinite scroll and more.
 
