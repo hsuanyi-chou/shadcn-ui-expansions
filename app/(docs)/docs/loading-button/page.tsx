@@ -26,7 +26,7 @@ const LoadingButtonPage = () => {
         <Reference href="https://ui.shadcn.com/docs/components/button" />
       </ReferenceBorder>
 
-      <PreviewCodeCard path="app/(docs)/docs/loading-button/multiple-selector-demo.tsx">
+      <PreviewCodeCard path="app/(docs)/docs/loading-button/loading-button-demo.tsx">
         <LoadingButtonDemo />
       </PreviewCodeCard>
 
