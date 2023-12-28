@@ -20,11 +20,12 @@ import MultipleSelectorNoPlaceholderWhenSelected from '@/app/(docs)/docs/multipl
 import MultipleSelectorWithForm from '@/app/(docs)/docs/multiple-selector/usage/multiple-selector-with-form';
 import MultipleSelectorDisabled from '@/app/(docs)/docs/multiple-selector/usage/multiple-selector-disabled';
 import MultipleSelectorWithGroup from '@/app/(docs)/docs/multiple-selector/usage/multiple-selector-with-group';
+import MultipleSelectorNoDefaultSelect from '@/app/(docs)/docs/multiple-selector/usage/multiple-selector-no-default-select';
 
 export const metadata: Metadata = baseMetadata({
   title: 'Multiple Selector',
   description:
-    'Fast,composable, unstyled, full featured multiple selector for React. such as async search with debounce, max selected ...etc.',
+    'Fast,composable, unstyled, full featured multiple selector for React. such as async search with debounce, max selected, group ...etc.',
 });
 
 const MultipleSelectorPage = () => {
@@ -44,8 +45,7 @@ const MultipleSelectorPage = () => {
         <PropLink href="https://craft.mxkaske.dev/post/fancy-multi-select">
           <InlineCode>Fancy Multi Select</InlineCode>
         </PropLink>{' '}
-        and added some features such as async search(with debounce), max selected, disabled option
-        ...etc.
+        and added some features such as async search(with debounce), max selected, group ...etc.
       </P>
       <P className="text-muted-foreground">
         {' '}
@@ -81,6 +81,30 @@ const MultipleSelectorPage = () => {
         path="app/(docs)/docs//multiple-selector/usage/multiple-selector-disabled.tsx"
       >
         <MultipleSelectorDisabled />
+      </Usage>
+      <Usage
+        title="Disable First Item selected"
+        description={
+          <>
+            <P className="text-muted-foreground">
+              First item selected is a default behavior by{' '}
+              <PropLink href="https://github.com/pacocoursey/cmdk">
+                <InlineCode>cmdk</InlineCode>
+              </PropLink>{' '}
+              and there is no way to control it. You can learn more about the{' '}
+              <PropLink href="https://github.com/pacocoursey/cmdk/issues/171">
+                <InlineCode>issue</InlineCode>
+              </PropLink>
+              .
+            </P>
+            <P className="text-muted-foreground">
+              This is a workaround solution by adding a dummy item.
+            </P>
+          </>
+        }
+        path="app/(docs)/docs//multiple-selector/usage/multiple-selector-no-default-select.tsx"
+      >
+        <MultipleSelectorNoDefaultSelect />
       </Usage>
       <Usage
         title="Controlled Component"

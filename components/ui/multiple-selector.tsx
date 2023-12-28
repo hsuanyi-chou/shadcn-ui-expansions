@@ -45,6 +45,7 @@ interface GroupMultipleSelectorProps {
   groupBy?: string;
   className?: string;
   badgeClassName?: string;
+  selectFirstItem?: boolean;
 }
 
 export function useDebounce<T>(value: T, delay?: number): T {
@@ -95,6 +96,7 @@ export default function GroupMultipleSelector({
   groupBy,
   className,
   badgeClassName,
+  selectFirstItem = true,
 }: GroupMultipleSelectorProps) {
   const inputRef = React.useRef<HTMLInputElement>(null);
   const [open, setOpen] = React.useState(false);
@@ -224,6 +226,7 @@ export default function GroupMultipleSelector({
             ) : (
               <>
                 <CommandEmpty>{emptyIndicator}</CommandEmpty>
+                {!selectFirstItem && <CommandItem value="-" className="hidden" />}
                 {Object.entries(selectables).map(([key, dropdowns]) => (
                   <CommandGroup key={key} heading={key} className="h-full overflow-auto">
                     <>

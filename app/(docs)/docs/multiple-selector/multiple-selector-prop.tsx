@@ -1,6 +1,7 @@
 import { Props } from '@/app/(docs)/docs/components/props-table/props-table';
 import React from 'react';
 import { InlineCode } from '@/components/ui/inline-code';
+import { PropLink } from '@/app/(docs)/docs/components/props-table/prop-link';
 
 const OptionTypeInfo = () => (
   <>
@@ -162,6 +163,31 @@ export const multipleSelectorProp: Props[] = [
       </>
     ),
     type: 'ReactNode',
+  },
+  {
+    prop: 'selectFirstItem',
+    required: false,
+    description: (
+      <>
+        <p>
+          First item selected is a default behavior by{' '}
+          <PropLink href="https://github.com/pacocoursey/cmdk">
+            <InlineCode>cmdk</InlineCode>
+          </PropLink>
+          . That is why the default is <InlineCode>true</InlineCode>.
+        </p>
+        <p>This is a workaround solution by add a dummy item.</p>
+        <p>
+          Learn more about the{' '}
+          <PropLink href="https://github.com/pacocoursey/cmdk/issues/171">
+            <InlineCode>issue</InlineCode>
+          </PropLink>
+          .
+        </p>
+      </>
+    ),
+    type: 'boolean',
+    default: 'true',
   },
   {
     prop: 'className',
