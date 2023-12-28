@@ -1,4 +1,5 @@
-import React from 'react';
+'use client';
+import React, { useState } from 'react';
 import MultipleSelector, { Option } from '@/components/ui/multiple-selector';
 
 const OPTIONS: Option[] = [
@@ -15,10 +16,16 @@ const OPTIONS: Option[] = [
   { label: 'Astro', value: 'astro' },
 ];
 
-const MultipleSelectorDemo = () => {
+const MultipleSelectorWithFixedOption = () => {
+  const [value, setValue] = useState<Option[]>([
+    { label: 'nextjs', value: 'nextjs', fixed: true },
+    { label: 'React', value: 'react', fixed: true },
+  ]);
   return (
     <div className="w-full px-10">
       <MultipleSelector
+        value={value}
+        onChange={setValue}
         options={OPTIONS}
         placeholder="Select frameworks you like..."
         emptyIndicator={
@@ -31,4 +38,4 @@ const MultipleSelectorDemo = () => {
   );
 };
 
-export default MultipleSelectorDemo;
+export default MultipleSelectorWithFixedOption;

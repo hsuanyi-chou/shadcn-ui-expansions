@@ -21,6 +21,7 @@ import MultipleSelectorWithForm from '@/app/(docs)/docs/multiple-selector/usage/
 import MultipleSelectorDisabled from '@/app/(docs)/docs/multiple-selector/usage/multiple-selector-disabled';
 import MultipleSelectorWithGroup from '@/app/(docs)/docs/multiple-selector/usage/multiple-selector-with-group';
 import MultipleSelectorNoDefaultSelect from '@/app/(docs)/docs/multiple-selector/usage/multiple-selector-no-default-select';
+import MultipleSelectorWithFixedOption from '@/app/(docs)/docs/multiple-selector/usage/multiple-selector-fixed-option';
 
 export const metadata: Metadata = baseMetadata({
   title: 'Multiple Selector',
@@ -171,6 +172,12 @@ const MultipleSelectorPage = () => {
         path="app/(docs)/docs//multiple-selector/usage/multiple-selector-no-placeholder-when-selected.tsx"
       >
         <MultipleSelectorNoPlaceholderWhenSelected />
+      </Usage>
+      <Usage
+        title="Fixed Options"
+        path="app/(docs)/docs//multiple-selector/usage/multiple-selector-fixed-option.tsx"
+      >
+        <MultipleSelectorWithFixedOption />
       </Usage>
       <Usage
         title="Form"

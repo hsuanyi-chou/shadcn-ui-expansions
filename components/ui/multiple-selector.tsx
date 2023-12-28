@@ -19,6 +19,7 @@ export interface Option {
   value: string;
   label: string;
   disable?: boolean;
+  fixed?: boolean;
   [key: string]: string | boolean | undefined;
 }
 export interface GroupOption {
@@ -178,16 +179,18 @@ export default function GroupMultipleSelector({
               <Badge
                 key={option.value}
                 className={cn(
-                  'data-[disabled]text-muted data-[disabled]hover:bg-muted-foreground data-[disabled]:bg-muted-foreground',
+                  'data-[disabled]:bg-muted-foreground data-[disabled]:text-muted data-[disabled]:hover:bg-muted-foreground',
+                  'data-[fixed]:bg-muted-foreground data-[fixed]:text-muted data-[fixed]:hover:bg-muted-foreground',
                   badgeClassName,
                 )}
+                data-fixed={option.fixed}
                 data-disabled={disabled}
               >
                 {option.label}
                 <button
                   className={cn(
                     'ml-1 rounded-full outline-none ring-offset-background focus:ring-2 focus:ring-ring focus:ring-offset-2',
-                    disabled && 'hidden',
+                    (disabled || option.fixed) && 'hidden',
                   )}
                   onKeyDown={(e) => {
                     if (e.key === 'Enter') {
