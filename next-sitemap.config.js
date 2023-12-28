@@ -4,4 +4,5 @@
 module.exports = {
   siteUrl: 'https://shadcnui-expansions.typeart.cc',
   generateRobotsTxt: true,
+  outDir: './out',
 };
