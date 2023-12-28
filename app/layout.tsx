@@ -28,6 +28,9 @@ export const metadata: Metadata = {
     description:
       'shadcn/ui expansions collect lots of useful components which shadcn/ui does not have out of box. All the components are base on shadcn/ui. Just copy and paste. The component is yours.',
   },
+  other: {
+    'google-site-verification': 'q2TjtYRJbnG5q8Am34DYea1AL_VmYHOUOLlKQGgamGQ'
+  }
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
