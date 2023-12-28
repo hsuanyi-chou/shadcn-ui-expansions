@@ -19,8 +19,7 @@ import { multipleSelectorProp } from '@/app/(docs)/docs/multiple-selector/multip
 import MultipleSelectorNoPlaceholderWhenSelected from '@/app/(docs)/docs/multiple-selector/usage/multiple-selector-no-placeholder-when-selected';
 import MultipleSelectorWithForm from '@/app/(docs)/docs/multiple-selector/usage/multiple-selector-with-form';
 import MultipleSelectorDisabled from '@/app/(docs)/docs/multiple-selector/usage/multiple-selector-disabled';
-import Link from 'next/link';
-import { cn } from '@/lib/utils';
+import MultipleSelectorWithGroup from '@/app/(docs)/docs/multiple-selector/usage/multiple-selector-with-group';
 
 export const metadata: Metadata = baseMetadata({
   title: 'Multiple Selector',
@@ -54,13 +53,6 @@ const MultipleSelectorPage = () => {
         on{' '}
         <PropLink href="https://github.com/pacocoursey/cmdk">
           <InlineCode>cmdk</InlineCode>
-        </PropLink>
-        .
-      </P>
-      <P className="text-muted-foreground">
-        If you want group options, visit{' '}
-        <PropLink href="/docs/group-multiple-selector" target={null}>
-          <InlineCode>Group Multiple Selector</InlineCode>
         </PropLink>
         .
       </P>
@@ -112,6 +104,19 @@ const MultipleSelectorPage = () => {
         path="app/(docs)/docs//multiple-selector/usage/multiple-selector-with-async-search.tsx"
       >
         <MultipleSelectorWithAsyncSearch />
+      </Usage>
+      <Usage
+        title="Group"
+        description={
+          <>
+            <P className="text-muted-foreground">
+              Group options by specific key of <InlineCode>object</InlineCode>
+            </P>
+          </>
+        }
+        path="app/(docs)/docs//multiple-selector/usage/multiple-selector-with-group.tsx"
+      >
+        <MultipleSelectorWithGroup />
       </Usage>
       <Usage
         title="Max Selected"

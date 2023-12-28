@@ -3,12 +3,21 @@ import React from 'react';
 import { InlineCode } from '@/components/ui/inline-code';
 
 const OptionTypeInfo = () => (
-  <p>
-    Option:{' '}
-    <InlineCode>
-      {'\u007B'} value: string; label: string; disable?: boolean; {'\u007D'}
-    </InlineCode>
-  </p>
+  <>
+    <p>
+      Option:{' '}
+      <InlineCode>
+        {'\u007B'} value: string; label: string; disable?: boolean; [key:string]: string |
+        undefined; {'\u007D'}
+      </InlineCode>
+      .
+    </p>
+    <p>
+      The <InlineCode>[key:string]: string | undefined</InlineCode> is for you to customize{' '}
+      <InlineCode> groupBy</InlineCode>
+      field.
+    </p>
+  </>
 );
 
 export const multipleSelectorProp: Props[] = [
@@ -95,7 +104,18 @@ export const multipleSelectorProp: Props[] = [
         </p>
       </>
     ),
-    type: '(value: string) => Promise<void>',
+    type: '(value: string) => Promise<Option[]>',
+    typeInfo: <OptionTypeInfo />,
+  },
+  {
+    prop: 'groupBy',
+    required: false,
+    description: (
+      <>
+        <p>Group the options base on provided key.</p>
+      </>
+    ),
+    type: 'string',
   },
   {
     prop: 'maxSelected',

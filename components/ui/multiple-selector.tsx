@@ -19,9 +19,13 @@ export interface Option {
   value: string;
   label: string;
   disable?: boolean;
+  [key: string]: string | boolean | undefined;
+}
+export interface GroupOption {
+  [key: string]: Option[];
 }
 
-interface MultipleSelectorProps {
+interface GroupMultipleSelectorProps {
   value?: Option[];
   options?: Option[];
   placeholder?: string;
@@ -32,12 +36,13 @@ interface MultipleSelectorProps {
   /** debounce time for async search */
   delay?: number;
   /** async search */
-  onSearch?: (value: string) => Promise<void>;
+  onSearch?: (value: string) => Promise<Option[]>;
   onChange?: (options: Option[]) => void;
   maxSelected?: number;
   onMaxSelected?: (maxLimit: number) => void;
   hidePlaceholderWhenSelected?: boolean;
   disabled?: boolean;
+  groupBy?: string;
 }
 
 export function useDebounce<T>(value: T, delay?: number): T {
@@ -54,11 +59,29 @@ export function useDebounce<T>(value: T, delay?: number): T {
   return debouncedValue;
 }
 
-export default function MultipleSelector({
+function transToGroupOption(options: Option[], groupBy?: string) {
+  if (!groupBy) {
+    return {
+      '': options,
+    };
+  }
+
+  const groupOption: GroupOption = {};
+  options.forEach((option) => {
+    const key = (option[groupBy] as string) || '';
+    if (!groupOption[key]) {
+      groupOption[key] = [];
+    }
+    groupOption[key].push(option);
+  });
+  return groupOption;
+}
+
+export default function GroupMultipleSelector({
   value,
   onChange,
   placeholder,
-  options = [],
+  options: arrayOptions = [],
   delay,
   onSearch,
   loadingIndicator,
@@ -67,12 +90,16 @@ export default function MultipleSelector({
   onMaxSelected,
   hidePlaceholderWhenSelected,
   disabled,
-}: MultipleSelectorProps) {
+  groupBy,
+}: GroupMultipleSelectorProps) {
   const inputRef = React.useRef<HTMLInputElement>(null);
   const [open, setOpen] = React.useState(false);
   const [isLoading, setIsLoading] = React.useState(false);
 
   const [selected, setSelected] = React.useState<Option[]>(value || []);
+  const [options, setOptions] = React.useState<GroupOption>(
+    transToGroupOption(arrayOptions, groupBy),
+  );
 
   const [inputValue, setInputValue] = React.useState('');
   const debouncedSearchTerm = useDebounce(inputValue, delay || 500);
@@ -114,15 +141,17 @@ export default function MultipleSelector({
     const exec = async () => {
       if (!debouncedSearchTerm || !onSearch) return;
       setIsLoading(true);
-      await onSearch?.(debouncedSearchTerm);
+      const res = await onSearch?.(debouncedSearchTerm);
+      setOptions(transToGroupOption(res, groupBy));
       setIsLoading(false);
     };
 
     void exec();
   }, [debouncedSearchTerm]);
 
-  const selectables = options.filter(
-    (option) => !selected.find((sel) => sel.value === option.value),
+  const selectables = React.useMemo<GroupOption>(
+    () => removePickedOption(options, selected),
+    [options, selected],
   );
 
   return (
@@ -184,41 +213,43 @@ export default function MultipleSelector({
             ) : (
               <>
                 <CommandEmpty>{emptyIndicator}</CommandEmpty>
-                <CommandGroup className="h-full overflow-auto">
-                  <>
-                    {onSearch && options.length === 0 && (
-                      <CommandItem disabled>{emptyIndicator}</CommandItem>
-                    )}
-                    {selectables.map((option) => {
-                      return (
-                        <CommandItem
-                          key={option.value}
-                          disabled={option.disable}
-                          onMouseDown={(e) => {
-                            e.preventDefault();
-                            e.stopPropagation();
-                          }}
-                          onSelect={(value) => {
-                            if (selected.length >= maxSelected) {
-                              onMaxSelected?.(selected.length);
-                              return;
-                            }
-                            setInputValue('');
-                            const newOptions = [...selected, option];
-                            setSelected(newOptions);
-                            onChange?.(newOptions);
-                          }}
-                          className={cn(
-                            'cursor-pointer',
-                            option.disable && 'cursor-default text-muted-foreground',
-                          )}
-                        >
-                          {option.label}
-                        </CommandItem>
-                      );
-                    })}
-                  </>
-                </CommandGroup>
+                {Object.entries(selectables).map(([key, dropdowns]) => {
+                  return (
+                    <CommandGroup key={key} heading={key} className="h-full overflow-auto">
+                      <>
+                        {dropdowns.map((option) => {
+                          return (
+                            <CommandItem
+                              key={option.value}
+                              value={option.value}
+                              disabled={option.disable}
+                              onMouseDown={(e) => {
+                                e.preventDefault();
+                                e.stopPropagation();
+                              }}
+                              onSelect={(value) => {
+                                if (selected.length >= maxSelected) {
+                                  onMaxSelected?.(selected.length);
+                                  return;
+                                }
+                                setInputValue('');
+                                const newOptions = [...selected, option];
+                                setSelected(newOptions);
+                                onChange?.(newOptions);
+                              }}
+                              className={cn(
+                                'cursor-pointer',
+                                option.disable && 'cursor-default text-muted-foreground',
+                              )}
+                            >
+                              {option.label}
+                            </CommandItem>
+                          );
+                        })}
+                      </>
+                    </CommandGroup>
+                  );
+                })}
               </>
             )}
           </CommandList>
@@ -226,4 +257,13 @@ export default function MultipleSelector({
       </div>
     </Command>
   );
+}
+
+function removePickedOption(groupOption: GroupOption, picked: Option[]) {
+  const cloneOption = JSON.parse(JSON.stringify(groupOption)) as GroupOption;
+
+  for (const [key, value] of Object.entries(cloneOption)) {
+    cloneOption[key] = value.filter((val) => !picked.find((p) => p.value === val.value));
+  }
+  return cloneOption;
 }

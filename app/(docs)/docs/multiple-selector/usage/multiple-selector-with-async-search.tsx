@@ -27,7 +27,7 @@ const mockSearch = async (value: string): Promise<Option[]> => {
 };
 
 const MultipleSelectorWithAsyncSearch = () => {
-  const [options, setOptions] = React.useState<Option[]>([]);
+  // const [options, setOptions] = React.useState<Option[]>([]);
   const [isTriggered, setIsTriggered] = React.useState(false);
 
   return (
@@ -39,10 +39,10 @@ const MultipleSelectorWithAsyncSearch = () => {
         onSearch={async (value) => {
           setIsTriggered(true);
           const res = await mockSearch(value);
-          setOptions(res);
           setIsTriggered(false);
+          return res;
         }}
-        options={options}
+        options={[]}
         placeholder="trying to search 'a' to get more options..."
         loadingIndicator={
           <p className="py-2 text-center text-lg leading-10 text-muted-foreground">loading...</p>
