@@ -43,6 +43,7 @@ interface GroupMultipleSelectorProps {
   hidePlaceholderWhenSelected?: boolean;
   disabled?: boolean;
   groupBy?: string;
+  className?: string;
 }
 
 export function useDebounce<T>(value: T, delay?: number): T {
@@ -91,6 +92,7 @@ export default function GroupMultipleSelector({
   hidePlaceholderWhenSelected,
   disabled,
   groupBy,
+  className,
 }: GroupMultipleSelectorProps) {
   const inputRef = React.useRef<HTMLInputElement>(null);
   const [open, setOpen] = React.useState(false);
@@ -160,7 +162,12 @@ export default function GroupMultipleSelector({
       className="overflow-visible bg-transparent"
       shouldFilter={!onSearch} // when onSearch is provided, we don't want to filter the options.
     >
-      <div className="group rounded-md border border-input px-3 py-2 text-sm ring-offset-background focus-within:ring-2 focus-within:ring-ring focus-within:ring-offset-2">
+      <div
+        className={cn(
+          'group rounded-md border border-input px-3 py-2 text-sm ring-offset-background focus-within:ring-2 focus-within:ring-ring focus-within:ring-offset-2',
+          className,
+        )}
+      >
         <div className="flex flex-wrap gap-1">
           {selected.map((option) => {
             return (

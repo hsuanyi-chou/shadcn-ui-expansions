@@ -163,4 +163,14 @@ export const multipleSelectorProp: Props[] = [
     ),
     type: 'ReactNode',
   },
+  {
+    prop: 'className',
+    required: false,
+    description: (
+      <>
+        <p>Customize the style via tailwind for whole selector.</p>
+      </>
+    ),
+    type: 'string',
+  },
 ];
