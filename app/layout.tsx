@@ -16,6 +16,18 @@ export const metadata: Metadata = {
   title: 'shadcn/ui expansions',
   description:
     'shadcn/ui expansions collect lots of useful components which shadcn/ui does not have out of box. All the components are base on shadcn/ui. Just copy and paste. The component is yours.',
+  twitter: {
+    card: 'summary_large_image',
+    title: 'shadcn/ui expansions',
+    description:
+      'shadcn/ui expansions collect lots of useful components which shadcn/ui does not have out of box. All the components are base on shadcn/ui. Just copy and paste. The component is yours.',
+    creator: 'HsuanYi Chou',
+  },
+  openGraph: {
+    title: 'shadcn/ui expansions',
+    description:
+      'shadcn/ui expansions collect lots of useful components which shadcn/ui does not have out of box. All the components are base on shadcn/ui. Just copy and paste. The component is yours.',
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
