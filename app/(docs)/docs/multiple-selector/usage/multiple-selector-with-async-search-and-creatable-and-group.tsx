@@ -4,17 +4,18 @@ import MultipleSelector, { Option } from '@/components/ui/multiple-selector';
 import { InlineCode } from '@/components/ui/inline-code';
 
 const OPTIONS: Option[] = [
-  { label: 'nextjs', value: 'Nextjs' },
-  { label: 'React', value: 'react' },
-  { label: 'Remix', value: 'remix' },
-  { label: 'Vite', value: 'vite' },
-  { label: 'Nuxt', value: 'nuxt' },
-  { label: 'Vue', value: 'vue' },
-  { label: 'Svelte', value: 'svelte' },
-  { label: 'Angular', value: 'angular' },
-  { label: 'Ember', value: 'ember' },
-  { label: 'Gatsby', value: 'gatsby' },
-  { label: 'Astro', value: 'astro' },
+  { label: 'nextjs', value: 'nextjs', group: 'React' },
+  { label: 'React', value: 'react', group: 'React' },
+  { label: 'Remix', value: 'remix', group: 'React' },
+  { label: 'shadcn-ui', value: 'shadcn-ui', group: 'React' },
+  { label: 'mui', value: 'mui', group: 'React' },
+  { label: 'Vite', value: 'vite', group: 'Vue' },
+  { label: 'Nuxt', value: 'nuxt', group: 'Vue' },
+  { label: 'Vue', value: 'vue', group: 'Vue' },
+  { label: 'Quasar', value: 'quasar', group: 'Vue' },
+  { label: 'Angular', value: 'angular', group: 'Angular' },
+  { label: 'Material UI', value: 'material-ui', group: 'Angular' },
+  { label: 'Ng-zorro', value: 'ng-zorro', group: 'Angular' },
 ];
 
 const mockSearch = async (value: string): Promise<Option[]> => {
@@ -26,8 +27,7 @@ const mockSearch = async (value: string): Promise<Option[]> => {
   });
 };
 
-const MultipleSelectorWithAsyncSearch = () => {
-  // const [options, setOptions] = React.useState<Option[]>([]);
+const MultipleSelectorWithAsyncSearchAndCreatableAndGroup = () => {
   const [isTriggered, setIsTriggered] = React.useState(false);
 
   return (
@@ -42,6 +42,9 @@ const MultipleSelectorWithAsyncSearch = () => {
           setIsTriggered(false);
           return res;
         }}
+        options={[]}
+        creatable
+        groupBy="group"
         placeholder="trying to search 'a' to get more options..."
         loadingIndicator={
           <p className="py-2 text-center text-lg leading-10 text-muted-foreground">loading...</p>
@@ -56,4 +59,4 @@ const MultipleSelectorWithAsyncSearch = () => {
   );
 };
 
-export default MultipleSelectorWithAsyncSearch;
+export default MultipleSelectorWithAsyncSearchAndCreatableAndGroup;

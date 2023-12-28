@@ -22,11 +22,14 @@ import MultipleSelectorDisabled from '@/app/(docs)/docs/multiple-selector/usage/
 import MultipleSelectorWithGroup from '@/app/(docs)/docs/multiple-selector/usage/multiple-selector-with-group';
 import MultipleSelectorNoDefaultSelect from '@/app/(docs)/docs/multiple-selector/usage/multiple-selector-no-default-select';
 import MultipleSelectorWithFixedOption from '@/app/(docs)/docs/multiple-selector/usage/multiple-selector-fixed-option';
+import MultipleSelectorCreatable from '@/app/(docs)/docs/multiple-selector/usage/multiple-selector-creatable';
+import MultipleSelectorWithAsyncSearchAndCreatable from '@/app/(docs)/docs/multiple-selector/usage/multiple-selector-with-async-search-and-creatable';
+import MultipleSelectorWithAsyncSearchAndCreatableAndGroup from '@/app/(docs)/docs/multiple-selector/usage/multiple-selector-with-async-search-and-creatable-and-group';
 
 export const metadata: Metadata = baseMetadata({
   title: 'Multiple Selector',
   description:
-    'Fast,composable, unstyled, full featured multiple selector for React. such as async search with debounce, max selected, grouped ...etc.',
+    'Fast,composable, unstyled, full featured multiple selector for React. such as async search with debounce, max selected, grouped, creatable selector ...etc.',
 });
 
 const MultipleSelectorPage = () => {
@@ -46,7 +49,8 @@ const MultipleSelectorPage = () => {
         <PropLink href="https://craft.mxkaske.dev/post/fancy-multi-select">
           <InlineCode>Fancy Multi Select</InlineCode>
         </PropLink>{' '}
-        and added some features such as async search(with debounce), max selected, grouped ...etc.
+        and added some features such as async search(with debounce), max selected, grouped,
+        creatable selector ...etc.
       </P>
       <P className="text-muted-foreground">
         {' '}
@@ -114,6 +118,15 @@ const MultipleSelectorPage = () => {
         <MultipleSelectorControlled />
       </Usage>
       <Usage
+        title="Creatable Selector"
+        description={
+          <P className="text-muted-foreground">Create option when there is no option matched.</P>
+        }
+        path="app/(docs)/docs//multiple-selector/usage/multiple-selector-creatable.tsx"
+      >
+        <MultipleSelectorCreatable />
+      </Usage>
+      <Usage
         title="Async Search with Debounce"
         description={
           <>
@@ -129,6 +142,34 @@ const MultipleSelectorPage = () => {
         path="app/(docs)/docs//multiple-selector/usage/multiple-selector-with-async-search.tsx"
       >
         <MultipleSelectorWithAsyncSearch />
+      </Usage>
+      <Usage
+        title="Async Search with Debounce and Creatable"
+        description={
+          <>
+            <P className="text-muted-foreground">
+              If you combine the async search and creatable, you can create option when there is no
+              option matched.
+            </P>
+          </>
+        }
+        path="app/(docs)/docs//multiple-selector/usage/multiple-selector-with-async-search-and-creatable.tsx"
+      >
+        <MultipleSelectorWithAsyncSearchAndCreatable />
+      </Usage>
+      <Usage
+        title="Async Search and Creatable and Group"
+        description={
+          <>
+            <P className="text-muted-foreground">
+              If you combine the async search and creatable and group, you can still create option
+              when there is no option matched.
+            </P>
+          </>
+        }
+        path="app/(docs)/docs//multiple-selector/usage/multiple-selector-with-async-search-and-creatable-and-group.tsx"
+      >
+        <MultipleSelectorWithAsyncSearchAndCreatableAndGroup />
       </Usage>
       <Usage
         title="Grouped"

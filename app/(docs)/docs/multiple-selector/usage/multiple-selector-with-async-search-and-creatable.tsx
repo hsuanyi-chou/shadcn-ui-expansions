@@ -26,8 +26,7 @@ const mockSearch = async (value: string): Promise<Option[]> => {
   });
 };
 
-const MultipleSelectorWithAsyncSearch = () => {
-  // const [options, setOptions] = React.useState<Option[]>([]);
+const MultipleSelectorWithAsyncSearchAndCreatable = () => {
   const [isTriggered, setIsTriggered] = React.useState(false);
 
   return (
@@ -42,6 +41,8 @@ const MultipleSelectorWithAsyncSearch = () => {
           setIsTriggered(false);
           return res;
         }}
+        options={[]}
+        creatable
         placeholder="trying to search 'a' to get more options..."
         loadingIndicator={
           <p className="py-2 text-center text-lg leading-10 text-muted-foreground">loading...</p>
@@ -56,4 +57,4 @@ const MultipleSelectorWithAsyncSearch = () => {
   );
 };
 
-export default MultipleSelectorWithAsyncSearch;
+export default MultipleSelectorWithAsyncSearchAndCreatable;

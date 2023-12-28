@@ -47,6 +47,7 @@ interface GroupMultipleSelectorProps {
   className?: string;
   badgeClassName?: string;
   selectFirstItem?: boolean;
+  creatable?: boolean;
 }
 
 export function useDebounce<T>(value: T, delay?: number): T {
@@ -98,6 +99,7 @@ export default function GroupMultipleSelector({
   className,
   badgeClassName,
   selectFirstItem = true,
+  creatable = false,
 }: GroupMultipleSelectorProps) {
   const inputRef = React.useRef<HTMLInputElement>(null);
   const [open, setOpen] = React.useState(false);
@@ -230,6 +232,38 @@ export default function GroupMultipleSelector({
               <>
                 <CommandEmpty>{emptyIndicator}</CommandEmpty>
                 {!selectFirstItem && <CommandItem value="-" className="hidden" />}
+                {/* for normal creatable. */}
+                {creatable && inputValue.length > 0 && !onSearch && (
+                  <CommandItem
+                    value={inputValue}
+                    onSelect={(value: string) => {
+                      if (selected.length >= maxSelected) {
+                        onMaxSelected?.(selected.length);
+                        return;
+                      }
+                      setInputValue('');
+                      const newOptions = [...selected, { value, label: value }];
+                      setSelected(newOptions);
+                      onChange?.(newOptions);
+                    }}
+                  >{`Create "${inputValue}"`}</CommandItem>
+                )}
+                {/* for async search use. avoid showing creatable item before loading */}
+                {creatable && debouncedSearchTerm.length > 0 && onSearch && !isLoading && (
+                  <CommandItem
+                    value={inputValue}
+                    onSelect={(value: string) => {
+                      if (selected.length >= maxSelected) {
+                        onMaxSelected?.(selected.length);
+                        return;
+                      }
+                      setInputValue('');
+                      const newOptions = [...selected, { value, label: value }];
+                      setSelected(newOptions);
+                      onChange?.(newOptions);
+                    }}
+                  >{`Create "${inputValue}"`}</CommandItem>
+                )}
                 {Object.entries(selectables).map(([key, dropdowns]) => (
                   <CommandGroup key={key} heading={key} className="h-full overflow-auto">
                     <>

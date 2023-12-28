@@ -109,6 +109,17 @@ export const multipleSelectorProp: Props[] = [
     typeInfo: <OptionTypeInfo />,
   },
   {
+    prop: 'creatable',
+    required: false,
+    description: (
+      <>
+        <p>Create option when there is no option matched.</p>
+      </>
+    ),
+    type: 'boolean',
+    default: 'false',
+  },
+  {
     prop: 'groupBy',
     required: false,
     description: (
