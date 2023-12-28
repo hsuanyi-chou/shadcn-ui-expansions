@@ -25,7 +25,7 @@ import MultipleSelectorNoDefaultSelect from '@/app/(docs)/docs/multiple-selector
 export const metadata: Metadata = baseMetadata({
   title: 'Multiple Selector',
   description:
-    'Fast,composable, unstyled, full featured multiple selector for React. such as async search with debounce, max selected, group ...etc.',
+    'Fast,composable, unstyled, full featured multiple selector for React. such as async search with debounce, max selected, grouped ...etc.',
 });
 
 const MultipleSelectorPage = () => {
@@ -45,7 +45,7 @@ const MultipleSelectorPage = () => {
         <PropLink href="https://craft.mxkaske.dev/post/fancy-multi-select">
           <InlineCode>Fancy Multi Select</InlineCode>
         </PropLink>{' '}
-        and added some features such as async search(with debounce), max selected, group ...etc.
+        and added some features such as async search(with debounce), max selected, grouped ...etc.
       </P>
       <P className="text-muted-foreground">
         {' '}
@@ -87,7 +87,7 @@ const MultipleSelectorPage = () => {
         description={
           <>
             <P className="text-muted-foreground">
-              First item selected is a default behavior by{' '}
+              The first item selected is a default behavior by{' '}
               <PropLink href="https://github.com/pacocoursey/cmdk">
                 <InlineCode>cmdk</InlineCode>
               </PropLink>{' '}
@@ -98,7 +98,7 @@ const MultipleSelectorPage = () => {
               .
             </P>
             <P className="text-muted-foreground">
-              This is a workaround solution by adding a dummy item.
+              Here is a workaround solution: by adding a dummy item.
             </P>
           </>
         }
@@ -130,11 +130,11 @@ const MultipleSelectorPage = () => {
         <MultipleSelectorWithAsyncSearch />
       </Usage>
       <Usage
-        title="Group"
+        title="Grouped"
         description={
           <>
             <P className="text-muted-foreground">
-              Group options by specific key of <InlineCode>object</InlineCode>
+              Grouping options by specific key of <InlineCode>object</InlineCode>
             </P>
           </>
         }

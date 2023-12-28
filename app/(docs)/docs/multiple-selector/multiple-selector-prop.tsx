@@ -194,7 +194,7 @@ export const multipleSelectorProp: Props[] = [
     required: false,
     description: (
       <>
-        <p>Customize the style via tailwind for whole selector.</p>
+        <p>Customize the style by adding tailwind for whole selector.</p>
       </>
     ),
     type: 'string',
@@ -204,7 +204,7 @@ export const multipleSelectorProp: Props[] = [
     required: false,
     description: (
       <>
-        <p>Customize the style via tailwind for the selected options (badge).</p>
+        <p>Customize the style by adding tailwind for the selected options (badge).</p>
       </>
     ),
     type: 'string',
