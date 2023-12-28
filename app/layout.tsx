@@ -5,6 +5,7 @@ import { ThemeProvider } from '@/components/ui/theme-provider';
 
 import './globals.css';
 import Navbar from '@/app/(docs)/layout-parts/navbar/navbar';
+import Script from 'next/script';
 
 const fontSans = FontSans({
   subsets: ['latin'],
@@ -20,6 +21,17 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
+      <Script
+        src="https://www.googletagmanager.com/gtag/js?id=G-MNNJR7PT89"
+        strategy="afterInteractive"
+      />
+      <Script id="google-analytics" strategy="afterInteractive">{`
+                  window.dataLayer = window.dataLayer || [];
+                  function gtag(){window.dataLayer.push(arguments);}
+                  gtag('js', new Date());
+
+                  gtag('config', 'G-MNNJR7PT89');
+                `}</Script>
       <body
         className={cn('min-h-screen bg-background font-sans antialiased', fontSans.variable)}
         suppressHydrationWarning
