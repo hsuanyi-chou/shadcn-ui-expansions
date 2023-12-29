@@ -32,11 +32,11 @@ interface GroupMultipleSelectorProps {
   value?: Option[];
   options?: Option[];
   placeholder?: string;
-  /** loading component */
+  /** Loading component. */
   loadingIndicator?: React.ReactNode;
-  /** empty component */
+  /** Empty component. */
   emptyIndicator?: React.ReactNode;
-  /** debounce time for async search */
+  /** Debounce time for async search. Only work with `onSearch`. */
   delay?: number;
   /** async search */
   onSearch?: (value: string) => Promise<Option[]>;
