@@ -6,7 +6,7 @@ import Link from 'next/link';
 const IntroductionPage = () => {
   return (
     <>
-      <H1 className="mb-4">Introduction</H1>
+      <H1 className="mb-10">Introduction</H1>
       <Blockquote className="mb-4">
         <P className="text-gray-600">
           shadcn/ui is a re-usable components built using Radix UI and Tailwind CSS.

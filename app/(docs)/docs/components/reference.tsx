@@ -32,5 +32,5 @@ export const Reference = ({ icon, text, ...props }: ReferenceProps) => {
 };
 
 export const ReferenceBorder = ({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) => {
-  return <div {...props} className={cn('flex gap-3', className)} />;
+  return <div {...props} className={cn('flex gap-3 mb-5', className)} />;
 };
