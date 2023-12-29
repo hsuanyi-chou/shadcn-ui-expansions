@@ -58,6 +58,17 @@ export const multipleSelectorProp: Props[] = [
     default: ' ',
   },
   {
+    prop: 'hidePlaceholderWhenSelected',
+    required: false,
+    description: (
+      <>
+        <p>Hide the placeholder when there are options selected.</p>
+      </>
+    ),
+    type: 'boolean',
+    default: 'false',
+  },
+  {
     prop: 'onChange',
     required: false,
     description: (
