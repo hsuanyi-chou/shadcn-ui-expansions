@@ -48,6 +48,7 @@ interface GroupMultipleSelectorProps {
   badgeClassName?: string;
   selectFirstItem?: boolean;
   creatable?: boolean;
+  maxTextLength?: number;
 }
 
 export function useDebounce<T>(value: T, delay?: number): T {
@@ -103,6 +104,7 @@ export default function GroupMultipleSelector({
   badgeClassName,
   selectFirstItem = true,
   creatable = false,
+                                                maxTextLength=Number.MAX_SAFE_INTEGER,
 }: GroupMultipleSelectorProps) {
   const inputRef = React.useRef<HTMLInputElement>(null);
   const [open, setOpen] = React.useState(false);
@@ -266,6 +268,7 @@ export default function GroupMultipleSelector({
             onFocus={() => setOpen(true)}
             placeholder={hidePlaceholderWhenSelected && selected.length !== 0 ? '' : placeholder}
             className="ml-2 flex-1 bg-transparent outline-none placeholder:text-muted-foreground"
+            maxLength={maxTextLength}
           />
         </div>
       </div>
