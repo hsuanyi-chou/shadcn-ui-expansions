@@ -180,12 +180,12 @@ export default function GroupMultipleSelector({
       }}
     >{`Create "${inputValue}"`}</CommandItem>);
 
-    // normal creatable
+    // for normal creatable
     if (!onSearch && inputValue.length > 0) {
       return Item;
     }
 
-    // async search creatable. avoid showing creatable item before loading at first.
+    // for async search creatable. avoid showing creatable item before loading at first.
     if (onSearch && debouncedSearchTerm.length > 0 && !isLoading) {
       return Item;
     }
