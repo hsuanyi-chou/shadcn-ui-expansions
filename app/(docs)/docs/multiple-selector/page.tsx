@@ -25,8 +25,7 @@ import MultipleSelectorWithFixedOption from '@/app/(docs)/docs/multiple-selector
 import MultipleSelectorCreatable from '@/app/(docs)/docs/multiple-selector/usage/multiple-selector-creatable';
 import MultipleSelectorWithAsyncSearchAndCreatable from '@/app/(docs)/docs/multiple-selector/usage/multiple-selector-with-async-search-and-creatable';
 import MultipleSelectorWithAsyncSearchAndCreatableAndGroup from '@/app/(docs)/docs/multiple-selector/usage/multiple-selector-with-async-search-and-creatable-and-group';
-import MultipleSelectorMaxTextLength
-  from '@/app/(docs)/docs/multiple-selector/usage/multiple-selector-max-text-length';
+import MultipleSelectorMaxTextLength from '@/app/(docs)/docs/multiple-selector/usage/multiple-selector-max-text-length';
 
 export const metadata: Metadata = baseMetadata({
   title: 'Multiple Selector',
@@ -51,8 +50,11 @@ const MultipleSelectorPage = () => {
         <PropLink href="https://craft.mxkaske.dev/post/fancy-multi-select">
           <InlineCode>Fancy Multi Select</InlineCode>
         </PropLink>{' '}
-        and includes additional features such as asynchronous search(with debounce), maximum
-        selected count, grouping, and a creatable selector ...etc.
+        and includes additional features that{' '}
+        <PropLink href="https://react-select.com/home">
+          <InlineCode>React-Select</InlineCode>
+        </PropLink>{' '}
+        offers.
       </P>
       <P className="text-muted-foreground">
         {' '}
@@ -63,6 +65,23 @@ const MultipleSelectorPage = () => {
         </PropLink>
         .
       </P>
+      <ul className="list-disc p-5 text-lg font-normal leading-5 text-muted-foreground lg:text-xl">
+        <li>Async search with debounce.</li>
+        <li>Creatable selector — create option when there is no option matched.</li>
+        <li>Grouping functionality.</li>
+        <li>
+          Working with <InlineCode>react-hook-form</InlineCode>.
+        </li>
+        <li>Customize your own loading spinner and empty indicator by giving props.</li>
+        <li>Fixed options, maximum selected count, maximum input text length.</li>
+        <li>
+          Ability to disable the default selection of the first item. (see more about the{' '}
+          <PropLink href="https://github.com/pacocoursey/cmdk/issues/171">
+            <InlineCode>issue</InlineCode>
+          </PropLink>
+          )
+        </li>
+      </ul>
 
       <PreviewCodeCard path="app/(docs)/docs/multiple-selector/multiple-selector-demo.tsx">
         <MultipleSelectorDemo />
