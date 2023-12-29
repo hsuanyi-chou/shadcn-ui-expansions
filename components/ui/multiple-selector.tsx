@@ -56,7 +56,7 @@ interface GroupMultipleSelectorProps {
    * First item selected is a default behavior by cmdk. That is why the default is true.
    * This is a workaround solution by add a dummy item.
    *
-   * ＠reference: https://github.com/pacocoursey/cmdk/issues/171
+   * @reference: https://github.com/pacocoursey/cmdk/issues/171
    */
   selectFirstItem?: boolean;
   /** Allow user to create option when there is no option matched. */
