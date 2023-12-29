@@ -29,7 +29,7 @@ export default function Home() {
             </span>
           </Button>
         </Link>
-        <Link href="https://github.com/" target="_blank">
+        <Link href="https://github.com/hsuanyi-chou/shadcn-ui-expansions" target="_blank">
           <Button variant="outline" asChild>
             <span>
               <Github className="mr-2" />
