@@ -191,6 +191,19 @@ export default function GroupMultipleSelector({
     return undefined;
   }
 
+  const EmptyItem = () => {
+    if (!emptyIndicator) return undefined;
+
+    // for async search that showing emptyIndicator
+    if (onSearch && !creatable && Object.keys(options).length === 0) {
+     return (<CommandItem value="-" disabled>
+       {emptyIndicator}
+     </CommandItem>);
+    }
+
+    return (<CommandEmpty>{emptyIndicator}</CommandEmpty>);
+  }
+
   const selectables = React.useMemo<GroupOption>(
     () => removePickedOption(options, selected),
     [options, selected],
@@ -263,15 +276,9 @@ export default function GroupMultipleSelector({
               <>{loadingIndicator}</>
             ) : (
               <>
-                <CommandEmpty>{emptyIndicator}</CommandEmpty>
-                {/* for async search that showing emptyIndicator */}
-                {onSearch && !creatable && Object.keys(options).length === 0 && (
-                  <CommandItem value="-" disabled>
-                    {emptyIndicator}
-                  </CommandItem>
-                )}
-                {!selectFirstItem && <CommandItem value="-" className="hidden" />}
+                {EmptyItem()}
                 {CreatableItem()}
+                {!selectFirstItem && <CommandItem value="-" className="hidden" />}
                 {Object.entries(selectables).map(([key, dropdowns]) => (
                   <CommandGroup key={key} heading={key} className="h-full overflow-auto">
                     <>
