@@ -19,10 +19,12 @@ export interface Option {
   value: string;
   label: string;
   disable?: boolean;
+  /** fixed option that can't be removed. */
   fixed?: boolean;
+  /** Group the options by providing key. */
   [key: string]: string | boolean | undefined;
 }
-export interface GroupOption {
+interface GroupOption {
   [key: string]: Option[];
 }
 
@@ -30,24 +32,36 @@ interface GroupMultipleSelectorProps {
   value?: Option[];
   options?: Option[];
   placeholder?: string;
-  /** loading component */
+  /** Loading component. */
   loadingIndicator?: React.ReactNode;
-  /** empty component */
+  /** Empty component. */
   emptyIndicator?: React.ReactNode;
-  /** debounce time for async search */
+  /** Debounce time for async search. Only work with `onSearch`. */
   delay?: number;
   /** async search */
   onSearch?: (value: string) => Promise<Option[]>;
   onChange?: (options: Option[]) => void;
+  /** Limit the maximum number of selected options. */
   maxSelected?: number;
+  /** When the number of selected options exceeds the limit, the onMaxSelected will be called. */
   onMaxSelected?: (maxLimit: number) => void;
+  /** Hide the placeholder when there are options selected. */
   hidePlaceholderWhenSelected?: boolean;
   disabled?: boolean;
+  /** Group the options base on provided key. */
   groupBy?: string;
   className?: string;
   badgeClassName?: string;
+  /**
+   * First item selected is a default behavior by cmdk. That is why the default is true.
+   * This is a workaround solution by add a dummy item.
+   *
+   * @reference: https://github.com/pacocoursey/cmdk/issues/171
+   */
   selectFirstItem?: boolean;
+  /** Allow user to create option when there is no option matched. */
   creatable?: boolean;
+  /** Limit the input text length. */
   maxTextLength?: number;
 }
 
@@ -104,7 +118,7 @@ export default function GroupMultipleSelector({
   badgeClassName,
   selectFirstItem = true,
   creatable = false,
-                                                maxTextLength=Number.MAX_SAFE_INTEGER,
+  maxTextLength = Number.MAX_SAFE_INTEGER,
 }: GroupMultipleSelectorProps) {
   const inputRef = React.useRef<HTMLInputElement>(null);
   const [open, setOpen] = React.useState(false);
@@ -166,19 +180,21 @@ export default function GroupMultipleSelector({
   const CreatableItem = () => {
     if (!creatable) return undefined;
 
-    const Item = (<CommandItem
-      value={inputValue}
-      onSelect={(value: string) => {
-        if (selected.length >= maxSelected) {
-          onMaxSelected?.(selected.length);
-          return;
-        }
-        setInputValue('');
-        const newOptions = [...selected, { value, label: value }];
-        setSelected(newOptions);
-        onChange?.(newOptions);
-      }}
-    >{`Create "${inputValue}"`}</CommandItem>);
+    const Item = (
+      <CommandItem
+        value={inputValue}
+        onSelect={(value: string) => {
+          if (selected.length >= maxSelected) {
+            onMaxSelected?.(selected.length);
+            return;
+          }
+          setInputValue('');
+          const newOptions = [...selected, { value, label: value }];
+          setSelected(newOptions);
+          onChange?.(newOptions);
+        }}
+      >{`Create "${inputValue}"`}</CommandItem>
+    );
 
     // for normal creatable
     if (!onSearch && inputValue.length > 0) {
@@ -191,20 +207,22 @@ export default function GroupMultipleSelector({
     }
 
     return undefined;
-  }
+  };
 
   const EmptyItem = () => {
     if (!emptyIndicator) return undefined;
 
     // for async search that showing emptyIndicator
     if (onSearch && !creatable && Object.keys(options).length === 0) {
-     return (<CommandItem value="-" disabled>
-       {emptyIndicator}
-     </CommandItem>);
+      return (
+        <CommandItem value="-" disabled>
+          {emptyIndicator}
+        </CommandItem>
+      );
     }
 
-    return (<CommandEmpty>{emptyIndicator}</CommandEmpty>);
-  }
+    return <CommandEmpty>{emptyIndicator}</CommandEmpty>;
+  };
 
   const selectables = React.useMemo<GroupOption>(
     () => removePickedOption(options, selected),

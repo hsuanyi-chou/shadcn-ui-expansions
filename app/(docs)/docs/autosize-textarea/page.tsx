@@ -18,7 +18,7 @@ const AutosizeTextareaPage = () => {
   return (
     <PageTemplate
       title="Autosize Textarea"
-      description="auto resize textarea height based on content."
+      description="Auto resize textarea height based on content."
     >
       <PreviewCodeCard path="app/(docs)/docs/autosize-textarea/autosize-textarea-demo.tsx">
         <AutosizeTextareaDemo />
