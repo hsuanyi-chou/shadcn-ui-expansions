@@ -17,7 +17,7 @@ const LeftSide = () => {
           ))}
         </div>
       ))}
-      <BuyMeCoffee className="mt-32" />
+      <BuyMeCoffee className="mt-32 mb-10" />
       <AdLeftSide />
     </aside>
   );

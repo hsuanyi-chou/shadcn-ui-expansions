@@ -25,6 +25,8 @@ import MultipleSelectorWithFixedOption from '@/app/(docs)/docs/multiple-selector
 import MultipleSelectorCreatable from '@/app/(docs)/docs/multiple-selector/usage/multiple-selector-creatable';
 import MultipleSelectorWithAsyncSearchAndCreatable from '@/app/(docs)/docs/multiple-selector/usage/multiple-selector-with-async-search-and-creatable';
 import MultipleSelectorWithAsyncSearchAndCreatableAndGroup from '@/app/(docs)/docs/multiple-selector/usage/multiple-selector-with-async-search-and-creatable-and-group';
+import MultipleSelectorMaxTextLength
+  from '@/app/(docs)/docs/multiple-selector/usage/multiple-selector-max-text-length';
 
 export const metadata: Metadata = baseMetadata({
   title: 'Multiple Selector',
@@ -195,6 +197,18 @@ const MultipleSelectorPage = () => {
         path="app/(docs)/docs//multiple-selector/usage/multiple-selector-max-selected.tsx"
       >
         <MultipleSelectorWithMaxSelected />
+      </Usage>
+      <Usage
+        title="Maximum Text Length"
+        description={
+          <P className="text-muted-foreground">
+            Following example is set to 5. The default of max selected is{' '}
+            <InlineCode>Number.MAX_SAFE_INTEGER</InlineCode>
+          </P>
+        }
+        path="app/(docs)/docs//multiple-selector/usage/multiple-selector-max-text-length.tsx"
+      >
+        <MultipleSelectorMaxTextLength />
       </Usage>
       <Usage
         title="Hide Placeholder When Selected"

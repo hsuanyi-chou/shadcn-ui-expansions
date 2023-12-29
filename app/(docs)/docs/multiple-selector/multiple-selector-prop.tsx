@@ -141,6 +141,17 @@ export const multipleSelectorProp: Props[] = [
     default: 'Number.MAX_SAFE_INTEGER',
   },
   {
+    prop: 'maxTextLength',
+    required: false,
+    description: (
+      <>
+        <p>Limit the input text length.</p>
+      </>
+    ),
+    type: 'number',
+    default: 'Number.MAX_SAFE_INTEGER',
+  },
+  {
     prop: 'onMaxSelected',
     required: false,
     description: (
