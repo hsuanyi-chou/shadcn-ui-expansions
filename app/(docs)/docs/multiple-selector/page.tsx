@@ -26,6 +26,7 @@ import MultipleSelectorCreatable from '@/app/(docs)/docs/multiple-selector/usage
 import MultipleSelectorWithAsyncSearchAndCreatable from '@/app/(docs)/docs/multiple-selector/usage/multiple-selector-with-async-search-and-creatable';
 import MultipleSelectorWithAsyncSearchAndCreatableAndGroup from '@/app/(docs)/docs/multiple-selector/usage/multiple-selector-with-async-search-and-creatable-and-group';
 import MultipleSelectorMaxTextLength from '@/app/(docs)/docs/multiple-selector/usage/multiple-selector-max-text-length';
+import MultipleSelectorRef from '@/app/(docs)/docs/multiple-selector/usage/multiple-selector-ref';
 
 export const metadata: Metadata = baseMetadata({
   title: 'Multiple Selector',
@@ -257,6 +258,9 @@ const MultipleSelectorPage = () => {
         path="app/(docs)/docs//multiple-selector/usage/multiple-selector-fixed-option.tsx"
       >
         <MultipleSelectorWithFixedOption />
+      </Usage>
+      <Usage title="ref" path="app/(docs)/docs//multiple-selector/usage/multiple-selector-ref.tsx">
+        <MultipleSelectorRef />
       </Usage>
       <Usage
         title="Form"

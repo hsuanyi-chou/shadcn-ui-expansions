@@ -21,6 +21,18 @@ const OptionTypeInfo = () => (
   </>
 );
 
+const MultipleSelectorRefInfo = () => (
+  <>
+    <p>
+      MultipleSelectorRef:{' '}
+      <InlineCode>
+        {'\u007B'} selectedValue: Option[]; input: HTMLInputElement {'\u007D'}
+      </InlineCode>
+      .
+    </p>
+  </>
+);
+
 export const multipleSelectorProp: Props[] = [
   {
     prop: 'value',
@@ -241,5 +253,16 @@ export const multipleSelectorProp: Props[] = [
       </>
     ),
     type: 'string',
+  },
+  {
+    prop: 'ref',
+    required: false,
+    description: (
+      <>
+        <p>Pass a ref to the input element and retrieve the selected value as well.</p>
+      </>
+    ),
+    type: 'React.RefObject<MultipleSelectorRef>',
+    typeInfo: <MultipleSelectorRefInfo />,
   },
 ];
