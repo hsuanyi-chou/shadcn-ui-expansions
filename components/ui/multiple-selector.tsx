@@ -210,6 +210,11 @@ const MultipleSelector = React.forwardRef<MultipleSelectorRef, MultipleSelectorP
       const Item = (
         <CommandItem
           value={inputValue}
+          className="cursor-pointer"
+          onMouseDown={(e) => {
+            e.preventDefault();
+            e.stopPropagation();
+          }}
           onSelect={(value: string) => {
             if (selected.length >= maxSelected) {
               onMaxSelected?.(selected.length);
