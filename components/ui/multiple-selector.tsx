@@ -331,7 +331,6 @@ const MultipleSelector = React.forwardRef<MultipleSelectorRef, MultipleSelectorP
               }}
               onBlur={(event) => {
                 setOpen(false);
-                console.log(inputProps);
                 inputProps?.onBlur?.(event);
               }}
               onFocus={(event) => {
