@@ -27,6 +27,7 @@ import MultipleSelectorWithAsyncSearchAndCreatable from '@/app/(docs)/docs/multi
 import MultipleSelectorWithAsyncSearchAndCreatableAndGroup from '@/app/(docs)/docs/multiple-selector/usage/multiple-selector-with-async-search-and-creatable-and-group';
 import MultipleSelectorMaxTextLength from '@/app/(docs)/docs/multiple-selector/usage/multiple-selector-max-text-length';
 import MultipleSelectorRef from '@/app/(docs)/docs/multiple-selector/usage/multiple-selector-ref';
+import MultipleSelectorCommandProps from '@/app/(docs)/docs/multiple-selector/usage/multiple-selector-commandprops';
 
 export const metadata: Metadata = baseMetadata({
   title: 'Multiple Selector',
@@ -220,12 +221,7 @@ const MultipleSelectorPage = () => {
       </Usage>
       <Usage
         title="Maximum Text Length"
-        description={
-          <P className="text-muted-foreground">
-            Following example is set to 5. The default of max selected is{' '}
-            <InlineCode>Number.MAX_SAFE_INTEGER</InlineCode>
-          </P>
-        }
+        description={<P className="text-muted-foreground">Following example is set to 5.</P>}
         path="app/(docs)/docs//multiple-selector/usage/multiple-selector-max-text-length.tsx"
       >
         <MultipleSelectorMaxTextLength />
@@ -261,6 +257,12 @@ const MultipleSelectorPage = () => {
       </Usage>
       <Usage title="ref" path="app/(docs)/docs//multiple-selector/usage/multiple-selector-ref.tsx">
         <MultipleSelectorRef />
+      </Usage>
+      <Usage
+        title="CommandProps and CommandInputProps Customization"
+        path="app/(docs)/docs//multiple-selector/usage/multiple-selector-commandprops.tsx"
+      >
+        <MultipleSelectorCommandProps />
       </Usage>
       <Usage
         title="Form"

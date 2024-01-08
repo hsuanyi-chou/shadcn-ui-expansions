@@ -61,8 +61,13 @@ interface MultipleSelectorProps {
   selectFirstItem?: boolean;
   /** Allow user to create option when there is no option matched. */
   creatable?: boolean;
-  /** Limit the input text length. */
-  maxTextLength?: number;
+  /** Props of `Command` */
+  commandProps?: React.ComponentPropsWithoutRef<typeof Command>;
+  /** Props of `CommandInput` */
+  inputProps?: Omit<
+    React.ComponentPropsWithoutRef<typeof CommandPrimitive.Input>,
+    'value' | 'placeholder' | 'disabled'
+  >;
 }
 
 export interface MultipleSelectorRef {
@@ -134,7 +139,8 @@ const MultipleSelector = React.forwardRef<MultipleSelectorRef, MultipleSelectorP
       badgeClassName,
       selectFirstItem = true,
       creatable = false,
-      maxTextLength = Number.MAX_SAFE_INTEGER,
+      commandProps,
+      inputProps,
     }: MultipleSelectorProps,
     ref: React.Ref<MultipleSelectorRef>,
   ) => {
@@ -146,7 +152,6 @@ const MultipleSelector = React.forwardRef<MultipleSelectorRef, MultipleSelectorP
     const [options, setOptions] = React.useState<GroupOption>(
       transToGroupOption(arrayOptions, groupBy),
     );
-
     const [inputValue, setInputValue] = React.useState('');
     const debouncedSearchTerm = useDebounce(inputValue, delay || 500);
 
@@ -228,12 +233,12 @@ const MultipleSelector = React.forwardRef<MultipleSelectorRef, MultipleSelectorP
         >{`Create "${inputValue}"`}</CommandItem>
       );
 
-      // for normal creatable
+      // For normal creatable
       if (!onSearch && inputValue.length > 0) {
         return Item;
       }
 
-      // for async search creatable. avoid showing creatable item before loading at first.
+      // For async search creatable. avoid showing creatable item before loading at first.
       if (onSearch && debouncedSearchTerm.length > 0 && !isLoading) {
         return Item;
       }
@@ -244,7 +249,7 @@ const MultipleSelector = React.forwardRef<MultipleSelectorRef, MultipleSelectorP
     const EmptyItem = () => {
       if (!emptyIndicator) return undefined;
 
-      // for async search that showing emptyIndicator
+      // For async search that showing emptyIndicator
       if (onSearch && !creatable && Object.keys(options).length === 0) {
         return (
           <CommandItem value="-" disabled>
@@ -263,9 +268,15 @@ const MultipleSelector = React.forwardRef<MultipleSelectorRef, MultipleSelectorP
 
     return (
       <Command
-        onKeyDown={handleKeyDown}
-        className="overflow-visible bg-transparent"
-        shouldFilter={!onSearch} // when onSearch is provided, we don't want to filter the options.
+        {...commandProps}
+        onKeyDown={(e) => {
+          handleKeyDown(e);
+          commandProps?.onKeyDown?.(e);
+        }}
+        className={cn('overflow-visible bg-transparent', commandProps?.className)}
+        shouldFilter={
+          commandProps?.shouldFilter !== undefined ? commandProps.shouldFilter : !onSearch
+        } // When onSearch is provided, we don't want to filter the options. You can still override it.
       >
         <div
           className={cn(
@@ -310,15 +321,28 @@ const MultipleSelector = React.forwardRef<MultipleSelectorRef, MultipleSelectorP
             })}
             {/* Avoid having the "Search" Icon */}
             <CommandPrimitive.Input
+              {...inputProps}
               ref={inputRef}
               value={inputValue}
               disabled={disabled}
-              onValueChange={setInputValue}
-              onBlur={() => setOpen(false)}
-              onFocus={() => setOpen(true)}
+              onValueChange={(value) => {
+                setInputValue(value);
+                inputProps?.onValueChange?.(value);
+              }}
+              onBlur={(event) => {
+                setOpen(false);
+                console.log(inputProps);
+                inputProps?.onBlur?.(event);
+              }}
+              onFocus={(event) => {
+                setOpen(true);
+                inputProps?.onFocus?.(event);
+              }}
               placeholder={hidePlaceholderWhenSelected && selected.length !== 0 ? '' : placeholder}
-              className="ml-2 flex-1 bg-transparent outline-none placeholder:text-muted-foreground"
-              maxLength={maxTextLength}
+              className={cn(
+                'ml-2 flex-1 bg-transparent outline-none placeholder:text-muted-foreground',
+                inputProps?.className,
+              )}
             />
           </div>
         </div>

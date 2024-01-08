@@ -164,17 +164,6 @@ export const multipleSelectorProp: Props[] = [
     default: 'Number.MAX_SAFE_INTEGER',
   },
   {
-    prop: 'maxTextLength',
-    required: false,
-    description: (
-      <>
-        <p>Limit the input text length.</p>
-      </>
-    ),
-    type: 'number',
-    default: 'Number.MAX_SAFE_INTEGER',
-  },
-  {
     prop: 'onMaxSelected',
     required: false,
     description: (
@@ -264,5 +253,29 @@ export const multipleSelectorProp: Props[] = [
     ),
     type: 'React.RefObject<MultipleSelectorRef>',
     typeInfo: <MultipleSelectorRefInfo />,
+  },
+  {
+    prop: 'commandProps',
+    required: false,
+    description: (
+      <>
+        <p>
+          props of <InlineCode>Command</InlineCode>
+        </p>
+      </>
+    ),
+    type: 'React.ComponentPropsWithoutRef<typeof Command>',
+  },
+  {
+    prop: 'inputProps',
+    required: false,
+    description: (
+      <>
+        <p>
+          props of <InlineCode>CommandInput</InlineCode>
+        </p>
+      </>
+    ),
+    type: "Omit<React.ComponentPropsWithoutRef<typeof CommandPrimitive.Input>,'value' | 'placeholder' | 'disabled' >",
   },
 ];
