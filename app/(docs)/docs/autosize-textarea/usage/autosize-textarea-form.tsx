@@ -37,7 +37,6 @@ const AutosizeTextareaForm = () => {
   function onSubmit(data: z.infer<typeof FormSchema>) {
     setLoading(true);
 
-    console.log(data);
     setTimeout(() => {
       setLoading(false);
       toast({

@@ -7,7 +7,6 @@ import * as React from 'react';
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -17,7 +16,6 @@ import { Textarea } from '@/components/ui/textarea';
 import { toast } from '@/components/ui/use-toast';
 import { useAutosizeTextArea } from '@/components/ui/autosize-textarea';
 import { LoadingButton } from '@/components/ui/loading-button';
-import { InlineCode } from '@/components/ui/inline-code';
 
 const FormSchema = z.object({
   bio: z
@@ -86,13 +84,6 @@ const AutosizeTextareaCustomize = () => {
                   ref={textAreaRef}
                 />
               </FormControl>
-              <FormDescription>
-                This is an example that you can use the hook{' '}
-                <InlineCode>useAutosizeTextArea()</InlineCode> to create your own textarea to match
-                your needs. In this example, we use <InlineCode>react-hook-form</InlineCode> and{' '}
-                <InlineCode>shadcn-ui Textarea</InlineCode> to fully control your customize
-                textarea.
-              </FormDescription>
               <FormMessage />
             </FormItem>
           )}

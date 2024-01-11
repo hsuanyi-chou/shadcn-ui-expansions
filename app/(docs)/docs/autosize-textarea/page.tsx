@@ -10,6 +10,8 @@ import AutosizeTextareaWithMaxHeight from '@/app/(docs)/docs/autosize-textarea/u
 import AutosizeTextareaCustomize from '@/app/(docs)/docs/autosize-textarea/usage/autosize-textarea-customize';
 import AutosizeTextareaWithRef from '@/app/(docs)/docs/autosize-textarea/usage/autosize-textarea-with-ref';
 import AutosizeTextareaForm from '@/app/(docs)/docs/autosize-textarea/usage/autosize-textarea-form';
+import { InlineCode } from '@/components/ui/inline-code';
+import { P } from '@/components/ui/heading-with-anchor';
 
 export const metadata: Metadata = baseMetadata({
   title: 'Autosize Textarea',
@@ -46,7 +48,20 @@ const AutosizeTextareaPage = () => {
         <AutosizeTextareaForm />
       </Usage>
       <Usage
-        title="Customize with useAutosizeTextArea"
+        title="Customize"
+        description={
+          <>
+            <P className="text-muted-foreground">
+              This is an example that you can use the hook{' '}
+              <InlineCode>useAutosizeTextArea()</InlineCode> to create your own textarea to match
+              your needs.
+            </P>
+            <P className="text-muted-foreground">
+              In this example, we use <InlineCode>react-hook-form</InlineCode> and{' '}
+              <InlineCode>shadcn-ui Textarea</InlineCode> to fully control your customize textarea.
+            </P>
+          </>
+        }
         path="app/(docs)/docs/autosize-textarea/usage/autosize-textarea-customize.tsx"
       >
         <AutosizeTextareaCustomize />
