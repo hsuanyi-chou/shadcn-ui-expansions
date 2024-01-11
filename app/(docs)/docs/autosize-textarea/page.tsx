@@ -7,7 +7,9 @@ import { baseMetadata } from '@/app/(docs)/layout-parts/base-metadata';
 import AutosizeTextareaDemo from '@/app/(docs)/docs/autosize-textarea/autosize-textarea-demo';
 import Usage from '@/app/(docs)/docs/components/usage';
 import AutosizeTextareaWithMaxHeight from '@/app/(docs)/docs/autosize-textarea/usage/autosize-textarea-with-max-height';
-import AutosizeTextareaWithForm from '@/app/(docs)/docs/autosize-textarea/usage/autosize-textarea-with-form';
+import AutosizeTextareaCustomize from '@/app/(docs)/docs/autosize-textarea/usage/autosize-textarea-customize';
+import AutosizeTextareaWithRef from '@/app/(docs)/docs/autosize-textarea/usage/autosize-textarea-with-ref';
+import AutosizeTextareaForm from '@/app/(docs)/docs/autosize-textarea/usage/autosize-textarea-form';
 
 export const metadata: Metadata = baseMetadata({
   title: 'Autosize Textarea',
@@ -35,10 +37,19 @@ const AutosizeTextareaPage = () => {
         <AutosizeTextareaWithMaxHeight />
       </Usage>
       <Usage
-        title="Form"
-        path="app/(docs)/docs/autosize-textarea/usage/autosize-textarea-with-form.tsx"
+        title="ref"
+        path="app/(docs)/docs/autosize-textarea/usage/autosize-textarea-with-ref.tsx"
       >
-        <AutosizeTextareaWithForm />
+        <AutosizeTextareaWithRef />
+      </Usage>
+      <Usage title="Form" path="app/(docs)/docs/autosize-textarea/usage/autosize-textarea-form.tsx">
+        <AutosizeTextareaForm />
+      </Usage>
+      <Usage
+        title="Customize with useAutosizeTextArea"
+        path="app/(docs)/docs/autosize-textarea/usage/autosize-textarea-customize.tsx"
+      >
+        <AutosizeTextareaCustomize />
       </Usage>
     </PageTemplate>
   );

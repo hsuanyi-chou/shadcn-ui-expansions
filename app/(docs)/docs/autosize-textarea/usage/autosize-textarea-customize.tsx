@@ -30,7 +30,7 @@ const FormSchema = z.object({
     }),
 });
 
-const AutosizeTextareaWithForm = () => {
+const AutosizeTextareaCustomize = () => {
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
   });
@@ -104,4 +104,4 @@ const AutosizeTextareaWithForm = () => {
     </Form>
   );
 };
-export default AutosizeTextareaWithForm;
+export default AutosizeTextareaCustomize;
