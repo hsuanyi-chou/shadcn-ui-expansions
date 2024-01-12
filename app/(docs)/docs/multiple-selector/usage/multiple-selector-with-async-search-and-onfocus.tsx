@@ -20,13 +20,16 @@ const OPTIONS: Option[] = [
 const mockSearch = async (value: string): Promise<Option[]> => {
   return new Promise((resolve) => {
     setTimeout(() => {
+      if (!value) {
+        resolve(OPTIONS);
+      }
       const res = OPTIONS.filter((option) => option.value.includes(value));
       resolve(res);
     }, 1000);
   });
 };
 
-const MultipleSelectorWithAsyncSearch = () => {
+const MultipleSelectorWithAsyncSearchAndOnFocus = () => {
   const [isTriggered, setIsTriggered] = React.useState(false);
 
   return (
@@ -41,6 +44,7 @@ const MultipleSelectorWithAsyncSearch = () => {
           setIsTriggered(false);
           return res;
         }}
+        triggerSearchOnFocus
         placeholder="trying to search 'a' to get more options..."
         loadingIndicator={
           <p className="py-2 text-center text-lg leading-10 text-muted-foreground">loading...</p>
@@ -55,4 +59,4 @@ const MultipleSelectorWithAsyncSearch = () => {
   );
 };
 
-export default MultipleSelectorWithAsyncSearch;
+export default MultipleSelectorWithAsyncSearchAndOnFocus;

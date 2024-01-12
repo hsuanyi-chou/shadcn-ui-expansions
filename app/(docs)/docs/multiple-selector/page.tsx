@@ -28,6 +28,7 @@ import MultipleSelectorWithAsyncSearchAndCreatableAndGroup from '@/app/(docs)/do
 import MultipleSelectorMaxTextLength from '@/app/(docs)/docs/multiple-selector/usage/multiple-selector-max-text-length';
 import MultipleSelectorRef from '@/app/(docs)/docs/multiple-selector/usage/multiple-selector-ref';
 import MultipleSelectorCommandProps from '@/app/(docs)/docs/multiple-selector/usage/multiple-selector-commandprops';
+import MultipleSelectorWithAsyncSearchAndOnFocus from '@/app/(docs)/docs/multiple-selector/usage/multiple-selector-with-async-search-and-onfocus';
 
 export const metadata: Metadata = baseMetadata({
   title: 'Multiple Selector',
@@ -158,13 +159,40 @@ const MultipleSelectorPage = () => {
               provide it.
             </P>
             <P className="text-muted-foreground">
-              You can provide <InlineCode>delay</InlineCode> to customize the time.
+              You can provide <InlineCode>delay</InlineCode> to customize the time. The{' '}
+              <InlineCode>delay</InlineCode> prop only work with <InlineCode>onSearch</InlineCode>.
+            </P>
+            <P className="text-muted-foreground">
+              The empty text <b>will not</b> trigger the search. On the other hand, if the search
+              had been triggered, and user delete all the texts, it will not trigger the search
+              again and keep the current options with empty text.
             </P>
           </>
         }
         path="app/(docs)/docs//multiple-selector/usage/multiple-selector-with-async-search.tsx"
       >
         <MultipleSelectorWithAsyncSearch />
+      </Usage>
+      <Usage
+        title="Trigger Search on Fucus"
+        description={
+          <>
+            <P className="text-muted-foreground">
+              Only work with <InlineCode>onSearch</InlineCode> prop. Trigger search when{' '}
+              <InlineCode>onFocus</InlineCode>.
+            </P>
+            <P className="text-muted-foreground">
+              For example, when user click on the input, it will trigger the search to get initial
+              options.
+            </P>
+            <P className="text-muted-foreground">
+              The empty text <b>will</b> trigger the search.
+            </P>
+          </>
+        }
+        path="app/(docs)/docs//multiple-selector/usage/multiple-selector-with-async-search-and-onfocus.tsx"
+      >
+        <MultipleSelectorWithAsyncSearchAndOnFocus />
       </Usage>
       <Usage
         title="Async Search with Debounce and Creatable"
