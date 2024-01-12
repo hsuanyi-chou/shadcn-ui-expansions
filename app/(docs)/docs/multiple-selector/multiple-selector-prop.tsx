@@ -118,6 +118,24 @@ export const multipleSelectorProp: Props[] = [
     default: '500',
   },
   {
+    prop: 'triggerSearchOnFocus',
+    required: false,
+    description: (
+      <>
+        <p>
+          Only work with <InlineCode>onSearch</InlineCode> prop. Trigger search when{' '}
+          <InlineCode>onFocus</InlineCode>.
+        </p>
+        <p>
+          For example, when user click on the input, it will trigger the search to get initial
+          options.
+        </p>
+      </>
+    ),
+    type: 'boolean',
+    default: 'false',
+  },
+  {
     prop: 'onSearch',
     required: false,
     description: (
