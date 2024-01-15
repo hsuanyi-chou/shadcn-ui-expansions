@@ -19,12 +19,28 @@ const VUE_OPTIONS: Option[] = [
   { label: 'Quasar', value: 'quasar' },
 ];
 
-const MultipleSelectorManuallyRenewOptions = () => {
+const MultipleSelectorManuallyControlledOptions = () => {
   const [options, setOptions] = useState<Option[]>(REACT_OPTIONS);
   const [placeholder, setPlaceholder] = useState('Which framework do you want to use for react?');
   const [toggle, setToggle] = useState('react');
   return (
     <div className="w-full px-10">
+      <LoadingButton
+        className="mb-3"
+        onClick={() => {
+          if (toggle === 'react') {
+            setOptions(VUE_OPTIONS);
+            setPlaceholder('Which framework do you want to use for vue?');
+            setToggle('vue');
+          } else {
+            setOptions(REACT_OPTIONS);
+            setPlaceholder('Which framework do you want to use for react?');
+            setToggle('react');
+          }
+        }}
+      >
+        change options to {toggle === 'react' ? 'vue' : 'react'}
+      </LoadingButton>
       <MultipleSelector
         options={options}
         placeholder={placeholder}
@@ -34,25 +50,8 @@ const MultipleSelectorManuallyRenewOptions = () => {
           </p>
         }
       />
-      <div className="flex gap-3">
-        <LoadingButton
-          onClick={() => {
-            if (toggle === 'react') {
-              setOptions(VUE_OPTIONS);
-              setPlaceholder('Which framework do you want to use for vue?');
-              setToggle('vue');
-            } else {
-              setOptions(REACT_OPTIONS);
-              setPlaceholder('Which framework do you want to use for react?');
-              setToggle('react');
-            }
-          }}
-        >
-          manually renew options
-        </LoadingButton>
-      </div>
     </div>
   );
 };
 
-export default MultipleSelectorManuallyRenewOptions;
+export default MultipleSelectorManuallyControlledOptions;

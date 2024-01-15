@@ -31,7 +31,7 @@ interface GroupOption {
 interface MultipleSelectorProps {
   value?: Option[];
   defaultOptions?: Option[];
-  /** manually renew options */
+  /** manually controlled options */
   options?: Option[];
   placeholder?: string;
   /** Loading component. */
