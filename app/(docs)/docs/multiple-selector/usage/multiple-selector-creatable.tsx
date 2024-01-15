@@ -19,7 +19,7 @@ const MultipleSelectorCreatable = () => {
   return (
     <div className="w-full px-10">
       <MultipleSelector
-        options={OPTIONS}
+        defaultOptions={OPTIONS}
         placeholder="Type something that does not exist in dropdowns..."
         creatable
         emptyIndicator={

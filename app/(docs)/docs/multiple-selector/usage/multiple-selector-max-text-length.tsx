@@ -19,7 +19,7 @@ const MultipleSelectorMaxTextLength = () => {
   return (
     <div className="w-full px-10">
       <MultipleSelector
-        options={OPTIONS}
+        defaultOptions={OPTIONS}
         placeholder="max text length is 5"
         emptyIndicator={
           <p className="text-center text-lg leading-10 text-gray-600 dark:text-gray-400">

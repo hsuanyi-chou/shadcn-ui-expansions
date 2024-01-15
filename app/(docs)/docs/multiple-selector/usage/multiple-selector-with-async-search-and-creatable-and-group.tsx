@@ -42,7 +42,7 @@ const MultipleSelectorWithAsyncSearchAndCreatableAndGroup = () => {
           setIsTriggered(false);
           return res;
         }}
-        options={[]}
+        defaultOptions={[]}
         creatable
         groupBy="group"
         placeholder="trying to search 'a' to get more options..."

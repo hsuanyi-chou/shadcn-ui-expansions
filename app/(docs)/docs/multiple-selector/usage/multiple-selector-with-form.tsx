@@ -76,7 +76,7 @@ const MultipleSelectorWithForm = () => {
                 <MultipleSelector
                   value={field.value}
                   onChange={field.onChange}
-                  options={OPTIONS}
+                  defaultOptions={OPTIONS}
                   placeholder="Select frameworks you like..."
                   emptyIndicator={
                     <p className="text-center text-lg leading-10 text-gray-600 dark:text-gray-400">

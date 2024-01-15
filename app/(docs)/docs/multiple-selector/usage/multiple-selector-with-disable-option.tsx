@@ -19,7 +19,7 @@ const MultipleSelectorWithDisabledOption = () => {
   return (
     <div className="flex w-full flex-col gap-5 px-10">
       <MultipleSelector
-        options={OPTIONS}
+        defaultOptions={OPTIONS}
         placeholder="Select frameworks you like..."
         emptyIndicator={
           <p className="text-center text-lg leading-10 text-gray-600 dark:text-gray-400">

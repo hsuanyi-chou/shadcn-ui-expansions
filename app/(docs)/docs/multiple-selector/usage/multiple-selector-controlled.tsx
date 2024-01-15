@@ -24,7 +24,7 @@ const MultipleSelectorControlled = () => {
       <MultipleSelector
         value={value}
         onChange={setValue}
-        options={OPTIONS}
+        defaultOptions={OPTIONS}
         placeholder="Select frameworks you like..."
         emptyIndicator={
           <p className="text-center text-lg leading-10 text-gray-600 dark:text-gray-400">

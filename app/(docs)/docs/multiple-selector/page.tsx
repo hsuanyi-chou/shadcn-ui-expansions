@@ -29,6 +29,7 @@ import MultipleSelectorMaxTextLength from '@/app/(docs)/docs/multiple-selector/u
 import MultipleSelectorRef from '@/app/(docs)/docs/multiple-selector/usage/multiple-selector-ref';
 import MultipleSelectorCommandProps from '@/app/(docs)/docs/multiple-selector/usage/multiple-selector-commandprops';
 import MultipleSelectorWithAsyncSearchAndOnFocus from '@/app/(docs)/docs/multiple-selector/usage/multiple-selector-with-async-search-and-onfocus';
+import MultipleSelectorManuallyRenewOptions from '@/app/(docs)/docs/multiple-selector/usage/multiple-selector-manually-renew-options';
 
 export const metadata: Metadata = baseMetadata({
   title: 'Multiple Selector',
@@ -221,6 +222,23 @@ const MultipleSelectorPage = () => {
         path="app/(docs)/docs//multiple-selector/usage/multiple-selector-with-async-search-and-creatable-and-group.tsx"
       >
         <MultipleSelectorWithAsyncSearchAndCreatableAndGroup />
+      </Usage>
+      <Usage
+        title="Manually Renew Options"
+        description={
+          <>
+            <P className="text-muted-foreground">
+              If you want to controlled options yourself, you can provide{' '}
+              <InlineCode>options</InlineCode> prop.
+            </P>
+            <P className="text-muted-foreground">
+              Otherwise, <InlineCode>defaultOptions</InlineCode> is a better choice.
+            </P>
+          </>
+        }
+        path="app/(docs)/docs//multiple-selector/usage/multiple-selector-manually-renew-options.tsx"
+      >
+        <MultipleSelectorManuallyRenewOptions />
       </Usage>
       <Usage
         title="Grouped"

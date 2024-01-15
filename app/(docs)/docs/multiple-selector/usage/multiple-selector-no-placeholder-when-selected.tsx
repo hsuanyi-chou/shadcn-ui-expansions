@@ -19,7 +19,7 @@ const MultipleSelectorNoPlaceholderWhenSelected = () => {
   return (
     <div className="w-full px-10">
       <MultipleSelector
-        options={OPTIONS}
+        defaultOptions={OPTIONS}
         hidePlaceholderWhenSelected
         placeholder="The placeholder will be hidden when there are options selected."
         emptyIndicator={
