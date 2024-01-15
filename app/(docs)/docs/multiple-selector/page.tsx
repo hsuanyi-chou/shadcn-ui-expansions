@@ -29,7 +29,7 @@ import MultipleSelectorMaxTextLength from '@/app/(docs)/docs/multiple-selector/u
 import MultipleSelectorRef from '@/app/(docs)/docs/multiple-selector/usage/multiple-selector-ref';
 import MultipleSelectorCommandProps from '@/app/(docs)/docs/multiple-selector/usage/multiple-selector-commandprops';
 import MultipleSelectorWithAsyncSearchAndOnFocus from '@/app/(docs)/docs/multiple-selector/usage/multiple-selector-with-async-search-and-onfocus';
-import MultipleSelectorManuallyRenewOptions from '@/app/(docs)/docs/multiple-selector/usage/multiple-selector-manually-renew-options';
+import MultipleSelectorManuallyControlledOptions from '@/app/(docs)/docs/multiple-selector/usage/multiple-selector-manually-controlled-options';
 
 export const metadata: Metadata = baseMetadata({
   title: 'Multiple Selector',
@@ -224,7 +224,7 @@ const MultipleSelectorPage = () => {
         <MultipleSelectorWithAsyncSearchAndCreatableAndGroup />
       </Usage>
       <Usage
-        title="Manually Renew Options"
+        title="Manually Controlled Options"
         description={
           <>
             <P className="text-muted-foreground">
@@ -236,9 +236,9 @@ const MultipleSelectorPage = () => {
             </P>
           </>
         }
-        path="app/(docs)/docs//multiple-selector/usage/multiple-selector-manually-renew-options.tsx"
+        path="app/(docs)/docs//multiple-selector/usage/multiple-selector-manually-controlled-options.tsx"
       >
-        <MultipleSelectorManuallyRenewOptions />
+        <MultipleSelectorManuallyControlledOptions />
       </Usage>
       <Usage
         title="Grouped"
