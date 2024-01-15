@@ -20,7 +20,7 @@ const MultipleSelectorNoDefaultSelect = () => {
     <div className="w-full px-10">
       <MultipleSelector
         selectFirstItem={false}
-        options={OPTIONS}
+        defaultOptions={OPTIONS}
         placeholder="Select frameworks you like..."
         emptyIndicator={
           <p className="text-center text-lg leading-10 text-gray-600 dark:text-gray-400">

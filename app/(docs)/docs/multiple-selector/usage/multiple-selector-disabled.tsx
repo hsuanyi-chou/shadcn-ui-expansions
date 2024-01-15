@@ -20,7 +20,7 @@ const MultipleSelectorDisabled = () => {
     <div className="w-full px-10">
       <MultipleSelector
         value={OPTIONS.slice(0, 3)}
-        options={OPTIONS}
+        defaultOptions={OPTIONS}
         disabled
         hidePlaceholderWhenSelected
         placeholder="Select frameworks you like..."

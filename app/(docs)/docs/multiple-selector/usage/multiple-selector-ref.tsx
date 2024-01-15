@@ -34,7 +34,7 @@ const MultipleSelectorRef = () => {
   return (
     <div className="w-full px-10">
       <MultipleSelector
-        options={OPTIONS}
+        defaultOptions={OPTIONS}
         ref={ref}
         placeholder="Select frameworks you like..."
         emptyIndicator={

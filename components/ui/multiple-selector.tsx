@@ -30,6 +30,8 @@ interface GroupOption {
 
 interface MultipleSelectorProps {
   value?: Option[];
+  defaultOptions?: Option[];
+  /** manually renew options */
   options?: Option[];
   placeholder?: string;
   /** Loading component. */
@@ -130,7 +132,8 @@ const MultipleSelector = React.forwardRef<MultipleSelectorRef, MultipleSelectorP
       value,
       onChange,
       placeholder,
-      options: arrayOptions = [],
+      defaultOptions: arrayDefaultOptions = [],
+      options: arrayOptions,
       delay,
       onSearch,
       loadingIndicator,
@@ -156,7 +159,7 @@ const MultipleSelector = React.forwardRef<MultipleSelectorRef, MultipleSelectorP
 
     const [selected, setSelected] = React.useState<Option[]>(value || []);
     const [options, setOptions] = React.useState<GroupOption>(
-      transToGroupOption(arrayOptions, groupBy),
+      transToGroupOption(arrayDefaultOptions, groupBy),
     );
     const [inputValue, setInputValue] = React.useState('');
     const debouncedSearchTerm = useDebounce(inputValue, delay || 500);
@@ -202,6 +205,17 @@ const MultipleSelector = React.forwardRef<MultipleSelectorRef, MultipleSelectorP
         setSelected(value);
       }
     }, [value]);
+
+    useEffect(() => {
+      /** If `onSearch` is provided, do not trigger renew options. */
+      if (!arrayOptions || onSearch) {
+        return;
+      }
+      const newOption = transToGroupOption(arrayOptions || [], groupBy);
+      if (JSON.stringify(newOption) !== JSON.stringify(options)) {
+        setOptions(newOption);
+      }
+    }, [arrayDefaultOptions, arrayOptions, groupBy, onSearch, options]);
 
     useEffect(() => {
       const doSearch = async () => {

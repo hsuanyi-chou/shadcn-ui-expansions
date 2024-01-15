@@ -41,7 +41,7 @@ const MultipleSelectorWithAsyncSearchAndCreatable = () => {
           setIsTriggered(false);
           return res;
         }}
-        options={[]}
+        defaultOptions={[]}
         creatable
         placeholder="trying to search 'a' to get more options..."
         loadingIndicator={

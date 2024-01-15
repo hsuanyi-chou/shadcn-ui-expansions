@@ -47,16 +47,30 @@ export const multipleSelectorProp: Props[] = [
     default: '[]',
   },
   {
-    prop: 'options',
+    prop: 'defaultOptions',
     required: false,
     description: (
       <>
-        <p>The dropdown options.</p>
+        <p>The dropdown options for most case.</p>
       </>
     ),
     type: 'Option[]',
     typeInfo: <OptionTypeInfo />,
     default: '[]',
+  },
+  {
+    prop: 'options',
+    required: false,
+    description: (
+      <>
+        <p>
+          The dropdown options that you can control yourself. In most case,{' '}
+          <InlineCode>defaultOptions</InlineCode> is a better choice.
+        </p>
+      </>
+    ),
+    type: 'Option[]',
+    typeInfo: <OptionTypeInfo />,
   },
   {
     prop: 'placeholder',
