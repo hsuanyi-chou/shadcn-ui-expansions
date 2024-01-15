@@ -207,7 +207,7 @@ const MultipleSelector = React.forwardRef<MultipleSelectorRef, MultipleSelectorP
     }, [value]);
 
     useEffect(() => {
-      /** If `onSearch` is provided, do not trigger renew options. */
+      /** If `onSearch` is provided, do not trigger options updated. */
       if (!arrayOptions || onSearch) {
         return;
       }
