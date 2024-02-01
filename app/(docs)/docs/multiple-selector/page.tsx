@@ -175,7 +175,7 @@ const MultipleSelectorPage = () => {
         <MultipleSelectorWithAsyncSearch />
       </Usage>
       <Usage
-        title="Trigger Search on Fucus"
+        title="Trigger Search on Focus"
         description={
           <>
             <P className="text-muted-foreground">
