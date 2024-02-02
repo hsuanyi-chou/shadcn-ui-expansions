@@ -277,7 +277,7 @@ const MultipleSelector = React.forwardRef<MultipleSelectorRef, MultipleSelectorP
       return undefined;
     };
 
-    const EmptyItem = () => {
+    const EmptyItem = React.useCallback(() => {
       if (!emptyIndicator) return undefined;
 
       // For async search that showing emptyIndicator
@@ -290,12 +290,27 @@ const MultipleSelector = React.forwardRef<MultipleSelectorRef, MultipleSelectorP
       }
 
       return <CommandEmpty>{emptyIndicator}</CommandEmpty>;
-    };
+    }, [creatable, emptyIndicator, onSearch, options]);
 
     const selectables = React.useMemo<GroupOption>(
       () => removePickedOption(options, selected),
       [options, selected],
     );
+
+    /** Avoid Creatable Selector freezing or lagging when paste a long string. */
+    const commandFilter = React.useCallback(() => {
+      if (commandProps?.filter) {
+        return commandProps.filter;
+      }
+
+      if (creatable) {
+        return (value: string, search: string) => {
+          return value.toLowerCase().includes(search.toLowerCase()) ? 1 : -1;
+        };
+      }
+      // Using default filter in `cmdk`. We don't have to provide it.
+      return undefined;
+    }, [creatable, commandProps?.filter]);
 
     return (
       <Command
@@ -308,6 +323,7 @@ const MultipleSelector = React.forwardRef<MultipleSelectorRef, MultipleSelectorP
         shouldFilter={
           commandProps?.shouldFilter !== undefined ? commandProps.shouldFilter : !onSearch
         } // When onSearch is provided, we don't want to filter the options. You can still override it.
+        filter={commandFilter()}
       >
         <div
           className={cn(
