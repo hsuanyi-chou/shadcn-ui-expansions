@@ -6,11 +6,14 @@ import Link from 'next/link';
 export default function Anchor({
   anchor,
   alwaysDisplay,
+  disableCopyToClipboard,
 }: {
   anchor: string;
   alwaysDisplay: boolean;
+  disableCopyToClipboard: boolean;
 }) {
   function copyToClipboard() {
+    if (disableCopyToClipboard) return;
     const currentUrl = window.location.href.replace(/#.*$/, '');
     const urlWithId = `${currentUrl}#${anchor}`;
 

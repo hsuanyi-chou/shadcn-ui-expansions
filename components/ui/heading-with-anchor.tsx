@@ -33,6 +33,7 @@ type BaseHeadingProps = {
 type HeadingArgs = {
   alignAnchor?: 'close' | 'spaced';
   alwaysDisplay?: boolean;
+  disableCopyToClipboard?: boolean;
 };
 
 const BaseHeading = ({
@@ -41,7 +42,7 @@ const BaseHeading = ({
   variant = 'h6',
   asChild = false,
   anchor,
-  args: { alignAnchor = 'close', alwaysDisplay = false } = {},
+  args: { alignAnchor = 'close', alwaysDisplay = false, disableCopyToClipboard = false } = {},
   ...props
 }: BaseHeadingProps) => {
   const Comp = asChild ? Slot : variant;
@@ -57,7 +58,13 @@ const BaseHeading = ({
         )}
       >
         {children}
-        {anchor && <Anchor anchor={anchor} alwaysDisplay={alwaysDisplay} />}
+        {anchor && (
+          <Anchor
+            anchor={anchor}
+            alwaysDisplay={alwaysDisplay}
+            disableCopyToClipboard={disableCopyToClipboard}
+          />
+        )}
       </Comp>
     </div>
   );
