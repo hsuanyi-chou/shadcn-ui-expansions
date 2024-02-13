@@ -1,9 +1,8 @@
-import React from 'react';
 import { cn } from '@/lib/utils';
 import { Slot } from '@radix-ui/react-slot';
 import { cva, type VariantProps } from 'class-variance-authority';
-import { LinkIcon } from 'lucide-react';
-import Link from 'next/link';
+import React from 'react';
+import Anchor from './anchor';
 const headingVariants = cva('font-bold text-primary', {
   variants: {
     variant: {
@@ -27,8 +26,14 @@ type BaseHeadingProps = {
   className?: string;
   asChild?: boolean;
   anchor?: string;
+  args?: HeadingArgs;
 } & React.HTMLAttributes<HTMLHeadingElement> &
   VariantProps<typeof headingVariants>;
+
+type HeadingArgs = {
+  alignAnchor?: 'close' | 'spaced';
+  alwaysDisplay?: boolean;
+};
 
 const BaseHeading = ({
   children,
@@ -36,30 +41,25 @@ const BaseHeading = ({
   variant = 'h6',
   asChild = false,
   anchor,
+  args: { alignAnchor = 'close', alwaysDisplay = false } = {},
   ...props
 }: BaseHeadingProps) => {
   const Comp = asChild ? Slot : variant;
   return (
-    <>
+    <div className="group">
       <Comp
         id={anchor}
         {...props}
         className={cn(
-          anchor && 'flex scroll-m-20 items-center justify-between', // modify `scroll-m-20` according to your header height.
+          anchor && 'flex scroll-m-20 items-center', // modify `scroll-m-20` according to your header height.
           headingVariants({ variant, className }),
+          alignAnchor === 'spaced' && 'justify-between',
         )}
       >
         {children}
-        {anchor && (
-          <>
-            {/* modify `Link` to `a` if you are not using Next.js */}
-            <Link href={`#${anchor}`}>
-              <LinkIcon className="text-gray-400 hover:text-gray-600" />
-            </Link>
-          </>
-        )}
+        {anchor && <Anchor anchor={anchor} alwaysDisplay={alwaysDisplay} />}
       </Comp>
-    </>
+    </div>
   );
 };
 
