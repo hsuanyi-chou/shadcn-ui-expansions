@@ -33,6 +33,11 @@ export const DOCS: Documentation[] = [
       },
       { label: 'Blockquote', value: 'blockquote', url: '/docs/blockquote' },
       {
+        label: 'Floating Label Input',
+        value: 'floating-label-input',
+        url: '/docs/floating-label-input',
+      },
+      {
         label: 'Heading With Anchor',
         value: 'heading-with-anchor',
         url: '/docs/heading-with-anchor',
