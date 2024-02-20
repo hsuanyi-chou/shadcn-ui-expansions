@@ -54,12 +54,6 @@ const FloatingLabelPage = () => {
       <Usage
         title="Form"
         path="app/(docs)/docs//floating-label-input/usage/floating-label-input-form.tsx"
-        description={
-          <p className="text-muted-foreground">
-            You have fully control of the <InlineCode>FloatingLabel</InlineCode> and the{' '}
-            <InlineCode>FloatingInput</InlineCode>
-          </p>
-        }
       >
         <FloatingLabelInputForm />
       </Usage>
