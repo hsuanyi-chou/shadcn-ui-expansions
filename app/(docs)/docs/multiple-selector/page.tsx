@@ -161,7 +161,7 @@ const MultipleSelectorPage = () => {
             </P>
             <P className="text-muted-foreground">
               You can provide <InlineCode>delay</InlineCode> to customize the time. The{' '}
-              <InlineCode>delay</InlineCode> prop only work with <InlineCode>onSearch</InlineCode>.
+              <InlineCode>delay</InlineCode> prop only works with <InlineCode>onSearch</InlineCode>.
             </P>
             <P className="text-muted-foreground">
               The empty text <b>will not</b> trigger the search. On the other hand, if the search
@@ -179,7 +179,7 @@ const MultipleSelectorPage = () => {
         description={
           <>
             <P className="text-muted-foreground">
-              Only work with <InlineCode>onSearch</InlineCode> prop. Trigger search when{' '}
+              Only works with <InlineCode>onSearch</InlineCode> prop. Trigger search when{' '}
               <InlineCode>onFocus</InlineCode>.
             </P>
             <P className="text-muted-foreground">

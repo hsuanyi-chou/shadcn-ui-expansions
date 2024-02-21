@@ -124,7 +124,7 @@ export const multipleSelectorProp: Props[] = [
     description: (
       <>
         <p>
-          The debounce time. only work with <InlineCode>onSearch</InlineCode>.
+          The debounce time. only works with <InlineCode>onSearch</InlineCode>.
         </p>
       </>
     ),
@@ -137,7 +137,7 @@ export const multipleSelectorProp: Props[] = [
     description: (
       <>
         <p>
-          Only work with <InlineCode>onSearch</InlineCode> prop. Trigger search when{' '}
+          Only works with <InlineCode>onSearch</InlineCode> prop. Trigger search when{' '}
           <InlineCode>onFocus</InlineCode>.
         </p>
         <p>
