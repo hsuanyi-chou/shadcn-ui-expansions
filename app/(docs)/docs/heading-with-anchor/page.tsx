@@ -7,6 +7,10 @@ import { baseMetadata } from '@/app/(docs)/layout-parts/base-metadata';
 import HeadingDemo from '@/app/(docs)/docs/heading-with-anchor/heading-with-anchor-demo';
 import Usage from '@/app/(docs)/docs/components/usage';
 import TypographyUsage from '@/app/(docs)/docs/heading-with-anchor/heading-with-anchor-usage';
+import { PropsTable } from '@/app/(docs)/docs/components/props-table/props-table';
+import { headingWithAnchorProp } from '@/app/(docs)/docs/heading-with-anchor/heading-with-anchor-prop';
+import HeadingWithAnchorHover from '@/app/(docs)/docs/heading-with-anchor/usage/heading-with-anchor-hover';
+import HeadingWithAnchorAlign from '@/app/(docs)/docs/heading-with-anchor/usage/heading-with-anchor-align';
 
 export const metadata: Metadata = baseMetadata({
   title: 'Heading With Anchor',
@@ -35,9 +39,27 @@ const HeadingWithAnchorPage = () => {
       />
 
       <PageSubTitle>Usage</PageSubTitle>
-      <Usage path="app/(docs)/docs/heading-with-anchor/heading-with-anchor-usage.tsx">
+      <Usage
+        path="app/(docs)/docs/heading-with-anchor/heading-with-anchor-usage.tsx"
+        title="h1 to h6"
+      >
         <TypographyUsage />
       </Usage>
+      <Usage
+        path="app/(docs)/docs/heading-with-anchor/usage/heading-with-anchor-hover.tsx"
+        title="Show anchor when hover heading"
+      >
+        <HeadingWithAnchorHover />
+      </Usage>
+
+      <Usage
+        path="app/(docs)/docs/heading-with-anchor/usage/heading-with-anchor-align.tsx"
+        title="Close to heading"
+      >
+        <HeadingWithAnchorAlign />
+      </Usage>
+
+      <PropsTable props={headingWithAnchorProp} />
     </PageTemplate>
   );
 };
