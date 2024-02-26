@@ -6,8 +6,8 @@ import { Metadata } from 'next';
 import { baseMetadata } from '@/app/(docs)/layout-parts/base-metadata';
 import DatetimePickerDemo from '@/app/(docs)/docs/datetime-picker/datetime-picker-demo';
 import Usage from '@/app/(docs)/docs/components/usage';
-import AutosizeTextareaWithMaxHeight from '@/app/(docs)/docs/autosize-textarea/usage/autosize-textarea-with-max-height';
 import DatetimePickerHourCycle from '@/app/(docs)/docs/datetime-picker/usage/datetime-picker-hour-cycle';
+import DatePickerAndTimePicker from '@/app/(docs)/docs/datetime-picker/usage/date-picker-and-time-picker';
 
 export const metadata: Metadata = baseMetadata({
   title: 'Datetime Picker',
@@ -31,10 +31,16 @@ const DatetimePickerPage = () => {
 
       <PageSubTitle>Usage</PageSubTitle>
       <Usage
-        title="Hoour cycle - 12 / 24H"
+        title="Hour cycle - 12H / 24H"
         path="app/(docs)/docs/datetime-picker/usage/datetime-picker-hour-cycle.tsx"
       >
         <DatetimePickerHourCycle />
+      </Usage>
+      <Usage
+        title="Date picker or Time picker"
+        path="app/(docs)/docs/datetime-picker/usage/date-picker-and-time-picker.tsx"
+      >
+        <DatePickerAndTimePicker />
       </Usage>
     </PageTemplate>
   );
