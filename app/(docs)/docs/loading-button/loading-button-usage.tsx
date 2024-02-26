@@ -8,7 +8,7 @@ const LoadingButtonUsage = () => {
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
-    }, 3000);
+    }, 1000);
   };
   return (
     <div className="flex flex-col gap-3">
