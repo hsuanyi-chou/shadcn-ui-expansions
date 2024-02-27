@@ -32,6 +32,7 @@ export const DOCS: Documentation[] = [
         url: '/docs/autosize-textarea',
       },
       { label: 'Blockquote', value: 'blockquote', url: '/docs/blockquote' },
+      { label: 'Datetime Picker', value: 'datetime-picker', url: '/docs/datetime-picker' },
       {
         label: 'Floating Label Input',
         value: 'floating-label-input',
