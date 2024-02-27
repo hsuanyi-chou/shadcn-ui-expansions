@@ -21,7 +21,7 @@ Just copy and paste to your project and customize to your needs. The code is you
 - [x] [Infinite Scroll](components/ui/infinite-scroll.tsx)
 - [x] [Loading Button](components/ui/loading-button.tsx)
 - [x] [Multiple Selector](components/ui/multiple-selector.tsx)
-- [x] Datetime picker 🚧
+- [x] [Datetime picker](components/ui/datetime-picker.tsx)
 - [ ] Scrollable tabs 🚧
 - [ ] Daterange picker 🚧
 
