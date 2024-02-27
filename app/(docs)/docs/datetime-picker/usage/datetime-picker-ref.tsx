@@ -10,7 +10,7 @@ const DatetimePickerRef = () => {
     <div className="space-y-3">
       <Button
         onClick={() => {
-          alert(JSON.stringify(ref.current?.jsDate));
+          alert(JSON.stringify(ref.current?.jsDate?.toLocaleString()));
           /** following are the ref values. */
           // console.log(ref.current?.buttonRef);
           // console.log(ref.current?.divRef);
