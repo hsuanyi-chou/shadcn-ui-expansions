@@ -16,7 +16,7 @@ const DatetimePickerRef = () => {
           // console.log(ref.current?.divRef);
           // console.log(ref.current?.contentRef);
           // console.log(ref.current?.jsDate);
-          // console.log(ref.current?.open);
+          // console.log(ref.current?.state);
         }}
       >
         alert ref value

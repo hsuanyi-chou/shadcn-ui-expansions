@@ -15,6 +15,7 @@ import { PropLink } from '@/app/(docs)/docs/components/props-table/prop-link';
 import DatetimePickerForm from '@/app/(docs)/docs/datetime-picker/usage/datetime-picker-form';
 import DatetimePickerControlled from '@/app/(docs)/docs/datetime-picker/usage/datetime-picker-controlled';
 import DatetimePickerRef from '@/app/(docs)/docs/datetime-picker/usage/datetime-picker-ref';
+import DatetimePickerOpen from '@/app/(docs)/docs/datetime-picker/usage/datetime-picker-open';
 
 export const metadata: Metadata = baseMetadata({
   title: 'Datetime Picker',
@@ -88,6 +89,13 @@ const DatetimePickerPage = () => {
 
       <Usage title="Ref" path="app/(docs)/docs/datetime-picker/usage/datetime-picker-ref.tsx">
         <DatetimePickerRef />
+      </Usage>
+
+      <Usage
+        title="Manually control open state"
+        path="app/(docs)/docs/datetime-picker/usage/datetime-picker-open.tsx"
+      >
+        <DatetimePickerOpen />
       </Usage>
 
       <Usage title="Form" path="app/(docs)/docs/datetime-picker/usage/datetime-picker-form.tsx">

@@ -22,13 +22,13 @@ import {
   useDateField,
   useDatePicker,
   useDateSegment,
-  useInteractOutside,
   useLocale,
   useTimeField,
 } from 'react-aria';
 import {
   CalendarState,
   DateFieldState,
+  DatePickerState,
   DatePickerStateOptions,
   TimeFieldStateOptions,
   useCalendarState,
@@ -279,7 +279,7 @@ export type DateTimePickerRef = {
   buttonRef: HTMLButtonElement | null;
   contentRef: HTMLDivElement | null;
   jsDate: Date | null;
-  open: boolean;
+  state: DatePickerState;
 };
 
 const DateTimePicker = React.forwardRef<
@@ -287,24 +287,22 @@ const DateTimePicker = React.forwardRef<
   DatePickerStateOptions<DateValue> & {
     jsDate?: Date;
     onJsDateChange?: (date: Date) => void;
-    open?: boolean;
   }
->(({ jsDate, onJsDateChange, open: _open, ...props }, ref) => {
+>(({ jsDate, onJsDateChange, ...props }, ref) => {
   const divRef = useRef<HTMLDivElement | null>(null);
   const buttonRef = useRef<HTMLButtonElement | null>(null);
   const contentRef = useRef<HTMLDivElement | null>(null);
-  const [open, setOpen] = useState(_open || false);
   const [jsDatetime, setJsDatetime] = useState(jsDate || null);
+
+  const state = useDatePickerState(props);
 
   useImperativeHandle(ref, () => ({
     divRef: divRef.current,
     buttonRef: buttonRef.current,
     contentRef: contentRef.current,
     jsDate: jsDatetime,
-    open: open,
+    state,
   }));
-
-  const state = useDatePickerState(props);
   const {
     groupProps,
     fieldProps,
@@ -313,12 +311,6 @@ const DateTimePicker = React.forwardRef<
     calendarProps,
   } = useDatePicker(props, state, divRef);
   const { buttonProps } = useButton(_buttonProps, buttonRef);
-  useInteractOutside({
-    ref: contentRef,
-    onInteractOutside: (e) => {
-      setOpen(false);
-    },
-  });
 
   const currentValue = useCallback(() => {
     if (!jsDatetime) {
@@ -345,7 +337,6 @@ const DateTimePicker = React.forwardRef<
       onJsDateChange?.(date);
     }
   }, [state.value, onJsDateChange]);
-
   return (
     <div
       {...groupProps}
@@ -356,14 +347,17 @@ const DateTimePicker = React.forwardRef<
       )}
     >
       <DateField {...fieldProps} value={currentValue()} />
-      <Popover open={open} onOpenChange={setOpen}>
+      <Popover open={props.isOpen} onOpenChange={props.onOpenChange}>
         <PopoverTrigger asChild>
           <Button
             {...buttonProps}
             variant="outline"
             className="rounded-l-none"
             disabled={props.isDisabled}
-            onClick={() => setOpen(true)}
+            onClick={() => {
+              // setOpen(true);
+              state.setOpen(true);
+            }}
           >
             <CalendarIcon className="h-5 w-5" />
           </Button>
