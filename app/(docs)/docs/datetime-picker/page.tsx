@@ -12,6 +12,9 @@ import { Reference, ReferenceBorder } from '@/app/(docs)/docs/components/referen
 import { P } from '@/components/ui/heading-with-anchor';
 import { InlineCode } from '@/components/ui/inline-code';
 import { PropLink } from '@/app/(docs)/docs/components/props-table/prop-link';
+import DatetimePickerForm from '@/app/(docs)/docs/datetime-picker/usage/datetime-picker-form';
+import DatetimePickerControlled from '@/app/(docs)/docs/datetime-picker/usage/datetime-picker-controlled';
+import DatetimePickerRef from '@/app/(docs)/docs/datetime-picker/usage/datetime-picker-ref';
 
 export const metadata: Metadata = baseMetadata({
   title: 'Datetime Picker',
@@ -41,6 +44,14 @@ const DatetimePickerPage = () => {
         </PropLink>
         for creating this.
       </P>
+      <P className="text-muted-foreground">
+        I keep all the react-aria props and add 2 props: <InlineCode>jsDate</InlineCode>,{' '}
+        <InlineCode>onJsDateChange</InlineCode>, also expose all the ref of the react-aria.
+      </P>
+      <P className="text-muted-foreground">
+        All you need to do is to use the <InlineCode>jsDate</InlineCode> and{' '}
+        <InlineCode>onJsDateChange</InlineCode>.
+      </P>
 
       <PreviewCodeCard path="app/(docs)/docs/datetime-picker/datetime-picker-demo.tsx">
         <DatetimePickerDemo />
@@ -66,6 +77,21 @@ const DatetimePickerPage = () => {
         path="app/(docs)/docs/datetime-picker/usage/date-picker-and-time-picker.tsx"
       >
         <DatePickerAndTimePicker />
+      </Usage>
+
+      <Usage
+        title="Controlled component"
+        path="app/(docs)/docs/datetime-picker/usage/datetime-picker-controlled.tsx"
+      >
+        <DatetimePickerControlled />
+      </Usage>
+
+      <Usage title="Ref" path="app/(docs)/docs/datetime-picker/usage/datetime-picker-ref.tsx">
+        <DatetimePickerRef />
+      </Usage>
+
+      <Usage title="Form" path="app/(docs)/docs/datetime-picker/usage/datetime-picker-form.tsx">
+        <DatetimePickerForm />
       </Usage>
     </PageTemplate>
   );

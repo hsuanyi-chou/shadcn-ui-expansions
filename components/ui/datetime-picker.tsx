@@ -1,7 +1,14 @@
 'use client';
 
 import { CalendarIcon, ChevronLeftIcon, ChevronRightIcon } from 'lucide-react';
-import React, { useImperativeHandle, useMemo, useRef, useState } from 'react';
+import React, {
+  useCallback,
+  useEffect,
+  useImperativeHandle,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
 import {
   AriaDatePickerProps,
   AriaTimeFieldProps,
@@ -37,7 +44,11 @@ import {
   createCalendar,
   getLocalTimeZone,
   getWeeksInMonth,
+  parseDateTime,
+  fromDate,
+  toCalendarDateTime,
   isToday as _isToday,
+  toCalendarDate,
 } from '@internationalized/date';
 import { DateSegment as IDateSegment } from '@react-stately/datepicker';
 
@@ -152,7 +163,7 @@ function CalendarCell({ state, date }: CalendarCellProps) {
       <Button
         {...buttonProps}
         type="button"
-        variant={'ghost'}
+        variant="ghost"
         ref={ref}
         className={cn(
           buttonProps.className,
@@ -263,66 +274,110 @@ const TimePicker = React.forwardRef<
 
 TimePicker.displayName = 'TimePicker';
 
-const DateTimePicker = React.forwardRef<HTMLDivElement, DatePickerStateOptions<DateValue>>(
-  (props, ref) => {
-    // const ref = useForwardedRef(forwardedRef);
-    const divRef = useRef<HTMLDivElement | null>(null);
-    const buttonRef = useRef<HTMLButtonElement | null>(null);
-    const contentRef = useRef<HTMLDivElement | null>(null);
+export type DateTimePickerRef = {
+  divRef: HTMLDivElement | null;
+  buttonRef: HTMLButtonElement | null;
+  contentRef: HTMLDivElement | null;
+  jsDate: Date | null;
+  open: boolean;
+};
 
-    const [open, setOpen] = useState(false);
+const DateTimePicker = React.forwardRef<
+  DateTimePickerRef,
+  DatePickerStateOptions<DateValue> & {
+    jsDate?: Date;
+    onJsDateChange?: (date: Date) => void;
+    open?: boolean;
+  }
+>(({ jsDate, onJsDateChange, open: _open, ...props }, ref) => {
+  const divRef = useRef<HTMLDivElement | null>(null);
+  const buttonRef = useRef<HTMLButtonElement | null>(null);
+  const contentRef = useRef<HTMLDivElement | null>(null);
+  const [open, setOpen] = useState(_open || false);
+  const [jsDatetime, setJsDatetime] = useState(jsDate || null);
 
-    useImperativeHandle(ref, () => divRef.current as HTMLDivElement);
+  useImperativeHandle(ref, () => ({
+    divRef: divRef.current,
+    buttonRef: buttonRef.current,
+    contentRef: contentRef.current,
+    jsDate: jsDatetime,
+    open: open,
+  }));
 
-    const state = useDatePickerState(props);
-    const {
-      groupProps,
-      fieldProps,
-      buttonProps: _buttonProps,
-      dialogProps,
-      calendarProps,
-    } = useDatePicker(props, state, divRef);
-    const { buttonProps } = useButton(_buttonProps, buttonRef);
-    useInteractOutside({
-      ref: contentRef,
-      onInteractOutside: (e) => {
-        setOpen(false);
-      },
-    });
+  const state = useDatePickerState(props);
+  const {
+    groupProps,
+    fieldProps,
+    buttonProps: _buttonProps,
+    dialogProps,
+    calendarProps,
+  } = useDatePicker(props, state, divRef);
+  const { buttonProps } = useButton(_buttonProps, buttonRef);
+  useInteractOutside({
+    ref: contentRef,
+    onInteractOutside: (e) => {
+      setOpen(false);
+    },
+  });
 
-    return (
-      <div
-        {...groupProps}
-        ref={divRef}
-        className={cn(
-          groupProps.className,
-          'flex items-center rounded-md ring-offset-background focus-within:ring-2 focus-within:ring-ring focus-within:ring-offset-2',
-        )}
-      >
-        <DateField {...fieldProps} />
-        <Popover open={open} onOpenChange={setOpen}>
-          <PopoverTrigger asChild>
-            <Button
-              {...buttonProps}
-              variant="outline"
-              className="rounded-l-none"
-              disabled={props.isDisabled}
-              onClick={() => setOpen(true)}
-            >
-              <CalendarIcon className="h-5 w-5" />
-            </Button>
-          </PopoverTrigger>
-          <PopoverContent ref={contentRef} className="w-full">
-            <div {...dialogProps} className="space-y-3">
-              <Calendar {...calendarProps} />
-              {state.hasTime && <TimeField value={state.timeValue} onChange={state.setTimeValue} />}
-            </div>
-          </PopoverContent>
-        </Popover>
-      </div>
-    );
-  },
-);
+  const currentValue = useCallback(() => {
+    if (!jsDatetime) {
+      return null;
+    }
+
+    const parsed = fromDate(jsDatetime, getLocalTimeZone());
+
+    if (state.hasTime) {
+      return toCalendarDateTime(parsed);
+    }
+
+    return toCalendarDate(parsed);
+  }, [jsDatetime, state.hasTime]);
+
+  useEffect(() => {
+    /**
+     * If user types datetime, it will be a null value until we get the correct datetime.
+     * This is controlled by react-aria.
+     **/
+    if (state.value) {
+      const date = parseDateTime(state.value.toString()).toDate(getLocalTimeZone());
+      setJsDatetime(date);
+      onJsDateChange?.(date);
+    }
+  }, [state.value, onJsDateChange]);
+
+  return (
+    <div
+      {...groupProps}
+      ref={divRef}
+      className={cn(
+        groupProps.className,
+        'flex items-center rounded-md ring-offset-background focus-within:ring-2 focus-within:ring-ring focus-within:ring-offset-2',
+      )}
+    >
+      <DateField {...fieldProps} value={currentValue()} />
+      <Popover open={open} onOpenChange={setOpen}>
+        <PopoverTrigger asChild>
+          <Button
+            {...buttonProps}
+            variant="outline"
+            className="rounded-l-none"
+            disabled={props.isDisabled}
+            onClick={() => setOpen(true)}
+          >
+            <CalendarIcon className="h-5 w-5" />
+          </Button>
+        </PopoverTrigger>
+        <PopoverContent ref={contentRef} className="w-full">
+          <div {...dialogProps} className="space-y-3">
+            <Calendar {...calendarProps} />
+            {state.hasTime && <TimeField value={state.timeValue} onChange={state.setTimeValue} />}
+          </div>
+        </PopoverContent>
+      </Popover>
+    </div>
+  );
+});
 
 DateTimePicker.displayName = 'DateTimePicker';
 
