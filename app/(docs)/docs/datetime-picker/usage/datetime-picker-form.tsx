@@ -15,6 +15,7 @@ import {
 import { toast } from '@/components/ui/use-toast';
 import { LoadingButton } from '@/components/ui/loading-button';
 import { DateTimePicker } from '@/components/ui/datetime-picker';
+import { InlineCode } from '@/components/ui/inline-code';
 
 const FormSchema = z.object({
   datetime: z.date().optional(),
@@ -40,9 +41,16 @@ const DatetimePickerForm = () => {
       toast({
         title: 'Your submitted data',
         description: (
-          <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-            <code className="text-white">{JSON.stringify(data, null, 2)}</code>
-          </pre>
+          <>
+            <p className="text-red-600">
+              It is a <InlineCode>Date</InlineCode> object, the{' '}
+              <InlineCode>JSON.stringify</InlineCode> will show 0+ timezone. You need to parse to
+              your timezone to match your needs.
+            </p>
+            <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
+              <code className="text-white">{JSON.stringify(data, null, 2)}</code>
+            </pre>
+          </>
         ),
       });
     }, 500);
