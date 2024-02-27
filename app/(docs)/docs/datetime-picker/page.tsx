@@ -47,7 +47,7 @@ const DatetimePickerPage = () => {
       </P>
       <P className="text-muted-foreground">
         I keep all the react-aria props and add 2 props: <InlineCode>jsDate</InlineCode>,{' '}
-        <InlineCode>onJsDateChange</InlineCode>, also expose all the ref of the react-aria.
+        <InlineCode>onJsDateChange</InlineCode>, also expose all the refs of the react-aria.
       </P>
       <P className="text-muted-foreground">
         All you need to do is to use the <InlineCode>jsDate</InlineCode> and{' '}

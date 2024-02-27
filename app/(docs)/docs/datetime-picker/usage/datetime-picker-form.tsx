@@ -21,7 +21,7 @@ const FormSchema = z.object({
 });
 
 const DEFAULT_VALUE = {
-  datetime: new Date(),
+  datetime: undefined,
 };
 
 const DatetimePickerForm = () => {
