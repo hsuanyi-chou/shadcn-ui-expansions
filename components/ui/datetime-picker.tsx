@@ -355,7 +355,6 @@ const DateTimePicker = React.forwardRef<
             className="rounded-l-none"
             disabled={props.isDisabled}
             onClick={() => {
-              // setOpen(true);
               state.setOpen(true);
             }}
           >
