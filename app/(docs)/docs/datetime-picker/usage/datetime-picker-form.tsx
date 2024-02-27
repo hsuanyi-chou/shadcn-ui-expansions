@@ -18,11 +18,11 @@ import { DateTimePicker } from '@/components/ui/datetime-picker';
 import { InlineCode } from '@/components/ui/inline-code';
 
 const FormSchema = z.object({
-  datetime: z.date().optional(),
+  datetime: z.date().nullable(),
 });
 
 const DEFAULT_VALUE = {
-  datetime: undefined,
+  datetime: null,
 };
 
 const DatetimePickerForm = () => {

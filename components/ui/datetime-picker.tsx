@@ -285,7 +285,7 @@ export type DateTimePickerRef = {
 const DateTimePicker = React.forwardRef<
   DateTimePickerRef,
   DatePickerStateOptions<DateValue> & {
-    jsDate?: Date;
+    jsDate?: Date | null;
     onJsDateChange?: (date: Date) => void;
   }
 >(({ jsDate, onJsDateChange, ...props }, ref) => {
