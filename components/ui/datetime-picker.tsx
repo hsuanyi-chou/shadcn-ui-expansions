@@ -1,6 +1,6 @@
 'use client';
 
-import { CalendarIcon, ChevronLeftIcon, ChevronRightIcon } from 'lucide-react';
+import { CalendarIcon, ChevronLeftIcon, ChevronRightIcon, X } from 'lucide-react';
 import React, {
   useCallback,
   useEffect,
@@ -224,7 +224,7 @@ function DateField(props: AriaDatePickerProps<DateValue>) {
       {...fieldProps}
       ref={ref}
       className={cn(
-        'inline-flex h-10 flex-1 items-center rounded-l-md border border-r-0 border-input bg-transparent px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2',
+        'inline-flex h-10 flex-1 items-center rounded-l-md border-input bg-transparent px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2',
         props.isDisabled && 'cursor-not-allowed opacity-50',
       )}
     >
@@ -287,8 +287,9 @@ const DateTimePicker = React.forwardRef<
   DatePickerStateOptions<DateValue> & {
     jsDate?: Date | null;
     onJsDateChange?: (date: Date) => void;
+    showClearButton?: boolean;
   }
->(({ jsDate, onJsDateChange, ...props }, ref) => {
+>(({ jsDate, onJsDateChange, showClearButton = true, ...props }, ref) => {
   const divRef = useRef<HTMLDivElement | null>(null);
   const buttonRef = useRef<HTMLButtonElement | null>(null);
   const contentRef = useRef<HTMLDivElement | null>(null);
@@ -343,16 +344,15 @@ const DateTimePicker = React.forwardRef<
       ref={divRef}
       className={cn(
         groupProps.className,
-        'flex items-center rounded-md ring-offset-background focus-within:ring-2 focus-within:ring-ring focus-within:ring-offset-2',
+        'flex items-center rounded-md border ring-offset-background focus-within:ring-2 focus-within:ring-ring focus-within:ring-offset-2',
       )}
     >
-      <DateField {...fieldProps} value={currentValue()} />
       <Popover open={props.isOpen} onOpenChange={props.onOpenChange}>
         <PopoverTrigger asChild>
           <Button
             {...buttonProps}
-            variant="outline"
-            className="rounded-l-none"
+            variant="ghost"
+            className="border-r"
             disabled={props.isDisabled}
             onClick={() => {
               state.setOpen(true);
@@ -368,6 +368,13 @@ const DateTimePicker = React.forwardRef<
           </div>
         </PopoverContent>
       </Popover>
+      <DateField {...fieldProps} value={currentValue()} />
+      <div className={cn('-ml-2 mr-2 h-5 w-5', !showClearButton && 'hidden')}>
+        <X
+          className={cn('h-5 w-5 cursor-pointer text-primary/30', !jsDatetime && 'hidden')}
+          onClick={() => setJsDatetime(null)}
+        />
+      </div>
     </div>
   );
 });

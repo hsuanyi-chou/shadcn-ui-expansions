@@ -16,6 +16,7 @@ import DatetimePickerForm from '@/app/(docs)/docs/datetime-picker/usage/datetime
 import DatetimePickerControlled from '@/app/(docs)/docs/datetime-picker/usage/datetime-picker-controlled';
 import DatetimePickerRef from '@/app/(docs)/docs/datetime-picker/usage/datetime-picker-ref';
 import DatetimePickerOpen from '@/app/(docs)/docs/datetime-picker/usage/datetime-picker-open';
+import DatetimePickerHiddenClearButton from '@/app/(docs)/docs/datetime-picker/usage/datetime-picker-hidden-clear-button';
 
 export const metadata: Metadata = baseMetadata({
   title: 'Datetime Picker',
@@ -85,6 +86,13 @@ const DatetimePickerPage = () => {
         path="app/(docs)/docs/datetime-picker/usage/datetime-picker-controlled.tsx"
       >
         <DatetimePickerControlled />
+      </Usage>
+
+      <Usage
+        title="Hide clear button"
+        path="app/(docs)/docs/datetime-picker/usage/datetime-picker-hidden-clear-button.tsx"
+      >
+        <DatetimePickerHiddenClearButton />
       </Usage>
 
       <Usage title="Ref" path="app/(docs)/docs/datetime-picker/usage/datetime-picker-ref.tsx">
