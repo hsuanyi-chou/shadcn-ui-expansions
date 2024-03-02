@@ -31,6 +31,7 @@ const AdBase = ({ id, slot, layout, format = 'auto', className }: AdBaseProps) =
         data-ad-layout={layout}
         data-ad-format={format}
         data-full-width-responsive="true"
+        data-ad-channel="shadcnui-expansions"
       ></ins>
       <Script id={id} strategy="afterInteractive">{`
             (adsbygoogle = window.adsbygoogle || []).push({});
