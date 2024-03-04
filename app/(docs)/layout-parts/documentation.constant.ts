@@ -50,6 +50,7 @@ export const DOCS: Documentation[] = [
         url: '/docs/loading-button',
       },
       { label: 'Multiple Selector', value: 'multipleSelector', url: '/docs/multiple-selector' },
+      { label: 'Spinner', value: 'spinner', url: '/docs/spinner' },
     ],
   },
 ];
