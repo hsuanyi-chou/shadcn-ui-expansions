@@ -96,6 +96,34 @@ const MultipleSelectorPage = () => {
         withInstall
         codePath="components/ui/multiple-selector.tsx"
         installScript="npx shadcn-ui@latest add command badge"
+        steps={[
+          {
+            title: "If you found that you can't select options using mouse click.",
+            children: (
+              <>
+                <P className="leading-relaxed text-muted-foreground">
+                  Thanks to <PropLink href="https://github.com/njdowdy">@njdowdy</PropLink> for the{' '}
+                  <PropLink href="https://github.com/hsuanyi-chou/shadcn-ui-expansions/issues/57#issuecomment-1997767639">
+                    short-term workaround
+                  </PropLink>
+                  . This is related to <InlineCode>Command</InlineCode> component in shadcn-ui.
+                </P>
+                <P className="leading-relaxed text-muted-foreground">
+                  Adjusting the line 120 in shadcn's <InlineCode>Command.tsx</InlineCode> (which is{' '}
+                  <InlineCode>CommandItem's className</InlineCode>) to:
+                </P>
+                <P className="leading-relaxed text-muted-foreground">
+                  <InlineCode>
+                    "relative flex cursor-default select-none items-center rounded-sm px-2 py-1.5
+                    text-sm outline-none aria-[selected='true']:bg-accent
+                    aria-[selected='true']:text-accent-foreground
+                    data-[disabled='true']:pointer-events-none data-[disabled='true']:opacity-50",
+                  </InlineCode>
+                </P>
+              </>
+            ),
+          },
+        ]}
         withEnd
       />
 
