@@ -40,3 +40,8 @@ Be welcome to contribute! Here's how you can contribute:
 <sub>
   Built by <a href="https://github.com/hsuanyi-chou">hsuanyi-chou</a>
 </sub>
+
+## License
+
+Licensed under the [MIT License](LICENSE.md).
+```
