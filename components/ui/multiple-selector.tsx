@@ -1,13 +1,13 @@
 'use client';
 
 import * as React from 'react';
+import { forwardRef, useEffect } from 'react';
+import { Command as CommandPrimitive, useCommandState } from 'cmdk';
 import { X } from 'lucide-react';
 
-import { Command, CommandGroup, CommandItem, CommandList } from '@/components/ui/command';
-import { Command as CommandPrimitive, useCommandState } from 'cmdk';
-import { useEffect, forwardRef } from 'react';
-import { Badge } from '@/components/ui/badge';
 import { cn } from '@/lib/utils';
+import { Badge } from '@/components/ui/badge';
+import { Command, CommandGroup, CommandItem, CommandList } from '@/components/ui/command';
 
 export interface Option {
   value: string;
@@ -62,6 +62,14 @@ interface MultipleSelectorProps {
   selectFirstItem?: boolean;
   /** Allow user to create option when there is no option matched. */
   creatable?: boolean;
+
+  /**
+   * If `true`, prevents the creation of duplicate options based on the normalized label.
+   * Requires the `creatable` prop to be `true`.
+   * Default is `false`.
+   */
+  preventDuplicateCreation?: boolean;
+
   /** Props of `Command` */
   commandProps?: React.ComponentPropsWithoutRef<typeof Command>;
   /** Props of `CommandInput` */
@@ -147,6 +155,11 @@ const CommandEmpty = forwardRef<
 
 CommandEmpty.displayName = 'CommandEmpty';
 
+// Normalize the value to lowercase and remove all non-alphanumeric characters.
+function normalizeString(value: string): string {
+  return value.toLowerCase().replace(/[^a-z0-9]/g, '');
+}
+
 const MultipleSelector = React.forwardRef<MultipleSelectorRef, MultipleSelectorProps>(
   (
     {
@@ -168,6 +181,7 @@ const MultipleSelector = React.forwardRef<MultipleSelectorRef, MultipleSelectorP
       badgeClassName,
       selectFirstItem = true,
       creatable = false,
+      preventDuplicateCreation = false,
       triggerSearchOnFocus = false,
       commandProps,
       inputProps,
@@ -259,20 +273,26 @@ const MultipleSelector = React.forwardRef<MultipleSelectorRef, MultipleSelectorP
       };
 
       void exec();
+      // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [debouncedSearchTerm, groupBy, open, triggerSearchOnFocus]);
 
     const CreatableItem = () => {
       if (!creatable) return undefined;
 
+      const isDuplicate = preventDuplicateCreation
+        ? selected.some((option) => normalizeString(option.label) === normalizeString(inputValue))
+        : false;
+
       const Item = (
         <CommandItem
           value={inputValue}
-          className="cursor-pointer"
+          className={cn('cursor-pointer', isDuplicate && 'cursor-default')}
           onMouseDown={(e) => {
             e.preventDefault();
             e.stopPropagation();
           }}
           onSelect={(value: string) => {
+            if (isDuplicate) return;
             if (selected.length >= maxSelected) {
               onMaxSelected?.(selected.length);
               return;
@@ -282,7 +302,15 @@ const MultipleSelector = React.forwardRef<MultipleSelectorRef, MultipleSelectorP
             setSelected(newOptions);
             onChange?.(newOptions);
           }}
-        >{`Create "${inputValue}"`}</CommandItem>
+        >
+          {isDuplicate ? (
+            <span className="text-muted-foreground">
+              Duplicate option. Try creating another one.
+            </span>
+          ) : (
+            `Create "${inputValue}"`
+          )}
+        </CommandItem>
       );
 
       // For normal creatable
