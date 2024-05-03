@@ -76,15 +76,16 @@ export const AutosizeTextarea = React.forwardRef<AutosizeTextAreaRef, AutosizeTe
 
     useImperativeHandle(ref, () => ({
       textArea: textAreaRef.current as HTMLTextAreaElement,
+      focus: () => textAreaRef.current?.focus(),
       maxHeight,
       minHeight,
     }));
 
     React.useEffect(() => {
-      if (value) {
+      if (value || props?.defaultValue) {
         setTriggerAutoSize(value as string);
       }
-    }, [value]);
+    }, [value || props?.defaultValue]);
 
     return (
       <textarea
