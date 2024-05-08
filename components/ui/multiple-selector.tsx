@@ -62,14 +62,6 @@ interface MultipleSelectorProps {
   selectFirstItem?: boolean;
   /** Allow user to create option when there is no option matched. */
   creatable?: boolean;
-
-  /**
-   * If `true`, prevents the creation of duplicate options based on the normalized label.
-   * Requires the `creatable` prop to be `true`.
-   * Default is `false`.
-   */
-  preventDuplicateCreation?: boolean;
-
   /** Props of `Command` */
   commandProps?: React.ComponentPropsWithoutRef<typeof Command>;
   /** Props of `CommandInput` */
@@ -128,6 +120,15 @@ function removePickedOption(groupOption: GroupOption, picked: Option[]) {
   return cloneOption;
 }
 
+function isOptionsExist(groupOption: GroupOption, targetOption: Option[]) {
+  for (const [key, value] of Object.entries(groupOption)) {
+    if (value.some((option) => targetOption.find((p) => p.value === option.value))) {
+      return true;
+    }
+  }
+  return false;
+}
+
 /**
  * The `CommandEmpty` of shadcn/ui will cause the cmdk empty not rendering correctly.
  * So we create one and copy the `Empty` implementation from `cmdk`.
@@ -155,11 +156,6 @@ const CommandEmpty = forwardRef<
 
 CommandEmpty.displayName = 'CommandEmpty';
 
-// Normalize the value to lowercase and remove all non-alphanumeric characters.
-function normalizeString(value: string): string {
-  return value.toLowerCase().replace(/[^a-z0-9]/g, '');
-}
-
 const MultipleSelector = React.forwardRef<MultipleSelectorRef, MultipleSelectorProps>(
   (
     {
@@ -181,7 +177,6 @@ const MultipleSelector = React.forwardRef<MultipleSelectorRef, MultipleSelectorP
       badgeClassName,
       selectFirstItem = true,
       creatable = false,
-      preventDuplicateCreation = false,
       triggerSearchOnFocus = false,
       commandProps,
       inputProps,
@@ -278,21 +273,22 @@ const MultipleSelector = React.forwardRef<MultipleSelectorRef, MultipleSelectorP
 
     const CreatableItem = () => {
       if (!creatable) return undefined;
-
-      const isDuplicate = preventDuplicateCreation
-        ? selected.some((option) => normalizeString(option.label) === normalizeString(inputValue))
-        : false;
+      if (
+        isOptionsExist(options, [{ value: inputValue, label: inputValue }]) ||
+        selected.find((s) => s.value === inputValue)
+      ) {
+        return undefined;
+      }
 
       const Item = (
         <CommandItem
           value={inputValue}
-          className={cn('cursor-pointer', isDuplicate && 'cursor-default')}
+          className="cursor-pointer"
           onMouseDown={(e) => {
             e.preventDefault();
             e.stopPropagation();
           }}
           onSelect={(value: string) => {
-            if (isDuplicate) return;
             if (selected.length >= maxSelected) {
               onMaxSelected?.(selected.length);
               return;
@@ -303,13 +299,7 @@ const MultipleSelector = React.forwardRef<MultipleSelectorRef, MultipleSelectorP
             onChange?.(newOptions);
           }}
         >
-          {isDuplicate ? (
-            <span className="text-muted-foreground">
-              Duplicate option. Try creating another one.
-            </span>
-          ) : (
-            `Create "${inputValue}"`
-          )}
+          {`Create "${inputValue}"`}
         </CommandItem>
       );
 
