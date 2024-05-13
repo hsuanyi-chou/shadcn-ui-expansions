@@ -8,6 +8,7 @@ import { baseMetadata } from '@/app/(docs)/layout-parts/base-metadata';
 import { Reference, ReferenceBorder } from '@/app/(docs)/docs/components/reference';
 import LoadingButtonUsage from '@/app/(docs)/docs/loading-button/loading-button-usage';
 import Usage from '@/app/(docs)/docs/components/usage';
+import LoadingButtonAsChild from '@/app/(docs)/docs/loading-button/loading-button-as-child';
 
 export const metadata: Metadata = baseMetadata({
   title: 'Loading Button',
@@ -41,6 +42,9 @@ const LoadingButtonPage = () => {
       <PageSubTitle>Usage</PageSubTitle>
       <Usage path="app/(docs)/docs/loading-button/loading-button-usage.tsx">
         <LoadingButtonUsage />
+      </Usage>
+      <Usage title="asChild" path="app/(docs)/docs/loading-button/loading-button-as-child.tsx">
+        <LoadingButtonAsChild />
       </Usage>
     </PageTemplate>
   );
