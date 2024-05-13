@@ -74,8 +74,7 @@ const MultipleSelectorWithForm = () => {
               <FormLabel>Frameworks</FormLabel>
               <FormControl>
                 <MultipleSelector
-                  value={field.value}
-                  onChange={field.onChange}
+                  {...field}
                   defaultOptions={OPTIONS}
                   placeholder="Select frameworks you like..."
                   emptyIndicator={
