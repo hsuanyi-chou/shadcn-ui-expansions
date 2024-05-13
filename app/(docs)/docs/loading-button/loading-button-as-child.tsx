@@ -4,12 +4,15 @@ import Link from 'next/link';
 
 const LoadingButtonAsChild = () => {
   return (
-    <div className="flex items-center gap-2">
+    <div className="flex flex-col items-center gap-2">
       <LoadingButton asChild loading>
-        <p>As a p child</p>
+        <p>As a `p` child</p>
       </LoadingButton>
       <LoadingButton asChild>
-        <Link href="#">as a Link child</Link>
+        <Link href="#">as a `Link` child</Link>
+      </LoadingButton>
+      <LoadingButton asChild variant="secondary">
+        <Link href="#">as a `Link` child with `secondary` variant</Link>
       </LoadingButton>
     </div>
   );
