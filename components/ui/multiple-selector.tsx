@@ -199,6 +199,7 @@ const MultipleSelector = React.forwardRef<MultipleSelectorRef, MultipleSelectorP
       () => ({
         selectedValue: [...selected],
         input: inputRef.current as HTMLInputElement,
+        focus: () => inputRef.current?.focus(),
       }),
       [selected],
     );
@@ -221,7 +222,7 @@ const MultipleSelector = React.forwardRef<MultipleSelectorRef, MultipleSelectorP
               handleUnselect(selected[selected.length - 1]);
             }
           }
-          // This is not a default behaviour of the <input /> field
+          // This is not a default behavior of the <input /> field
           if (e.key === 'Escape') {
             input.blur();
           }
