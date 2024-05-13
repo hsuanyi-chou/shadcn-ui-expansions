@@ -367,9 +367,17 @@ const MultipleSelector = React.forwardRef<MultipleSelectorRef, MultipleSelectorP
       >
         <div
           className={cn(
-            'h-full min-h-10 rounded-md border border-input px-3 py-2 text-sm ring-offset-background focus-within:ring-2 focus-within:ring-ring focus-within:ring-offset-2',
+            'h-full min-h-10 rounded-md border border-input text-sm ring-offset-background focus-within:ring-2 focus-within:ring-ring focus-within:ring-offset-2',
+            {
+              'px-3 py-2': selected.length !== 0,
+              'cursor-text': !disabled && selected.length !== 0,
+            },
             className,
           )}
+          onClick={() => {
+            if (disabled) return;
+            inputRef.current?.focus();
+          }}
         >
           <div className="flex flex-wrap gap-1">
             {selected.map((option) => {
@@ -427,9 +435,11 @@ const MultipleSelector = React.forwardRef<MultipleSelectorRef, MultipleSelectorP
               }}
               placeholder={hidePlaceholderWhenSelected && selected.length !== 0 ? '' : placeholder}
               className={cn(
-                'ml-2 flex-1 bg-transparent outline-none placeholder:text-muted-foreground',
+                'flex-1 bg-transparent outline-none placeholder:text-muted-foreground',
                 {
                   'w-full': hidePlaceholderWhenSelected,
+                  'px-3 py-2': selected.length === 0,
+                  'ml-1': selected.length !== 0,
                 },
                 inputProps?.className,
               )}
