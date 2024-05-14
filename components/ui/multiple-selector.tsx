@@ -382,7 +382,7 @@ const MultipleSelector = React.forwardRef<MultipleSelectorRef, MultipleSelectorP
                     badgeClassName,
                   )}
                   data-fixed={option.fixed}
-                  data-disabled={disabled}
+                  data-disabled={disabled || undefined}
                 >
                   {option.label}
                   <button
