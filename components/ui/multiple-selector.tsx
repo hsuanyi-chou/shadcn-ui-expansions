@@ -359,7 +359,7 @@ const MultipleSelector = React.forwardRef<MultipleSelectorRef, MultipleSelectorP
           handleKeyDown(e);
           commandProps?.onKeyDown?.(e);
         }}
-        className={cn('overflow-visible bg-transparent', commandProps?.className)}
+        className={cn('h-auto overflow-visible bg-transparent', commandProps?.className)}
         shouldFilter={
           commandProps?.shouldFilter !== undefined ? commandProps.shouldFilter : !onSearch
         } // When onSearch is provided, we don't want to filter the options. You can still override it.
@@ -367,9 +367,17 @@ const MultipleSelector = React.forwardRef<MultipleSelectorRef, MultipleSelectorP
       >
         <div
           className={cn(
-            'group rounded-md border border-input px-3 py-2 text-sm ring-offset-background focus-within:ring-2 focus-within:ring-ring focus-within:ring-offset-2',
+            'min-h-10 rounded-md border border-input text-sm ring-offset-background focus-within:ring-2 focus-within:ring-ring focus-within:ring-offset-2',
+            {
+              'px-3 py-2': selected.length !== 0,
+              'cursor-text': !disabled && selected.length !== 0,
+            },
             className,
           )}
+          onClick={() => {
+            if (disabled) return;
+            inputRef.current?.focus();
+          }}
         >
           <div className="flex flex-wrap gap-1">
             {selected.map((option) => {
@@ -427,15 +435,20 @@ const MultipleSelector = React.forwardRef<MultipleSelectorRef, MultipleSelectorP
               }}
               placeholder={hidePlaceholderWhenSelected && selected.length !== 0 ? '' : placeholder}
               className={cn(
-                'ml-2 flex-1 bg-transparent outline-none placeholder:text-muted-foreground',
+                'flex-1 bg-transparent outline-none placeholder:text-muted-foreground',
+                {
+                  'w-full': hidePlaceholderWhenSelected,
+                  'px-3 py-2': selected.length === 0,
+                  'ml-1': selected.length !== 0,
+                },
                 inputProps?.className,
               )}
             />
           </div>
         </div>
-        <div className="relative mt-2">
+        <div className="relative">
           {open && (
-            <CommandList className="absolute top-0 z-10 w-full rounded-md border bg-popover text-popover-foreground shadow-md outline-none animate-in">
+            <CommandList className="absolute top-1 z-10 w-full rounded-md border bg-popover text-popover-foreground shadow-md outline-none animate-in">
               {isLoading ? (
                 <>{loadingIndicator}</>
               ) : (
