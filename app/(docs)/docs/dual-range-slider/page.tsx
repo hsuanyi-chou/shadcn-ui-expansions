@@ -30,7 +30,12 @@ const DualRangeSliderPage = () => {
       </PreviewCodeCard>
 
       <PageSubTitle>Installation</PageSubTitle>
-      <Steppers withInstall codePath="components/ui/dual-range-slider.tsx" withEnd />
+      <Steppers
+        withInstall
+        codePath="components/ui/dual-range-slider.tsx"
+        withEnd
+        installScript="npm i @radix-ui/react-slider"
+      />
 
       <PageSubTitle>Usage</PageSubTitle>
       <Usage
