@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Website
+    url: https://shadcnui-expansions.typeart.cc
+    about: If you can't get something to work the way you expect, open an issue.
