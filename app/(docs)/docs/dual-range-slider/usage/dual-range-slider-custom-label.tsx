@@ -10,7 +10,7 @@ const DualRangeSliderCustomLabel = () => {
   return (
     <div className="w-full space-y-5 px-10">
       <DualRangeSlider
-        label={(value) => value}
+        label={(value) => <span>{value}℃</span>}
         value={values}
         onValueChange={setValues}
         min={0}
