@@ -8,6 +8,7 @@ interface DocumentationChild {
   label: string;
   value: string;
   url: string;
+  new?: boolean;
 }
 
 export const DOCS: Documentation[] = [
@@ -33,6 +34,12 @@ export const DOCS: Documentation[] = [
       },
       { label: 'Blockquote', value: 'blockquote', url: '/docs/blockquote' },
       { label: 'Datetime Picker', value: 'datetime-picker', url: '/docs/datetime-picker' },
+      {
+        label: 'Dual Range Slider',
+        value: 'dual-range-slider',
+        url: '/docs/dual-range-slider',
+        new: true,
+      },
       {
         label: 'Floating Label Input',
         value: 'floating-label-input',
