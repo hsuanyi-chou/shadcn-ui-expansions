@@ -23,6 +23,7 @@ Just copy and paste to your project and customize to your needs. The code is you
 - [x] [Multiple Selector](components/ui/multiple-selector.tsx)
 - [x] [Datetime picker](components/ui/datetime-picker.tsx)
 - [x] [Spinner](components/ui/spinner.tsx)
+- [x] [Dual Range Slider](components/ui/dual-range-slider.tsx)
 - [ ] Scrollable tabs 🚧
 - [ ] Daterange picker 🚧
 

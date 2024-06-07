@@ -11,13 +11,16 @@ const LeftSide = () => {
         <div className="flex flex-col gap-1" key={component.groupKey}>
           <h2 className="text-lg font-extrabold">{component.groupValue}</h2>
           {component.children.map((child) => (
-            <LeftSideLink href={child.url} key={child.value}>
-              {child.label}
-            </LeftSideLink>
+            <span className="flex items-center gap-1" key={child.label}>
+              <LeftSideLink href={child.url} key={child.value}>
+                {child.label}
+              </LeftSideLink>
+              {child.new && <span className="text-xs text-red-500 dark:text-red-300">NEW</span>}
+            </span>
           ))}
         </div>
       ))}
-      <BuyMeCoffee className="mt-32 mb-10" />
+      <BuyMeCoffee className="mb-10 mt-32" />
       <AdLeftSide />
     </aside>
   );

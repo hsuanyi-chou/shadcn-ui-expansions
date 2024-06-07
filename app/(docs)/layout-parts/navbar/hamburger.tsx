@@ -20,9 +20,12 @@ const Hamburger = () => {
             <div className="flex flex-col gap-1" key={component.groupKey}>
               <h2 className="text-lg font-extrabold">{component.groupValue}</h2>
               {component.children.map((child) => (
-                <LeftSideLink href={child.url} key={child.value} onClick={() => setOpen(false)}>
-                  {child.label}
-                </LeftSideLink>
+                <span className="flex items-center gap-2" key={child.label}>
+                  <LeftSideLink href={child.url} key={child.value} onClick={() => setOpen(false)}>
+                    {child.label}
+                  </LeftSideLink>
+                  {child.new && <span className="text-xs text-red-500 dark:text-red-300">NEW</span>}
+                </span>
               ))}
             </div>
           ))}
