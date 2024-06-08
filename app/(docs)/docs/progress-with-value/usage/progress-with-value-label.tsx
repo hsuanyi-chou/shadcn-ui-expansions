@@ -4,14 +4,6 @@ import { ProgressWithValue } from '@/components/ui/progress-with-value';
 
 const PERCENTAGE = [0, 10, 15, 30, 45, 50, 65, 80, 90, 100];
 
-const DEMO: Array<'start' | 'start-outside' | 'follow' | 'end' | 'end-outside'> = [
-  'follow',
-  'start',
-  'end',
-  'start-outside',
-  'end-outside',
-];
-
 const LABEL_DEMOS = [
   {
     title: 'No Label',
