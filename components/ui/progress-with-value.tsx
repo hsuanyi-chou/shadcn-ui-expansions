@@ -16,14 +16,14 @@ const ProgressWithValue = React.forwardRef<
   React.ElementRef<typeof ProgressPrimitive.Root>,
   ProgressWithValueProps
 >(({ className, valueClassName, value, position = 'end', label, ...props }, ref) => {
-  const valueCommonClass = cn('absolute top-0 left-0 h-full px-4 w-full items-center hidden');
+  const valueCommonClass = cn('absolute -top-0.5 left-0 h-fit px-4 w-full items-center hidden');
 
   const ProgressValue = () => (
     <span
       className={cn(
         'hidden',
         position === 'start-outside' && 'block text-primary',
-        position === 'follow' && 'flex justify-end text-primary-foreground',
+        position === 'follow' && cn(valueCommonClass, 'flex justify-end text-primary-foreground'),
         position === 'start' && cn(valueCommonClass, 'flex justify-start text-primary-foreground'),
         position === 'end' && cn(valueCommonClass, 'flex justify-end text-primary'),
         position === 'end-outside' && 'block text-primary',

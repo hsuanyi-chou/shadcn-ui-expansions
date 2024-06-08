@@ -8,6 +8,7 @@ import Usage from '@/app/(docs)/docs/components/usage';
 import { Reference, ReferenceBorder } from '@/app/(docs)/docs/components/reference';
 import ProgressWithValueDemo from '@/app/(docs)/docs/progress-with-value/progress-with-value-demo';
 import ProgressWithValuePosition from '@/app/(docs)/docs/progress-with-value/usage/progress-with-value-position';
+import ProgressWithValueLabel from '@/app/(docs)/docs/progress-with-value/usage/progress-with-value-label';
 
 export const metadata: Metadata = baseMetadata({
   title: 'Progress With Value',
@@ -41,6 +42,12 @@ const DualRangeSliderPage = () => {
         path="app/(docs)/docs/progress-with-value/usage/progress-with-value-position.tsx"
       >
         <ProgressWithValuePosition />
+      </Usage>
+      <Usage
+        title="Custom Label"
+        path="app/(docs)/docs/progress-with-value/usage/progress-with-value-label.tsx"
+      >
+        <ProgressWithValueLabel />
       </Usage>
     </PageTemplate>
   );
