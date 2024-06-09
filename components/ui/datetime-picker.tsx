@@ -217,7 +217,7 @@ function DateField(props: AriaDatePickerProps<DateValue>) {
     locale,
     createCalendar,
   });
-  const { fieldProps } = useDateField(props, state, ref);
+  const { fieldProps } = useDateField({ ...props, 'aria-label': 'date-field' }, state, ref);
 
   return (
     <div
@@ -247,7 +247,7 @@ function TimeField(props: AriaTimeFieldProps<TimeValue>) {
   const {
     fieldProps: { ...fieldProps },
     labelProps,
-  } = useTimeField(props, state, ref);
+  } = useTimeField({ ...props, 'aria-label': 'time-field' }, state, ref);
 
   return (
     <div
@@ -310,7 +310,7 @@ const DateTimePicker = React.forwardRef<
     buttonProps: _buttonProps,
     dialogProps,
     calendarProps,
-  } = useDatePicker(props, state, divRef);
+  } = useDatePicker({ ...props, 'aria-label': 'date-picker' }, state, divRef);
   const { buttonProps } = useButton(_buttonProps, buttonRef);
 
   const currentValue = useCallback(() => {
