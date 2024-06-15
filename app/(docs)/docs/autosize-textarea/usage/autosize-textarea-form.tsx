@@ -15,6 +15,7 @@ import {
 import { toast } from '@/components/ui/use-toast';
 import { AutosizeTextarea } from '@/components/ui/autosize-textarea';
 import { LoadingButton } from '@/components/ui/loading-button';
+import { useState } from 'react';
 
 const FormSchema = z.object({
   bio: z.string().min(10, {
@@ -32,6 +33,8 @@ const AutosizeTextareaForm = () => {
     resolver: zodResolver(FormSchema),
   });
 
+  const [isClearBio, setIsClearBio] = useState(false);
+
   const [loading, setLoading] = React.useState(false);
 
   function onSubmit(data: z.infer<typeof FormSchema>) {
@@ -47,12 +50,28 @@ const AutosizeTextareaForm = () => {
           </pre>
         ),
       });
+      if (isClearBio) {
+        form.setValue('bio', '');
+      }
     }, 500);
   }
 
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="w-2/3 space-y-6">
+        <span className="flex gap-2">
+          <input
+            type="checkbox"
+            id="should-clear-bio"
+            className="cursor-pointer"
+            checked={isClearBio}
+            onChange={() => setIsClearBio((pre) => !pre)}
+          />
+          <label htmlFor="should-clear-bio" className="cursor-pointer">
+            Clear bio after submit.
+          </label>
+        </span>
+
         <FormField
           control={form.control}
           name="bio"
