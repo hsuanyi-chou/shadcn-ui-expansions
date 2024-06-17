@@ -219,9 +219,9 @@ const MultipleSelector = React.forwardRef<MultipleSelectorRef, MultipleSelectorP
         if (input) {
           if (e.key === 'Delete' || e.key === 'Backspace') {
             if (input.value === '' && selected.length > 0) {
-              const lastSelectOption  = selected[selected.length - 1];
+              const lastSelectOption = selected[selected.length - 1];
               // If last item is fixed, we should not remove it.
-              if(!lastSelectOption.fixed) {
+              if (!lastSelectOption.fixed) {
                 handleUnselect(selected[selected.length - 1]);
               }
             }
@@ -448,6 +448,10 @@ const MultipleSelector = React.forwardRef<MultipleSelectorRef, MultipleSelectorP
                 inputProps?.className,
               )}
             />
+            {/* Delete all button */}
+            <button onClick={() => setSelected([])} className={cn(selected.length < 1 && 'hidden')}>
+              <X />
+            </button>
           </div>
         </div>
         <div className="relative">
