@@ -451,17 +451,18 @@ const MultipleSelector = React.forwardRef<MultipleSelectorRef, MultipleSelectorP
                 inputProps?.className,
               )}
             />
-            {!hideClearAllButton && (
-              <button
-                onClick={() => setSelected(selected.filter((s) => s.fixed))}
-                className={cn(
+            <button
+              onClick={() => setSelected(selected.filter((s) => s.fixed))}
+              className={cn(
+                (hideClearAllButton ||
+                  disabled ||
                   selected.length < 1 ||
-                    (selected.filter((s) => s.fixed).length === selected.length && 'hidden'),
-                )}
-              >
-                <X />
-              </button>
-            )}
+                  selected.filter((s) => s.fixed).length === selected.length) &&
+                  'hidden',
+              )}
+            >
+              <X />
+            </button>
           </div>
         </div>
         <div className="relative">
