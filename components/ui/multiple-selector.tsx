@@ -69,6 +69,8 @@ interface MultipleSelectorProps {
     React.ComponentPropsWithoutRef<typeof CommandPrimitive.Input>,
     'value' | 'placeholder' | 'disabled'
   >;
+  /** hide the clear all button. */
+  hideClearAllButton?: boolean;
 }
 
 export interface MultipleSelectorRef {
@@ -180,6 +182,7 @@ const MultipleSelector = React.forwardRef<MultipleSelectorRef, MultipleSelectorP
       triggerSearchOnFocus = false,
       commandProps,
       inputProps,
+      hideClearAllButton = false,
     }: MultipleSelectorProps,
     ref: React.Ref<MultipleSelectorRef>,
   ) => {
@@ -448,10 +451,17 @@ const MultipleSelector = React.forwardRef<MultipleSelectorRef, MultipleSelectorP
                 inputProps?.className,
               )}
             />
-            {/* Delete all button */}
-            <button onClick={() => setSelected([])} className={cn(selected.length < 1 && 'hidden')}>
-              <X />
-            </button>
+            {!hideClearAllButton && (
+              <button
+                onClick={() => setSelected(selected.filter((s) => s.fixed))}
+                className={cn(
+                  selected.length < 1 ||
+                    (selected.filter((s) => s.fixed).length === selected.length && 'hidden'),
+                )}
+              >
+                <X />
+              </button>
+            )}
           </div>
         </div>
         <div className="relative">
