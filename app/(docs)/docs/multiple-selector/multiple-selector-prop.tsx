@@ -310,4 +310,16 @@ export const multipleSelectorProp: Props[] = [
     ),
     type: "Omit<React.ComponentPropsWithoutRef<typeof CommandPrimitive.Input>,'value' | 'placeholder' | 'disabled' >",
   },
+  {
+    prop: 'hideClearAllButton',
+    required: false,
+    description: (
+      <>
+        <p>
+          Hide the <InlineCode>Clear All</InlineCode> button.
+        </p>
+      </>
+    ),
+    type: 'boolean',
+  },
 ];

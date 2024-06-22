@@ -30,6 +30,7 @@ import MultipleSelectorRef from '@/app/(docs)/docs/multiple-selector/usage/multi
 import MultipleSelectorCommandProps from '@/app/(docs)/docs/multiple-selector/usage/multiple-selector-commandprops';
 import MultipleSelectorWithAsyncSearchAndOnFocus from '@/app/(docs)/docs/multiple-selector/usage/multiple-selector-with-async-search-and-onfocus';
 import MultipleSelectorManuallyControlledOptions from '@/app/(docs)/docs/multiple-selector/usage/multiple-selector-manually-controlled-options';
+import MultipleSelectorHideClearAll from '@/app/(docs)/docs/multiple-selector/usage/multiple-selector-hide-clear-all';
 
 export const metadata: Metadata = baseMetadata({
   title: 'Multiple Selector',
@@ -169,6 +170,12 @@ const MultipleSelectorPage = () => {
         path="app/(docs)/docs//multiple-selector/usage/multiple-selector-controlled.tsx"
       >
         <MultipleSelectorControlled />
+      </Usage>
+      <Usage
+        title="Hide Clear All Button"
+        path="app/(docs)/docs//multiple-selector/usage/multiple-selector-hide-clear-all.tsx"
+      >
+        <MultipleSelectorHideClearAll />
       </Usage>
       <Usage
         title="Creatable Selector"
