@@ -1,13 +1,13 @@
 'use client';
 
-import * as React from 'react';
-import { forwardRef, useEffect } from 'react';
 import { Command as CommandPrimitive, useCommandState } from 'cmdk';
 import { X } from 'lucide-react';
+import * as React from 'react';
+import { forwardRef, useEffect } from 'react';
 
-import { cn } from '@/lib/utils';
 import { Badge } from '@/components/ui/badge';
 import { Command, CommandGroup, CommandItem, CommandList } from '@/components/ui/command';
+import { cn } from '@/lib/utils';
 
 export interface Option {
   value: string;
@@ -123,7 +123,7 @@ function removePickedOption(groupOption: GroupOption, picked: Option[]) {
 }
 
 function isOptionsExist(groupOption: GroupOption, targetOption: Option[]) {
-  for (const [key, value] of Object.entries(groupOption)) {
+  for (const [, value] of Object.entries(groupOption)) {
     if (value.some((option) => targetOption.find((p) => p.value === option.value))) {
       return true;
     }
@@ -452,6 +452,7 @@ const MultipleSelector = React.forwardRef<MultipleSelectorRef, MultipleSelectorP
               )}
             />
             <button
+              type="button"
               onClick={() => setSelected(selected.filter((s) => s.fixed))}
               className={cn(
                 (hideClearAllButton ||
