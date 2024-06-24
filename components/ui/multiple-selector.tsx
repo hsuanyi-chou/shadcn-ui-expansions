@@ -188,6 +188,7 @@ const MultipleSelector = React.forwardRef<MultipleSelectorRef, MultipleSelectorP
   ) => {
     const inputRef = React.useRef<HTMLInputElement>(null);
     const [open, setOpen] = React.useState(false);
+    const mouseOn = React.useRef<boolean>(false);
     const [isLoading, setIsLoading] = React.useState(false);
 
     const [selected, setSelected] = React.useState<Option[]>(value || []);
@@ -432,7 +433,9 @@ const MultipleSelector = React.forwardRef<MultipleSelectorRef, MultipleSelectorP
                 inputProps?.onValueChange?.(value);
               }}
               onBlur={(event) => {
-                setOpen(false);
+                if (mouseOn.current === false) {
+                  setOpen(false);
+                }
                 inputProps?.onBlur?.(event);
               }}
               onFocus={(event) => {
@@ -468,7 +471,18 @@ const MultipleSelector = React.forwardRef<MultipleSelectorRef, MultipleSelectorP
         </div>
         <div className="relative">
           {open && (
-            <CommandList className="absolute top-1 z-10 w-full rounded-md border bg-popover text-popover-foreground shadow-md outline-none animate-in">
+            <CommandList
+              className="absolute top-1 z-10 w-full rounded-md border bg-popover text-popover-foreground shadow-md outline-none animate-in"
+              onMouseLeave={() => {
+                mouseOn.current = false;
+              }}
+              onMouseEnter={() => {
+                mouseOn.current = true;
+              }}
+              onMouseUp={() => {
+                inputRef.current?.focus();
+              }}
+            >
               {isLoading ? (
                 <>{loadingIndicator}</>
               ) : (
