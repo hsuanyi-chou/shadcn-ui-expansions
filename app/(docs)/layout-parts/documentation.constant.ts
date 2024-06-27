@@ -62,6 +62,12 @@ export const DOCS: Documentation[] = [
         url: '/docs/progress-with-value',
         new: true,
       },
+      {
+        label: 'Responsive Modal',
+        value: 'responsive-modal',
+        url: '/docs/responsive-modal',
+        new: true,
+      },
       { label: 'Multiple Selector', value: 'multipleSelector', url: '/docs/multiple-selector' },
       { label: 'Spinner', value: 'spinner', url: '/docs/spinner' },
     ],
