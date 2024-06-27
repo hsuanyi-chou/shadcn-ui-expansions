@@ -25,7 +25,7 @@ Just copy and paste to your project and customize to your needs. The code is you
 - [x] [Spinner](components/ui/spinner.tsx)
 - [x] [Dual Range Slider](components/ui/dual-range-slider.tsx)
 - [x] [Progress With Value](components/ui/progress-with-value.tsx)
-- [ ] Daterange picker 🚧
+- [x] [Responsive Modal](components/ui/responsive-modal.tsx)
 
 ## Contributing
 
