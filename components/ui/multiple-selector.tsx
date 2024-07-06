@@ -387,7 +387,7 @@ const MultipleSelector = React.forwardRef<MultipleSelectorRef, MultipleSelectorP
             inputRef.current?.focus();
           }}
         >
-          <div className="flex flex-wrap gap-1">
+          <div className="relative flex flex-wrap gap-1">
             {selected.map((option) => {
               return (
                 <Badge
@@ -456,8 +456,12 @@ const MultipleSelector = React.forwardRef<MultipleSelectorRef, MultipleSelectorP
             />
             <button
               type="button"
-              onClick={() => setSelected(selected.filter((s) => s.fixed))}
+              onClick={() => {
+                setSelected(selected.filter((s) => s.fixed))
+                onChange?.(selected.filter((s) => s.fixed))
+              }}
               className={cn(
+                "absolute right-0 h-6 w-6 p-0",
                 (hideClearAllButton ||
                   disabled ||
                   selected.length < 1 ||
