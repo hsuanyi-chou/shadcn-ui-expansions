@@ -1,6 +1,6 @@
 'use client';
 import * as React from 'react';
-import { ReactHTMLElement, useImperativeHandle, useRef } from 'react';
+import { useImperativeHandle, useRef } from 'react';
 import { add, format } from 'date-fns';
 import { Calendar as CalendarIcon, ChevronLeft, ChevronRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
@@ -499,6 +499,11 @@ interface TimePickerProps {
   date?: Date | null;
   onChange?: (date: Date | undefined) => void;
   hourCycle?: 12 | 24;
+  /**
+   * Determines the smallest unit that is displayed in the datetime picker.
+   * Default is 'second'.
+   * */
+  granularity?: Granularity;
 }
 
 interface TimePickerRef {
@@ -508,7 +513,7 @@ interface TimePickerRef {
 }
 
 const TimePicker = React.forwardRef<TimePickerRef, TimePickerProps>(
-  ({ date, onChange, hourCycle = 24 }, ref) => {
+  ({ date, onChange, hourCycle = 24, granularity = 'second' }, ref) => {
     const minuteRef = React.useRef<HTMLInputElement>(null);
     const hourRef = React.useRef<HTMLInputElement>(null);
     const secondRef = React.useRef<HTMLInputElement>(null);
@@ -540,24 +545,32 @@ const TimePicker = React.forwardRef<TimePickerRef, TimePickerProps>(
           period={period}
           onRightFocus={() => minuteRef.current?.focus()}
         />
-        :
-        <TimePickerInput
-          picker="minutes"
-          date={date}
-          onDateChange={onChange}
-          ref={minuteRef}
-          onLeftFocus={() => hourRef.current?.focus()}
-          onRightFocus={() => secondRef.current?.focus()}
-        />
-        :
-        <TimePickerInput
-          picker="seconds"
-          date={date}
-          onDateChange={onChange}
-          ref={secondRef}
-          onLeftFocus={() => minuteRef.current?.focus()}
-          onRightFocus={() => periodRef.current?.focus()}
-        />
+        {(granularity === 'minute' || granularity === 'second') && (
+          <>
+            :
+            <TimePickerInput
+              picker="minutes"
+              date={date}
+              onDateChange={onChange}
+              ref={minuteRef}
+              onLeftFocus={() => hourRef.current?.focus()}
+              onRightFocus={() => secondRef.current?.focus()}
+            />
+          </>
+        )}
+        {granularity === 'second' && (
+          <>
+            :
+            <TimePickerInput
+              picker="seconds"
+              date={date}
+              onDateChange={onChange}
+              ref={secondRef}
+              onLeftFocus={() => minuteRef.current?.focus()}
+              onRightFocus={() => periodRef.current?.focus()}
+            />
+          </>
+        )}
         {hourCycle === 12 && (
           <div className="grid gap-1 text-center">
             <TimePeriodSelect
@@ -583,6 +596,8 @@ const TimePicker = React.forwardRef<TimePickerRef, TimePickerProps>(
 );
 TimePicker.displayName = 'TimePicker';
 
+type Granularity = 'day' | 'hour' | 'minute' | 'second';
+
 type DateTimePickerProps = {
   date?: Date;
   onChange?: (date: Date | undefined) => void;
@@ -600,6 +615,7 @@ type DateTimePickerProps = {
    * @reference https://date-fns.org/v3.6.0/docs/format
    **/
   displayFormat?: { hour24?: string; hour12?: string };
+  granularity?: Granularity;
 } & Pick<CalendarProps, 'locale' | 'weekStartsOn' | 'showWeekNumber' | 'showOutsideDays'>;
 
 type DateTimePickerRef = {
@@ -616,6 +632,7 @@ const DateTimePicker = React.forwardRef<DateTimePickerRef, DateTimePickerProps>(
       yearRange = 50,
       disabled = false,
       displayFormat,
+      granularity = 'second',
       ...props
     },
     ref,
@@ -687,9 +704,16 @@ const DateTimePicker = React.forwardRef<DateTimePickerRef, DateTimePickerProps>(
             locale={locale}
             {...props}
           />
-          <div className="border-t border-border p-3">
-            <TimePicker onChange={onChange} date={date} hourCycle={hourCycle} />
-          </div>
+          {granularity !== 'day' && (
+            <div className="border-t border-border p-3">
+              <TimePicker
+                onChange={onChange}
+                date={date}
+                hourCycle={hourCycle}
+                granularity={granularity}
+              />
+            </div>
+          )}
         </PopoverContent>
       </Popover>
     );
