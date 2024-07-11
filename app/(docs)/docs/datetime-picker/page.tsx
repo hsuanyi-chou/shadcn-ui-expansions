@@ -18,6 +18,7 @@ import DatetimePickerCalendarSettings from '@/app/(docs)/docs/datetime-picker/us
 import DatetimePickerGranularity from '@/app/(docs)/docs/datetime-picker/usage/datetime-picker-granularity';
 import DatetimePickerYearRange from '@/app/(docs)/docs/datetime-picker/usage/datetime-picker-year-range';
 import DatetimePickerDisplayFormat from '@/app/(docs)/docs/datetime-picker/usage/datetime-picker-display-format';
+import DatetimePickerLocale from '@/app/(docs)/docs/datetime-picker/usage/datetime-picker-locale';
 
 export const metadata: Metadata = baseMetadata({
   title: 'Datetime Picker',
@@ -87,6 +88,23 @@ const DatetimePickerPage = () => {
         path="app/(docs)/docs/datetime-picker/usage/datetime-picker-year-range.tsx"
       >
         <DatetimePickerYearRange />
+      </Usage>
+
+      <Usage
+        title="Locale"
+        path="app/(docs)/docs/datetime-picker/usage/datetime-picker-locale.tsx"
+        description={
+          <>
+            <P className="text-muted-foreground">
+              Import locale from{' '}
+              <PropLink href="https://date-fns.org/v3.6.0/docs/I18n-Contribution-Guide">
+                <InlineCode>date-fns</InlineCode>
+              </PropLink>
+            </P>
+          </>
+        }
+      >
+        <DatetimePickerLocale />
       </Usage>
 
       <Usage
