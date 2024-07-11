@@ -634,7 +634,7 @@ function DateTimePicker({
         >
           <CalendarIcon className="mr-2 h-4 w-4" />
           {date ? (
-            format(date, hourCycle === 24 ? 'PPP HH:mm:ss' : 'PPP hh:mm:ss bb', { locale })
+            format(date, hourCycle === 24 ? 'PPP HH:mm:ss' : 'PP hh:mm:ss b', { locale })
           ) : (
             <span>Pick a date</span>
           )}
@@ -648,6 +648,7 @@ function DateTimePicker({
           onSelect={(d) => handleSelect(d)}
           onMonthChange={handleSelect}
           initialFocus
+          yearRange={yearRange}
           locale={locale}
         />
         <div className="border-t border-border p-3">
