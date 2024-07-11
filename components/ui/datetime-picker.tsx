@@ -2,15 +2,15 @@
 import * as React from 'react';
 import { useImperativeHandle } from 'react';
 import { add, format } from 'date-fns';
-import { Calendar as CalendarIcon } from 'lucide-react';
+import { Calendar as CalendarIcon, ChevronLeft, ChevronRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Input } from '@/components/ui/input';
-import { Button } from '@/components/ui/button';
-import { Calendar } from '@/components/ui/calendar';
+import { Button, buttonVariants } from '@/components/ui/button';
+import { CalendarProps } from '@/components/ui/calendar';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { Clock } from 'lucide-react';
-import { enUS } from 'date-fns/locale';
-import { Locale } from 'date-fns/locale';
+import { enUS, Locale } from 'date-fns/locale';
+
 import {
   Select,
   SelectContent,
@@ -18,6 +18,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
+import { DayPicker } from 'react-day-picker';
 
 // ---------- utils start ----------
 /**
@@ -210,7 +211,87 @@ function display12HourValue(hours: number) {
   return `0${hours % 12}`;
 }
 
+function genMonths(locale: Locale) {
+  return Array.from({ length: 12 }, (_, i) => ({
+    value: i,
+    label: format(new Date(2021, i), 'MMMM', { locale }),
+  }));
+}
+
 // ---------- utils end ----------
+
+function Calendar({ className, classNames, showOutsideDays = true, ...props }: CalendarProps) {
+  const MONTHS = React.useMemo(() => genMonths(props.locale || enUS), []);
+  return (
+    <DayPicker
+      showOutsideDays={showOutsideDays}
+      className={cn('p-3', className)}
+      classNames={{
+        months: 'flex flex-col sm:flex-row space-y-4 sm:space-x-4 sm:space-y-0 justify-center',
+        month: 'space-y-4',
+        caption: 'flex justify-center pt-1 relative items-center',
+        caption_label: 'text-sm font-medium',
+        nav: 'space-x-1 flex items-center',
+        nav_button: cn(
+          buttonVariants({ variant: 'outline' }),
+          'h-7 w-7 bg-transparent p-0 opacity-50 hover:opacity-100',
+        ),
+        nav_button_previous: 'absolute left-1',
+        nav_button_next: 'absolute right-1',
+        table: 'w-full border-collapse space-y-1',
+        head_row: 'flex',
+        head_cell: 'text-muted-foreground rounded-md w-9 font-normal text-[0.8rem]',
+        row: 'flex w-full mt-2',
+        cell: 'h-9 w-9 text-center text-sm p-0 relative [&:has([aria-selected].day-range-end)]:rounded-r-md [&:has([aria-selected].day-outside)]:bg-accent/50 [&:has([aria-selected])]:bg-accent first:[&:has([aria-selected])]:rounded-l-md last:[&:has([aria-selected])]:rounded-r-md focus-within:relative focus-within:z-20',
+        day: cn(
+          buttonVariants({ variant: 'ghost' }),
+          'h-9 w-9 p-0 font-normal aria-selected:opacity-100',
+        ),
+        day_range_end: 'day-range-end',
+        day_selected:
+          'bg-primary text-primary-foreground hover:bg-primary hover:text-primary-foreground focus:bg-primary focus:text-primary-foreground',
+        day_today: 'bg-accent text-accent-foreground',
+        day_outside:
+          'day-outside text-muted-foreground opacity-50 aria-selected:bg-accent/50 aria-selected:text-muted-foreground aria-selected:opacity-30',
+        day_disabled: 'text-muted-foreground opacity-50',
+        day_range_middle: 'aria-selected:bg-accent aria-selected:text-accent-foreground',
+        day_hidden: 'invisible',
+        ...classNames,
+      }}
+      components={{
+        IconLeft: ({ ...props }) => <ChevronLeft className="h-4 w-4" />,
+        IconRight: ({ ...props }) => <ChevronRight className="h-4 w-4" />,
+        CaptionLabel: ({ displayMonth }) => {
+          return (
+            <div>
+              <Select
+                defaultValue={displayMonth.getMonth().toString()}
+                onValueChange={(value) => {
+                  const newDate = new Date(displayMonth);
+                  newDate.setMonth(parseInt(value, 10));
+                  props.onMonthChange?.(newDate);
+                }}
+              >
+                <SelectTrigger className="w-fit border-none focus:bg-accent focus:text-accent-foreground">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  {MONTHS.map((month) => (
+                    <SelectItem key={month.value} value={month.value.toString()}>
+                      {month.label}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+          );
+        },
+      }}
+      {...props}
+    />
+  );
+}
+Calendar.displayName = 'Calendar';
 
 interface PeriodSelectorProps {
   period: Period;
@@ -347,7 +428,6 @@ const TimePickerInput = React.forwardRef<HTMLInputElement, TimePickerInputProps>
         if (flag) onRightFocus?.();
         setFlag((prev) => !prev);
         const tempDate = date ? new Date(date) : new Date();
-        console.log(tempDate, newValue, picker, period);
         onDateChange?.(setDateByType(tempDate, newValue, picker, period));
       }
     };
@@ -413,7 +493,7 @@ const TimePicker = React.forwardRef<TimePickerRef, TimePickerProps>(
 
     return (
       <div className="flex items-center gap-2">
-        <label htmlFor="datetime-picker-hour-input">
+        <label htmlFor="datetime-picker-hour-input" className="cursor-pointer">
           <Clock className="mr-2 h-4 w-4" />
         </label>
         <TimePickerInput
@@ -476,6 +556,7 @@ interface DateTimePickerProps {
 }
 
 function DateTimePicker({ locale = enUS, date, onChange, hourCycle = 24 }: DateTimePickerProps) {
+  const [month, setMonth] = React.useState<Date>(date ?? new Date());
   /**
    * carry over the current time when a user clicks a new day
    * instead of resetting to 00:00
@@ -484,14 +565,15 @@ function DateTimePicker({ locale = enUS, date, onChange, hourCycle = 24 }: DateT
     if (!newDay) return;
     if (!date) {
       onChange?.(newDay);
+      setMonth(newDay);
       return;
     }
     const diff = newDay.getTime() - date.getTime();
     const diffInDays = diff / (1000 * 60 * 60 * 24);
     const newDateFull = add(date, { days: Math.ceil(diffInDays) });
     onChange?.(newDateFull);
+    setMonth(newDateFull);
   };
-
   return (
     <Popover>
       <PopoverTrigger asChild>
@@ -511,7 +593,15 @@ function DateTimePicker({ locale = enUS, date, onChange, hourCycle = 24 }: DateT
         </Button>
       </PopoverTrigger>
       <PopoverContent className="w-auto p-0">
-        <Calendar mode="single" selected={date} onSelect={(d) => handleSelect(d)} initialFocus />
+        <Calendar
+          mode="single"
+          selected={date}
+          month={month}
+          onSelect={(d) => handleSelect(d)}
+          onMonthChange={handleSelect}
+          initialFocus
+          locale={locale}
+        />
         <div className="border-t border-border p-3">
           <TimePicker onChange={onChange} date={date} hourCycle={hourCycle} />
         </div>
