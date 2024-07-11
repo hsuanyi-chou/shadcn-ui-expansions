@@ -3,7 +3,7 @@ import React from 'react';
 import { DateTimePicker } from '@/components/ui/datetime-picker';
 
 const DatetimePickerCalendarSettings = () => {
-  const [date, setDate] = React.useState<Date | undefined>(new Date());
+  const [date, setDate] = React.useState<Date | undefined>(undefined);
 
   return (
     <div className="flex flex-col gap-3 lg:flex-row lg:gap-10">

@@ -15,7 +15,7 @@ import { PropLink } from '@/app/(docs)/docs/components/props-table/prop-link';
 import DatetimePickerForm from '@/app/(docs)/docs/datetime-picker/usage/datetime-picker-form';
 import DatetimePickerRef from '@/app/(docs)/docs/datetime-picker/usage/datetime-picker-ref';
 import DatetimePickerCalendarSettings from '@/app/(docs)/docs/datetime-picker/usage/datetime-picker-calendar-settings';
-import DatetimePickerHiddenClearButton from '@/app/(docs)/docs/datetime-picker/usage/datetime-picker-hidden-clear-button';
+import DatetimePickerGranularity from '@/app/(docs)/docs/datetime-picker/usage/datetime-picker-granularity';
 import DatetimePickerYearRange from '@/app/(docs)/docs/datetime-picker/usage/datetime-picker-year-range';
 
 export const metadata: Metadata = baseMetadata({
@@ -89,10 +89,10 @@ const DatetimePickerPage = () => {
       </Usage>
 
       <Usage
-        title="Hide clear button"
-        path="app/(docs)/docs/datetime-picker/usage/datetime-picker-hidden-clear-button.tsx"
+        title="Granularity"
+        path="app/(docs)/docs/datetime-picker/usage/datetime-picker-granularity.tsx"
       >
-        <DatetimePickerHiddenClearButton />
+        <DatetimePickerGranularity />
       </Usage>
 
       <Usage title="Ref" path="app/(docs)/docs/datetime-picker/usage/datetime-picker-ref.tsx">
