@@ -13,10 +13,10 @@ import { P } from '@/components/ui/heading-with-anchor';
 import { InlineCode } from '@/components/ui/inline-code';
 import { PropLink } from '@/app/(docs)/docs/components/props-table/prop-link';
 import DatetimePickerForm from '@/app/(docs)/docs/datetime-picker/usage/datetime-picker-form';
-import DatetimePickerControlled from '@/app/(docs)/docs/datetime-picker/usage/datetime-picker-controlled';
 import DatetimePickerRef from '@/app/(docs)/docs/datetime-picker/usage/datetime-picker-ref';
 import DatetimePickerOpen from '@/app/(docs)/docs/datetime-picker/usage/datetime-picker-open';
 import DatetimePickerHiddenClearButton from '@/app/(docs)/docs/datetime-picker/usage/datetime-picker-hidden-clear-button';
+import DatetimePickerYearRange from '@/app/(docs)/docs/datetime-picker/usage/datetime-picker-year-range';
 
 export const metadata: Metadata = baseMetadata({
   title: 'Datetime Picker',
@@ -82,10 +82,10 @@ const DatetimePickerPage = () => {
       </Usage>
 
       <Usage
-        title="Controlled component"
-        path="app/(docs)/docs/datetime-picker/usage/datetime-picker-controlled.tsx"
+        title="Year Dropdown Range"
+        path="app/(docs)/docs/datetime-picker/usage/datetime-picker-year-range.tsx"
       >
-        <DatetimePickerControlled />
+        <DatetimePickerYearRange />
       </Usage>
 
       <Usage
