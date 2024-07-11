@@ -599,7 +599,7 @@ TimePicker.displayName = 'TimePicker';
 type Granularity = 'day' | 'hour' | 'minute' | 'second';
 
 type DateTimePickerProps = {
-  date?: Date;
+  value?: Date;
   onChange?: (date: Date | undefined) => void;
   hourCycle?: 12 | 24;
   /**
@@ -619,14 +619,14 @@ type DateTimePickerProps = {
 } & Pick<CalendarProps, 'locale' | 'weekStartsOn' | 'showWeekNumber' | 'showOutsideDays'>;
 
 type DateTimePickerRef = {
-  date?: Date;
-} & HTMLButtonElement;
+  value?: Date;
+} & Omit<HTMLButtonElement, 'value'>;
 
 const DateTimePicker = React.forwardRef<DateTimePickerRef, DateTimePickerProps>(
   (
     {
       locale = enUS,
-      date,
+      value,
       onChange,
       hourCycle = 24,
       yearRange = 50,
@@ -637,7 +637,7 @@ const DateTimePicker = React.forwardRef<DateTimePickerRef, DateTimePickerProps>(
     },
     ref,
   ) => {
-    const [month, setMonth] = React.useState<Date>(date ?? new Date());
+    const [month, setMonth] = React.useState<Date>(value ?? new Date());
     const buttonRef = useRef<HTMLButtonElement>(null);
     /**
      * carry over the current time when a user clicks a new day
@@ -645,14 +645,14 @@ const DateTimePicker = React.forwardRef<DateTimePickerRef, DateTimePickerProps>(
      */
     const handleSelect = (newDay: Date | undefined) => {
       if (!newDay) return;
-      if (!date) {
+      if (!value) {
         onChange?.(newDay);
         setMonth(newDay);
         return;
       }
-      const diff = newDay.getTime() - date.getTime();
+      const diff = newDay.getTime() - value.getTime();
       const diffInDays = diff / (1000 * 60 * 60 * 24);
-      const newDateFull = add(date, { days: Math.ceil(diffInDays) });
+      const newDateFull = add(value, { days: Math.ceil(diffInDays) });
       onChange?.(newDateFull);
       setMonth(newDateFull);
     };
@@ -660,10 +660,10 @@ const DateTimePicker = React.forwardRef<DateTimePickerRef, DateTimePickerProps>(
     useImperativeHandle(
       ref,
       () => ({
-        date: date,
         ...buttonRef.current!,
+        value,
       }),
-      [date],
+      [value],
     );
 
     const initHourFormat = {
@@ -678,13 +678,13 @@ const DateTimePicker = React.forwardRef<DateTimePickerRef, DateTimePickerProps>(
             variant="outline"
             className={cn(
               'w-[280px] justify-start text-left font-normal',
-              !date && 'text-muted-foreground',
+              !value && 'text-muted-foreground',
             )}
             ref={buttonRef}
           >
             <CalendarIcon className="mr-2 h-4 w-4" />
-            {date ? (
-              format(date, hourCycle === 24 ? initHourFormat.hour24 : initHourFormat.hour12, {
+            {value ? (
+              format(value, hourCycle === 24 ? initHourFormat.hour24 : initHourFormat.hour12, {
                 locale,
               })
             ) : (
@@ -695,7 +695,7 @@ const DateTimePicker = React.forwardRef<DateTimePickerRef, DateTimePickerProps>(
         <PopoverContent className="w-auto p-0">
           <Calendar
             mode="single"
-            selected={date}
+            selected={value}
             month={month}
             onSelect={(d) => handleSelect(d)}
             onMonthChange={handleSelect}
@@ -708,7 +708,7 @@ const DateTimePicker = React.forwardRef<DateTimePickerRef, DateTimePickerProps>(
             <div className="border-t border-border p-3">
               <TimePicker
                 onChange={onChange}
-                date={date}
+                date={value}
                 hourCycle={hourCycle}
                 granularity={granularity}
               />

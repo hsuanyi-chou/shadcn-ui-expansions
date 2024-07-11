@@ -11,7 +11,7 @@ const DatetimePickerRef = () => {
     <div className="space-y-3">
       <Button
         onClick={() => {
-          alert(JSON.stringify(ref.current?.date?.toLocaleString()));
+          alert(JSON.stringify(ref.current?.value?.toLocaleString()));
           /** following are the ref operations which is equivalent to button. */
           // ref.current?.focus();
           // ref.current?.blur();
@@ -20,7 +20,7 @@ const DatetimePickerRef = () => {
       >
         alert ref value
       </Button>
-      <DateTimePicker ref={ref} date={date} onChange={setDate} />
+      <DateTimePicker ref={ref} value={date} onChange={setDate} />
     </div>
   );
 };
