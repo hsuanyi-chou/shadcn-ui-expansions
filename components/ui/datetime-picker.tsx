@@ -1,6 +1,6 @@
 'use client';
 import * as React from 'react';
-import { useImperativeHandle } from 'react';
+import { ReactHTMLElement, useImperativeHandle, useRef } from 'react';
 import { add, format } from 'date-fns';
 import { Calendar as CalendarIcon, ChevronLeft, ChevronRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
@@ -602,79 +602,101 @@ type DateTimePickerProps = {
   displayFormat?: { hour24?: string; hour12?: string };
 } & Pick<CalendarProps, 'locale' | 'weekStartsOn' | 'showWeekNumber' | 'showOutsideDays'>;
 
-function DateTimePicker({
-  locale = enUS,
-  date,
-  onChange,
-  hourCycle = 24,
-  yearRange = 50,
-  disabled = false,
-  displayFormat,
-  ...props
-}: DateTimePickerProps) {
-  const [month, setMonth] = React.useState<Date>(date ?? new Date());
-  /**
-   * carry over the current time when a user clicks a new day
-   * instead of resetting to 00:00
-   */
-  const handleSelect = (newDay: Date | undefined) => {
-    if (!newDay) return;
-    if (!date) {
-      onChange?.(newDay);
-      setMonth(newDay);
-      return;
-    }
-    const diff = newDay.getTime() - date.getTime();
-    const diffInDays = diff / (1000 * 60 * 60 * 24);
-    const newDateFull = add(date, { days: Math.ceil(diffInDays) });
-    onChange?.(newDateFull);
-    setMonth(newDateFull);
-  };
+type DateTimePickerRef = {
+  date?: Date;
+} & HTMLButtonElement;
 
-  const initHourFormat = {
-    hour24: displayFormat?.hour24 ?? 'PPP HH:mm:ss',
-    hour12: displayFormat?.hour12 ?? 'PP hh:mm:ss b',
-  };
+const DateTimePicker = React.forwardRef<DateTimePickerRef, DateTimePickerProps>(
+  (
+    {
+      locale = enUS,
+      date,
+      onChange,
+      hourCycle = 24,
+      yearRange = 50,
+      disabled = false,
+      displayFormat,
+      ...props
+    },
+    ref,
+  ) => {
+    const [month, setMonth] = React.useState<Date>(date ?? new Date());
+    const buttonRef = useRef<HTMLButtonElement>(null);
+    /**
+     * carry over the current time when a user clicks a new day
+     * instead of resetting to 00:00
+     */
+    const handleSelect = (newDay: Date | undefined) => {
+      if (!newDay) return;
+      if (!date) {
+        onChange?.(newDay);
+        setMonth(newDay);
+        return;
+      }
+      const diff = newDay.getTime() - date.getTime();
+      const diffInDays = diff / (1000 * 60 * 60 * 24);
+      const newDateFull = add(date, { days: Math.ceil(diffInDays) });
+      onChange?.(newDateFull);
+      setMonth(newDateFull);
+    };
 
-  return (
-    <Popover>
-      <PopoverTrigger asChild disabled={disabled}>
-        <Button
-          variant="outline"
-          className={cn(
-            'w-[280px] justify-start text-left font-normal',
-            !date && 'text-muted-foreground',
-          )}
-        >
-          <CalendarIcon className="mr-2 h-4 w-4" />
-          {date ? (
-            format(date, hourCycle === 24 ? initHourFormat.hour24 : initHourFormat.hour12, {
-              locale,
-            })
-          ) : (
-            <span>Pick a date</span>
-          )}
-        </Button>
-      </PopoverTrigger>
-      <PopoverContent className="w-auto p-0">
-        <Calendar
-          mode="single"
-          selected={date}
-          month={month}
-          onSelect={(d) => handleSelect(d)}
-          onMonthChange={handleSelect}
-          initialFocus
-          yearRange={yearRange}
-          locale={locale}
-          {...props}
-        />
-        <div className="border-t border-border p-3">
-          <TimePicker onChange={onChange} date={date} hourCycle={hourCycle} />
-        </div>
-      </PopoverContent>
-    </Popover>
-  );
-}
+    useImperativeHandle(
+      ref,
+      () => ({
+        date: date,
+        ...buttonRef.current!,
+      }),
+      [date],
+    );
+
+    const initHourFormat = {
+      hour24: displayFormat?.hour24 ?? 'PPP HH:mm:ss',
+      hour12: displayFormat?.hour12 ?? 'PP hh:mm:ss b',
+    };
+
+    return (
+      <Popover>
+        <PopoverTrigger asChild disabled={disabled}>
+          <Button
+            variant="outline"
+            className={cn(
+              'w-[280px] justify-start text-left font-normal',
+              !date && 'text-muted-foreground',
+            )}
+            ref={buttonRef}
+          >
+            <CalendarIcon className="mr-2 h-4 w-4" />
+            {date ? (
+              format(date, hourCycle === 24 ? initHourFormat.hour24 : initHourFormat.hour12, {
+                locale,
+              })
+            ) : (
+              <span>Pick a date</span>
+            )}
+          </Button>
+        </PopoverTrigger>
+        <PopoverContent className="w-auto p-0">
+          <Calendar
+            mode="single"
+            selected={date}
+            month={month}
+            onSelect={(d) => handleSelect(d)}
+            onMonthChange={handleSelect}
+            initialFocus
+            yearRange={yearRange}
+            locale={locale}
+            {...props}
+          />
+          <div className="border-t border-border p-3">
+            <TimePicker onChange={onChange} date={date} hourCycle={hourCycle} />
+          </div>
+        </PopoverContent>
+      </Popover>
+    );
+  },
+);
+
+DateTimePicker.displayName = 'DateTimePicker';
 
 export { DateTimePicker, TimePickerInput, TimePicker };
-export type { TimePickerType };
+export type { TimePickerType, DateTimePickerProps, DateTimePickerRef };
