@@ -23,18 +23,17 @@ import DatetimePickerDisabled from '@/app/(docs)/docs/datetime-picker/usage/date
 
 export const metadata: Metadata = baseMetadata({
   title: 'Datetime Picker',
-  description:
-    'A datetime picker built on top of react-aria and react-stately for the accessible date & time components, with the shadcn-ui theming.',
+  description: 'A datetime picker built on top of shadcn-ui and no additional library needed.',
 });
 
 const DatetimePickerPage = () => {
   return (
     <PageTemplate
       title="Datetime Picker"
-      description="A datetime picker built on top of react-aria and react-stately for the accessible date & time components, with the shadcn-ui theming."
+      description="A datetime picker built on top of shadcn-ui and no additional library needed."
     >
       <ReferenceBorder>
-        <Reference href="https://react-spectrum.adobe.com/react-aria/useDatePicker.html" />
+        <Reference href="https://ui.shadcn.com/docs/components/calendar" />
       </ReferenceBorder>
 
       <PageSubTitle>About</PageSubTitle>
@@ -67,7 +66,7 @@ const DatetimePickerPage = () => {
         withInstall
         codePath="components/ui/datetime-picker.tsx"
         withEnd
-        installScript="npm i react-aria react-stately"
+        installScript="npx shadcn-ui@latest add calendar select input popover"
       />
 
       <PageSubTitle>Usage</PageSubTitle>
