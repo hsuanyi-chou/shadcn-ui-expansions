@@ -218,10 +218,26 @@ function genMonths(locale: Locale) {
   }));
 }
 
+function genYears(locale: Locale, yearRange = 50) {
+  const today = new Date();
+  return Array.from({ length: yearRange * 2 + 1 }, (_, i) => ({
+    value: today.getFullYear() - yearRange + i,
+    label: (today.getFullYear() - yearRange + i).toString(),
+  }));
+}
+
 // ---------- utils end ----------
 
-function Calendar({ className, classNames, showOutsideDays = true, ...props }: CalendarProps) {
+function Calendar({
+  className,
+  classNames,
+  showOutsideDays = true,
+  yearRange = 50,
+  ...props
+}: CalendarProps & { yearRange?: number }) {
   const MONTHS = React.useMemo(() => genMonths(props.locale || enUS), []);
+  const YEARS = React.useMemo(() => genYears(props.locale || enUS, yearRange), []);
+
   return (
     <DayPicker
       showOutsideDays={showOutsideDays}
@@ -263,7 +279,7 @@ function Calendar({ className, classNames, showOutsideDays = true, ...props }: C
         IconRight: ({ ...props }) => <ChevronRight className="h-4 w-4" />,
         CaptionLabel: ({ displayMonth }) => {
           return (
-            <div>
+            <div className="inline-flex gap-2">
               <Select
                 defaultValue={displayMonth.getMonth().toString()}
                 onValueChange={(value) => {
@@ -272,13 +288,32 @@ function Calendar({ className, classNames, showOutsideDays = true, ...props }: C
                   props.onMonthChange?.(newDate);
                 }}
               >
-                <SelectTrigger className="w-fit border-none focus:bg-accent focus:text-accent-foreground">
+                <SelectTrigger className="w-fit border-none p-0 focus:bg-accent focus:text-accent-foreground">
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
                   {MONTHS.map((month) => (
                     <SelectItem key={month.value} value={month.value.toString()}>
                       {month.label}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+              <Select
+                defaultValue={displayMonth.getFullYear().toString()}
+                onValueChange={(value) => {
+                  const newDate = new Date(displayMonth);
+                  newDate.setFullYear(parseInt(value, 10));
+                  props.onMonthChange?.(newDate);
+                }}
+              >
+                <SelectTrigger className="w-fit border-none p-0 focus:bg-accent focus:text-accent-foreground">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  {YEARS.map((year) => (
+                    <SelectItem key={year.value} value={year.value.toString()}>
+                      {year.label}
                     </SelectItem>
                   ))}
                 </SelectContent>
@@ -553,9 +588,22 @@ interface DateTimePickerProps {
   date?: Date;
   onChange?: (date: Date | undefined) => void;
   hourCycle?: 12 | 24;
+  /**
+   * This year + yearRange and - yearRange.
+   * Default is 50.
+   * For example:
+   * This year is 2024, The year dropdown will be 2024 - 50 = 1974 to 2024 + 50 = 2074.
+   * */
+  yearRange?: number;
 }
 
-function DateTimePicker({ locale = enUS, date, onChange, hourCycle = 24 }: DateTimePickerProps) {
+function DateTimePicker({
+  locale = enUS,
+  date,
+  onChange,
+  hourCycle = 24,
+  yearRange = 50,
+}: DateTimePickerProps) {
   const [month, setMonth] = React.useState<Date>(date ?? new Date());
   /**
    * carry over the current time when a user clicks a new day
