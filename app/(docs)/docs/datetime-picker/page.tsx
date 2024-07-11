@@ -14,7 +14,7 @@ import { InlineCode } from '@/components/ui/inline-code';
 import { PropLink } from '@/app/(docs)/docs/components/props-table/prop-link';
 import DatetimePickerForm from '@/app/(docs)/docs/datetime-picker/usage/datetime-picker-form';
 import DatetimePickerRef from '@/app/(docs)/docs/datetime-picker/usage/datetime-picker-ref';
-import DatetimePickerOpen from '@/app/(docs)/docs/datetime-picker/usage/datetime-picker-open';
+import DatetimePickerCalendarSettings from '@/app/(docs)/docs/datetime-picker/usage/datetime-picker-calendar-settings';
 import DatetimePickerHiddenClearButton from '@/app/(docs)/docs/datetime-picker/usage/datetime-picker-hidden-clear-button';
 import DatetimePickerYearRange from '@/app/(docs)/docs/datetime-picker/usage/datetime-picker-year-range';
 
@@ -100,10 +100,10 @@ const DatetimePickerPage = () => {
       </Usage>
 
       <Usage
-        title="Manually control open state"
-        path="app/(docs)/docs/datetime-picker/usage/datetime-picker-open.tsx"
+        title="Week start on Monday, Show week number, Disable outside days"
+        path="app/(docs)/docs/datetime-picker/usage/datetime-picker-calendar-settings.tsx"
       >
-        <DatetimePickerOpen />
+        <DatetimePickerCalendarSettings />
       </Usage>
 
       <Usage title="Form" path="app/(docs)/docs/datetime-picker/usage/datetime-picker-form.tsx">
