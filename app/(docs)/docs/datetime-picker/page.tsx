@@ -7,7 +7,7 @@ import { baseMetadata } from '@/app/(docs)/layout-parts/base-metadata';
 import DatetimePickerDemo from '@/app/(docs)/docs/datetime-picker/datetime-picker-demo';
 import Usage from '@/app/(docs)/docs/components/usage';
 import DatetimePickerHourCycle from '@/app/(docs)/docs/datetime-picker/usage/datetime-picker-hour-cycle';
-import DatePickerAndTimePicker from '@/app/(docs)/docs/datetime-picker/usage/date-picker-and-time-picker';
+import DatePickerAndTimeInput from '@/app/(docs)/docs/datetime-picker/usage/date-picker-and-time-input';
 import { Reference, ReferenceBorder } from '@/app/(docs)/docs/components/reference';
 import { P } from '@/components/ui/heading-with-anchor';
 import { InlineCode } from '@/components/ui/inline-code';
@@ -76,9 +76,9 @@ const DatetimePickerPage = () => {
       </Usage>
       <Usage
         title="Date picker or Time picker"
-        path="app/(docs)/docs/datetime-picker/usage/date-picker-and-time-picker.tsx"
+        path="app/(docs)/docs/datetime-picker/usage/date-picker-and-time-input.tsx"
       >
-        <DatePickerAndTimePicker />
+        <DatePickerAndTimeInput />
       </Usage>
 
       <Usage
