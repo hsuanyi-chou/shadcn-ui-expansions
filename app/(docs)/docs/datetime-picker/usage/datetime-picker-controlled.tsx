@@ -1,11 +1,11 @@
 'use client';
 import React from 'react';
-import { DateTimePicker } from '@/components/ui/datetime-picker';
+import { OldDatetimePicker } from '@/components/ui/old-datetime-picker';
 import dynamic from 'next/dynamic';
 const DatetimePickerControlled = () => {
   const [date, setDate] = React.useState(new Date());
 
-  return <DateTimePicker granularity="second" jsDate={date} onJsDateChange={setDate} />;
+  return <OldDatetimePicker granularity="second" jsDate={date} onJsDateChange={setDate} />;
 };
 
 /** avoid Nextjs hydration error */

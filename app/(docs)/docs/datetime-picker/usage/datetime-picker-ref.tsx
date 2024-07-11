@@ -1,6 +1,6 @@
 'use client';
 import React, { useRef } from 'react';
-import { DateTimePicker, DateTimePickerRef } from '@/components/ui/datetime-picker';
+import { OldDatetimePicker, DateTimePickerRef } from '@/components/ui/old-datetime-picker';
 import { Button } from '@/components/ui/button';
 
 const DatetimePickerRef = () => {
@@ -21,7 +21,7 @@ const DatetimePickerRef = () => {
       >
         alert ref value
       </Button>
-      <DateTimePicker granularity="second" ref={ref} />
+      <OldDatetimePicker granularity="second" ref={ref} />
     </div>
   );
 };

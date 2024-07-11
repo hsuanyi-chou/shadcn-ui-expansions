@@ -1,8 +1,8 @@
 import React from 'react';
-import { DateTimePicker } from '@/components/ui/datetime-picker';
+import { OldDatetimePicker } from '@/components/ui/old-datetime-picker';
 
 const DatetimePickerHiddenClearButton = () => {
-  return <DateTimePicker granularity="second" showClearButton={false} />;
+  return <OldDatetimePicker granularity="second" showClearButton={false} />;
 };
 
 export default DatetimePickerHiddenClearButton;

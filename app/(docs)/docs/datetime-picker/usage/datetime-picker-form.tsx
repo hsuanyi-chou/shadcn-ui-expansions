@@ -14,7 +14,7 @@ import {
 } from '@/components/ui/form';
 import { toast } from '@/components/ui/use-toast';
 import { LoadingButton } from '@/components/ui/loading-button';
-import { DateTimePicker } from '@/components/ui/datetime-picker';
+import { OldDatetimePicker } from '@/components/ui/old-datetime-picker';
 import { InlineCode } from '@/components/ui/inline-code';
 
 const FormSchema = z.object({
@@ -66,7 +66,7 @@ const DatetimePickerForm = () => {
             <FormItem>
               <FormLabel htmlFor="datetime">Date time</FormLabel>
               <FormControl>
-                <DateTimePicker
+                <OldDatetimePicker
                   granularity="second"
                   jsDate={field.value}
                   onJsDateChange={field.onChange}

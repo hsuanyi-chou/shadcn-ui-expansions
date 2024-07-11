@@ -1,6 +1,6 @@
 'use client';
 import React from 'react';
-import { DateTimePicker } from '@/components/ui/datetime-picker';
+import { OldDatetimePicker } from '@/components/ui/old-datetime-picker';
 import { Button } from '@/components/ui/button';
 
 const DatetimePickerOpen = () => {
@@ -15,7 +15,7 @@ const DatetimePickerOpen = () => {
       >
         toggle open state
       </Button>
-      <DateTimePicker granularity="second" isOpen={open} />
+      <OldDatetimePicker granularity="second" isOpen={open} />
     </div>
   );
 };
