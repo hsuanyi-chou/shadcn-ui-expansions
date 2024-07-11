@@ -17,6 +17,7 @@ import DatetimePickerRef from '@/app/(docs)/docs/datetime-picker/usage/datetime-
 import DatetimePickerCalendarSettings from '@/app/(docs)/docs/datetime-picker/usage/datetime-picker-calendar-settings';
 import DatetimePickerGranularity from '@/app/(docs)/docs/datetime-picker/usage/datetime-picker-granularity';
 import DatetimePickerYearRange from '@/app/(docs)/docs/datetime-picker/usage/datetime-picker-year-range';
+import DatetimePickerDisplayFormat from '@/app/(docs)/docs/datetime-picker/usage/datetime-picker-display-format';
 
 export const metadata: Metadata = baseMetadata({
   title: 'Datetime Picker',
@@ -86,6 +87,13 @@ const DatetimePickerPage = () => {
         path="app/(docs)/docs/datetime-picker/usage/datetime-picker-year-range.tsx"
       >
         <DatetimePickerYearRange />
+      </Usage>
+
+      <Usage
+        title="Display Format"
+        path="app/(docs)/docs/datetime-picker/usage/datetime-picker-display-format.tsx"
+      >
+        <DatetimePickerDisplayFormat />
       </Usage>
 
       <Usage
