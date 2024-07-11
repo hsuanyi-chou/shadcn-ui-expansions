@@ -1,27 +1,26 @@
 'use client';
-import React, { useRef } from 'react';
-import { OldDatetimePicker, DateTimePickerRef } from '@/components/ui/old-datetime-picker';
+import React, { useRef, useState } from 'react';
 import { Button } from '@/components/ui/button';
+import { DateTimePicker, DateTimePickerRef } from '@/components/ui/datetime-picker';
 
 const DatetimePickerRef = () => {
+  const [date, setDate] = useState<Date | undefined>(undefined);
   const ref = useRef<DateTimePickerRef>(null);
 
   return (
     <div className="space-y-3">
       <Button
         onClick={() => {
-          alert(JSON.stringify(ref.current?.jsDate?.toLocaleString()));
-          /** following are the ref values. */
-          // console.log(ref.current?.buttonRef);
-          // console.log(ref.current?.divRef);
-          // console.log(ref.current?.contentRef);
-          // console.log(ref.current?.jsDate);
-          // console.log(ref.current?.state);
+          alert(JSON.stringify(ref.current?.date?.toLocaleString()));
+          /** following are the ref operations which is equivalent to button. */
+          // ref.current?.focus();
+          // ref.current?.blur();
+          // ...
         }}
       >
         alert ref value
       </Button>
-      <OldDatetimePicker granularity="second" ref={ref} />
+      <DateTimePicker ref={ref} date={date} onChange={setDate} />
     </div>
   );
 };
