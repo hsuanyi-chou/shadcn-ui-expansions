@@ -2,9 +2,9 @@
 import React, { useState } from 'react';
 import { DateTimePicker } from '@/components/ui/datetime-picker';
 
-const DatetimePickerDemo = () => {
+const DatetimePickerDisabled = () => {
   const [date, setDate] = useState<Date | undefined>(undefined);
-  return <DateTimePicker value={date} onChange={setDate} />;
+  return <DateTimePicker disabled value={date} onChange={setDate} />;
 };
 
-export default DatetimePickerDemo;
+export default DatetimePickerDisabled;

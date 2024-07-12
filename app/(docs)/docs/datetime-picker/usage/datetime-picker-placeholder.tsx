@@ -2,9 +2,9 @@
 import React, { useState } from 'react';
 import { DateTimePicker } from '@/components/ui/datetime-picker';
 
-const DatetimePickerDemo = () => {
+const DatetimePickerPlaceholder = () => {
   const [date, setDate] = useState<Date | undefined>(undefined);
-  return <DateTimePicker value={date} onChange={setDate} />;
+  return <DateTimePicker value={date} onChange={setDate} placeholder="What's your birthday?" />;
 };
 
-export default DatetimePickerDemo;
+export default DatetimePickerPlaceholder;

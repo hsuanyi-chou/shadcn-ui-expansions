@@ -7,53 +7,64 @@ import { baseMetadata } from '@/app/(docs)/layout-parts/base-metadata';
 import DatetimePickerDemo from '@/app/(docs)/docs/datetime-picker/datetime-picker-demo';
 import Usage from '@/app/(docs)/docs/components/usage';
 import DatetimePickerHourCycle from '@/app/(docs)/docs/datetime-picker/usage/datetime-picker-hour-cycle';
-import DatePickerAndTimePicker from '@/app/(docs)/docs/datetime-picker/usage/date-picker-and-time-picker';
+import DatePickerAndTimeInput from '@/app/(docs)/docs/datetime-picker/usage/date-picker-and-time-input';
 import { Reference, ReferenceBorder } from '@/app/(docs)/docs/components/reference';
 import { P } from '@/components/ui/heading-with-anchor';
 import { InlineCode } from '@/components/ui/inline-code';
 import { PropLink } from '@/app/(docs)/docs/components/props-table/prop-link';
 import DatetimePickerForm from '@/app/(docs)/docs/datetime-picker/usage/datetime-picker-form';
-import DatetimePickerControlled from '@/app/(docs)/docs/datetime-picker/usage/datetime-picker-controlled';
 import DatetimePickerRef from '@/app/(docs)/docs/datetime-picker/usage/datetime-picker-ref';
-import DatetimePickerOpen from '@/app/(docs)/docs/datetime-picker/usage/datetime-picker-open';
-import DatetimePickerHiddenClearButton from '@/app/(docs)/docs/datetime-picker/usage/datetime-picker-hidden-clear-button';
+import DatetimePickerCalendarSettings from '@/app/(docs)/docs/datetime-picker/usage/datetime-picker-calendar-settings';
+import DatetimePickerGranularity from '@/app/(docs)/docs/datetime-picker/usage/datetime-picker-granularity';
+import DatetimePickerYearRange from '@/app/(docs)/docs/datetime-picker/usage/datetime-picker-year-range';
+import DatetimePickerDisplayFormat from '@/app/(docs)/docs/datetime-picker/usage/datetime-picker-display-format';
+import DatetimePickerLocale from '@/app/(docs)/docs/datetime-picker/usage/datetime-picker-locale';
+import DatetimePickerDisabled from '@/app/(docs)/docs/datetime-picker/usage/datetime-picker-disabled';
+import { PropsTable } from '@/app/(docs)/docs/components/props-table/props-table';
+import { datetimePickerProp } from '@/app/(docs)/docs/datetime-picker/datetime-picker-prop';
+import DatetimePickerPlaceholder from '@/app/(docs)/docs/datetime-picker/usage/datetime-picker-placeholder';
 
 export const metadata: Metadata = baseMetadata({
   title: 'Datetime Picker',
-  description:
-    'A datetime picker built on top of react-aria and react-stately for the accessible date & time components, with the shadcn-ui theming.',
+  description: 'A datetime picker built on top of shadcn-ui and no additional library needed.',
 });
 
 const DatetimePickerPage = () => {
   return (
     <PageTemplate
       title="Datetime Picker"
-      description="A datetime picker built on top of react-aria and react-stately for the accessible date & time components, with the shadcn-ui theming."
+      description="A datetime picker built on top of shadcn-ui and no additional library needed."
     >
       <ReferenceBorder>
-        <Reference href="https://react-spectrum.adobe.com/react-aria/useDatePicker.html" />
+        <Reference href="https://ui.shadcn.com/docs/components/calendar" />
       </ReferenceBorder>
 
       <PageSubTitle>About</PageSubTitle>
       <P className="text-muted-foreground">
         This component is inspired by{' '}
-        <PropLink href="https://github.com/uncvrd/shadcn-ui-date-time-picker">
-          <InlineCode>shadcn-ui-date-time-picker</InlineCode>
+        <PropLink href="https://time.openstatus.dev/">
+          <InlineCode>Time Picker</InlineCode>
         </PropLink>{' '}
         and thanks to{' '}
-        <PropLink href="https://github.com/uncvrd">
-          <InlineCode>@uncvrd</InlineCode>
+        <PropLink href="https://www.openstatus.dev/">
+          <InlineCode>OpenStatus</InlineCode>
         </PropLink>
         for creating this.
       </P>
-      <P className="text-muted-foreground">
-        I keep all the react-aria props and add 2 props: <InlineCode>jsDate</InlineCode>,{' '}
-        <InlineCode>onJsDateChange</InlineCode>, also expose all the refs of the react-aria.
-      </P>
-      <P className="text-muted-foreground">
-        All you need to do is to use the <InlineCode>jsDate</InlineCode> and{' '}
-        <InlineCode>onJsDateChange</InlineCode>.
-      </P>
+      <ol className="list-disc p-5 text-lg font-normal leading-5 text-muted-foreground lg:text-xl">
+        <li>
+          All logics exposed. No additional library. Only <InlineCode>DayPicker</InlineCode> that
+          shadcn-ui already uses.
+        </li>
+        <li>Everything is built on top of shadcn-ui.</li>
+        <li>
+          Locale supported by <InlineCode>date-fns</InlineCode>.
+        </li>
+        <li>Supports year, Month dropdown menu for quick navigation to a specific date.</li>
+        <li>Listens to keydown events.</li>
+        <li>Supports arrow navigation.</li>
+        <li>Format date values.</li>
+      </ol>
 
       <PreviewCodeCard path="app/(docs)/docs/datetime-picker/datetime-picker-demo.tsx">
         <DatetimePickerDemo />
@@ -64,7 +75,7 @@ const DatetimePickerPage = () => {
         withInstall
         codePath="components/ui/datetime-picker.tsx"
         withEnd
-        installScript="npm i react-aria react-stately"
+        installScript="npx shadcn-ui@latest add calendar select input popover"
       />
 
       <PageSubTitle>Usage</PageSubTitle>
@@ -76,39 +87,104 @@ const DatetimePickerPage = () => {
       </Usage>
       <Usage
         title="Date picker or Time picker"
-        path="app/(docs)/docs/datetime-picker/usage/date-picker-and-time-picker.tsx"
+        path="app/(docs)/docs/datetime-picker/usage/date-picker-and-time-input.tsx"
       >
-        <DatePickerAndTimePicker />
+        <DatePickerAndTimeInput />
       </Usage>
 
       <Usage
-        title="Controlled component"
-        path="app/(docs)/docs/datetime-picker/usage/datetime-picker-controlled.tsx"
+        title="Year Dropdown Range"
+        path="app/(docs)/docs/datetime-picker/usage/datetime-picker-year-range.tsx"
+        description={
+          <>
+            <P className="text-muted-foreground">
+              The year range will be: <InlineCode>This year + yearRange</InlineCode> and{' '}
+              <InlineCode>this year - yearRange</InlineCode>.
+            </P>
+            <P className="text-muted-foreground">Default is 50.</P>
+            <P className="text-muted-foreground">
+              For example: This year is 2024, The year dropdown will be 1974 to 2024 which is
+              generated by <InlineCode>2024 - 50 = 1974</InlineCode> and{' '}
+              <InlineCode>2024 + 50 = 2074</InlineCode>.
+            </P>
+          </>
+        }
       >
-        <DatetimePickerControlled />
+        <DatetimePickerYearRange />
       </Usage>
 
       <Usage
-        title="Hide clear button"
-        path="app/(docs)/docs/datetime-picker/usage/datetime-picker-hidden-clear-button.tsx"
+        title="Locale"
+        path="app/(docs)/docs/datetime-picker/usage/datetime-picker-locale.tsx"
+        description={
+          <>
+            <P className="text-muted-foreground">
+              Import locale from{' '}
+              <PropLink href="https://date-fns.org/v3.6.0/docs/I18n-Contribution-Guide">
+                <InlineCode>date-fns</InlineCode>
+              </PropLink>
+            </P>
+          </>
+        }
       >
-        <DatetimePickerHiddenClearButton />
+        <DatetimePickerLocale />
+      </Usage>
+
+      <Usage
+        title="Week start on Monday, Show week number, Disable outside days"
+        path="app/(docs)/docs/datetime-picker/usage/datetime-picker-calendar-settings.tsx"
+      >
+        <DatetimePickerCalendarSettings />
+      </Usage>
+
+      <Usage
+        title="Display Format"
+        path="app/(docs)/docs/datetime-picker/usage/datetime-picker-display-format.tsx"
+        description={
+          <>
+            <P className="text-muted-foreground">
+              Visit{' '}
+              <PropLink href="https://date-fns.org/v3.6.0/docs/format">
+                <InlineCode>date-fns</InlineCode>
+              </PropLink>{' '}
+              to customize the format.
+            </P>
+          </>
+        }
+      >
+        <DatetimePickerDisplayFormat />
+      </Usage>
+
+      <Usage
+        title="Placeholder"
+        path="app/(docs)/docs/datetime-picker/usage/datetime-picker-placeholder.tsx"
+      >
+        <DatetimePickerPlaceholder />
+      </Usage>
+
+      <Usage
+        title="Granularity"
+        path="app/(docs)/docs/datetime-picker/usage/datetime-picker-granularity.tsx"
+      >
+        <DatetimePickerGranularity />
+      </Usage>
+
+      <Usage
+        title="Disabled"
+        path="app/(docs)/docs/datetime-picker/usage/datetime-picker-disabled.tsx"
+      >
+        <DatetimePickerDisabled />
       </Usage>
 
       <Usage title="Ref" path="app/(docs)/docs/datetime-picker/usage/datetime-picker-ref.tsx">
         <DatetimePickerRef />
       </Usage>
 
-      <Usage
-        title="Manually control open state"
-        path="app/(docs)/docs/datetime-picker/usage/datetime-picker-open.tsx"
-      >
-        <DatetimePickerOpen />
-      </Usage>
-
       <Usage title="Form" path="app/(docs)/docs/datetime-picker/usage/datetime-picker-form.tsx">
         <DatetimePickerForm />
       </Usage>
+
+      <PropsTable props={datetimePickerProp} />
     </PageTemplate>
   );
 };
