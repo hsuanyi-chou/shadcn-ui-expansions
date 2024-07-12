@@ -2,9 +2,18 @@
 import React, { useState } from 'react';
 import { DateTimePicker } from '@/components/ui/datetime-picker';
 import { zhTW } from 'date-fns/locale';
+import { InlineCode } from '@/components/ui/inline-code';
 const DatetimePickerLocale = () => {
   const [date, setDate] = useState<Date | undefined>(undefined);
-  return <DateTimePicker locale={zhTW} value={date} onChange={setDate} />;
+  return (
+    <div className="flex flex-col gap-3">
+      <p>
+        The following example is <InlineCode>zhTW</InlineCode> from{' '}
+        <InlineCode>date-fns</InlineCode>.
+      </p>
+      <DateTimePicker locale={zhTW} value={date} onChange={setDate} />
+    </div>
+  );
 };
 
 export default DatetimePickerLocale;

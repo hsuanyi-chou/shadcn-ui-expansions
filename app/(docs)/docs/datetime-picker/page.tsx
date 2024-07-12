@@ -39,23 +39,29 @@ const DatetimePickerPage = () => {
       <PageSubTitle>About</PageSubTitle>
       <P className="text-muted-foreground">
         This component is inspired by{' '}
-        <PropLink href="https://github.com/uncvrd/shadcn-ui-date-time-picker">
-          <InlineCode>shadcn-ui-date-time-picker</InlineCode>
+        <PropLink href="https://time.openstatus.dev/">
+          <InlineCode>Time Picker</InlineCode>
         </PropLink>{' '}
         and thanks to{' '}
-        <PropLink href="https://github.com/uncvrd">
-          <InlineCode>@uncvrd</InlineCode>
+        <PropLink href="https://www.openstatus.dev/">
+          <InlineCode>OpenStatus</InlineCode>
         </PropLink>
         for creating this.
       </P>
-      <P className="text-muted-foreground">
-        I keep all the react-aria props and add 2 props: <InlineCode>jsDate</InlineCode>,{' '}
-        <InlineCode>onJsDateChange</InlineCode>, also expose all the refs of the react-aria.
-      </P>
-      <P className="text-muted-foreground">
-        All you need to do is to use the <InlineCode>jsDate</InlineCode> and{' '}
-        <InlineCode>onJsDateChange</InlineCode>.
-      </P>
+      <ol className="list-disc p-5 text-lg font-normal leading-5 text-muted-foreground lg:text-xl">
+        <li>
+          All logics exposed. No additional library. Only <InlineCode>DayPicker</InlineCode> that
+          shadcn-ui already uses.
+        </li>
+        <li>Everything is built on top of shadcn-ui.</li>
+        <li>
+          Locale supported by <InlineCode>date-fns</InlineCode>.
+        </li>
+        <li>Supports year, Month dropdown menu for quick navigation to a specific date.</li>
+        <li>Listens to keydown events.</li>
+        <li>Supports arrow navigation.</li>
+        <li>Format date values.</li>
+      </ol>
 
       <PreviewCodeCard path="app/(docs)/docs/datetime-picker/datetime-picker-demo.tsx">
         <DatetimePickerDemo />
