@@ -14,15 +14,15 @@ import {
 } from '@/components/ui/form';
 import { toast } from '@/components/ui/use-toast';
 import { LoadingButton } from '@/components/ui/loading-button';
-import { OldDatetimePicker } from '@/components/ui/old-datetime-picker';
 import { InlineCode } from '@/components/ui/inline-code';
+import { DateTimePicker } from '@/components/ui/datetime-picker';
 
 const FormSchema = z.object({
-  datetime: z.date().nullable(),
+  datetime: z.date().optional(),
 });
 
 const DEFAULT_VALUE = {
-  datetime: null,
+  datetime: undefined,
 };
 
 const DatetimePickerForm = () => {
@@ -66,11 +66,7 @@ const DatetimePickerForm = () => {
             <FormItem>
               <FormLabel htmlFor="datetime">Date time</FormLabel>
               <FormControl>
-                <OldDatetimePicker
-                  granularity="second"
-                  jsDate={field.value}
-                  onJsDateChange={field.onChange}
-                />
+                <DateTimePicker value={field.value} onChange={field.onChange} />
               </FormControl>
               <FormMessage />
             </FormItem>
