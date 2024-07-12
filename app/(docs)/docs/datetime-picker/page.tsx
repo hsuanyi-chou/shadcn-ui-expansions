@@ -20,6 +20,9 @@ import DatetimePickerYearRange from '@/app/(docs)/docs/datetime-picker/usage/dat
 import DatetimePickerDisplayFormat from '@/app/(docs)/docs/datetime-picker/usage/datetime-picker-display-format';
 import DatetimePickerLocale from '@/app/(docs)/docs/datetime-picker/usage/datetime-picker-locale';
 import DatetimePickerDisabled from '@/app/(docs)/docs/datetime-picker/usage/datetime-picker-disabled';
+import { PropsTable } from '@/app/(docs)/docs/components/props-table/props-table';
+import { datetimePickerProp } from '@/app/(docs)/docs/datetime-picker/datetime-picker-prop';
+import DatetimePickerPlaceholder from '@/app/(docs)/docs/datetime-picker/usage/datetime-picker-placeholder';
 
 export const metadata: Metadata = baseMetadata({
   title: 'Datetime Picker',
@@ -128,10 +131,35 @@ const DatetimePickerPage = () => {
       </Usage>
 
       <Usage
+        title="Week start on Monday, Show week number, Disable outside days"
+        path="app/(docs)/docs/datetime-picker/usage/datetime-picker-calendar-settings.tsx"
+      >
+        <DatetimePickerCalendarSettings />
+      </Usage>
+
+      <Usage
         title="Display Format"
         path="app/(docs)/docs/datetime-picker/usage/datetime-picker-display-format.tsx"
+        description={
+          <>
+            <P className="text-muted-foreground">
+              Visit{' '}
+              <PropLink href="https://date-fns.org/v3.6.0/docs/format">
+                <InlineCode>date-fns</InlineCode>
+              </PropLink>{' '}
+              to customize the format.
+            </P>
+          </>
+        }
       >
         <DatetimePickerDisplayFormat />
+      </Usage>
+
+      <Usage
+        title="Placeholder"
+        path="app/(docs)/docs/datetime-picker/usage/datetime-picker-placeholder.tsx"
+      >
+        <DatetimePickerPlaceholder />
       </Usage>
 
       <Usage
@@ -152,16 +180,11 @@ const DatetimePickerPage = () => {
         <DatetimePickerRef />
       </Usage>
 
-      <Usage
-        title="Week start on Monday, Show week number, Disable outside days"
-        path="app/(docs)/docs/datetime-picker/usage/datetime-picker-calendar-settings.tsx"
-      >
-        <DatetimePickerCalendarSettings />
-      </Usage>
-
       <Usage title="Form" path="app/(docs)/docs/datetime-picker/usage/datetime-picker-form.tsx">
         <DatetimePickerForm />
       </Usage>
+
+      <PropsTable props={datetimePickerProp} />
     </PageTemplate>
   );
 };
