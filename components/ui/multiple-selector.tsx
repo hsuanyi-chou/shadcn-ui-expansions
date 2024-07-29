@@ -188,7 +188,6 @@ const MultipleSelector = React.forwardRef<MultipleSelectorRef, MultipleSelectorP
   ) => {
     const inputRef = React.useRef<HTMLInputElement>(null);
     const [open, setOpen] = React.useState(false);
-    const mouseOn = React.useRef<boolean>(false);
     const [isLoading, setIsLoading] = React.useState(false);
 
     const [selected, setSelected] = React.useState<Option[]>(value || []);
@@ -433,9 +432,7 @@ const MultipleSelector = React.forwardRef<MultipleSelectorRef, MultipleSelectorP
                 inputProps?.onValueChange?.(value);
               }}
               onBlur={(event) => {
-                if (mouseOn.current === false) {
-                  setOpen(false);
-                }
+                setOpen(false);
                 inputProps?.onBlur?.(event);
               }}
               onFocus={(event) => {
@@ -457,11 +454,11 @@ const MultipleSelector = React.forwardRef<MultipleSelectorRef, MultipleSelectorP
             <button
               type="button"
               onClick={() => {
-                setSelected(selected.filter((s) => s.fixed))
-                onChange?.(selected.filter((s) => s.fixed))
+                setSelected(selected.filter((s) => s.fixed));
+                onChange?.(selected.filter((s) => s.fixed));
               }}
               className={cn(
-                "absolute right-0 h-6 w-6 p-0",
+                'absolute right-0 h-6 w-6 p-0',
                 (hideClearAllButton ||
                   disabled ||
                   selected.length < 1 ||
@@ -475,18 +472,7 @@ const MultipleSelector = React.forwardRef<MultipleSelectorRef, MultipleSelectorP
         </div>
         <div className="relative">
           {open && (
-            <CommandList
-              className="absolute top-1 z-10 w-full rounded-md border bg-popover text-popover-foreground shadow-md outline-none animate-in"
-              onMouseLeave={() => {
-                mouseOn.current = false;
-              }}
-              onMouseEnter={() => {
-                mouseOn.current = true;
-              }}
-              onMouseUp={() => {
-                inputRef.current?.focus();
-              }}
-            >
+            <CommandList className="absolute top-1 z-10 w-full rounded-md border bg-popover text-popover-foreground shadow-md outline-none animate-in">
               {isLoading ? (
                 <>{loadingIndicator}</>
               ) : (
