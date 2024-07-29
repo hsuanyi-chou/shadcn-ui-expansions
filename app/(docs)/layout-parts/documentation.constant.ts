@@ -38,7 +38,6 @@ export const DOCS: Documentation[] = [
         label: 'Dual Range Slider',
         value: 'dual-range-slider',
         url: '/docs/dual-range-slider',
-        new: true,
       },
       {
         label: 'Floating Label Input',
@@ -60,13 +59,11 @@ export const DOCS: Documentation[] = [
         label: 'Progress With Value',
         value: 'progress-with-value',
         url: '/docs/progress-with-value',
-        new: true,
       },
       {
         label: 'Responsive Modal',
         value: 'responsive-modal',
         url: '/docs/responsive-modal',
-        new: true,
       },
       { label: 'Multiple Selector', value: 'multipleSelector', url: '/docs/multiple-selector' },
       { label: 'Spinner', value: 'spinner', url: '/docs/spinner' },
