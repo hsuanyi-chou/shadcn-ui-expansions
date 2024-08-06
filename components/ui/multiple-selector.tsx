@@ -188,7 +188,9 @@ const MultipleSelector = React.forwardRef<MultipleSelectorRef, MultipleSelectorP
   ) => {
     const inputRef = React.useRef<HTMLInputElement>(null);
     const [open, setOpen] = React.useState(false);
+    const [onScrollbar, setOnScrollbar] = React.useState(false);
     const [isLoading, setIsLoading] = React.useState(false);
+    const dropdownRef = React.useRef<HTMLDivElement>(null); // Added this
 
     const [selected, setSelected] = React.useState<Option[]>(value || []);
     const [options, setOptions] = React.useState<GroupOption>(
@@ -206,6 +208,17 @@ const MultipleSelector = React.forwardRef<MultipleSelectorRef, MultipleSelectorP
       }),
       [selected],
     );
+
+    const handleClickOutside = (event: MouseEvent | TouchEvent) => {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target as Node) &&
+        inputRef.current &&
+        !inputRef.current.contains(event.target as Node)
+      ) {
+        setOpen(false);
+      }
+    };
 
     const handleUnselect = React.useCallback(
       (option: Option) => {
@@ -237,6 +250,21 @@ const MultipleSelector = React.forwardRef<MultipleSelectorRef, MultipleSelectorP
       },
       [handleUnselect, selected],
     );
+
+    useEffect(() => {
+      if (open) {
+        document.addEventListener('mousedown', handleClickOutside);
+        document.addEventListener('touchend', handleClickOutside);
+      } else {
+        document.removeEventListener('mousedown', handleClickOutside);
+        document.removeEventListener('touchend', handleClickOutside);
+      }
+
+      return () => {
+        document.removeEventListener('mousedown', handleClickOutside);
+        document.removeEventListener('touchend', handleClickOutside);
+      };
+    }, [open]);
 
     useEffect(() => {
       if (value) {
@@ -361,6 +389,7 @@ const MultipleSelector = React.forwardRef<MultipleSelectorRef, MultipleSelectorP
 
     return (
       <Command
+        ref={dropdownRef}
         {...commandProps}
         onKeyDown={(e) => {
           handleKeyDown(e);
@@ -432,7 +461,9 @@ const MultipleSelector = React.forwardRef<MultipleSelectorRef, MultipleSelectorP
                 inputProps?.onValueChange?.(value);
               }}
               onBlur={(event) => {
-                setOpen(false);
+                if (!onScrollbar) {
+                  setOpen(false);
+                }
                 inputProps?.onBlur?.(event);
               }}
               onFocus={(event) => {
@@ -472,7 +503,18 @@ const MultipleSelector = React.forwardRef<MultipleSelectorRef, MultipleSelectorP
         </div>
         <div className="relative">
           {open && (
-            <CommandList className="absolute top-1 z-10 w-full rounded-md border bg-popover text-popover-foreground shadow-md outline-none animate-in">
+            <CommandList
+              className="absolute top-1 z-10 w-full rounded-md border bg-popover text-popover-foreground shadow-md outline-none animate-in"
+              onMouseLeave={() => {
+                setOnScrollbar(false);
+              }}
+              onMouseEnter={() => {
+                setOnScrollbar(true);
+              }}
+              onMouseUp={() => {
+                inputRef.current?.focus();
+              }}
+            >
               {isLoading ? (
                 <>{loadingIndicator}</>
               ) : (
