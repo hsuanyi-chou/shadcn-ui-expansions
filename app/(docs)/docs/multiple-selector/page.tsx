@@ -31,6 +31,7 @@ import MultipleSelectorCommandProps from '@/app/(docs)/docs/multiple-selector/us
 import MultipleSelectorWithAsyncSearchAndOnFocus from '@/app/(docs)/docs/multiple-selector/usage/multiple-selector-with-async-search-and-onfocus';
 import MultipleSelectorManuallyControlledOptions from '@/app/(docs)/docs/multiple-selector/usage/multiple-selector-manually-controlled-options';
 import MultipleSelectorHideClearAll from '@/app/(docs)/docs/multiple-selector/usage/multiple-selector-hide-clear-all';
+import MultipleSelectorWithSyncSearch from '@/app/(docs)/docs/multiple-selector/usage/multiple-selector-with-sync-search';
 
 export const metadata: Metadata = baseMetadata({
   title: 'Multiple Selector',
@@ -258,6 +259,24 @@ const MultipleSelectorPage = () => {
       >
         <MultipleSelectorWithAsyncSearchAndCreatableAndGroup />
       </Usage>
+
+      <Usage
+        title="Sync Search without loading indicator"
+        description={
+          <>
+            <P className="text-muted-foreground">
+              Sync search is for search locally without any request to the server. This will not
+              show loading indicator even if you provide it. The rest props are the same as async
+              search. i.e.: <InlineCode>creatable</InlineCode>, <InlineCode>groupBy</InlineCode>,{' '}
+              <InlineCode>delay</InlineCode>.
+            </P>
+          </>
+        }
+        path="app/(docs)/docs//multiple-selector/usage/multiple-selector-with-sync-search.tsx"
+      >
+        <MultipleSelectorWithSyncSearch />
+      </Usage>
+
       <Usage
         title="Manually Controlled Options"
         description={

@@ -164,6 +164,22 @@ export const multipleSelectorProp: Props[] = [
     typeInfo: <OptionTypeInfo />,
   },
   {
+    prop: 'onSearchSync',
+    required: false,
+    description: (
+      <>
+        <p>
+          Load options from a local source when user types. This will not show{' '}
+          <InlineCode>loadingIndicator</InlineCode> even if you provide it. The rest props are the
+          same as async search. i.e.: <InlineCode>creatable</InlineCode>,{' '}
+          <InlineCode>groupBy</InlineCode>, <InlineCode>delay</InlineCode>.
+        </p>
+      </>
+    ),
+    type: '(value: string) => Option[]',
+    typeInfo: <OptionTypeInfo />,
+  },
+  {
     prop: 'creatable',
     required: false,
     description: (

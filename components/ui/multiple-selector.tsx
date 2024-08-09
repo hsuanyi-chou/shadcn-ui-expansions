@@ -41,6 +41,12 @@ interface MultipleSelectorProps {
   triggerSearchOnFocus?: boolean;
   /** async search */
   onSearch?: (value: string) => Promise<Option[]>;
+  /**
+   * sync search. This search will not showing loadingIndicator.
+   * The rest props are the same as async search.
+   * i.e.: creatable, groupBy, delay.
+   **/
+  onSearchSync?: (value: string) => Option[];
   onChange?: (options: Option[]) => void;
   /** Limit the maximum number of selected options. */
   maxSelected?: number;
@@ -168,6 +174,7 @@ const MultipleSelector = React.forwardRef<MultipleSelectorRef, MultipleSelectorP
       options: arrayOptions,
       delay,
       onSearch,
+      onSearchSync,
       loadingIndicator,
       emptyIndicator,
       maxSelected = Number.MAX_SAFE_INTEGER,
@@ -284,6 +291,32 @@ const MultipleSelector = React.forwardRef<MultipleSelectorRef, MultipleSelectorP
     }, [arrayDefaultOptions, arrayOptions, groupBy, onSearch, options]);
 
     useEffect(() => {
+      /** sync search */
+
+      const doSearchSync = () => {
+        const res = onSearchSync?.(debouncedSearchTerm);
+        setOptions(transToGroupOption(res || [], groupBy));
+      };
+
+      const exec = async () => {
+        if (!onSearchSync || !open) return;
+
+        if (triggerSearchOnFocus) {
+          doSearchSync();
+        }
+
+        if (debouncedSearchTerm) {
+          doSearchSync();
+        }
+      };
+
+      void exec();
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [debouncedSearchTerm, groupBy, open, triggerSearchOnFocus]);
+
+    useEffect(() => {
+      /** async search */
+
       const doSearch = async () => {
         setIsLoading(true);
         const res = await onSearch?.(debouncedSearchTerm);
