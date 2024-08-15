@@ -46,7 +46,7 @@ type GetValidNumberConfig = { max: number; min?: number; loop?: boolean };
 function getValidNumber(value: string, { max, min = 0, loop = false }: GetValidNumberConfig) {
   let numericValue = parseInt(value, 10);
 
-  if (!isNaN(numericValue)) {
+  if (!Number.isNaN(numericValue)) {
     if (!loop) {
       if (numericValue > max) numericValue = max;
       if (numericValue < min) numericValue = min;
@@ -83,7 +83,7 @@ type GetValidArrowNumberConfig = {
 
 function getValidArrowNumber(value: string, { min, max, step }: GetValidArrowNumberConfig) {
   let numericValue = parseInt(value, 10);
-  if (!isNaN(numericValue)) {
+  if (!Number.isNaN(numericValue)) {
     numericValue += step;
     return getValidNumber(String(numericValue), { min, max, loop: true });
   }
