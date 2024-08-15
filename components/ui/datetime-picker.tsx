@@ -645,7 +645,7 @@ type DateTimePickerRef = {
   value?: Date;
 } & Omit<HTMLButtonElement, 'value'>;
 
-const DateTimePicker = React.forwardRef<DateTimePickerRef, DateTimePickerProps>(
+const DateTimePicker = React.forwardRef<Partial<DateTimePickerRef>, DateTimePickerProps>(
   (
     {
       locale = enUS,
@@ -684,7 +684,7 @@ const DateTimePicker = React.forwardRef<DateTimePickerRef, DateTimePickerProps>(
     useImperativeHandle(
       ref,
       () => ({
-        ...buttonRef.current!,
+        ...buttonRef.current,
         value,
       }),
       [value],
