@@ -29,7 +29,7 @@
     "next": "14.2.3",
     "next-themes": "^0.3.0",
     "react": "^18",
-    "react-day-picker": "^8.10.1",
+    "react-day-picker": "^9.0.8",
     "react-dom": "^18",
     "react-highlight": "^0.15.0",
     "react-hook-form": "^7.51.5",
