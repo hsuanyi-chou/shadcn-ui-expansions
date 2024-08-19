@@ -691,9 +691,13 @@ const DateTimePicker = React.forwardRef<Partial<DateTimePickerRef>, DateTimePick
     );
 
     const initHourFormat = {
-      hour24: displayFormat?.hour24 ?? 'PPP HH:mm:ss',
-      hour12: displayFormat?.hour12 ?? 'PP hh:mm:ss b',
-    };
+			hour24:
+				displayFormat?.hour24 ??
+				`PPP HH:mm${!granularity || granularity === "second" ? ":ss" : ""}`,
+			hour12:
+				displayFormat?.hour12 ??
+				`PP hh:mm${!granularity || granularity === "second" ? ":ss" : ""} b`,
+		};
 
     let loc = enUS;
     const { options, localize, formatLong } = locale;
