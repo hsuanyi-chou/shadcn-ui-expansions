@@ -46,7 +46,7 @@ type GetValidNumberConfig = { max: number; min?: number; loop?: boolean };
 function getValidNumber(value: string, { max, min = 0, loop = false }: GetValidNumberConfig) {
   let numericValue = parseInt(value, 10);
 
-  if (!isNaN(numericValue)) {
+  if (!Number.isNaN(numericValue)) {
     if (!loop) {
       if (numericValue > max) numericValue = max;
       if (numericValue < min) numericValue = min;
@@ -83,7 +83,7 @@ type GetValidArrowNumberConfig = {
 
 function getValidArrowNumber(value: string, { min, max, step }: GetValidArrowNumberConfig) {
   let numericValue = parseInt(value, 10);
-  if (!isNaN(numericValue)) {
+  if (!Number.isNaN(numericValue)) {
     numericValue += step;
     return getValidNumber(String(numericValue), { min, max, loop: true });
   }
@@ -157,8 +157,7 @@ function getDateByType(date: Date | null, type: TimePickerType) {
     case 'hours':
       return getValidHour(String(date.getHours()));
     case '12hours':
-      const hours = display12HourValue(date.getHours());
-      return getValid12Hour(String(hours));
+      return getValid12Hour(String(display12HourValue(date.getHours())));
     default:
       return '00';
   }
@@ -188,10 +187,11 @@ function convert12HourTo24Hour(hour: number, period: Period) {
   if (period === 'PM') {
     if (hour <= 11) {
       return hour + 12;
-    } else {
-      return hour;
-    }
-  } else if (period === 'AM') {
+    } 
+    return hour;
+  } 
+  
+  if (period === 'AM') {
     if (hour === 12) return 0;
     return hour;
   }
@@ -455,10 +455,10 @@ const TimePickerInput = React.forwardRef<HTMLInputElement, TimePickerInputProps>
        * The second entered digit will break the condition and the value will be set to 10-12.
        */
       if (picker === '12hours') {
-        if (flag && calculatedValue.slice(1, 2) === '1' && prevIntKey === '0') return '0' + key;
+        if (flag && calculatedValue.slice(1, 2) === '1' && prevIntKey === '0') return `0${key}`;
       }
 
-      return !flag ? '0' + key : calculatedValue.slice(1, 2) + key;
+      return !flag ? `0${key}` : calculatedValue.slice(1, 2) + key;
     };
 
     const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -645,7 +645,7 @@ type DateTimePickerRef = {
   value?: Date;
 } & Omit<HTMLButtonElement, 'value'>;
 
-const DateTimePicker = React.forwardRef<DateTimePickerRef, DateTimePickerProps>(
+const DateTimePicker = React.forwardRef<Partial<DateTimePickerRef>, DateTimePickerProps>(
   (
     {
       locale = enUS,
@@ -684,16 +684,20 @@ const DateTimePicker = React.forwardRef<DateTimePickerRef, DateTimePickerProps>(
     useImperativeHandle(
       ref,
       () => ({
-        ...buttonRef.current!,
+        ...buttonRef.current,
         value,
       }),
       [value],
     );
 
     const initHourFormat = {
-      hour24: displayFormat?.hour24 ?? 'PPP HH:mm:ss',
-      hour12: displayFormat?.hour12 ?? 'PP hh:mm:ss b',
-    };
+			hour24:
+				displayFormat?.hour24 ??
+				`PPP HH:mm${!granularity || granularity === "second" ? ":ss" : ""}`,
+			hour12:
+				displayFormat?.hour12 ??
+				`PP hh:mm${!granularity || granularity === "second" ? ":ss" : ""} b`,
+		};
 
     let loc = enUS;
     const { options, localize, formatLong } = locale;
