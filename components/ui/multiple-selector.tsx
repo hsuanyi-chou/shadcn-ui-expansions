@@ -224,6 +224,7 @@ const MultipleSelector = React.forwardRef<MultipleSelectorRef, MultipleSelectorP
         !inputRef.current.contains(event.target as Node)
       ) {
         setOpen(false);
+        inputRef.current.blur();
       }
     };
 
