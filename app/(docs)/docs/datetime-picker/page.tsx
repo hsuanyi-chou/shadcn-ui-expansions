@@ -76,7 +76,7 @@ const DatetimePickerPage = () => {
         withInstall
         codePath="components/ui/datetime-picker.tsx"
         withEnd
-        installScript="npx shadcn-ui@latest add calendar select input popover"
+        installScript="npx shadcn@latest add calendar select input popover"
       />
 
       <PageSubTitle>Usage</PageSubTitle>

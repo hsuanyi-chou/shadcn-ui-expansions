@@ -33,7 +33,7 @@ const FloatingLabelPage = () => {
       <Steppers
         withInstall
         codePath="components/ui/floating-label-input.tsx"
-        installScript="npx shadcn-ui@latest add label input"
+        installScript="npx shadcn@latest add label input"
         withEnd
       />
 
