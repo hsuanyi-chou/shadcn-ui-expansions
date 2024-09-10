@@ -65,6 +65,9 @@ const DatetimePickerPage = () => {
         <li>Listens to keydown events.</li>
         <li>Supports arrow navigation.</li>
         <li>Format date values.</li>
+        <li>
+          Supports <InlineCode>react-day-picker 9</InlineCode>.
+        </li>
       </ol>
 
       <PreviewCodeCard path="app/(docs)/docs/datetime-picker/datetime-picker-demo.tsx">
@@ -73,10 +76,11 @@ const DatetimePickerPage = () => {
 
       <PageSubTitle>Installation</PageSubTitle>
       <Steppers
-        withInstall
+        withInstall={true}
         codePath="components/ui/datetime-picker.tsx"
         withEnd
         installScript="npx shadcn-ui@latest add calendar select input popover"
+        steps={[{ title: 'Update react-day-picker to ^9.*' }]}
       />
 
       <PageSubTitle>Usage</PageSubTitle>

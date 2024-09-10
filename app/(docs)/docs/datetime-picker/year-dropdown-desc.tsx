@@ -13,7 +13,7 @@ const YearDropdownDesc = () => {
     <>
       {' '}
       <P className="text-muted-foreground">
-        The year range will be: <InlineCode>This year + yearRange</InlineCode> and{' '}
+        The year range will be: <InlineCode>this year + yearRange</InlineCode> and{' '}
         <InlineCode>this year - yearRange</InlineCode>.
       </P>
       <P className="text-muted-foreground">Default is 50.</P>
@@ -23,7 +23,11 @@ const YearDropdownDesc = () => {
         <InlineCode>
           {thisYear} - 50 = {thisYear - 50}
         </InlineCode>{' '}
-        and <InlineCode>thisYear + 50 = {thisYear + 50}</InlineCode>.
+        and{' '}
+        <InlineCode>
+          {thisYear} + 50 = {thisYear + 50}
+        </InlineCode>
+        .
       </P>
     </>
   );
