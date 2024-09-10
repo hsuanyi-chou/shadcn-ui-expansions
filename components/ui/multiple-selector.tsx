@@ -82,6 +82,8 @@ interface MultipleSelectorProps {
 export interface MultipleSelectorRef {
   selectedValue: Option[];
   input: HTMLInputElement;
+  focus: () => void;
+  reset: () => void;
 }
 
 export function useDebounce<T>(value: T, delay?: number): T {
@@ -212,6 +214,7 @@ const MultipleSelector = React.forwardRef<MultipleSelectorRef, MultipleSelectorP
         selectedValue: [...selected],
         input: inputRef.current as HTMLInputElement,
         focus: () => inputRef.current?.focus(),
+        reset: () => setSelected([])
       }),
       [selected],
     );
@@ -528,7 +531,7 @@ const MultipleSelector = React.forwardRef<MultipleSelectorRef, MultipleSelectorP
                   disabled ||
                   selected.length < 1 ||
                   selected.filter((s) => s.fixed).length === selected.length) &&
-                  'hidden',
+                'hidden',
               )}
             >
               <X />
