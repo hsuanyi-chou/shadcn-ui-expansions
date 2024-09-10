@@ -76,7 +76,7 @@ export const AutosizeTextarea = React.forwardRef<AutosizeTextAreaRef, AutosizeTe
 
     useImperativeHandle(ref, () => ({
       textArea: textAreaRef.current as HTMLTextAreaElement,
-      focus: () => textAreaRef.current?.focus(),
+      focus: () => textAreaRef?.current?.focus(),
       maxHeight,
       minHeight,
     }));
