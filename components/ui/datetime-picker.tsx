@@ -560,7 +560,7 @@ const TimePicker = React.forwardRef<TimePickerRef, TimePickerProps>(
           onDateChange={onChange}
           ref={hourRef}
           period={period}
-          onRightFocus={() => minuteRef.current?.focus()}
+          onRightFocus={() => minuteRef?.current?.focus()}
         />
         {(granularity === 'minute' || granularity === 'second') && (
           <>
@@ -570,8 +570,8 @@ const TimePicker = React.forwardRef<TimePickerRef, TimePickerProps>(
               date={date}
               onDateChange={onChange}
               ref={minuteRef}
-              onLeftFocus={() => hourRef.current?.focus()}
-              onRightFocus={() => secondRef.current?.focus()}
+              onLeftFocus={() => hourRef?.current?.focus()}
+              onRightFocus={() => secondRef?.current?.focus()}
             />
           </>
         )}
@@ -583,8 +583,8 @@ const TimePicker = React.forwardRef<TimePickerRef, TimePickerProps>(
               date={date}
               onDateChange={onChange}
               ref={secondRef}
-              onLeftFocus={() => minuteRef.current?.focus()}
-              onRightFocus={() => periodRef.current?.focus()}
+              onLeftFocus={() => minuteRef?.current?.focus()}
+              onRightFocus={() => periodRef?.current?.focus()}
             />
           </>
         )}
@@ -603,7 +603,7 @@ const TimePicker = React.forwardRef<TimePickerRef, TimePickerProps>(
                 }
               }}
               ref={periodRef}
-              onLeftFocus={() => secondRef.current?.focus()}
+              onLeftFocus={() => secondRef?.current?.focus()}
             />
           </div>
         )}

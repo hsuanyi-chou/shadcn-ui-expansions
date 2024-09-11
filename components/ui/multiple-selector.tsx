@@ -213,7 +213,7 @@ const MultipleSelector = React.forwardRef<MultipleSelectorRef, MultipleSelectorP
       () => ({
         selectedValue: [...selected],
         input: inputRef.current as HTMLInputElement,
-        focus: () => inputRef.current?.focus(),
+        focus: () => inputRef?.current?.focus(),
         reset: () => setSelected([])
       }),
       [selected],
@@ -449,7 +449,7 @@ const MultipleSelector = React.forwardRef<MultipleSelectorRef, MultipleSelectorP
           )}
           onClick={() => {
             if (disabled) return;
-            inputRef.current?.focus();
+            inputRef?.current?.focus();
           }}
         >
           <div className="relative flex flex-wrap gap-1">
@@ -549,7 +549,7 @@ const MultipleSelector = React.forwardRef<MultipleSelectorRef, MultipleSelectorP
                 setOnScrollbar(true);
               }}
               onMouseUp={() => {
-                inputRef.current?.focus();
+                inputRef?.current?.focus();
               }}
             >
               {isLoading ? (
