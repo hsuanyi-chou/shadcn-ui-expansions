@@ -7,15 +7,15 @@ const DatetimePickerGranularity = () => {
 
   return (
     <div className="flex flex-col gap-3 lg:flex-row lg:gap-10">
-      <div className="space-y-2">
+      <div className="w-72 space-y-2">
         <p>Minute</p>
         <DateTimePicker granularity="minute" value={date} onChange={setDate} />
       </div>
-      <div className="space-y-2">
+      <div className="w-72 space-y-2">
         <p>Hour</p>
         <DateTimePicker granularity="hour" value={date} onChange={setDate} />
       </div>
-      <div className="space-y-2">
+      <div className="w-72 space-y-2">
         <p>Day</p>
         <DateTimePicker granularity="day" value={date} onChange={setDate} />
       </div>

@@ -6,7 +6,7 @@ import { InlineCode } from '@/components/ui/inline-code';
 const DatetimePickerLocale = () => {
   const [date, setDate] = useState<Date | undefined>(undefined);
   return (
-    <div className="flex flex-col gap-3">
+    <div className="flex w-72 flex-col gap-3">
       <p>
         The following example is <InlineCode>zhTW</InlineCode> from{' '}
         <InlineCode>date-fns</InlineCode>.
