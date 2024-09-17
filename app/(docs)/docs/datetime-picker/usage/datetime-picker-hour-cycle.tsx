@@ -8,11 +8,11 @@ const DatetimePickerHourCycle = () => {
   const [date24, setDate24] = useState<Date | undefined>(undefined);
   return (
     <div className="flex flex-col gap-3 lg:flex-row">
-      <div className="flex flex-col gap-2">
+      <div className="flex w-72 flex-col gap-2">
         <Label>12 Hour</Label>
         <DateTimePicker hourCycle={12} value={date12} onChange={setDate12} />
       </div>
-      <div className="flex flex-col gap-2">
+      <div className="flex w-72 flex-col gap-2">
         <Label>24 Hour</Label>
         <DateTimePicker hourCycle={24} value={date24} onChange={setDate24} />
       </div>

@@ -187,10 +187,10 @@ function convert12HourTo24Hour(hour: number, period: Period) {
   if (period === 'PM') {
     if (hour <= 11) {
       return hour + 12;
-    } 
+    }
     return hour;
-  } 
-  
+  }
+
   if (period === 'AM') {
     if (hour === 12) return 0;
     return hour;
@@ -639,6 +639,7 @@ type DateTimePickerProps = {
    * By default, the value is `second` which shows all time inputs.
    **/
   granularity?: Granularity;
+  className?: string;
 } & Pick<CalendarProps, 'locale' | 'weekStartsOn' | 'showWeekNumber' | 'showOutsideDays'>;
 
 type DateTimePickerRef = {
@@ -657,6 +658,7 @@ const DateTimePicker = React.forwardRef<Partial<DateTimePickerRef>, DateTimePick
       displayFormat,
       granularity = 'second',
       placeholder = 'Pick a date',
+      className,
       ...props
     },
     ref,
@@ -691,13 +693,13 @@ const DateTimePicker = React.forwardRef<Partial<DateTimePickerRef>, DateTimePick
     );
 
     const initHourFormat = {
-			hour24:
-				displayFormat?.hour24 ??
-				`PPP HH:mm${!granularity || granularity === "second" ? ":ss" : ""}`,
-			hour12:
-				displayFormat?.hour12 ??
-				`PP hh:mm${!granularity || granularity === "second" ? ":ss" : ""} b`,
-		};
+      hour24:
+        displayFormat?.hour24 ??
+        `PPP HH:mm${!granularity || granularity === 'second' ? ':ss' : ''}`,
+      hour12:
+        displayFormat?.hour12 ??
+        `PP hh:mm${!granularity || granularity === 'second' ? ':ss' : ''} b`,
+    };
 
     let loc = enUS;
     const { options, localize, formatLong } = locale;
@@ -716,8 +718,9 @@ const DateTimePicker = React.forwardRef<Partial<DateTimePickerRef>, DateTimePick
           <Button
             variant="outline"
             className={cn(
-              'w-[280px] justify-start text-left font-normal',
+              'w-full justify-start text-left font-normal',
               !value && 'text-muted-foreground',
+              className,
             )}
             ref={buttonRef}
           >

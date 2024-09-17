@@ -63,7 +63,7 @@ const DatetimePickerForm = () => {
           control={form.control}
           name="datetime"
           render={({ field }) => (
-            <FormItem className="flex flex-col gap-2">
+            <FormItem className="flex w-72 flex-col gap-2">
               <FormLabel htmlFor="datetime">Date time</FormLabel>
               <FormControl>
                 <DateTimePicker value={field.value} onChange={field.onChange} />
