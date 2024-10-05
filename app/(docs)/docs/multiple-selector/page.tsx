@@ -97,7 +97,7 @@ const MultipleSelectorPage = () => {
       <Steppers
         withInstall
         codePath="components/ui/multiple-selector.tsx"
-        installScript="npx shadcn-ui@latest add command badge"
+        installScript="npx shadcn@latest add command badge"
         steps={[
           {
             title: "If you found that you can't select options using mouse click.",
