@@ -4,7 +4,7 @@ import { cn } from '@/lib/utils';
 import { useImperativeHandle } from 'react';
 
 interface UseAutosizeTextAreaProps {
-  textAreaRef: HTMLTextAreaElement | null;
+  textAreaRef: React.MutableRefObject<HTMLTextAreaElement | null>;
   minHeight?: number;
   maxHeight?: number;
   triggerAutoSize: string;
@@ -20,25 +20,26 @@ export const useAutosizeTextArea = ({
   React.useEffect(() => {
     // We need to reset the height momentarily to get the correct scrollHeight for the textarea
     const offsetBorder = 2;
-    if (textAreaRef) {
+    const textAreaElement = textAreaRef.current;
+    if (textAreaElement) {
       if (init) {
-        textAreaRef.style.minHeight = `${minHeight + offsetBorder}px`;
+        textAreaElement.style.minHeight = `${minHeight + offsetBorder}px`;
         if (maxHeight > minHeight) {
-          textAreaRef.style.maxHeight = `${maxHeight}px`;
+          textAreaElement.style.maxHeight = `${maxHeight}px`;
         }
         setInit(false);
       }
-      textAreaRef.style.height = `${minHeight + offsetBorder}px`;
-      const scrollHeight = textAreaRef.scrollHeight;
+      textAreaElement.style.height = `${minHeight + offsetBorder}px`;
+      const scrollHeight = textAreaElement.scrollHeight;
       // We then set the height directly, outside of the render loop
       // Trying to set this with state or a ref will product an incorrect value.
       if (scrollHeight > maxHeight) {
-        textAreaRef.style.height = `${maxHeight}px`;
+        textAreaElement.style.height = `${maxHeight}px`;
       } else {
-        textAreaRef.style.height = `${scrollHeight + offsetBorder}px`;
+        textAreaElement.style.height = `${scrollHeight + offsetBorder}px`;
       }
     }
-  }, [textAreaRef, triggerAutoSize]);
+  }, [textAreaRef.current, triggerAutoSize]);
 };
 
 export type AutosizeTextAreaRef = {
@@ -68,7 +69,7 @@ export const AutosizeTextarea = React.forwardRef<AutosizeTextAreaRef, AutosizeTe
     const [triggerAutoSize, setTriggerAutoSize] = React.useState('');
 
     useAutosizeTextArea({
-      textAreaRef: textAreaRef.current,
+      textAreaRef,
       triggerAutoSize: triggerAutoSize,
       maxHeight,
       minHeight,

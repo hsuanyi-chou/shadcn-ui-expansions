@@ -38,7 +38,7 @@ const AutosizeTextareaCustomize = () => {
   const textAreaRef = React.useRef<HTMLTextAreaElement>(null);
   const [triggerAutoSize, setTriggerAutoSize] = React.useState('');
   useAutosizeTextArea({
-    textAreaRef: textAreaRef?.current,
+    textAreaRef,
     triggerAutoSize: triggerAutoSize,
     minHeight: 52,
     maxHeight: 200,
