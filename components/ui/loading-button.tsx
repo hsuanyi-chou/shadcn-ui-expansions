@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Slot } from '@radix-ui/react-slot';
+import { Slot, Slottable } from '@radix-ui/react-slot';
 import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '@/lib/utils';
 import { Loader2 } from 'lucide-react';
@@ -38,41 +38,21 @@ export interface ButtonProps
 }
 
 const LoadingButton = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant, size, asChild = false, loading, children, ...props }, ref) => {
-    if (asChild) {
-      return (
-        <Slot ref={ref} {...props}>
-          <>
-            {React.Children.map(children as React.ReactElement, (child: React.ReactElement) => {
-              return React.cloneElement(child, {
-                className: cn(buttonVariants({ variant, size }), className),
-                children: (
-                  <>
-                    {loading && (
-                      <Loader2 className={cn('h-4 w-4 animate-spin', children && 'mr-2')} />
-                    )}
-                    {child.props.children}
-                  </>
-                ),
-              });
-            })}
-          </>
-        </Slot>
-      );
-    }
-
+  (
+    { className, loading = false, children, disabled, variant, size, asChild = false, ...props },
+    ref,
+  ) => {
+    const Comp = asChild ? Slot : 'button';
     return (
-      <button
+      <Comp
         className={cn(buttonVariants({ variant, size, className }))}
-        disabled={loading}
         ref={ref}
+        disabled={loading || disabled}
         {...props}
       >
-        <>
-          {loading && <Loader2 className={cn('h-4 w-4 animate-spin', children && 'mr-2')} />}
-          {children}
-        </>
-      </button>
+        {loading && <Loader2 className="mr-2 h-5 w-5 animate-spin" />}
+        <Slottable>{children}</Slottable>
+      </Comp>
     );
   },
 );
