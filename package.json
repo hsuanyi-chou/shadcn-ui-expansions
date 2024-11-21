@@ -1,6 +1,6 @@
 {
   "name": "shadcn-ui-expensions",
-  "version": "0.8.0",
+  "version": "0.9.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -33,6 +33,7 @@
     "react-dom": "^18",
     "react-highlight": "^0.15.0",
     "react-hook-form": "^7.51.5",
+    "react-page-tracker": "^0.3.0",
     "tailwind-merge": "^2.3.0",
     "tailwindcss-animate": "^1.0.7",
     "zod": "^3.23.8"

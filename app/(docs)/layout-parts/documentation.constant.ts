@@ -56,6 +56,11 @@ export const DOCS: Documentation[] = [
         url: '/docs/loading-button',
       },
       {
+        label: 'Magic Back Button',
+        value: 'magic-back-button',
+        url: '/docs/magic-back-button',
+      },
+      {
         label: 'Progress With Value',
         value: 'progress-with-value',
         url: '/docs/progress-with-value',
