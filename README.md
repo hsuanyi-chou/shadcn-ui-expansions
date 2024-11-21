@@ -20,6 +20,7 @@ Just copy and paste to your project and customize to your needs. The code is you
 - [x] [Heading With Anchor](components/ui/heading-with-anchor.tsx)
 - [x] [Infinite Scroll](components/ui/infinite-scroll.tsx)
 - [x] [Loading Button](components/ui/loading-button.tsx)
+- [x] [Magic Back Button](components/ui/magic-back-button.tsx)
 - [x] [Multiple Selector](components/ui/multiple-selector.tsx)
 - [x] [Datetime picker](components/ui/datetime-picker.tsx)
 - [x] [Spinner](components/ui/spinner.tsx)

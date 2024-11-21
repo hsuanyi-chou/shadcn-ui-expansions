@@ -6,6 +6,7 @@ import { ThemeProvider } from '@/components/ui/theme-provider';
 import './globals.css';
 import Navbar from '@/app/(docs)/layout-parts/navbar/navbar';
 import Script from 'next/script';
+import { PageTracker } from 'react-page-tracker';
 
 const fontSans = FontSans({
   subsets: ['latin'],
@@ -51,6 +52,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         className={cn('min-h-screen bg-background font-sans antialiased', fontSans.variable)}
         suppressHydrationWarning
       >
+        <PageTracker />
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
