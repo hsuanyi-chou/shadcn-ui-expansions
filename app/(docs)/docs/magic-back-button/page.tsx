@@ -14,7 +14,7 @@ import { Reference, ReferenceBorder } from '@/app/(docs)/docs/components/referen
 import CodeHighlight from '@/app/(docs)/docs/components/code-card/parts/code-highlight';
 
 export const metadata: Metadata = baseMetadata({
-  title: 'Infinite Scroll',
+  title: 'Magic Back Button',
   description:
     'Redirects first-time visitors to the homepage; otherwise, respects browser history.',
 });
