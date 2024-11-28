@@ -22,7 +22,7 @@ const DatetimePickerInitMonth = () => {
         the calendar.
         <br />
         You can set the month by giving <InlineCode>the Date</InlineCode> to{' '}
-        <InlineCode>initMonth</InlineCode> prop.
+        <InlineCode>defaultPopupValue</InlineCode> prop.
       </p>
       <DateTimePicker
         value={date}
