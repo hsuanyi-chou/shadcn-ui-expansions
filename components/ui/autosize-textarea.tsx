@@ -19,7 +19,7 @@ export const useAutosizeTextArea = ({
   const [init, setInit] = React.useState(true);
   React.useEffect(() => {
     // We need to reset the height momentarily to get the correct scrollHeight for the textarea
-    const offsetBorder = 2;
+    const offsetBorder = 6;
     const textAreaElement = textAreaRef.current;
     if (textAreaElement) {
       if (init) {
