@@ -15,6 +15,20 @@ export const datetimePickerProp: Props[] = [
     typeInfo: <p>Date value.</p>,
   },
   {
+    prop: 'defaultPopupValue',
+    required: false,
+    description: (
+      <>
+        <p>
+          Show the default month and time when popup the calendar. Default is the current{' '}
+          <InlineCode>Date()</InlineCode>.
+        </p>
+      </>
+    ),
+    type: 'Date | undefined',
+    typeInfo: <p>Date value.</p>,
+  },
+  {
     prop: 'onChange',
     required: false,
     description: (

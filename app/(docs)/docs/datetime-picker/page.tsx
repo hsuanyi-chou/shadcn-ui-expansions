@@ -24,6 +24,7 @@ import { PropsTable } from '@/app/(docs)/docs/components/props-table/props-table
 import { datetimePickerProp } from '@/app/(docs)/docs/datetime-picker/datetime-picker-prop';
 import DatetimePickerPlaceholder from '@/app/(docs)/docs/datetime-picker/usage/datetime-picker-placeholder';
 import YearDropdownDesc from '@/app/(docs)/docs/datetime-picker/year-dropdown-desc';
+import DatetimePickerInitMonth from '@/app/(docs)/docs/datetime-picker/usage/datetime-picker-init-month';
 
 export const metadata: Metadata = baseMetadata({
   title: 'Datetime Picker',
@@ -90,6 +91,14 @@ const DatetimePickerPage = () => {
       >
         <DatetimePickerHourCycle />
       </Usage>
+
+      <Usage
+        title="Default Popup Value"
+        path="app/(docs)/docs/datetime-picker/usage/datetime-picker-init-month.tsx"
+      >
+        <DatetimePickerInitMonth />
+      </Usage>
+
       <Usage
         title="Date picker or Time picker"
         path="app/(docs)/docs/datetime-picker/usage/date-picker-and-time-input.tsx"
