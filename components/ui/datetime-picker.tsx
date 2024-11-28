@@ -772,6 +772,9 @@ const DateTimePicker = React.forwardRef<Partial<DateTimePickerRef>, DateTimePick
                 onChange={(value) => {
                   onChange?.(value);
                   setDisplayDate(value);
+                  if (value) {
+                    setMonth(value);
+                  }
                 }}
                 date={month}
                 hourCycle={hourCycle}
