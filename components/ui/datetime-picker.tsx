@@ -248,6 +248,28 @@ function Calendar({
   }, []);
 
   const YEARS = React.useMemo(() => genYears(yearRange), []);
+  const disableLeftNavigation = () => {
+    const today = new Date();
+    const startDate = new Date(today.getFullYear() - yearRange, 0, 1);
+    if (props.month) {
+      return (
+        props.month.getMonth() === startDate.getMonth() &&
+        props.month.getFullYear() === startDate.getFullYear()
+      );
+    }
+    return false;
+  };
+  const disableRightNavigation = () => {
+    const today = new Date();
+    const endDate = new Date(today.getFullYear() + yearRange, 11, 31);
+    if (props.month) {
+      return (
+        props.month.getMonth() === endDate.getMonth() &&
+        props.month.getFullYear() === endDate.getFullYear()
+      );
+    }
+    return false;
+  };
 
   return (
     <DayPicker
@@ -262,10 +284,12 @@ function Calendar({
         button_previous: cn(
           buttonVariants({ variant: 'outline' }),
           'h-7 w-7 bg-transparent p-0 opacity-50 hover:opacity-100 absolute left-5 top-5',
+          disableLeftNavigation() && 'pointer-events-none',
         ),
         button_next: cn(
           buttonVariants({ variant: 'outline' }),
           'h-7 w-7 bg-transparent p-0 opacity-50 hover:opacity-100 absolute right-5 top-5',
+          disableRightNavigation() && 'pointer-events-none',
         ),
         month_grid: 'w-full border-collapse space-y-1',
         weekdays: cn('flex', props.showWeekNumber && 'justify-end'),
@@ -675,8 +699,11 @@ const DateTimePicker = React.forwardRef<Partial<DateTimePickerRef>, DateTimePick
      * instead of resetting to 00:00
      */
     const handleSelect = (newDay: Date | undefined) => {
-      if (!newDay) return;
+      if (!newDay) {
+        return;
+      }
       if (!defaultPopupValue) {
+        newDay.setHours(month?.getHours() ?? 0, month?.getMinutes() ?? 0, month?.getSeconds() ?? 0);
         onChange?.(newDay);
         setMonth(newDay);
         return;
@@ -684,6 +711,11 @@ const DateTimePicker = React.forwardRef<Partial<DateTimePickerRef>, DateTimePick
       const diff = newDay.getTime() - defaultPopupValue.getTime();
       const diffInDays = diff / (1000 * 60 * 60 * 24);
       const newDateFull = add(defaultPopupValue, { days: Math.ceil(diffInDays) });
+      newDateFull.setHours(
+        month?.getHours() ?? 0,
+        month?.getMinutes() ?? 0,
+        month?.getSeconds() ?? 0,
+      );
       onChange?.(newDateFull);
       setMonth(newDateFull);
     };
@@ -692,9 +724,6 @@ const DateTimePicker = React.forwardRef<Partial<DateTimePickerRef>, DateTimePick
       if (!newDay) {
         return;
       }
-      // const diff = newDay.getTime() - defaultValue.getTime();
-      // const diffInDays = diff / (1000 * 60 * 60 * 24);
-      // const newDateFull = add(defaultValue, { days: Math.ceil(diffInDays) });
       onChange?.(newDay);
       setMonth(newDay);
       setDisplayDate(newDay);
@@ -760,7 +789,16 @@ const DateTimePicker = React.forwardRef<Partial<DateTimePickerRef>, DateTimePick
             mode="single"
             selected={displayDate}
             month={month}
-            onSelect={onSelect}
+            onSelect={(newDate) => {
+              if (newDate) {
+                newDate.setHours(
+                  month?.getHours() ?? 0,
+                  month?.getMinutes() ?? 0,
+                  month?.getSeconds() ?? 0,
+                );
+                onSelect(newDate);
+              }
+            }}
             onMonthChange={handleSelect}
             yearRange={yearRange}
             locale={locale}
