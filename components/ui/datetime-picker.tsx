@@ -675,8 +675,11 @@ const DateTimePicker = React.forwardRef<Partial<DateTimePickerRef>, DateTimePick
      * instead of resetting to 00:00
      */
     const handleSelect = (newDay: Date | undefined) => {
-      if (!newDay) return;
+      if (!newDay) {
+        return;
+      }
       if (!defaultPopupValue) {
+        newDay.setHours(month?.getHours() ?? 0, month?.getMinutes() ?? 0, month?.getSeconds() ?? 0);
         onChange?.(newDay);
         setMonth(newDay);
         return;
@@ -684,6 +687,11 @@ const DateTimePicker = React.forwardRef<Partial<DateTimePickerRef>, DateTimePick
       const diff = newDay.getTime() - defaultPopupValue.getTime();
       const diffInDays = diff / (1000 * 60 * 60 * 24);
       const newDateFull = add(defaultPopupValue, { days: Math.ceil(diffInDays) });
+      newDateFull.setHours(
+        month?.getHours() ?? 0,
+        month?.getMinutes() ?? 0,
+        month?.getSeconds() ?? 0,
+      );
       onChange?.(newDateFull);
       setMonth(newDateFull);
     };
@@ -692,9 +700,6 @@ const DateTimePicker = React.forwardRef<Partial<DateTimePickerRef>, DateTimePick
       if (!newDay) {
         return;
       }
-      // const diff = newDay.getTime() - defaultValue.getTime();
-      // const diffInDays = diff / (1000 * 60 * 60 * 24);
-      // const newDateFull = add(defaultValue, { days: Math.ceil(diffInDays) });
       onChange?.(newDay);
       setMonth(newDay);
       setDisplayDate(newDay);
@@ -760,7 +765,16 @@ const DateTimePicker = React.forwardRef<Partial<DateTimePickerRef>, DateTimePick
             mode="single"
             selected={displayDate}
             month={month}
-            onSelect={onSelect}
+            onSelect={(newDate) => {
+              if (newDate) {
+                newDate.setHours(
+                  month?.getHours() ?? 0,
+                  month?.getMinutes() ?? 0,
+                  month?.getSeconds() ?? 0,
+                );
+                onSelect(newDate);
+              }
+            }}
             onMonthChange={handleSelect}
             yearRange={yearRange}
             locale={locale}
