@@ -641,6 +641,7 @@ type Granularity = 'day' | 'hour' | 'minute' | 'second';
 type DateTimePickerProps = {
   value?: Date;
   onChange?: (date: Date | undefined) => void;
+  onMonthChange?: (date: Date | undefined) => void;
   disabled?: boolean;
   /** showing `AM/PM` or not. */
   hourCycle?: 12 | 24;
