@@ -696,6 +696,7 @@ const DateTimePicker = React.forwardRef<Partial<DateTimePickerRef>, DateTimePick
     const [month, setMonth] = React.useState<Date>(value ?? defaultPopupValue);
     const buttonRef = useRef<HTMLButtonElement>(null);
     const [displayDate, setDisplayDate] = React.useState<Date | undefined>(value ?? undefined);
+    onMonthChange ||= onChange;
     /**
      * carry over the current time when a user clicks a new day
      * instead of resetting to 00:00
@@ -706,7 +707,7 @@ const DateTimePicker = React.forwardRef<Partial<DateTimePickerRef>, DateTimePick
       }
       if (!defaultPopupValue) {
         newDay.setHours(month?.getHours() ?? 0, month?.getMinutes() ?? 0, month?.getSeconds() ?? 0);
-        onMonthChange?.(newDay);
+        onChange?.(newDay);
         setMonth(newDay);
         return;
       }
