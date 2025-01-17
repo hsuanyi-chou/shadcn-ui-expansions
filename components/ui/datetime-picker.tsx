@@ -707,7 +707,7 @@ const DateTimePicker = React.forwardRef<Partial<DateTimePickerRef>, DateTimePick
       }
       if (!defaultPopupValue) {
         newDay.setHours(month?.getHours() ?? 0, month?.getMinutes() ?? 0, month?.getSeconds() ?? 0);
-        onChange?.(newDay);
+        onMonthChange?.(newDay);
         setMonth(newDay);
         return;
       }
@@ -719,7 +719,7 @@ const DateTimePicker = React.forwardRef<Partial<DateTimePickerRef>, DateTimePick
         month?.getMinutes() ?? 0,
         month?.getSeconds() ?? 0,
       );
-      onChange?.(newDateFull);
+      onMonthChange?.(newDateFull);
       setMonth(newDateFull);
     };
 
