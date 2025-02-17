@@ -641,6 +641,7 @@ type Granularity = 'day' | 'hour' | 'minute' | 'second';
 type DateTimePickerProps = {
   value?: Date;
   onChange?: (date: Date | undefined) => void;
+  onMonthChange?: (date: Date | undefined) => void;
   disabled?: boolean;
   /** showing `AM/PM` or not. */
   hourCycle?: 12 | 24;
@@ -680,6 +681,7 @@ const DateTimePicker = React.forwardRef<Partial<DateTimePickerRef>, DateTimePick
       defaultPopupValue = new Date(new Date().setHours(0, 0, 0, 0)),
       value,
       onChange,
+      onMonthChange,
       hourCycle = 24,
       yearRange = 50,
       disabled = false,
@@ -694,17 +696,18 @@ const DateTimePicker = React.forwardRef<Partial<DateTimePickerRef>, DateTimePick
     const [month, setMonth] = React.useState<Date>(value ?? defaultPopupValue);
     const buttonRef = useRef<HTMLButtonElement>(null);
     const [displayDate, setDisplayDate] = React.useState<Date | undefined>(value ?? undefined);
+    onMonthChange ||= onChange;
     /**
      * carry over the current time when a user clicks a new day
      * instead of resetting to 00:00
      */
-    const handleSelect = (newDay: Date | undefined) => {
+    const handleMonthChange = (newDay: Date | undefined) => {
       if (!newDay) {
         return;
       }
       if (!defaultPopupValue) {
         newDay.setHours(month?.getHours() ?? 0, month?.getMinutes() ?? 0, month?.getSeconds() ?? 0);
-        onChange?.(newDay);
+        onMonthChange?.(newDay);
         setMonth(newDay);
         return;
       }
@@ -716,7 +719,7 @@ const DateTimePicker = React.forwardRef<Partial<DateTimePickerRef>, DateTimePick
         month?.getMinutes() ?? 0,
         month?.getSeconds() ?? 0,
       );
-      onChange?.(newDateFull);
+      onMonthChange?.(newDateFull);
       setMonth(newDateFull);
     };
 
@@ -799,7 +802,7 @@ const DateTimePicker = React.forwardRef<Partial<DateTimePickerRef>, DateTimePick
                 onSelect(newDate);
               }
             }}
-            onMonthChange={handleSelect}
+            onMonthChange={handleMonthChange}
             yearRange={yearRange}
             locale={locale}
             {...props}
