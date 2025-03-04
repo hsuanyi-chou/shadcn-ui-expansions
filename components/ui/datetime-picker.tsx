@@ -5,8 +5,7 @@ import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover
 import { cn } from '@/lib/utils';
 import { add, format } from 'date-fns';
 import { type Locale, enUS } from 'date-fns/locale';
-import { Calendar as CalendarIcon, ChevronLeft, ChevronRight } from 'lucide-react';
-import { Clock } from 'lucide-react';
+import { Calendar as CalendarIcon, ChevronLeft, ChevronRight, Clock } from 'lucide-react';
 import * as React from 'react';
 import { useImperativeHandle, useRef } from 'react';
 
@@ -314,9 +313,9 @@ function Calendar({
       components={{
         Chevron: ({ ...props }) =>
           props.orientation === 'left' ? (
-            <ChevronLeft className="h-4 w-4" />
+            <ChevronLeft className="w-4 h-4" />
           ) : (
-            <ChevronRight className="h-4 w-4" />
+            <ChevronRight className="w-4 h-4" />
           ),
         MonthCaption: ({ calendarMonth }) => {
           return (
@@ -329,7 +328,7 @@ function Calendar({
                   props.onMonthChange?.(newDate);
                 }}
               >
-                <SelectTrigger className="w-fit gap-1 border-none p-0 focus:bg-accent focus:text-accent-foreground">
+                <SelectTrigger className="gap-1 p-0 border-none w-fit focus:bg-accent focus:text-accent-foreground">
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
@@ -348,7 +347,7 @@ function Calendar({
                   props.onMonthChange?.(newDate);
                 }}
               >
-                <SelectTrigger className="w-fit gap-1 border-none p-0 focus:bg-accent focus:text-accent-foreground">
+                <SelectTrigger className="gap-1 p-0 border-none w-fit focus:bg-accent focus:text-accent-foreground">
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
@@ -402,7 +401,7 @@ const TimePeriodSelect = React.forwardRef<HTMLButtonElement, PeriodSelectorProps
     };
 
     return (
-      <div className="flex h-10 items-center">
+      <div className="flex items-center h-10">
         <Select defaultValue={period} onValueChange={(value: Period) => handleValueChange(value)}>
           <SelectTrigger
             ref={ref}
@@ -574,7 +573,7 @@ const TimePicker = React.forwardRef<TimePickerRef, TimePickerProps>(
     return (
       <div className="flex items-center justify-center gap-2">
         <label htmlFor="datetime-picker-hour-input" className="cursor-pointer">
-          <Clock className="mr-2 h-4 w-4" />
+          <Clock className="w-4 h-4 mr-2" />
         </label>
         <TimePickerInput
           picker={hourCycle === 24 ? 'hours' : '12hours'}
@@ -697,6 +696,16 @@ const DateTimePicker = React.forwardRef<Partial<DateTimePickerRef>, DateTimePick
     const buttonRef = useRef<HTMLButtonElement>(null);
     const [displayDate, setDisplayDate] = React.useState<Date | undefined>(value ?? undefined);
     onMonthChange ||= onChange;
+
+    /**
+     * Makes sure display date updates when value change on
+     * parent component
+     */
+    React.useEffect(() => {
+      setDisplayDate(value)
+    }, [value])
+
+
     /**
      * carry over the current time when a user clicks a new day
      * instead of resetting to 00:00
@@ -773,7 +782,7 @@ const DateTimePicker = React.forwardRef<Partial<DateTimePickerRef>, DateTimePick
             )}
             ref={buttonRef}
           >
-            <CalendarIcon className="mr-2 h-4 w-4" />
+            <CalendarIcon className="w-4 h-4 mr-2" />
             {displayDate ? (
               format(
                 displayDate,
@@ -808,7 +817,7 @@ const DateTimePicker = React.forwardRef<Partial<DateTimePickerRef>, DateTimePick
             {...props}
           />
           {granularity !== 'day' && (
-            <div className="border-t border-border p-3">
+            <div className="p-3 border-t border-border">
               <TimePicker
                 onChange={(value) => {
                   onChange?.(value);
@@ -831,5 +840,6 @@ const DateTimePicker = React.forwardRef<Partial<DateTimePickerRef>, DateTimePick
 
 DateTimePicker.displayName = 'DateTimePicker';
 
-export { DateTimePicker, TimePickerInput, TimePicker };
-export type { TimePickerType, DateTimePickerProps, DateTimePickerRef };
+export { DateTimePicker, TimePicker, TimePickerInput };
+export type { DateTimePickerProps, DateTimePickerRef, TimePickerType };
+
