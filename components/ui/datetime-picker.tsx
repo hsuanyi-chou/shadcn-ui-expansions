@@ -697,6 +697,15 @@ const DateTimePicker = React.forwardRef<Partial<DateTimePickerRef>, DateTimePick
     const buttonRef = useRef<HTMLButtonElement>(null);
     const [displayDate, setDisplayDate] = React.useState<Date | undefined>(value ?? undefined);
     onMonthChange ||= onChange;
+
+    /**
+     * Makes sure display date updates when value change on
+     * parent component
+     */
+    React.useEffect(() => {
+      setDisplayDate(value)
+    }, [value])
+
     /**
      * carry over the current time when a user clicks a new day
      * instead of resetting to 00:00
