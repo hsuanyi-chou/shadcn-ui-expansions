@@ -1,6 +1,5 @@
 'use client';
 import React from 'react';
-import PropTypes from 'prop-types';
 import Script from 'next/script';
 import { cn } from '@/lib/utils';
 
@@ -38,11 +37,6 @@ const AdBase = ({ id, slot, layout, format = 'auto', className }: AdBaseProps) =
         `}</Script>
     </>
   );
-};
-
-AdBase.propTypes = {
-  id: PropTypes.string.isRequired,
-  slot: PropTypes.string.isRequired,
 };
 
 export default AdBase;
