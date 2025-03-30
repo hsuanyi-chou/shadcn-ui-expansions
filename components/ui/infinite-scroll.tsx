@@ -21,7 +21,7 @@ export default function InfiniteScroll({
   reverse,
   children,
 }: InfiniteScrollProps) {
-  const observer = React.useRef<IntersectionObserver>();
+  const observer = React.useRef<IntersectionObserver>(null);
   // This callback ref will be called when it is dispatched to an element or detached from an element,
   // or when the callback function changes.
   const observerRef = React.useCallback(
