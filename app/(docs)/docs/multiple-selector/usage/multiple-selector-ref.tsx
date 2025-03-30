@@ -1,8 +1,8 @@
 'use client';
-import React from 'react';
-import MultipleSelector, { MultipleSelectorRef, Option } from '@/components/ui/multiple-selector';
 import { LoadingButton } from '@/components/ui/loading-button';
+import MultipleSelector, { MultipleSelectorRef, Option } from '@/components/ui/multiple-selector';
 import { toast } from '@/components/ui/use-toast';
+import React from 'react';
 
 const OPTIONS: Option[] = [
   { label: 'nextjs', value: 'nextjs' },
