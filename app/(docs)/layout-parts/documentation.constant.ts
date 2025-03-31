@@ -79,8 +79,8 @@ export const DOCS: Documentation[] = [
     groupValue: 'Libs',
     children: [
       {
-        label: 'rate-limit',
-        value: 'Rate Limit (for Nextjs App Router)',
+        label: 'Rate Limit (for Nextjs App Router)',
+        value: 'rate-limit',
         url: '/docs/rate-limit',
       },
     ],
