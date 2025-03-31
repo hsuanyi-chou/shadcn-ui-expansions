@@ -28,6 +28,8 @@ Just copy and paste to your project and customize to your needs. The code is you
 - [x] [Progress With Value](components/ui/progress-with-value.tsx)
 - [x] [Responsive Modal](components/ui/responsive-modal.tsx)
 
+## Libs
+- [x] [Rate Limit](app/api/rate-limit-demo/route.ts)
 ## Contributing
 
 Be welcome to contribute! Here's how you can contribute:
@@ -36,14 +38,15 @@ Be welcome to contribute! Here's how you can contribute:
 - Make a [pull request](https://github.com/hsuanyi-chou/shadcn-ui-expansions/pull) to add new features/make quality-of-life improvements/fix bugs.
 
 <a href="https://github.com/hsuanyi-chou/shadcn-ui-expansions/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=hsuanyi-chou/shadcn-ui-expansions" />
+  <img src="https://contrib.rocks/image?repo=hsuanyi-chou/shadcn-ui-expansions" alt="Contributors" />
 </a>
-</br>
+<br />
 <sub>
-  Built by <a href="https://github.com/hsuanyi-chou">hsuanyi-chou</a>
+  Built by <a href="https://github.com/hsuanyi-chou">Hsuan Yi, Chou</a>
 </sub>
 
 ## License
 
 Licensed under the [MIT License](LICENSE.md).
-```
+
+[![Deployed on Zeabur](https://zeabur.com/deployed-on-zeabur-dark.svg)](https://zeabur.com/referral?referralCode=hsuanyi-chou&utm_source=hsuanyi-chou)
