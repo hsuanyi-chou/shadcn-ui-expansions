@@ -70,6 +70,11 @@ export const DOCS: Documentation[] = [
         value: 'responsive-modal',
         url: '/docs/responsive-modal',
       },
+      {
+        label: 'Typewriter',
+        value: 'typewriter',
+        url: '/docs/typewriter',
+      },
       { label: 'Multiple Selector', value: 'multipleSelector', url: '/docs/multiple-selector' },
       { label: 'Spinner', value: 'spinner', url: '/docs/spinner' },
     ],

@@ -1,6 +1,6 @@
 {
-  "name": "shadcn-ui-expensions",
-  "version": "2.0.1",
+  "name": "shadcn-ui-expansions",
+  "version": "2.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -25,11 +25,11 @@
     "clsx": "^2.1.1",
     "cmdk": "^1.1.1",
     "date-fns": "^4.1.0",
-    "lucide-react": "^0.485.0",
+    "lucide-react": "^0.486.0",
     "next": "15.2.4",
     "next-themes": "^0.4.6",
     "react": "^19",
-    "react-day-picker": "^9.6.3",
+    "react-day-picker": "^9.6.4",
     "react-dom": "^19",
     "react-highlight": "^0.15.0",
     "react-hook-form": "^7.55.0",
