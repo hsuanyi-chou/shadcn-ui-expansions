@@ -18,7 +18,7 @@ const OPTIONS: Option[] = [
   { label: 'Astro', value: 'astro' },
 ];
 
-const MultipleSelectorRef = () => {
+const MultipleSelectorRefExample = () => {
   const ref = React.useRef<MultipleSelectorRef>(null);
 
   /**
@@ -72,4 +72,4 @@ const MultipleSelectorRef = () => {
   );
 };
 
-export default MultipleSelectorRef;
+export default MultipleSelectorRefExample;
