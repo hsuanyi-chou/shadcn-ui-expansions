@@ -1,12 +1,20 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'export',
-  images: {
-    unoptimized: true,
-  },
   eslint: {
     ignoreDuringBuilds: true,
-  }
+  },
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'cdn.buymeacoffee.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'zeabur.com',
+      },
+    ],
+  },
 };
 
 module.exports = nextConfig;

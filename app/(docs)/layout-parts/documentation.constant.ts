@@ -74,4 +74,15 @@ export const DOCS: Documentation[] = [
       { label: 'Spinner', value: 'spinner', url: '/docs/spinner' },
     ],
   },
+  {
+    groupKey: 'libs',
+    groupValue: 'Libs',
+    children: [
+      {
+        label: 'rate-limit',
+        value: 'Rate Limit (for Nextjs App Router)',
+        url: '/docs/rate-limit',
+      },
+    ],
+  },
 ];
