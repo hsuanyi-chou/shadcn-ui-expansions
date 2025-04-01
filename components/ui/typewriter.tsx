@@ -2,24 +2,6 @@
 import { cn } from '@/lib/utils';
 import React, { ReactNode, useEffect, useMemo, useRef, useState } from 'react';
 
-// --- FlashCursor Component (Unchanged) ---
-export const FlashCursor = ({
-  hideCursor,
-  className,
-  ...props
-}: React.HTMLAttributes<HTMLSpanElement> & { hideCursor?: boolean }) => {
-  return (
-    <span
-      className={cn(
-        'animate-blink border-r-4 border-r-primary/60 pl-1 text-transparent',
-        className,
-        hideCursor && 'animate-none opacity-0',
-      )}
-      {...props}
-    />
-  );
-};
-
 // --- Helper Function to Count Characters in React Nodes ---
 const countChars = (node: ReactNode): number => {
   if (typeof node === 'string' || typeof node === 'number') {
@@ -124,43 +106,16 @@ const renderProgressivelyInternal = (
 
 type TypewriterProps = {
   children: ReactNode;
-  delay?: number;
+  typeSpeed?: number;
   className?: string;
   onComplete?: () => void;
-  cursorClassName?: string;
 };
 
-const TYPE_SPEED = 40;
-
-/*
- * ==========================================================================
- * IMPORTANT NOTE ON USING BLOCK-LEVEL ELEMENTS (h1, p, div, etc.)
- * ==========================================================================
- * Elements like 'h1', 'p', 'div', 'ul', etc., are block-level elements.
- * Native HTML behavior causes them to occupy the full width and force line breaks.
- * Using them directly as children in the Typewriter will result in the cursor
- * wrapping to the next line after the block element finishes typing.
- *
- * To ensure correct inline cursor placement immediately after the text,
- * please avoid using these block-level elements directly as children.
- * Consider wrapping content in inline elements (<span>, <a>, <strong>)
- * or using plain strings. This respects standard HTML rendering behavior.
- * ==========================================================================
- * Following are block-level elements:
- * 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 'div', 'ul', 'ol', 'li',
- * 'blockquote', 'hr', 'table', 'form', 'article', 'section', 'aside',
- * 'header', 'footer', 'nav', 'main', 'address', 'figure', 'figcaption',
- * 'dl', 'dt', 'dd', 'pre'.
- *
- *  If you really want to use block-level elements, you can hide cursor to avoid the next line cursor issue.
- *  example: `cursorClassName="hidden"`
- */
 export const Typewriter = ({
   children,
-  delay = TYPE_SPEED,
+  typeSpeed = 40,
   onComplete,
   className,
-  cursorClassName,
 }: TypewriterProps) => {
   const [displayedCharsCount, setDisplayedCharsCount] = useState(0);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
@@ -196,7 +151,7 @@ export const Typewriter = ({
           }
           return nextCount;
         });
-      }, delay);
+      }, typeSpeed);
     }
 
     return () => {
@@ -204,7 +159,7 @@ export const Typewriter = ({
         clearInterval(intervalRef.current);
       }
     };
-  }, [children, delay, totalChars]);
+  }, [children, typeSpeed, totalChars]);
 
   // Memoize the progressive rendering calculation
   const displayedContent = useMemo(() => {
@@ -212,19 +167,9 @@ export const Typewriter = ({
     return content;
   }, [children, displayedCharsCount]);
 
-  const isComplete = displayedCharsCount >= totalChars;
-
   return (
-    <div
-      className={cn(
-        'inline-block whitespace-pre-wrap align-bottom leading-7 text-primary',
-        className,
-      )}
-    >
-      <span>
-        {displayedContent}
-        <FlashCursor hideCursor={isComplete} className={cursorClassName} />
-      </span>
+    <div className={cn('whitespace-pre-wrap align-bottom leading-7 text-primary', className)}>
+      {displayedContent}
     </div>
   );
 };
