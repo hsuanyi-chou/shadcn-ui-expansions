@@ -4,9 +4,13 @@ import { baseMetadata } from '@/app/(docs)/layout-parts/base-metadata';
 import { Steppers } from '@/components/ui/steppers';
 import { Metadata } from 'next';
 import CodeHighlight from '../components/code-card/parts/code-highlight';
+import { PropLink } from '../components/props-table/prop-link';
 import { PropsTable } from '../components/props-table/props-table';
+import Usage from '../components/usage';
 import TypewriterDemo from './typewriter-demo';
 import { typewriterProp } from './typewriter-prop';
+import TypewriterHideCursor from './usage/typewriter-hide-cursor';
+import TypewriterMd from './usage/typewriter-md';
 
 export const metadata: Metadata = baseMetadata({
   title: 'Typewriter',
@@ -26,6 +30,7 @@ const TypewriterPage = () => {
       <PageSubTitle>Installation</PageSubTitle>
       <Steppers
         withInstall
+        installScript="npm install react-markdown"
         codePath="components/ui/typewriter.tsx"
         withEnd
         steps={[
@@ -39,6 +44,28 @@ const TypewriterPage = () => {
           },
         ]}
       />
+      <Usage
+        title="Markdown"
+        path="app/(docs)/docs/typewriter/usage/typewriter-md.tsx"
+        description={
+          <>
+            <p className="text-muted-foreground">
+              Following markdown style is using{' '}
+              <PropLink
+                href="https://github.com/tailwindlabs/tailwindcss-typography"
+                target="_blank"
+              >
+                tailwindcss-typography
+              </PropLink>
+            </p>
+          </>
+        }
+      >
+        <TypewriterMd />
+      </Usage>
+      <Usage title="Hide Cursor" path="app/(docs)/docs/typewriter/usage/typewriter-hide-cursor.tsx">
+        <TypewriterHideCursor />
+      </Usage>
       <PropsTable props={typewriterProp} />
     </PageTemplate>
   );

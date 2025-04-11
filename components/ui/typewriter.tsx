@@ -1,7 +1,7 @@
 'use client';
 import { cn } from '@/lib/utils';
 import React, { useEffect, useRef, useState } from 'react';
-import Markdown from 'react-markdown';
+import Markdown, { Components } from 'react-markdown';
 
 type FlashCursorProps = React.HTMLAttributes<HTMLSpanElement> & { hideCursor?: boolean };
 
@@ -26,6 +26,7 @@ type TypewriterProps = {
   flashCursorClassName?: string;
   alwaysHideCursor?: boolean;
   renderMarkdown?: boolean;
+  markdownComponents?: Components;
 };
 
 export const Typewriter = ({
@@ -36,6 +37,7 @@ export const Typewriter = ({
   flashCursorClassName,
   alwaysHideCursor,
   renderMarkdown,
+  markdownComponents,
 }: TypewriterProps) => {
   const [displayedText, setDisplayedText] = useState('');
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
@@ -84,7 +86,7 @@ export const Typewriter = ({
     <div>
       {renderMarkdown ? (
         <div className={className}>
-          <Markdown>{displayedText}</Markdown>
+          <Markdown components={markdownComponents}>{displayedText}</Markdown>
         </div>
       ) : (
         <>

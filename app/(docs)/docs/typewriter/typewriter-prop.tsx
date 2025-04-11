@@ -1,4 +1,5 @@
 import { Props } from '@/app/(docs)/docs/components/props-table/props-table';
+import { InlineCode } from '@/components/ui/inline-code';
 
 export const typewriterProp: Props[] = [
   {
@@ -32,6 +33,18 @@ export const typewriterProp: Props[] = [
       </>
     ),
     type: `boolean`,
+  },
+  {
+    prop: 'markdownComponents',
+    required: false,
+    description: (
+      <>
+        <p>
+          Markdown components. Only works with renderMarkdown=<InlineCode>true</InlineCode>.
+        </p>
+      </>
+    ),
+    type: `Components`,
   },
   {
     prop: 'onComplete',
