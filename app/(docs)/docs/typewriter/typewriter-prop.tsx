@@ -57,28 +57,7 @@ export const typewriterProp: Props[] = [
     type: `() => void`,
   },
   {
-    prop: 'alwaysHideCursor',
-    required: false,
-    default: 'false',
-    description: (
-      <>
-        <p>Hide cursor always.</p>
-      </>
-    ),
-    type: 'boolean',
-  },
-  {
     prop: 'className',
-    required: false,
-    description: (
-      <>
-        <p>Customize the style by adding tailwind.</p>
-      </>
-    ),
-    type: 'string',
-  },
-  {
-    prop: 'flashCursorClassName',
     required: false,
     description: (
       <>

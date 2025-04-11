@@ -23,8 +23,6 @@ type TypewriterProps = {
   typeSpeed?: number;
   className?: string;
   onComplete?: () => void;
-  flashCursorClassName?: string;
-  alwaysHideCursor?: boolean;
   renderMarkdown?: boolean;
   markdownComponents?: Components;
 };
@@ -34,8 +32,6 @@ export const Typewriter = ({
   typeSpeed = 33,
   onComplete,
   className,
-  flashCursorClassName,
-  alwaysHideCursor,
   renderMarkdown,
   markdownComponents,
 }: TypewriterProps) => {
@@ -82,24 +78,18 @@ export const Typewriter = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [text, typeSpeed]);
 
+  if (renderMarkdown) {
+    return (
+      <div className={className}>
+        <Markdown components={markdownComponents}>{displayedText}</Markdown>
+      </div>
+    );
+  }
+
   return (
-    <div>
-      {renderMarkdown ? (
-        <div className={className}>
-          <Markdown components={markdownComponents}>{displayedText}</Markdown>
-        </div>
-      ) : (
-        <>
-          <span
-            className={cn('whitespace-pre-wrap leading-7', className)}
-            dangerouslySetInnerHTML={{ __html: displayedText }}
-          />
-          <FlashCursor
-            hideCursor={alwaysHideCursor || displayedText === text}
-            className={flashCursorClassName}
-          />
-        </>
-      )}
-    </div>
+    <span
+      className={cn('whitespace-pre-wrap leading-7', className)}
+      dangerouslySetInnerHTML={{ __html: displayedText }}
+    />
   );
 };
