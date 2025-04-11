@@ -33,6 +33,7 @@
     "react-dom": "^19",
     "react-highlight": "^0.15.0",
     "react-hook-form": "^7.55.0",
+    "react-markdown": "^10.1.0",
     "react-page-tracker": "^0.3.1",
     "tailwind-merge": "^3.0.2",
     "tailwindcss-animate": "^1.0.7",

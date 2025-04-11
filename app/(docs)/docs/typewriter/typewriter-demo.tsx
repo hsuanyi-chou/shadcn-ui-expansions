@@ -5,7 +5,7 @@ import { Typewriter } from '@/components/ui/typewriter';
 export default function TypewriterDemo() {
   return (
     <div>
-      <Typewriter htmlString={DEMO_TEXT} />
+      <Typewriter text={DEMO_TEXT} />
     </div>
   );
 }

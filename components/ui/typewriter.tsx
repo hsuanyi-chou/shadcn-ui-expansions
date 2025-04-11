@@ -1,12 +1,11 @@
 'use client';
 import { cn } from '@/lib/utils';
 import React, { useEffect, useRef, useState } from 'react';
+import Markdown from 'react-markdown';
 
-export const FlashCursor = ({
-  hideCursor,
-  className,
-  ...props
-}: React.HTMLAttributes<HTMLSpanElement> & { hideCursor?: boolean }) => {
+type FlashCursorProps = React.HTMLAttributes<HTMLSpanElement> & { hideCursor?: boolean };
+
+export const FlashCursor = ({ hideCursor, className, ...props }: FlashCursorProps) => {
   return (
     <span
       className={cn(
@@ -20,19 +19,23 @@ export const FlashCursor = ({
 };
 
 type TypewriterProps = {
-  htmlString?: string;
-  delay?: number;
+  text?: string;
+  typeSpeed?: number;
   className?: string;
   onComplete?: () => void;
+  flashCursorClassName?: string;
+  alwaysHideCursor?: boolean;
+  renderMarkdown?: boolean;
 };
 
-const TYPE_SPEED = 33;
-
 export const Typewriter = ({
-  htmlString = '',
-  delay = TYPE_SPEED,
+  text = '',
+  typeSpeed = 33,
   onComplete,
   className,
+  flashCursorClassName,
+  alwaysHideCursor,
+  renderMarkdown,
 }: TypewriterProps) => {
   const [displayedText, setDisplayedText] = useState('');
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
@@ -50,9 +53,9 @@ export const Typewriter = ({
     const startTyping = () => {
       let currentIndex = displayedText.length;
       intervalRef.current = setInterval(() => {
-        if (currentIndex < htmlString.length) {
+        if (currentIndex < text.length) {
           // Only add new characters, do not reset old text
-          setDisplayedText(htmlString.slice(0, currentIndex + 1));
+          setDisplayedText(text.slice(0, currentIndex + 1));
           currentIndex++;
         } else {
           if (intervalRef.current) {
@@ -60,11 +63,11 @@ export const Typewriter = ({
           }
           onCompleteRef.current?.();
         }
-      }, delay);
+      }, typeSpeed);
     };
 
     // If there is new text, start typing animation
-    if (htmlString.length > displayedText.length) {
+    if (text.length > displayedText.length) {
       // Start typing immediately, no need to wait for delay
       startTyping();
     }
@@ -75,15 +78,26 @@ export const Typewriter = ({
       }
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [htmlString, delay]);
+  }, [text, typeSpeed]);
 
   return (
     <div>
-      <span
-        className={cn('whitespace-pre-wrap leading-7 text-primary', className)}
-        dangerouslySetInnerHTML={{ __html: displayedText }}
-      />
-      <FlashCursor hideCursor={displayedText === htmlString} />
+      {renderMarkdown ? (
+        <div className={className}>
+          <Markdown>{displayedText}</Markdown>
+        </div>
+      ) : (
+        <>
+          <span
+            className={cn('whitespace-pre-wrap leading-7', className)}
+            dangerouslySetInnerHTML={{ __html: displayedText }}
+          />
+          <FlashCursor
+            hideCursor={alwaysHideCursor || displayedText === text}
+            className={flashCursorClassName}
+          />
+        </>
+      )}
     </div>
   );
 };
