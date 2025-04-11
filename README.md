@@ -10,7 +10,7 @@ The same as shadcn/ui, all components are free to use for personal and commercia
 
 Just copy and paste to your project and customize to your needs. The code is yours.
 
->Check it out here 👉 <a href="https://shadcnui-expansions.typeart.cc/">Demo</a> 
+> Check it out here 👉 <a href="https://shadcnui-expansions.typeart.cc/">Demo</a>
 
 ## Components
 
@@ -27,9 +27,12 @@ Just copy and paste to your project and customize to your needs. The code is you
 - [x] [Dual Range Slider](components/ui/dual-range-slider.tsx)
 - [x] [Progress With Value](components/ui/progress-with-value.tsx)
 - [x] [Responsive Modal](components/ui/responsive-modal.tsx)
+- [x] [Typewriter](components/ui/typewriter.tsx)
 
 ## Libs
+
 - [x] [Rate Limit](app/api/rate-limit-demo/route.ts)
+
 ## Contributing
 
 Be welcome to contribute! Here's how you can contribute:
