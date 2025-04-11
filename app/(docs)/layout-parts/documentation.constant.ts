@@ -45,11 +45,6 @@ export const DOCS: Documentation[] = [
         url: '/docs/floating-label-input',
       },
       {
-        label: 'Follow List',
-        value: 'follow-list',
-        url: '/docs/follow-list',
-      },
-      {
         label: 'Heading With Anchor',
         value: 'heading-with-anchor',
         url: '/docs/heading-with-anchor',
