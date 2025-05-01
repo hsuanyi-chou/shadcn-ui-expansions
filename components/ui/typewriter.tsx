@@ -1,22 +1,7 @@
 'use client';
 import { cn } from '@/lib/utils';
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Markdown, { Components } from 'react-markdown';
-
-type FlashCursorProps = React.HTMLAttributes<HTMLSpanElement> & { hideCursor?: boolean };
-
-export const FlashCursor = ({ hideCursor, className, ...props }: FlashCursorProps) => {
-  return (
-    <span
-      className={cn(
-        'animate-blink border-r-4 border-r-primary/60 pl-1 text-transparent',
-        className,
-        hideCursor && 'hidden',
-      )}
-      {...props}
-    />
-  );
-};
 
 type TypewriterProps = {
   text?: string;
