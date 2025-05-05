@@ -73,7 +73,7 @@ const TypewriterPage = () => {
               Here is the ChatGPT integration playground. Please enter your token to test.
               Don&apos;t worry, the API endpoint does not store your token. You can check the{' '}
               <PropLink
-                href="https://github.com/shadcn-ui/shadcn-ui-expansions/blob/main/app/api/typewriter-chat-gpt-playground/route.ts"
+                href="https://github.com/hsuanyi-chou/shadcn-ui-expansions/blob/main/app/api/typewriter-chat-gpt-playground/route.ts"
                 target="_blank"
               >
                 API source code
