@@ -412,3 +412,5 @@ export const InteractiveStepperContent = React.forwardRef<HTMLDivElement, IStepp
     );
   },
 );
+
+export const InteractiveStepper = InteractiveStepperRoot;
