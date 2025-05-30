@@ -535,19 +535,15 @@ const MultipleSelector = React.forwardRef<MultipleSelectorRef, MultipleSelectorP
           >
             <X />
           </button>
-          <button
+          <ChevronDownIcon
             className={cn(
-              'size-5',
+              'size-5 text-muted-foreground/50',
               (hideClearAllButton || disabled ||
                 selected.length >= 1 ||
                 selected.filter((s) => s.fixed).length !== selected.length) &&
               'hidden',
             )}
-          >
-            <ChevronDownIcon
-              className="text-muted-foreground/50"
-            />
-          </button>
+          />
         </div>
         <div className="relative">
           {open && (
