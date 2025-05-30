@@ -440,9 +440,8 @@ const MultipleSelector = React.forwardRef<MultipleSelectorRef, MultipleSelectorP
       >
         <div
           className={cn(
-            'min-h-10 rounded-md border border-input text-base ring-offset-background focus-within:ring-2 focus-within:ring-ring focus-within:ring-offset-2 md:text-sm',
+            'flex items-start justify-between px-3 py-2 rounded-md border border-input text-base ring-offset-background focus-within:ring-2 focus-within:ring-ring focus-within:ring-offset-2 md:text-sm',
             {
-              'px-3 py-2': selected.length !== 0,
               'cursor-text': !disabled && selected.length !== 0,
             },
             className,
@@ -510,33 +509,45 @@ const MultipleSelector = React.forwardRef<MultipleSelectorRef, MultipleSelectorP
               }}
               placeholder={hidePlaceholderWhenSelected && selected.length !== 0 ? '' : placeholder}
               className={cn(
-                'flex-1 bg-transparent outline-none placeholder:text-muted-foreground',
+                'flex-1 bg-transparent outline-none placeholder:text-muted-foreground self-baseline',
                 {
                   'w-full': hidePlaceholderWhenSelected,
-                  'px-3 py-2': selected.length === 0,
                   'ml-1': selected.length !== 0,
                 },
                 inputProps?.className,
               )}
             />
-            <button
-              type="button"
-              onClick={() => {
-                setSelected(selected.filter((s) => s.fixed));
-                onChange?.(selected.filter((s) => s.fixed));
-              }}
-              className={cn(
-                'absolute right-0 h-6 w-6 p-0',
-                (hideClearAllButton ||
-                  disabled ||
-                  selected.length < 1 ||
-                  selected.filter((s) => s.fixed).length === selected.length) &&
-                  'hidden',
-              )}
-            >
-              <X />
-            </button>
           </div>
+          <button
+            type="button"
+            onClick={() => {
+              setSelected(selected.filter((s) => s.fixed));
+              onChange?.(selected.filter((s) => s.fixed));
+            }}
+            className={cn(
+              'size-5',
+              (hideClearAllButton ||
+                disabled ||
+                selected.length < 1 ||
+                selected.filter((s) => s.fixed).length === selected.length) &&
+              'hidden',
+            )}
+          >
+            <X />
+          </button>
+          <button
+            className={cn(
+              'size-5',
+              (hideClearAllButton || disabled ||
+                selected.length >= 1 ||
+                selected.filter((s) => s.fixed).length !== selected.length) &&
+              'hidden',
+            )}
+          >
+            <ChevronDownIcon
+              className="text-muted-foreground/50"
+            />
+          </button>
         </div>
         <div className="relative">
           {open && (
