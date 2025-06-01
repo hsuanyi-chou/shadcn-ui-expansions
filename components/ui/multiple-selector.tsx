@@ -247,9 +247,9 @@ const MultipleSelector = React.forwardRef<MultipleSelectorRef, MultipleSelectorP
           if (e.key === 'Delete' || e.key === 'Backspace') {
             if (input.value === '' && selected.length > 0) {
               const lastSelectOption = selected[selected.length - 1];
-              // If last item is fixed, we should not remove it.
-              if (!lastSelectOption.fixed) {
-                handleUnselect(selected[selected.length - 1]);
+              // If there is a last item and it is not fixed, we can remove it.
+              if (lastSelectOption && !lastSelectOption.fixed) {
+                handleUnselect(lastSelectOption);
               }
             }
           }
