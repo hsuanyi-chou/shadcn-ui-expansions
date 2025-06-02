@@ -25,7 +25,7 @@ const Card: React.FC<CardProps> = ({ title, description }) => (
 
 const InteractiveStepperVertical = () => {
   return (
-    <InteractiveStepper defaultValue={2} orientation="vertical">
+    <InteractiveStepper orientation="vertical">
       <InteractiveStepperItem completed>
         <InteractiveStepperTrigger>
           <InteractiveStepperIndicator />

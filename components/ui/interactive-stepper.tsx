@@ -1,5 +1,4 @@
 /* eslint-disable react/display-name */
-// TODO: go to prev/next step must skip disabled elements
 
 import { cn } from '@/lib/utils';
 import { Check } from 'lucide-react';
@@ -8,7 +7,7 @@ import React, { createContext, useCallback, useContext, useMemo, useState } from
 type InteractiveStepperState = 'active' | 'completed' | 'inactive';
 type InteractiveStepperOrientation = 'horizontal' | 'vertical';
 
-interface IStepperContextValue {
+export interface IStepperContextValue {
   currentStep: number;
   totalSteps: number;
   orientation: InteractiveStepperOrientation;
@@ -23,21 +22,21 @@ interface IStepperContextValue {
   isLastStep: boolean;
 }
 
-interface IStepperItemContextValue {
+export interface IStepperItemContextValue {
   stepIndex: number;
   state: InteractiveStepperState;
   completed: boolean;
   disabled: boolean;
 }
 
-interface IStepperRootProps {
+export interface IStepperRootProps {
   children: React.ReactNode;
   defaultValue?: number;
   orientation?: InteractiveStepperOrientation;
   className?: string;
 }
 
-interface IStepperItemProps {
+export interface IStepperItemProps {
   children: React.ReactNode;
   completed?: boolean;
   disabled?: boolean;
@@ -45,37 +44,37 @@ interface IStepperItemProps {
   'data-step-index'?: number;
 }
 
-interface IStepperIndicatorProps {
+export interface IStepperIndicatorProps {
   className?: string;
 }
 
-interface IStepperTriggerProps {
+export interface IStepperTriggerProps {
   children?: React.ReactNode;
   className?: string;
   onClick?: () => void;
 }
 
-interface IStepperTitleProps {
+export interface IStepperTitleProps {
   children: React.ReactNode;
   className?: string;
 }
 
-interface IStepperDescriptionProps {
+export interface IStepperDescriptionProps {
   children: React.ReactNode;
   className?: string;
 }
 
-interface IStepperSeparatorProps {
+export interface IStepperSeparatorProps {
   className?: string;
 }
 
-interface IStepperContentProps {
+export interface IStepperContentProps {
   children: React.ReactNode;
   className?: string;
   step: number;
 }
 
-interface IStepperMethods {
+export interface IStepperMethods {
   goToStep: (step: number) => void;
   nextStep: () => void;
   prevStep: () => void;
@@ -125,20 +124,67 @@ export const InteractiveStepperRoot = React.forwardRef<
     [totalSteps],
   );
 
+  const stepStates = React.Children.toArray(children)
+    .filter((child) => React.isValidElement(child) && child.type === InteractiveStepperItem)
+    .map((item) => {
+      if (React.isValidElement(item)) {
+        const props = item.props as IStepperItemProps;
+        return { disabled: !!props.disabled };
+      }
+      return { disabled: false };
+    });
+
+  const getNextEnabledStep = useCallback(
+    (from: number) => {
+      for (let i = from; i < stepStates.length; i++) {
+        if (!stepStates[i].disabled) return i + 1;
+      }
+      return from + 1;
+    },
+    [stepStates],
+  );
+
+  const getPrevEnabledStep = useCallback(
+    (from: number) => {
+      for (let i = from - 2; i >= 0; i--) {
+        if (!stepStates[i].disabled) return i + 1;
+      }
+      return from - 1;
+    },
+    [stepStates],
+  );
+
   const nextStep = useCallback(() => {
     if (currentStep < totalSteps) {
-      setCurrentStep((prev) => prev + 1);
+      const next = getNextEnabledStep(currentStep);
+      if (next > currentStep && next <= totalSteps) {
+        setCurrentStep(next);
+      }
     }
-  }, [currentStep, totalSteps]);
+  }, [currentStep, totalSteps, getNextEnabledStep]);
 
   const prevStep = useCallback(() => {
     if (currentStep > 1) {
-      setCurrentStep((prev) => prev - 1);
+      const prev = getPrevEnabledStep(currentStep);
+      if (prev < currentStep && prev >= 1) {
+        setCurrentStep(prev);
+      }
     }
-  }, [currentStep]);
+  }, [currentStep, getPrevEnabledStep]);
 
-  const hasNext = useCallback(() => currentStep < totalSteps, [currentStep, totalSteps]);
-  const hasPrev = useCallback(() => currentStep > 1, [currentStep]);
+  const hasNext = useCallback(() => {
+    for (let i = currentStep; i < stepStates.length; i++) {
+      if (!stepStates[i].disabled) return true;
+    }
+    return false;
+  }, [currentStep, stepStates]);
+
+  const hasPrev = useCallback(() => {
+    for (let i = currentStep - 2; i >= 0; i--) {
+      if (!stepStates[i].disabled) return true;
+    }
+    return false;
+  }, [currentStep, stepStates]);
 
   const contextValue = useMemo(
     () => ({
@@ -198,8 +244,9 @@ export const InteractiveStepperRoot = React.forwardRef<
   );
 
   const activeContent = stepperContent.find(
-    (content: React.ReactElement) =>
-      React.isValidElement(content) && content.props.step === currentStep,
+    (content) =>
+      React.isValidElement(content) &&
+      (content as React.ReactElement<IStepperContentProps>).props.step === currentStep,
   );
 
   return (

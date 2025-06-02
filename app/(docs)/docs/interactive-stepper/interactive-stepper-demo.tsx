@@ -12,8 +12,8 @@ import {
 
 const InteractiveStepperDemo = () => {
   return (
-    <InteractiveStepper defaultValue={2} orientation="vertical">
-      <InteractiveStepperItem completed>
+    <InteractiveStepper orientation="vertical">
+      <InteractiveStepperItem>
         <InteractiveStepperTrigger>
           <InteractiveStepperIndicator />
           <div>

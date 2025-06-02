@@ -16,6 +16,7 @@ import {
   interactiveStepperTitleProps,
   interactiveStepperTriggerProps,
 } from './interactive-stepper-prop';
+import InteractiveStepperExternalInteractions from './usage/interactive-stepper-external-interaction';
 import InteractiveStepperHorizontal from './usage/interactive-stepper-horizontal';
 import InteractiveStepperVertical from './usage/interactive-stepper-vertical';
 
@@ -28,7 +29,7 @@ const InteractiveStepperPage = () => {
   return (
     <PageTemplate
       title="Interactive Stepper"
-      description="A set of steps that are used to indicate progress through a multi-step process."
+      description="A set of steps that are used to indicate progress through a multi-step process, along with optional rendered content."
     >
       <PreviewCodeCard path="app/(docs)/docs/interactive-stepper/interactive-stepper-demo.tsx">
         <InteractiveStepperDemo />
@@ -42,6 +43,7 @@ const InteractiveStepperPage = () => {
       <Usage
         path="app/(docs)/docs/interactive-stepper/usage/interactive-stepper-horizontal.tsx"
         title="Horizontal Interactive Stepper"
+        description="A horizontally oriented interactive stepper."
       >
         <InteractiveStepperHorizontal />
       </Usage>
@@ -49,8 +51,17 @@ const InteractiveStepperPage = () => {
       <Usage
         path="app/(docs)/docs/interactive-stepper/usage/interactive-stepper-vertical.tsx"
         title="Vertical Interactive Stepper"
+        description="A vertically oriented interactive stepper."
       >
         <InteractiveStepperVertical />
+      </Usage>
+
+      <Usage
+        path="app/(docs)/docs/interactive-stepper/usage/interactive-stepper-external-interaction.tsx"
+        title="Interactive Stepper With External Interactions"
+        description="Demonstrates controlling the stepper externally using buttons or other triggers. Also includes an example of a disabled step to show conditional navigation."
+      >
+        <InteractiveStepperExternalInteractions />
       </Usage>
 
       <PropsTable title="Props: InteractiveStepper" props={interactiveStepperRootProps} />
