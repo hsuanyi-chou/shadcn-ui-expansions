@@ -77,6 +77,11 @@ export const DOCS: Documentation[] = [
       },
       { label: 'Multiple Selector', value: 'multipleSelector', url: '/docs/multiple-selector' },
       { label: 'Spinner', value: 'spinner', url: '/docs/spinner' },
+      {
+        label: 'Interactive Stepper',
+        value: 'interactive-stepper',
+        url: '/docs/interactive-stepper',
+      },
     ],
   },
   {
