@@ -1,16 +1,16 @@
 'use client';
-import React, { useState } from 'react';
-import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
-import { Menu } from 'lucide-react';
 import { DOCS } from '@/app/(docs)/layout-parts/documentation.constant';
 import LeftSideLink from '@/app/(docs)/layout-parts/left-side/left-side-link';
 import { LogoLink } from '@/app/(docs)/layout-parts/navbar/navbar-logo';
+import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
+import { Menu } from 'lucide-react';
+import { useState } from 'react';
 
 const Hamburger = () => {
   const [open, setOpen] = useState(false);
   return (
     <Sheet open={open} onOpenChange={(o) => setOpen(o)}>
-      <SheetTrigger className="cursor-pointer md:hidden">
+      <SheetTrigger className="cursor-pointer lg:hidden">
         <Menu />
       </SheetTrigger>
       <SheetContent side="left">

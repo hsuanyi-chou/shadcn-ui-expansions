@@ -1,8 +1,7 @@
-import React from 'react';
-import Link from 'next/link';
 import Logo from '@/app/(docs)/layout-parts/logo/logo';
 import Hamburger from '@/app/(docs)/layout-parts/navbar/hamburger';
 import { cn } from '@/lib/utils';
+import Link from 'next/link';
 
 interface LogoLinkProps {
   alwaysRender?: boolean;
@@ -11,7 +10,7 @@ interface LogoLinkProps {
 
 export const LogoLink = ({ alwaysRender, className }: LogoLinkProps) => {
   return (
-    <Link className={cn('hidden gap-1 md:flex', alwaysRender && 'flex', className)} href="/">
+    <Link className={cn('hidden gap-1 lg:flex', alwaysRender && 'flex', className)} href="/">
       <Logo />
       <span className="text-xl font-bold">shadcn/ui expansions</span>
     </Link>
