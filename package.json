@@ -38,7 +38,7 @@
     "react-page-tracker": "^0.4.1",
     "tailwind-merge": "^3.3.1",
     "tailwindcss-animate": "^1.0.7",
-    "zod": "^4.0.2"
+    "zod": "^3.25.67"
   },
   "devDependencies": {
     "@netlify/plugin-nextjs": "^5.11.4",
