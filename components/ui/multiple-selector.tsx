@@ -1,7 +1,7 @@
 'use client';
 
 import { Command as CommandPrimitive, useCommandState } from 'cmdk';
-import { X } from 'lucide-react';
+import { X, ChevronDownIcon } from 'lucide-react';
 import * as React from 'react';
 import { forwardRef, useEffect } from 'react';
 
@@ -440,7 +440,7 @@ const MultipleSelector = React.forwardRef<MultipleSelectorRef, MultipleSelectorP
       >
         <div
           className={cn(
-            'flex items-start justify-between px-3 py-2 rounded-md border border-input text-base ring-offset-background focus-within:ring-2 focus-within:ring-ring focus-within:ring-offset-2 md:text-sm',
+            'flex items-start justify-between rounded-md border border-input px-3 py-2 text-base ring-offset-background focus-within:ring-2 focus-within:ring-ring focus-within:ring-offset-2 md:text-sm',
             {
               'cursor-text': !disabled && selected.length !== 0,
             },
@@ -509,7 +509,7 @@ const MultipleSelector = React.forwardRef<MultipleSelectorRef, MultipleSelectorP
               }}
               placeholder={hidePlaceholderWhenSelected && selected.length !== 0 ? '' : placeholder}
               className={cn(
-                'flex-1 bg-transparent outline-none placeholder:text-muted-foreground self-baseline',
+                'flex-1 self-baseline bg-transparent outline-none placeholder:text-muted-foreground',
                 {
                   'w-full': hidePlaceholderWhenSelected,
                   'ml-1': selected.length !== 0,
@@ -530,7 +530,7 @@ const MultipleSelector = React.forwardRef<MultipleSelectorRef, MultipleSelectorP
                 disabled ||
                 selected.length < 1 ||
                 selected.filter((s) => s.fixed).length === selected.length) &&
-              'hidden',
+                'hidden',
             )}
           >
             <X />
@@ -538,10 +538,11 @@ const MultipleSelector = React.forwardRef<MultipleSelectorRef, MultipleSelectorP
           <ChevronDownIcon
             className={cn(
               'size-5 text-muted-foreground/50',
-              (hideClearAllButton || disabled ||
+              (hideClearAllButton ||
+                disabled ||
                 selected.length >= 1 ||
                 selected.filter((s) => s.fixed).length !== selected.length) &&
-              'hidden',
+                'hidden',
             )}
           />
         </div>
