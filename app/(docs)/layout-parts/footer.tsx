@@ -1,6 +1,5 @@
 import BuyMeCoffee from '@/app/(docs)/layout-parts/buy-me-coffee';
 import { cn } from '@/lib/utils';
-import DeployOnZeabur from './deploy-on-zeabur';
 
 interface FooterProps {
   className?: string;
@@ -15,7 +14,6 @@ const Footer = ({ className }: FooterProps) => {
       )}
     >
       <BuyMeCoffee />
-      <DeployOnZeabur />
     </footer>
   );
 };

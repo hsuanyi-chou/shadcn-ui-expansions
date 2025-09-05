@@ -51,5 +51,3 @@ Be welcome to contribute! Here's how you can contribute:
 ## License
 
 Licensed under the [MIT License](LICENSE.md).
-
-[![Deployed on Zeabur](https://zeabur.com/deployed-on-zeabur-dark.svg)](https://zeabur.com/referral?referralCode=hsuanyi-chou&utm_source=hsuanyi-chou)
