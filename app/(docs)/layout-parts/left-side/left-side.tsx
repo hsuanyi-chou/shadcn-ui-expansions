@@ -2,7 +2,6 @@ import BuyMeCoffee from '@/app/(docs)/layout-parts/buy-me-coffee';
 import { DOCS } from '@/app/(docs)/layout-parts/documentation.constant';
 import LeftSideLink from '@/app/(docs)/layout-parts/left-side/left-side-link';
 import AdLeftSide from '@/components/ad/ad-left-side';
-import DeployOnZeabur from '../deploy-on-zeabur';
 
 const LeftSide = () => {
   return (
@@ -22,7 +21,6 @@ const LeftSide = () => {
       ))}
       <div className="mb-10 mt-32 flex flex-col gap-2">
         <BuyMeCoffee />
-        <DeployOnZeabur />
       </div>
       <AdLeftSide />
     </aside>
