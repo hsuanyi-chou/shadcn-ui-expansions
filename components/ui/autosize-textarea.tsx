@@ -1,6 +1,6 @@
 'use client';
-import * as React from 'react';
 import { cn } from '@/lib/utils';
+import * as React from 'react';
 import { useImperativeHandle } from 'react';
 
 interface UseAutosizeTextAreaProps {
@@ -46,6 +46,7 @@ export type AutosizeTextAreaRef = {
   textArea: HTMLTextAreaElement;
   maxHeight: number;
   minHeight: number;
+  focus: () => void;
 };
 
 type AutosizeTextAreaProps = {
