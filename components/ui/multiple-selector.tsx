@@ -8,6 +8,7 @@ import { forwardRef, useEffect } from 'react';
 import { Badge } from '@/components/ui/badge';
 import { Command, CommandGroup, CommandItem, CommandList } from '@/components/ui/command';
 import { cn } from '@/lib/utils';
+import { Popover, PopoverContent, PopoverAnchor } from '@/components/ui/popover';
 
 export interface Option {
   value: string;
@@ -201,6 +202,8 @@ const MultipleSelector = React.forwardRef<MultipleSelectorRef, MultipleSelectorP
     const [isLoading, setIsLoading] = React.useState(false);
     const dropdownRef = React.useRef<HTMLDivElement>(null); // Added this
 
+    const [dropdownWidth, setDropdownWidth] = React.useState(0);
+
     const [selected, setSelected] = React.useState<Option[]>(value || []);
     const [options, setOptions] = React.useState<GroupOption>(
       transToGroupOption(arrayDefaultOptions, groupBy),
@@ -218,18 +221,6 @@ const MultipleSelector = React.forwardRef<MultipleSelectorRef, MultipleSelectorP
       }),
       [selected],
     );
-
-    const handleClickOutside = (event: MouseEvent | TouchEvent) => {
-      if (
-        dropdownRef.current &&
-        !dropdownRef.current.contains(event.target as Node) &&
-        inputRef.current &&
-        !inputRef.current.contains(event.target as Node)
-      ) {
-        setOpen(false);
-        inputRef.current.blur();
-      }
-    };
 
     const handleUnselect = React.useCallback(
       (option: Option) => {
@@ -261,21 +252,6 @@ const MultipleSelector = React.forwardRef<MultipleSelectorRef, MultipleSelectorP
       },
       [handleUnselect, selected],
     );
-
-    useEffect(() => {
-      if (open) {
-        document.addEventListener('mousedown', handleClickOutside);
-        document.addEventListener('touchend', handleClickOutside);
-      } else {
-        document.removeEventListener('mousedown', handleClickOutside);
-        document.removeEventListener('touchend', handleClickOutside);
-      }
-
-      return () => {
-        document.removeEventListener('mousedown', handleClickOutside);
-        document.removeEventListener('touchend', handleClickOutside);
-      };
-    }, [open]);
 
     useEffect(() => {
       if (value) {
@@ -343,6 +319,12 @@ const MultipleSelector = React.forwardRef<MultipleSelectorRef, MultipleSelectorP
       void exec();
       // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [debouncedSearchTerm, groupBy, open, triggerSearchOnFocus]);
+
+    useEffect(() => {
+      if (dropdownRef.current) {
+        setDropdownWidth(dropdownRef.current.offsetWidth);
+      }
+    }, [open]);
 
     const CreatableItem = () => {
       if (!creatable) return undefined;
@@ -425,131 +407,152 @@ const MultipleSelector = React.forwardRef<MultipleSelectorRef, MultipleSelectorP
     }, [creatable, commandProps?.filter]);
 
     return (
-      <Command
-        ref={dropdownRef}
-        {...commandProps}
-        onKeyDown={(e) => {
-          handleKeyDown(e);
-          commandProps?.onKeyDown?.(e);
-        }}
-        className={cn('h-auto overflow-visible bg-transparent', commandProps?.className)}
-        shouldFilter={
-          commandProps?.shouldFilter !== undefined ? commandProps.shouldFilter : !onSearch
-        } // When onSearch is provided, we don't want to filter the options. You can still override it.
-        filter={commandFilter()}
-      >
-        <div
-          className={cn(
-            'flex items-start justify-between rounded-md border border-input px-3 py-2 text-base ring-offset-background focus-within:ring-2 focus-within:ring-ring focus-within:ring-offset-2 md:text-sm',
-            {
-              'cursor-text': !disabled && selected.length !== 0,
-            },
-            className,
-          )}
-          onClick={() => {
-            if (disabled) return;
-            inputRef?.current?.focus();
+      <Popover open={open} onOpenChange={setOpen}>
+        <Command
+          ref={dropdownRef}
+          {...commandProps}
+          onKeyDown={(e) => {
+            handleKeyDown(e);
+            commandProps?.onKeyDown?.(e);
           }}
+          className={cn('h-auto overflow-visible bg-transparent', commandProps?.className)}
+          shouldFilter={
+            commandProps?.shouldFilter !== undefined ? commandProps.shouldFilter : !onSearch
+          } // When onSearch is provided, we don't want to filter the options. You can still override it.
+          filter={commandFilter()}
         >
-          <div className="relative flex flex-wrap gap-1">
-            {selected.map((option) => {
-              return (
-                <Badge
-                  key={option.value}
-                  className={cn(
-                    'data-[disabled]:bg-muted-foreground data-[disabled]:text-muted data-[disabled]:hover:bg-muted-foreground',
-                    'data-[fixed]:bg-muted-foreground data-[fixed]:text-muted data-[fixed]:hover:bg-muted-foreground',
-                    badgeClassName,
-                  )}
-                  data-fixed={option.fixed}
-                  data-disabled={disabled || undefined}
-                >
-                  {option.label}
-                  <button
-                    type="button"
-                    className={cn(
-                      'ml-1 rounded-full outline-none ring-offset-background focus:ring-2 focus:ring-ring focus:ring-offset-2',
-                      (disabled || option.fixed) && 'hidden',
-                    )}
-                    onKeyDown={(e) => {
-                      if (e.key === 'Enter') {
-                        handleUnselect(option);
-                      }
-                    }}
-                    onMouseDown={(e) => {
-                      e.preventDefault();
-                      e.stopPropagation();
-                    }}
-                    onClick={() => handleUnselect(option)}
-                  >
-                    <X className="h-3 w-3 text-muted-foreground hover:text-foreground" />
-                  </button>
-                </Badge>
-              );
-            })}
-            {/* Avoid having the "Search" Icon */}
-            <CommandPrimitive.Input
-              {...inputProps}
-              ref={inputRef}
-              value={inputValue}
-              disabled={disabled}
-              onValueChange={(value) => {
-                setInputValue(value);
-                inputProps?.onValueChange?.(value);
-              }}
-              onBlur={(event) => {
-                if (!onScrollbar) {
-                  setOpen(false);
-                }
-                inputProps?.onBlur?.(event);
-              }}
-              onFocus={(event) => {
-                setOpen(true);
-                inputProps?.onFocus?.(event);
-              }}
-              placeholder={hidePlaceholderWhenSelected && selected.length !== 0 ? '' : placeholder}
+          <PopoverAnchor asChild>
+            <div
               className={cn(
-                'flex-1 self-baseline bg-transparent outline-none placeholder:text-muted-foreground',
+                'flex items-start justify-between rounded-md border border-input px-3 py-2 text-base ring-offset-background focus-within:ring-2 focus-within:ring-ring focus-within:ring-offset-2 md:text-sm',
                 {
-                  'w-full': hidePlaceholderWhenSelected,
-                  'ml-1': selected.length !== 0,
+                  'cursor-text': !disabled && selected.length !== 0,
                 },
-                inputProps?.className,
+                className,
               )}
-            />
-          </div>
-          <button
-            type="button"
-            onClick={() => {
-              setSelected(selected.filter((s) => s.fixed));
-              onChange?.(selected.filter((s) => s.fixed));
+              data-layout="wrapper"
+              onClick={() => {
+                if (disabled) return;
+                inputRef?.current?.focus();
+              }}
+            >
+              <div className="relative flex flex-wrap gap-1">
+                {selected.map((option) => {
+                  return (
+                    <Badge
+                      key={option.value}
+                      className={cn(
+                        'data-[disabled]:bg-muted-foreground data-[disabled]:text-muted data-[disabled]:hover:bg-muted-foreground',
+                        'data-[fixed]:bg-muted-foreground data-[fixed]:text-muted data-[fixed]:hover:bg-muted-foreground',
+                        badgeClassName,
+                      )}
+                      data-fixed={option.fixed}
+                      data-disabled={disabled || undefined}
+                    >
+                      {option.label}
+                      <button
+                        type="button"
+                        className={cn(
+                          'ml-1 rounded-full outline-none ring-offset-background focus:ring-2 focus:ring-ring focus:ring-offset-2',
+                          (disabled || option.fixed) && 'hidden',
+                        )}
+                        onKeyDown={(e) => {
+                          if (e.key === 'Enter') {
+                            handleUnselect(option);
+                          }
+                        }}
+                        onMouseDown={(e) => {
+                          e.preventDefault();
+                          e.stopPropagation();
+                        }}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleUnselect(option);
+                        }}
+                      >
+                        <X className="h-3 w-3 text-muted-foreground hover:text-foreground" />
+                      </button>
+                    </Badge>
+                  );
+                })}
+                {/* Avoid having the "Search" Icon */}
+                <CommandPrimitive.Input
+                  {...inputProps}
+                  ref={inputRef}
+                  value={inputValue}
+                  disabled={disabled}
+                  onValueChange={(value) => {
+                    setInputValue(value);
+                    inputProps?.onValueChange?.(value);
+                  }}
+                  onBlur={(event) => {
+                    if (!onScrollbar) {
+                      setOpen(false);
+                    }
+                    inputProps?.onBlur?.(event);
+                  }}
+                  onFocus={(event) => {
+                    setOpen(true);
+                    inputProps?.onFocus?.(event);
+                  }}
+                  placeholder={
+                    hidePlaceholderWhenSelected && selected.length !== 0 ? '' : placeholder
+                  }
+                  className={cn(
+                    'flex-1 self-baseline bg-transparent outline-none placeholder:text-muted-foreground',
+                    {
+                      'w-full': hidePlaceholderWhenSelected,
+                      'ml-1': selected.length !== 0,
+                    },
+                    inputProps?.className,
+                  )}
+                />
+              </div>
+              <button
+                type="button"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setSelected(selected.filter((s) => s.fixed));
+                  onChange?.(selected.filter((s) => s.fixed));
+                }}
+                className={cn(
+                  'size-5',
+                  (hideClearAllButton ||
+                    disabled ||
+                    selected.length < 1 ||
+                    selected.filter((s) => s.fixed).length === selected.length) &&
+                    'hidden',
+                )}
+              >
+                <X />
+              </button>
+              <ChevronDownIcon
+                className={cn(
+                  'size-5 text-muted-foreground/50',
+                  (hideClearAllButton ||
+                    disabled ||
+                    selected.length >= 1 ||
+                    selected.filter((s) => s.fixed).length !== selected.length) &&
+                    'hidden',
+                )}
+              />
+            </div>
+          </PopoverAnchor>
+          <PopoverContent
+            className="p-0"
+            style={{ width: dropdownWidth }}
+            onOpenAutoFocus={(e) => e.preventDefault()}
+            onInteractOutside={(e) => {
+              if (
+                e.target instanceof Element &&
+                (e.target.hasAttribute('cmdk-input') || e.target.closest('[data-layout="wrapper"]'))
+              ) {
+                e.preventDefault();
+              }
             }}
-            className={cn(
-              'size-5',
-              (hideClearAllButton ||
-                disabled ||
-                selected.length < 1 ||
-                selected.filter((s) => s.fixed).length === selected.length) &&
-                'hidden',
-            )}
           >
-            <X />
-          </button>
-          <ChevronDownIcon
-            className={cn(
-              'size-5 text-muted-foreground/50',
-              (hideClearAllButton ||
-                disabled ||
-                selected.length >= 1 ||
-                selected.filter((s) => s.fixed).length !== selected.length) &&
-                'hidden',
-            )}
-          />
-        </div>
-        <div className="relative">
-          {open && (
             <CommandList
-              className="absolute top-1 z-10 w-full rounded-md border bg-popover text-popover-foreground shadow-md outline-none animate-in"
+              className="z-10 w-full rounded-md border bg-popover text-popover-foreground shadow-md outline-none animate-in"
               onMouseLeave={() => {
                 setOnScrollbar(false);
               }}
@@ -605,9 +608,9 @@ const MultipleSelector = React.forwardRef<MultipleSelectorRef, MultipleSelectorP
                 </>
               )}
             </CommandList>
-          )}
-        </div>
-      </Command>
+          </PopoverContent>
+        </Command>
+      </Popover>
     );
   },
 );
