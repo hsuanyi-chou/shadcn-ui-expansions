@@ -84,15 +84,15 @@ export const DOCS: Documentation[] = [
       },
     ],
   },
-  {
-    groupKey: 'libs',
-    groupValue: 'Libs',
-    children: [
-      {
-        label: 'Rate Limit (for Nextjs App Router)',
-        value: 'rate-limit',
-        url: '/docs/rate-limit',
-      },
-    ],
-  },
+  // {
+  //   groupKey: 'libs',
+  //   groupValue: 'Libs',
+  //   children: [
+  //     {
+  //       label: 'Rate Limit (for Nextjs App Router)',
+  //       value: 'rate-limit',
+  //       url: '/docs/rate-limit',
+  //     },
+  //   ],
+  // },
 ];

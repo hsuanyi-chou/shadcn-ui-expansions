@@ -1,7 +1,6 @@
 import { PageSubTitle, PageTemplate } from '@/app/(docs)/docs/components/page-template';
 import PreviewCodeCard from '@/app/(docs)/docs/components/preview-code-card';
 import { baseMetadata } from '@/app/(docs)/layout-parts/base-metadata';
-import { InlineCode } from '@/components/ui/inline-code';
 import { Steppers } from '@/components/ui/steppers';
 import { Metadata } from 'next';
 import CodeHighlight from '../components/code-card/parts/code-highlight';
@@ -10,7 +9,6 @@ import { PropsTable } from '../components/props-table/props-table';
 import Usage from '../components/usage';
 import TypewriterDemo from './typewriter-demo';
 import { typewriterProp } from './typewriter-prop';
-import TypewriterChatGPT from './usage/typewriter-chatgpt';
 import TypewriterMd from './usage/typewriter-md';
 
 export const metadata: Metadata = baseMetadata({
@@ -65,7 +63,7 @@ const TypewriterPage = () => {
         <TypewriterMd />
       </Usage>
 
-      <Usage
+      {/* <Usage
         title="Playground for ChatGPT"
         description={
           <>
@@ -89,7 +87,7 @@ const TypewriterPage = () => {
         path="app/(docs)/docs/typewriter/usage/typewriter-chatgpt.tsx"
       >
         <TypewriterChatGPT />
-      </Usage>
+      </Usage> */}
       <PropsTable props={typewriterProp} />
     </PageTemplate>
   );
