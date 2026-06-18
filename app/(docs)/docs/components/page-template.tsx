@@ -23,6 +23,10 @@ const PageTemplate = ({ title, description, children, className }: PageTemplateP
     headline: `${title} - shadcn/ui expansions`,
     description,
     url,
+    proficiencyLevel: 'Beginner',
+    programmingLanguage: 'TypeScript',
+    keywords: 'React, TypeScript, Tailwind CSS, shadcn/ui',
+    inLanguage: 'en',
     author: {
       '@type': 'Person',
       name: 'Hsuan-Yi Chou',
@@ -45,12 +49,40 @@ const PageTemplate = ({ title, description, children, className }: PageTemplateP
     ],
   };
 
+  const howToSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'HowTo',
+    name: `How to install and use ${title}`,
+    description,
+    step: [
+      {
+        '@type': 'HowToStep',
+        position: 1,
+        name: 'Install dependencies',
+        text: 'Install shadcn/ui and its peer dependencies (Tailwind CSS, Radix UI) if not already set up.',
+      },
+      {
+        '@type': 'HowToStep',
+        position: 2,
+        name: 'Copy the component',
+        text: 'Copy the component source code into your project\'s components/ui directory.',
+      },
+      {
+        '@type': 'HowToStep',
+        position: 3,
+        name: 'Import and use',
+        text: 'Import the component from your components/ui directory and use it in your React application.',
+      },
+    ],
+  };
+
   return (
     <section className={cn('flex flex-col gap-3 pb-10', className)}>
       {title && (
         <>
           <JsonLd data={techArticleSchema} />
           <JsonLd data={breadcrumbSchema} />
+          <JsonLd data={howToSchema} />
         </>
       )}
       <H1>{title}</H1>
