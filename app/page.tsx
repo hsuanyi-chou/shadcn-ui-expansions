@@ -4,10 +4,66 @@ import { Github } from 'lucide-react';
 import ShadcnuiLogo from '@/app/(docs)/layout-parts/logo/shadcnui-logo';
 import Logo from '@/app/(docs)/layout-parts/logo/logo';
 import { H1, H3 } from '@/components/ui/heading-with-anchor';
+import type { Metadata } from 'next';
+import { JsonLd } from '@/components/seo/json-ld';
+
+export const metadata: Metadata = {
+  title: 'shadcn/ui expansions — More components built on top of shadcn/ui',
+  description:
+    'Useful additional components built on top of shadcn/ui. Autosize textarea, datetime picker, multiple selector, infinite scroll, and more. Copy and paste into your apps. Accessible, customizable, open source.',
+  keywords: [
+    'shadcn ui',
+    'shadcnui expansions',
+    'react components',
+    'tailwind components',
+    'radix ui components',
+    'copy paste components',
+    'typescript components',
+    'next.js components',
+  ],
+  alternates: { canonical: 'https://shadcnui-expansions.typeart.cc' },
+  openGraph: {
+    type: 'website',
+    title: 'shadcn/ui expansions — More components built on top of shadcn/ui',
+    description:
+      'Useful additional components built on top of shadcn/ui. Copy and paste into your apps.',
+    url: 'https://shadcnui-expansions.typeart.cc',
+    siteName: 'shadcn/ui expansions',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'shadcn/ui expansions',
+    description:
+      'Useful additional components built on top of shadcn/ui. Copy and paste into your apps.',
+    creator: '@hsuanyi_chou',
+  },
+};
+
+const softwareAppSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: 'shadcn/ui expansions',
+  applicationCategory: 'DeveloperApplication',
+  operatingSystem: 'Web',
+  description:
+    'Useful additional components built on top of shadcn/ui. Copy and paste into your apps.',
+  offers: {
+    '@type': 'Offer',
+    price: '0',
+    priceCurrency: 'USD',
+  },
+  url: 'https://shadcnui-expansions.typeart.cc',
+  author: {
+    '@type': 'Person',
+    name: 'Hsuan-Yi Chou',
+    url: 'https://blog.typeart.cc/',
+  },
+};
 
 export default function Home() {
   return (
     <main className="flex flex-col gap-5 p-12 md:items-center md:p-28">
+      <JsonLd data={softwareAppSchema} />
       <H1>More components built on top of shadcn-ui.</H1>
       <H3 className="text-lg font-light text-muted-foreground sm:text-xl">
         Useful additional components collection base on shadcn/ui to help you ship new features

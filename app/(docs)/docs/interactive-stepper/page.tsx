@@ -23,6 +23,7 @@ import InteractiveStepperVertical from './usage/interactive-stepper-vertical';
 export const metadata: Metadata = baseMetadata({
   title: 'Interactive Stepper',
   description: 'A set of steps that are used to indicate progress through a multi-step process.',
+  keywords: ['interactive stepper', 'shadcn ui', 'react stepper', 'multi-step form', 'progress steps', 'wizard steps'],
 });
 
 const InteractiveStepperPage = () => {

@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Inter as FontSans } from 'next/font/google';
 import { cn } from '@/lib/utils';
 import { ThemeProvider } from '@/components/ui/theme-provider';
+import { JsonLd } from '@/components/seo/json-ld';
 
 import './globals.css';
 import Navbar from '@/app/(docs)/layout-parts/navbar/navbar';
@@ -22,16 +23,41 @@ export const metadata: Metadata = {
     title: 'shadcn/ui expansions',
     description:
       'shadcn/ui expansions collect lots of useful components which shadcn/ui does not have out of box. All the components are base on shadcn/ui. Just copy and paste. The component is yours.',
-    creator: 'HsuanYi Chou',
+    creator: '@hsuanyi_chou',
   },
   openGraph: {
+    type: 'website',
     title: 'shadcn/ui expansions',
     description:
       'shadcn/ui expansions collect lots of useful components which shadcn/ui does not have out of box. All the components are base on shadcn/ui. Just copy and paste. The component is yours.',
+    url: 'https://shadcnui-expansions.typeart.cc',
+    siteName: 'shadcn/ui expansions',
   },
   other: {
     'google-site-verification': 'q2TjtYRJbnG5q8Am34DYea1AL_VmYHOUOLlKQGgamGQ',
   },
+};
+
+const websiteSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: 'shadcn/ui expansions',
+  url: 'https://shadcnui-expansions.typeart.cc',
+  description:
+    'Useful additional components built on top of shadcn/ui. Copy and paste into your apps. Accessible, customizable, open source.',
+  author: {
+    '@type': 'Person',
+    name: 'Hsuan-Yi Chou',
+    url: 'https://blog.typeart.cc/',
+  },
+};
+
+const personSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Hsuan-Yi Chou',
+  url: 'https://blog.typeart.cc/',
+  sameAs: ['https://github.com/hsuanyi-chou'],
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -52,6 +78,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         className={cn('min-h-screen bg-background font-sans antialiased', fontSans.variable)}
         suppressHydrationWarning
       >
+        <JsonLd data={websiteSchema} />
+        <JsonLd data={personSchema} />
         <PageTracker />
         <ThemeProvider
           attribute="class"

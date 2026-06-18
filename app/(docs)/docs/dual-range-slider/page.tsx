@@ -14,6 +14,7 @@ import DualRangeSliderSingle from '@/app/(docs)/docs/dual-range-slider/usage/dua
 export const metadata: Metadata = baseMetadata({
   title: 'Dual Range Slider',
   description: 'An enhancement slider that allows you to select a range of values.',
+  keywords: ['dual range slider', 'shadcn ui', 'react range slider', 'double slider', 'range input', 'price range slider'],
 });
 
 const DualRangeSliderPage = () => {

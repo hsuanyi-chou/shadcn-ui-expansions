@@ -15,6 +15,7 @@ import HeadingWithAnchorAlign from '@/app/(docs)/docs/heading-with-anchor/usage/
 export const metadata: Metadata = baseMetadata({
   title: 'Heading With Anchor',
   description: 'Add anchor for every heading.',
+  keywords: ['heading with anchor', 'shadcn ui', 'anchor headings', 'heading link', 'react heading', 'anchor link'],
 });
 
 const HeadingWithAnchorPage = () => {

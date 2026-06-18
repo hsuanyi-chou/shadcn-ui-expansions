@@ -14,6 +14,7 @@ import FloatingLabelInputForm from '@/app/(docs)/docs/floating-label-input/usage
 export const metadata: Metadata = baseMetadata({
   title: 'Floating Label Input',
   description: 'Material UI design system floating label input',
+  keywords: ['floating label input', 'shadcn ui', 'material ui input', 'animated label', 'react input', 'floating placeholder'],
 });
 
 const FloatingLabelPage = () => {

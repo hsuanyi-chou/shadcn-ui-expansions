@@ -14,6 +14,7 @@ import TypewriterMd from './usage/typewriter-md';
 export const metadata: Metadata = baseMetadata({
   title: 'Typewriter',
   description: 'Typewriter effect for text. Supports html and markdown.',
+  keywords: ['typewriter', 'shadcn ui', 'typewriter effect', 'react typewriter', 'text animation', 'typing animation'],
 });
 
 const TypewriterPage = () => {

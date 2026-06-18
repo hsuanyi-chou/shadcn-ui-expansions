@@ -9,6 +9,7 @@ import { baseMetadata } from '@/app/(docs)/layout-parts/base-metadata';
 export const metadata: Metadata = baseMetadata({
   title: 'Blockquote',
   description: 'Display a quote or a component that looks like a quote.',
+  keywords: ['blockquote', 'shadcn ui', 'react blockquote', 'quote component', 'blockquote component'],
 });
 
 const BlockquotePage = () => {

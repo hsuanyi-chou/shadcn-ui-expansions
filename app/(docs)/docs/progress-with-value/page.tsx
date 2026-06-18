@@ -13,6 +13,7 @@ import ProgressWithValueLabel from '@/app/(docs)/docs/progress-with-value/usage/
 export const metadata: Metadata = baseMetadata({
   title: 'Progress With Value',
   description: 'A progress bar that displays the current value.',
+  keywords: ['progress with value', 'shadcn ui', 'react progress bar', 'progress indicator', 'loading progress', 'progress percentage'],
 });
 
 const DualRangeSliderPage = () => {
