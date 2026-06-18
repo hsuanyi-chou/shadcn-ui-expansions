@@ -27,6 +27,8 @@ const PageTemplate = ({ title, description, children, className }: PageTemplateP
     programmingLanguage: 'TypeScript',
     keywords: 'React, TypeScript, Tailwind CSS, shadcn/ui',
     inLanguage: 'en',
+    datePublished: '2023-12-28',
+    dateModified: '2023-12-28',
     author: {
       '@type': 'Person',
       name: 'Hsuan-Yi Chou',

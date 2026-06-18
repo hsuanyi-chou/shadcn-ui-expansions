@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   ],
   alternates: { canonical: 'https://shadcnui-expansions.typeart.cc/docs' },
   openGraph: {
-    type: 'article',
+    type: 'website',
     title: 'Introduction - shadcnui expansions',
     description:
       'shadcn/ui expansions is a collection of useful additional components built on top of shadcn/ui.',

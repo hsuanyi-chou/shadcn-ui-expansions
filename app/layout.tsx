@@ -50,14 +50,6 @@ const websiteSchema = {
     name: 'Hsuan-Yi Chou',
     url: 'https://blog.typeart.cc/',
   },
-  potentialAction: {
-    '@type': 'SearchAction',
-    target: {
-      '@type': 'EntryPoint',
-      urlTemplate: 'https://shadcnui-expansions.typeart.cc/docs/{search_term_string}',
-    },
-    'query-input': 'required name=search_term_string',
-  },
 };
 
 const personSchema = {

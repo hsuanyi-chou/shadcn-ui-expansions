@@ -18,7 +18,7 @@ export function baseMetadata({ title, description, keywords }: BaseMetadataProps
     title: fullTitle,
     description: fullDescription,
     keywords,
-    authors: [{ name: 'typeart.cc' }, { url: 'https://blog.typeart.cc/', name: 'Hsuan-Yi, Chou' }],
+    authors: [{ name: 'typeart.cc' }, { url: 'https://blog.typeart.cc/', name: 'Hsuan-Yi Chou' }],
     alternates: {
       canonical: url,
     },
