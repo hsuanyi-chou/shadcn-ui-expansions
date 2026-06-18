@@ -37,6 +37,7 @@ export const metadata: Metadata = baseMetadata({
   title: 'Multiple Selector',
   description:
     'Fast,composable, fully-featured multiple selector for React. such as async search with debounce, maximum selected count, grouping, creatable selector ...etc.',
+  keywords: ['multiple selector', 'shadcn ui', 'react multiselect', 'combobox', 'tag input', 'async search select', 'creatable select'],
 });
 
 const MultipleSelectorPage = () => {

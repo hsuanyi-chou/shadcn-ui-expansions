@@ -17,6 +17,7 @@ export const metadata: Metadata = baseMetadata({
   title: 'Magic Back Button',
   description:
     'Redirects first-time visitors to the homepage; otherwise, respects browser history.',
+  keywords: ['magic back button', 'shadcn ui', 'react back button', 'browser history', 'navigation button', 'back navigation'],
 });
 
 const MagicBackButtonPage = () => {

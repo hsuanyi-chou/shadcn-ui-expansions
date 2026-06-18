@@ -16,6 +16,7 @@ import { P } from '@/components/ui/heading-with-anchor';
 export const metadata: Metadata = baseMetadata({
   title: 'Autosize Textarea',
   description: 'auto resize textarea height based on content.',
+  keywords: ['autosize textarea', 'shadcn ui', 'react textarea', 'auto resize textarea', 'textarea component', 'react-hook-form textarea'],
 });
 
 const AutosizeTextareaPage = () => {

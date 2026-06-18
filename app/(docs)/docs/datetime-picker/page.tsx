@@ -29,6 +29,7 @@ import DatetimePickerInitMonth from '@/app/(docs)/docs/datetime-picker/usage/dat
 export const metadata: Metadata = baseMetadata({
   title: 'Datetime Picker',
   description: 'A datetime picker built on top of shadcn-ui and no additional library needed.',
+  keywords: ['datetime picker', 'shadcn ui', 'react date picker', 'date time picker', 'calendar picker', 'time picker'],
 });
 
 const DatetimePickerPage = () => {

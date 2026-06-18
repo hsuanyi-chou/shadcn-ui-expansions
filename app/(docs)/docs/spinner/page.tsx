@@ -14,6 +14,7 @@ import { Metadata } from 'next';
 export const metadata: Metadata = baseMetadata({
   title: 'Spinner',
   description: 'A simple spinner for displaying loading state',
+  keywords: ['spinner', 'shadcn ui', 'react spinner', 'loading spinner', 'loading indicator', 'circular progress'],
 });
 
 const SpinnerPage = () => {

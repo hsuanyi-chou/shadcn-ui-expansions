@@ -11,6 +11,7 @@ import ResponsiveModalSide from '@/app/(docs)/docs/responsive-modal/usage/respon
 export const metadata: Metadata = baseMetadata({
   title: 'Responsive Modal',
   description: 'A dialog that pops up in the center of the screen on desktop and slide on mobile.',
+  keywords: ['responsive modal', 'shadcn ui', 'react modal', 'bottom sheet', 'dialog mobile', 'drawer mobile'],
 });
 
 const ResponsiveModalPage = () => {

@@ -11,6 +11,7 @@ export const metadata: Metadata = baseMetadata({
   title: 'Infinite Scroll',
   description:
     'Simple infinite scroll component. You have fully control over the loading spinner and IntersectionObserver API.',
+  keywords: ['infinite scroll', 'shadcn ui', 'react infinite scroll', 'intersection observer', 'lazy loading', 'pagination'],
 });
 
 const InfiniteScrollPage = () => {
