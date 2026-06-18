@@ -50,6 +50,22 @@ const websiteSchema = {
     name: 'Hsuan-Yi Chou',
     url: 'https://blog.typeart.cc/',
   },
+  potentialAction: {
+    '@type': 'SearchAction',
+    target: {
+      '@type': 'EntryPoint',
+      urlTemplate: 'https://shadcnui-expansions.typeart.cc/docs/{search_term_string}',
+    },
+    'query-input': 'required name=search_term_string',
+  },
+};
+
+const personSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Hsuan-Yi Chou',
+  url: 'https://blog.typeart.cc/',
+  sameAs: ['https://github.com/hsuanyi-chou'],
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -71,6 +87,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         suppressHydrationWarning
       >
         <JsonLd data={websiteSchema} />
+        <JsonLd data={personSchema} />
         <PageTracker />
         <ThemeProvider
           attribute="class"
