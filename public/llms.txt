@@ -1,0 +1,33 @@
+# shadcn/ui expansions
+
+> A collection of useful additional components built on top of shadcn/ui. All components are accessible, customizable, and free to use. Just copy and paste into your project — the code is yours.
+
+Built with Radix UI, Tailwind CSS, and TypeScript. Compatible with Next.js, Vite, Remix, and any React project.
+
+## Docs
+
+- [Introduction](https://shadcnui-expansions.typeart.cc/docs): Getting started with shadcn/ui expansions. Explains what the project is and how to use it.
+
+## Components
+
+- [Autosize Textarea](https://shadcnui-expansions.typeart.cc/docs/autosize-textarea): Auto resize textarea height based on content. Supports max height, ref forwarding, and react-hook-form integration.
+- [Blockquote](https://shadcnui-expansions.typeart.cc/docs/blockquote): Display a styled blockquote or quote component built on top of shadcn/ui.
+- [Datetime Picker](https://shadcnui-expansions.typeart.cc/docs/datetime-picker): A datetime picker built on top of shadcn/ui with no additional library needed. Supports year dropdown, time selection, and keyboard navigation.
+- [Dual Range Slider](https://shadcnui-expansions.typeart.cc/docs/dual-range-slider): An enhanced slider that allows you to select a range of values with two handles.
+- [Floating Label Input](https://shadcnui-expansions.typeart.cc/docs/floating-label-input): Material UI style floating label input built with shadcn/ui and Tailwind CSS.
+- [Heading With Anchor](https://shadcnui-expansions.typeart.cc/docs/heading-with-anchor): Add anchor links to every heading for easy section navigation and sharing.
+- [Infinite Scroll](https://shadcnui-expansions.typeart.cc/docs/infinite-scroll): Simple infinite scroll component with full control over the loading spinner using the IntersectionObserver API.
+- [Interactive Stepper](https://shadcnui-expansions.typeart.cc/docs/interactive-stepper): A set of steps to indicate progress through a multi-step process. Supports click navigation and vertical/horizontal orientation.
+- [Loading Button](https://shadcnui-expansions.typeart.cc/docs/loading-button): A button with a loading spinner. Drop-in replacement for shadcn/ui Button with a loading state prop.
+- [Magic Back Button](https://shadcnui-expansions.typeart.cc/docs/magic-back-button): Redirects first-time visitors to the homepage; otherwise respects browser history for a native back-button feel.
+- [Multiple Selector](https://shadcnui-expansions.typeart.cc/docs/multiple-selector): Fast, composable, fully-featured multiple selector for React. Supports async search with debounce, maximum selected count, grouping, and creatable mode.
+- [Progress With Value](https://shadcnui-expansions.typeart.cc/docs/progress-with-value): A progress bar that displays the current percentage value as an inline label.
+- [Responsive Modal](https://shadcnui-expansions.typeart.cc/docs/responsive-modal): A dialog that opens as a centered modal on desktop and slides up as a bottom sheet on mobile.
+- [Spinner](https://shadcnui-expansions.typeart.cc/docs/spinner): A simple, accessible spinner component for displaying loading state.
+- [Typewriter](https://shadcnui-expansions.typeart.cc/docs/typewriter): Typewriter effect for text. Supports HTML and markdown rendering.
+
+## Links
+
+- [GitHub](https://github.com/hsuanyi-chou/shadcn-ui-expansions): Source code, issues, and contributions
+- [shadcn/ui](https://ui.shadcn.com/): The base component library this project extends
+- [Author Blog](https://blog.typeart.cc/): Blog by Hsuan-Yi Chou, the creator
