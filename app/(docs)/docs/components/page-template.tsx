@@ -47,8 +47,12 @@ const PageTemplate = ({ title, description, children, className }: PageTemplateP
 
   return (
     <section className={cn('flex flex-col gap-3 pb-10', className)}>
-      <JsonLd data={techArticleSchema} />
-      <JsonLd data={breadcrumbSchema} />
+      {title && (
+        <>
+          <JsonLd data={techArticleSchema} />
+          <JsonLd data={breadcrumbSchema} />
+        </>
+      )}
       <H1>{title}</H1>
       <P className="font-normal text-muted-foreground">{description}</P>
       {children}
